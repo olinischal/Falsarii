@@ -1,15 +1,19 @@
-## SPRING BOOT Starter Project
+# SPRING BOOT Starter Project
 Initial project setup for Spring Boot Web-Application using MVC,JPA,Hibernate
 
-##Recommended Development Environment
-- Intellij
+# Project Setup and Resutlts
+Falsarii connects to Postgres database.
+Download and install Postgres in a local environment 
+Create table "Student" with with attributes 
+-   id
+-   name
+-   location
+-   department
+Clone the backened project from github to your local computer
+Use any IDE (IntelliJ: Recommended) and run the program
+Go to the URL: http://localhost:8080/api/student and it should display the data in JSON format.
 
-##Description
-Falsarii connects to Postgres database and implements GetMapping to retrieve data.
-
-##Connect
-localhost:8080
-
-#connect to local database
-http://localhost:8080/api/students
+Clone the front-end project into your local computer
+Use any IDE(VSCODE: recommended) and run the program
+It displays the content from database table
 
