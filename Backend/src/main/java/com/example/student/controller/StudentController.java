@@ -23,15 +23,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 @CrossOrigin("*")
 public class StudentController {
-
+	//with autowired we can directly play with the object without declaring classes and objects 
     @Autowired
     private StudentRepository eRepo;
 
+    //this method retrieves all the students data from database with the help of StudentRepository class
     @GetMapping("/students")
     public List<Student> getAllStudents() {
         return eRepo.findAll();
     }
-
+    
+    
     @GetMapping("/Students/{id}")
     public Student getStudentById(@PathVariable Long id) {
         return eRepo.findById(id).get();
