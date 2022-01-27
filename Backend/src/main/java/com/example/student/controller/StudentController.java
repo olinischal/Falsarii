@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:8080")
 public class StudentController {
 
     @Autowired
@@ -40,6 +40,7 @@ public class StudentController {
     @PostMapping("/Students")
     public Student saveStudentDetails(@RequestBody Student Student) {
         return eRepo.save(Student);
+
     }
 
     @PutMapping("/Students")
