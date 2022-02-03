@@ -14,7 +14,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+    private String firstName;
     private String location;
     private String department;
 
@@ -24,7 +24,7 @@ public class Student {
 
     public Student(int id, String name, String location, String department) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
         this.location = location;
         this.department = department;
     }
@@ -38,11 +38,11 @@ public class Student {
     }
 
     public String getName() {
-        return name;
+        return firstName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.firstName = name;
     }
 
     public String getLocation() {

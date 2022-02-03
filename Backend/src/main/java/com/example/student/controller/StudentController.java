@@ -16,41 +16,24 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.example.student.service.StudentService;
 
 
 @RestController
-@RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:8080")
+@RequestMapping("/student")
+@CrossOrigin
 public class StudentController {
-
     @Autowired
-    private StudentRepository eRepo;
+    private StudentService studentService;
 
-    @GetMapping("/students")
-    public List<Student> getAllStudents() {
-        return eRepo.findAll();
+    @PostMapping("/add")
+    public String add(@RequestBody Student student){
+        studentService.saveStudent(student);
+        return "New student is added";
     }
 
-    @GetMapping("/Students/{id}")
-    public Student getStudentById(@PathVariable Long id) {
-        return eRepo.findById(id).get();
-    }
-
-    @PostMapping("/Students")
-    public Student saveStudentDetails(@RequestBody Student Student) {
-        return eRepo.save(Student);
-
-    }
-
-    @PutMapping("/Students")
-    public Student updateStudent(@RequestBody Student Student) {
-        return eRepo.save(Student);
-    }
-
-    @DeleteMapping("/Students/{id}")
-    public ResponseEntity<HttpStatus> deleteStudentById(@PathVariable Long id) {
-        eRepo.deleteById(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @GetMapping("/getAll")
+    public List<Student> list(){
+        return studentService.getAllStudents();
     }
 }
