@@ -23,8 +23,31 @@ import com.example.student.service.StudentService;
 @RequestMapping("/student")
 @CrossOrigin
 public class StudentController {
+<<<<<<< HEAD
     @Autowired
     private StudentService studentService;
+=======
+	//with autowired we can directly play with the object without declaring classes and objects 
+    @Autowired
+    private StudentRepository eRepo;
+
+    //this method retrieves all the students data from database with the help of StudentRepository class
+    @GetMapping("/students")
+    public List<Student> getAllStudents() {
+        return eRepo.findAll();
+    }
+    
+    
+    @GetMapping("/Students/{id}")
+    public Student getStudentById(@PathVariable Long id) {
+        return eRepo.findById(id).get();
+    }
+
+    @PostMapping("/Students")
+    public Student saveStudentDetails(@RequestBody Student Student) {
+        return eRepo.save(Student);
+    }
+>>>>>>> 6ee570def7e65a24e63cbfb8c103dbf9ed4c4e3c
 
     @PostMapping("/add")
     public String add(@RequestBody Student student){
