@@ -1,10 +1,10 @@
-package com.example.employee;
+package com.example.falsarii.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EmployeeApplicationTests {
+class BackendApplicationTests {
 
     @Test
     void contextLoads() {

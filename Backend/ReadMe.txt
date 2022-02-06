@@ -6,12 +6,14 @@ Falsarii connects to Postgres database.
 Download and install Postgres in a local environment 
 Create table "Student" with with attributes 
 -   id
--   name
--   location
--   department
+-   firstName
+-   lastName
+-   email
+-   Password
+-   phoneNumber
 Clone the backened project from github to your local computer
 Use any IDE (IntelliJ: Recommended) and run the program
-Go to the URL: http://localhost:8080/api/student and it should display the data in JSON format.
+Go to the URL: http://localhost:8080/members/getAll and it should display the data in JSON format.
 
 Clone the front-end project into your local computer
 Use any IDE(VSCODE: recommended) and run the program

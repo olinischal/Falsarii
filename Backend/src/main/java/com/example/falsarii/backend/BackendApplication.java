@@ -1,13 +1,13 @@
-package com.example.student;
+package com.example.falsarii.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class StudentApplication {
+public class BackendApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(StudentApplication.class, args);
+        SpringApplication.run(BackendApplication.class, args);
     }
 
 }
