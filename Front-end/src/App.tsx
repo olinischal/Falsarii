@@ -1,38 +1,97 @@
-import React, {useEffect} from 'react';
+import axios, {AxiosResponse} from 'axios';
+import React, {useEffect, useState} from 'react';
+import { resourceLimits } from 'worker_threads';
 
-type ApiResponseType = {
-  0: Student;
+
+interface Student {
+  // firstName: string,
+  // lastName: string,
+  // phoneNumber: string,
+  // email: string,
+  // password: string,
+  client: string
+
 }
 
-type Student = {
-  name: string,
-  location: string,
-  department: string,
-}
+
 
 const App = () =>{
-  const [name, setName] = React.useState('');
-  const [location, setLocation] = React.useState('');
-  const [department, setDepartment] = React.useState('');
-  const fetchApi = React.useCallback(async () => {
-    const response = await fetch("http://localhost:8080/api/students");
-    const result: ApiResponseType = await response.json();
-    setName(result[0].name);
-    setLocation(result[0].location);
-    setDepartment(result[0].department);
-  }, []);
+
+  const [client, setClient] = useState<Student[]>([]);
+  const instance = axios.create({
+    baseURL: 'http://localhost:8080/member/getAll',
+    timeout: 1500000,
+   });
+
+  const responseBody = (response: AxiosResponse) => response.data;
+
+  //console.log(instance.get('http://localhost:8080/member/getAll').then(responseBody));
+
+  useEffect(() => {
+		instance.get('http://localhost:8080/member/getAll').then(responseBody)
+			.then((data) => {
+				setClient(data);
+        console.log(data);
+        console.log(client[0]);
+			})
+			.catch((err) => {
+				console.log("Error ");
+			});
+		return () => {};
+	}, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // const [firstName, setFirstName] = React.useState('aa');
+  // const [lastName, setLastName] = React.useState('aa');
+  // const [phoneNumber, setPhoneNumber] = React.useState('aa');
+  // const [email, setEmail] = React.useState('aa');
+  // const [password, setPassword] = React.useState('aa');
+
+
+ // const [clients, setClients] = useState([]);
+
+  // const fetchApi = async () => {
+  //   const response = await fetch("http://localhost:8080/member/getAll");
+
+  //   const result = await response.json();
+  //    console.log(result);  
+     
     
-    useEffect(() => {
-      fetchApi()
-    }, [fetchApi]);
+  //   // setLastName(result[0].lastName);
+  //   // setEmail(result[0].email);
+  //   // setPassword(result[0].password);
+  //   // setPhoneNumber(result[0].phoneNumber);
+  // };
+    
+    // useEffect(() => {
+    //   fetchApi();
+
+
+
+
+    // }, []);
 
 
     return (
       <>
-        <div>Test</div>
-        <div>{name}</div>
-        <div>{location}</div>
-        <div>{department}</div>
+        <div>Client List </div>
+        {/* <div>{client[0]}</div> */}
+        {/* <div>{lastName}</div>
+        <div>{phoneNumber}</div>
+        <div>{email}</div>
+        <div>{password}</div> */}
       </>
     );
     

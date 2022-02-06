@@ -23,10 +23,10 @@ import com.example.student.service.StudentService;
 @RequestMapping("/student")
 @CrossOrigin
 public class StudentController {
-<<<<<<< HEAD
+
     @Autowired
     private StudentService studentService;
-=======
+
 	//with autowired we can directly play with the object without declaring classes and objects 
     @Autowired
     private StudentRepository eRepo;
@@ -47,7 +47,7 @@ public class StudentController {
     public Student saveStudentDetails(@RequestBody Student Student) {
         return eRepo.save(Student);
     }
->>>>>>> 6ee570def7e65a24e63cbfb8c103dbf9ed4c4e3c
+
 
     @PostMapping("/add")
     public String add(@RequestBody Student student){
