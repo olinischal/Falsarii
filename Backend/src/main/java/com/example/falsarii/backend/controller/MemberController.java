@@ -17,7 +17,7 @@ public class MemberController {
     @PostMapping("/add")
     public String add(@RequestBody Member member){
         memberService.saveMember(member);
-        return "New student is added";
+        return "New Member is added";
     }
 
     @GetMapping("/getAll")

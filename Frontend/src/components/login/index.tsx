@@ -36,7 +36,7 @@ const Login = () => {
       validationSchema={LoginSchema}
       onSubmit={submitForm}
     >
-      {({ values, handleChange, handleBlur }) => {
+      {({ values, handleChange, handleBlur, handleSubmit }) => {
         return (
           
            <Container className="mt-5" 
@@ -44,7 +44,7 @@ const Login = () => {
               
               <h3>Sign in</h3>
 
-                <Form>
+                <Form onSubmit={handleSubmit}>
                
                   <Form.Group className="mb-3">
                   
@@ -84,9 +84,7 @@ const Login = () => {
                     <Button
                       variant="warning"
                       size="lg"
-                      onClick={() => {
-                        submitForm(values);
-                      }}
+                      type="submit"
                     >
                       Sign In
                     </Button>
