@@ -40,21 +40,27 @@ const Login = () => {
         return (
           
            <Container className="mt-5" 
-            style={{ width: "18rem", padding: "2rem"}} > 
+            style={{ width: "30rem", padding: "2rem"}} > 
               
-              <h3>Sign in</h3>
+              <div style={{
+                width: "25rem",
+                backgroundColor: "#F0F8FF",
+                borderRadius: "10px",
+                margin: "20px",
+                padding: "40px",
+                }}>
+                < h3>Sign in</h3>
 
                 <Form onSubmit={handleSubmit}>
                
                   <Form.Group className="mb-3">
                   
-                    <Form.Label>Email Address</Form.Label>
 
                     <Form.Control
                       type="email"
                       name="email"
                       id="email"
-                      placeholder="example@email.com"
+                      placeholder="Email"
                       value={values.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -66,7 +72,6 @@ const Login = () => {
                   </Form.Group>
 
                   <Form.Group className="mb-3">
-                    <Form.Label>Password</Form.Label>
                     <Form.Control
                       type="password"
                       name="password"
@@ -94,7 +99,7 @@ const Login = () => {
                 <span className="float-end"><Link to="/signup" >Sign Up</Link></span> 
                 </p> 
                 </Form>
-                
+                </div>
             </Container> 
           
         );

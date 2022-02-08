@@ -28,8 +28,21 @@ const NavigationBar = () => {
             </Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link as={Link} to="/login">
+            <Nav.Link className ="btn btn-success" style={{
+              padding: "5px",
+              margin: "5px",
+              color: "black"
+            }}as={Link} to="/login">
               Login
+            </Nav.Link>
+          </Nav>
+          <Nav>
+            <Nav.Link className ="btn btn-info" style={{
+              padding: "5px",
+              margin: "5px",
+              color: "black"
+            }}as={Link} to="/signup">
+              Register
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
