@@ -48,12 +48,20 @@ const Signup = () => {
           <>
             <Container
               className="mt-5"
-              style={{ width: "18rem", padding: "2rem" }}
+              style={{ width: "30rem", padding: "2rem" }}
             >
-              <h3>Sign Up</h3>
+              
+              <div style={{
+                width: "25rem",
+                backgroundColor: "#F0F8FF",
+                borderRadius: "10px",
+                margin: "20px",
+                padding: "40px",
+                }}>
+                  <h3>Sign Up</h3>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
-                  <Form.Label>Firstname</Form.Label>
+                  
 
                   <Form.Control
                     type="text"
@@ -70,7 +78,7 @@ const Signup = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Label>Lastname</Form.Label>
+                  
                   <Form.Control
                     type="text"
                     name="lastName"
@@ -85,7 +93,7 @@ const Signup = () => {
                   </ErrorMessage>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                  <Form.Label>Phone Number</Form.Label>
+                  
                   <Form.Control
                     type="text"
                     name="phoneNumber"
@@ -101,7 +109,7 @@ const Signup = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Label>Email Address</Form.Label>
+                  
                   <Form.Control
                     type="email"
                     name="email"
@@ -116,7 +124,7 @@ const Signup = () => {
                   </ErrorMessage>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                  <Form.Label>Password</Form.Label>
+                  
                   <Form.Control
                     type="password"
                     name="password"
@@ -133,7 +141,7 @@ const Signup = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Label>Re-type Password</Form.Label>
+                  
                   <Form.Control
                     type="password"
                     name="confirmPassword"
@@ -149,15 +157,16 @@ const Signup = () => {
                   </ErrorMessage>
                 </Form.Group>
                 <Button
-                  variant="warning"
+                  variant="success"
                   size="lg"
                   type="submit"
-                 
                 >
                   Sign Up
                 </Button>
               </Form>
+              </div>
             </Container>
+            
           </>
         );
       }}
