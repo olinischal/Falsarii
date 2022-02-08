@@ -65,7 +65,7 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="firstName">
-                    {(msg) => <div>{msg}</div>}
+                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
 
@@ -81,7 +81,7 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="lastName">
-                    {(msg) => <div>{msg}</div>}
+                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -96,7 +96,7 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="phoneNumber">
-                    {(msg) => <div>{msg}</div>}
+                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
 
@@ -112,7 +112,7 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="email">
-                    {(msg) => <div>{msg}</div>}
+                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -128,7 +128,7 @@ const Signup = () => {
                   />
 
                   <ErrorMessage name="password">
-                    {(msg) => <div>{msg}</div>}
+                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
 
@@ -145,7 +145,7 @@ const Signup = () => {
                   />
 
                   <ErrorMessage name="confirmPassword">
-                    {(msg) => <div>{msg}</div>}
+                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
                 <Button
