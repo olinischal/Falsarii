@@ -25,6 +25,11 @@ const SignupSchema = Yup.object().shape({
     password: Yup.string()
       .required("Password is required")
       .min(6, "Password is too short - should be 6 chars minimum"),
+    
+    confirmPassword: Yup.string().oneOf(
+        [Yup.ref("password")],
+        "Please retype the same password"),
+
   });
 
 
