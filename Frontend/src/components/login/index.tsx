@@ -1,7 +1,7 @@
-import React from "react";
 import { Formik, ErrorMessage } from "formik";
 import {Link} from 'react-router-dom';
 import LoginSchema from "./login-validation";
+import {useNavigate } from "react-router";
 import { Button, Form, Container} from "react-bootstrap";
 import axios from "axios";
 
@@ -9,27 +9,42 @@ interface loginProps {
   email: string;
   password: string;
 }
-
 const initialValues = {
   email: "",
   password: "",
 };
 
-const submitForm = (values: loginProps) => {
-  try {
-    axios({
-      method: "post",
-      url: "http://localhost:8080/member/add",
-      data: values,
-    }).then((response: {}) => {
-      console.log(response);
-    });
-  } catch (error) {
-    console.log("Error...");
-  }
-};
+// const submitForm = (values: loginProps) => {
+//   try {
+//     axios({
+//       method: "post",
+//       url: "http://localhost:8080/member/login",
+//       data: values,
+//     }).then((response: {}) => {
+//       console.log(response);
+      
+//     });
+//   } catch (error) {
+//     console.log("Error...");
+//   }
+// };
 
 const Login = () => {
+    const navigate= useNavigate();
+    const submitForm = (values: loginProps) => {
+      try {
+        axios({
+          method: "post",
+          url: "http://localhost:8080/member/login",
+          data: values,
+        }).then((response: {}) => {
+          console.log(response);
+          navigate('/');
+        });
+      } catch (error) {
+        console.log("Error...");
+      }
+    };
   return (
     <Formik
       initialValues={initialValues}
