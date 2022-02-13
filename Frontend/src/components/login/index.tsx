@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 import {useState} from "react";
+=======
+>>>>>>> origin/develop
 import { Formik, ErrorMessage } from "formik";
 import {Link, useNavigate} from 'react-router-dom';
 import LoginSchema from "./login-validation";
+import {useNavigate } from "react-router";
 import { Button, Form, Container} from "react-bootstrap";
 
 import axios from "axios";
@@ -14,18 +18,91 @@ interface loginProps {
   email: string;
   password: string;
 }
-
 const initialValues = {
   email: "",
   password: "",
 };
 
+<<<<<<< HEAD
 
 
 
 
 const Login = () => {
   
+=======
+// const submitForm = (values: loginProps) => {
+//   try {
+//     axios({
+//       method: "post",
+//       url: "http://localhost:8080/member/login",
+//       data: values,
+//     }).then((response: {}) => {
+//       console.log(response);
+      
+//     });
+//   } catch (error) {
+//     console.log("Error...");
+//   }
+// };
+
+const Login = () => {
+    const navigate= useNavigate();
+    const submitForm = (values: loginProps) => {
+      try {
+        axios({
+          method: "post",
+          url: "http://localhost:8080/member/login",
+          data: values,
+        }).then((response: {}) => {
+          console.log(response);
+          navigate('/');
+        });
+      } catch (error) {
+        console.log("Error...");
+      }
+    };
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={LoginSchema}
+      onSubmit={submitForm}
+    >
+      {({ values, handleChange, handleBlur, handleSubmit }) => {
+        return (
+          
+           <Container className="mt-5" 
+            style={{ width: "30rem", padding: "2rem"}} > 
+              
+              <div style={{
+                width: "25rem",
+                backgroundColor: "#F0F8FF",
+                borderRadius: "10px",
+                margin: "20px",
+                padding: "40px",
+                }}>
+                < h3>Sign in</h3>
+
+                <Form onSubmit={handleSubmit}>
+               
+                  <Form.Group className="mb-3">
+                  
+
+                    <Form.Control
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="Email"
+                      value={values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    <ErrorMessage name="email">
+                      {(msg) => <div>{msg}</div>}
+                    </ErrorMessage>
+                   
+                  </Form.Group>
+>>>>>>> origin/develop
 
   const navigate= useNavigate();
   const submitForm = (values: loginProps) => {
