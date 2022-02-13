@@ -2,6 +2,7 @@ import { Formik, ErrorMessage, FormikProps, FormikHelpers } from "formik";
 import SignupSchema from "./signup-validation";
 import { Button, Form, Container } from "react-bootstrap";
 import axios from "axios";
+import "./index.css";
 
 interface signupProps {
   firstName: string;
@@ -73,7 +74,7 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="firstName">
-                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
+                  {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
 
@@ -89,7 +90,7 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="lastName">
-                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
+                     {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -104,7 +105,7 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="phoneNumber">
-                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
+                     {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
 
@@ -120,7 +121,7 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="email">
-                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
+                     {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -136,7 +137,7 @@ const Signup = () => {
                   />
 
                   <ErrorMessage name="password">
-                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
+                     {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
 
@@ -146,14 +147,14 @@ const Signup = () => {
                     type="password"
                     name="confirmPassword"
                     id="password"
-                    placeholder="Password"
+                    placeholder="Retype-Password"
                     value={values.confirmPassword}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
 
                   <ErrorMessage name="confirmPassword">
-                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
+                     {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
                 <Button

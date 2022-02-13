@@ -1,9 +1,10 @@
 import { Navbar, Nav, Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import './index.css'
 
 const NavigationBar = () => {
   return (
-    <Navbar bg="dark" variant={"dark"} expand="lg">
+    <Navbar className='color-nav' bg="dark" variant={"dark"} expand="sm">
       <Container fluid>
         <Navbar.Brand as={Link} to="/">
           <Image 
@@ -17,7 +18,7 @@ const NavigationBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-          <Nav.Link as={Link} to="/members">
+          <Nav.Link as={Link} to="/members" >
               Members
             </Nav.Link>
             <Nav.Link as={Link} to="/about">
@@ -33,7 +34,7 @@ const NavigationBar = () => {
               margin: "5px",
               color: "black"
             }}as={Link} to="/login">
-              Login
+              Sign in
             </Nav.Link>
           </Nav>
           <Nav>

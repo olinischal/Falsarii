@@ -14,7 +14,7 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
-    @PostMapping("/add")
+    @PostMapping("/login")
     public String add(@RequestBody Member member){
         memberService.saveMember(member);
         return "New Member is added";
