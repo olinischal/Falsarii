@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-import {useState} from "react";
-=======
->>>>>>> origin/develop
 import { Formik, ErrorMessage } from "formik";
 import {Link, useNavigate} from 'react-router-dom';
 import LoginSchema from "./login-validation";
-import {useNavigate } from "react-router";
+
 import { Button, Form, Container} from "react-bootstrap";
 
 import axios from "axios";
@@ -23,28 +19,7 @@ const initialValues = {
   password: "",
 };
 
-<<<<<<< HEAD
 
-
-
-
-const Login = () => {
-  
-=======
-// const submitForm = (values: loginProps) => {
-//   try {
-//     axios({
-//       method: "post",
-//       url: "http://localhost:8080/member/login",
-//       data: values,
-//     }).then((response: {}) => {
-//       console.log(response);
-      
-//     });
-//   } catch (error) {
-//     console.log("Error...");
-//   }
-// };
 
 const Login = () => {
     const navigate= useNavigate();
@@ -102,7 +77,6 @@ const Login = () => {
                     </ErrorMessage>
                    
                   </Form.Group>
->>>>>>> origin/develop
 
   const navigate= useNavigate();
   const submitForm = (values: loginProps) => {
