@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MemberData from "../../types/Member";
-import { Member } from "../../api/api";
+import { Member } from "../../services/api";
+import Profile from "../User/Profile";
 
 const MemberList = () => {
   const [members, setMembers] = useState<MemberData[]>([]);
@@ -24,6 +25,7 @@ const MemberList = () => {
         Members are
         {listItems}
       </div>
+      
             
    
   );

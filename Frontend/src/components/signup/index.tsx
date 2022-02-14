@@ -1,8 +1,10 @@
 import { Formik, ErrorMessage, FormikProps, FormikHelpers } from "formik";
 import SignupSchema from "./signup-validation";
 import { Button, Form, Container } from "react-bootstrap";
-import axios from "axios";
+import {useNavigate} from "react-router-dom";
+
 import "./index.css";
+import {register} from "../../services/authenticate-service";
 
 interface signupProps {
   firstName: string;
@@ -22,21 +24,22 @@ const initialValues: signupProps = {
   confirmPassword: "",
 };
 
-const submitForm = (values: signupProps) => {
-  try {
-    axios({
-      method: "post",
-      url: "http://localhost:8080/member/add",
-      data: values,
-    }).then((response: {}) => {
-      console.log(response);
-    });
-  } catch (error) {
-    console.log("Error...");
-  }
-};
+
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const submitForm = (values: signupProps) => {
+    
+    try {     
+      register(values.firstName,values.lastName,values.phoneNumber, values.email, values.password)
+      .then((response: {}) => {
+        navigate("/login");
+        window.location.reload();
+      });
+    } catch (error) {
+      console.log("Error...");
+    }
+  };
   return (
     <Formik
       initialValues={initialValues}
@@ -59,7 +62,7 @@ const Signup = () => {
                 margin: "20px",
                 padding: "40px",
                 }}>
-                  <h3>Sign Up</h3>
+                 
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                   
