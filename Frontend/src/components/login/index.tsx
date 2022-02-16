@@ -1,8 +1,8 @@
 import React from "react";
 import { Formik, ErrorMessage } from "formik";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 import LoginSchema from "./login-validation";
-import { Button, Form, Container} from "react-bootstrap";
+import { Button, Form, Container } from "react-bootstrap";
 import axios from "axios";
 
 interface loginProps {
@@ -38,65 +38,57 @@ const Login = () => {
     >
       {({ values, handleChange, handleBlur, handleSubmit }) => {
         return (
-          
-           <Container className="mt-5" 
-            style={{ width: "18rem", padding: "2rem"}} > 
-              
-              <h3>Sign in</h3>
+          <Container
+            className="mt-5"
+            style={{ width: "18rem", padding: "2rem" }}
+          >
+            <h3>Sign in</h3>
 
-                <Form onSubmit={handleSubmit}>
-               
-                  <Form.Group className="mb-3">
-                  
-                    <Form.Label>Email Address</Form.Label>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3">
+                <Form.Label>Email Address</Form.Label>
 
-                    <Form.Control
-                      type="email"
-                      name="email"
-                      id="email"
-                      placeholder="example@email.com"
-                      value={values.email}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    <ErrorMessage name="email">
-                      {(msg) => <div>{msg}</div>}
-                    </ErrorMessage>
-                   
-                  </Form.Group>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="example@email.com"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <ErrorMessage name="email">
+                  {(msg) => <div>{msg}</div>}
+                </ErrorMessage>
+              </Form.Group>
 
-                  <Form.Group className="mb-3">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                      type="password"
-                      name="password"
-                      id="password"
-                      placeholder="Password"
-                      value={values.password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
+              <Form.Group className="mb-3">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
 
-                    <ErrorMessage name="password">
-                      {(msg) => <div>{msg}</div>}
-                    </ErrorMessage>
-                    </Form.Group>
-                    <Button
-                      variant="warning"
-                      size="lg"
-                      type="submit"
-                    >
-                      Sign In
-                    </Button>
-                    <p>
-                    Forgot <Link to="/">password?</Link>
-                
-                <span className="float-end"><Link to="/signup" >Sign Up</Link></span> 
-                </p> 
-                </Form>
-                
-            </Container> 
-          
+                <ErrorMessage name="password">
+                  {(msg) => <div>{msg}</div>}
+                </ErrorMessage>
+              </Form.Group>
+              <Button variant="warning" size="lg" type="submit">
+                Sign In
+              </Button>
+              <p>
+                Forgot <Link to="/">password?</Link>
+                <span className="float-end">
+                  <Link to="/signup">Sign Up</Link>
+                </span>
+              </p>
+            </Form>
+          </Container>
         );
       }}
     </Formik>

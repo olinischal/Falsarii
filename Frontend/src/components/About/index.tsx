@@ -1,8 +1,7 @@
-
+import "../About/index.about.css";
 
 const About = () => {
-
-    return <>About page </>;
-}
+  return <div></div>;
+};
 
 export default About;
