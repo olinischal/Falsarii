@@ -14,20 +14,6 @@ const initialValues = {
   password: "",
 };
 
-// const submitForm = (values: loginProps) => {
-//   try {
-//     axios({
-//       method: "post",
-//       url: "http://localhost:8080/member/login",
-//       data: values,
-//     }).then((response: {}) => {
-//       console.log(response);
-      
-//     });
-//   } catch (error) {
-//     console.log("Error...");
-//   }
-// };
 
 const Login = () => {
     const navigate= useNavigate();
