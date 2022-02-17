@@ -1,12 +1,19 @@
 import axios from "axios";
 const API_URL = "http://localhost:8080/member/";
 export const register = (firstName:string, lastName:string, phoneNumber:string, email: string, password: string) => {
+  
+  let userDetail;
   return axios.post(API_URL + "add", {    
     firstName,
     lastName,
     phoneNumber,
     email,
     password,
+  }).then((response)=> {
+    console.log(response);
+    
+    // userDetail = response.data;
+    
   });
 };
 export const signIn = (email: string, password: string) => {
@@ -17,7 +24,7 @@ export const signIn = (email: string, password: string) => {
     })
     .then((response) => {
       if (response.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(response.data));
+        localStorage.setItem("user", JSON.stringify(response.data ));
       }
       return response.data;
     });

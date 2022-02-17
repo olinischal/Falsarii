@@ -55,6 +55,10 @@ public class MemberController {
     @Autowired
     JwtUtils jwtUtils;
 
+    @GetMapping("/all")
+    public String allAccess() {
+        return "Public Content.";
+    }
 
 
     @GetMapping("/getAll")

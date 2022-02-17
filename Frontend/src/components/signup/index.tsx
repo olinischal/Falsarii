@@ -32,7 +32,7 @@ const Signup = () => {
     
     try {     
       register(values.firstName,values.lastName,values.phoneNumber, values.email, values.password)
-      .then((response: {}) => {
+      .then(() => {
         navigate("/login");
         window.location.reload();
       });

@@ -17,13 +17,15 @@ const MemberList = () => {
       });
   }, []);
 
-  const listItems = members.map((d) => <li key={d.id}>{d.firstName}</li>);
+  const listUsers = members.map((d) => <li key={d.id}>{d.firstName}</li>);
+  const user = members.map(d =>  d);
   return (
  
     
     <div>
         Members are
-        {listItems}
+        {listUsers}
+        
       </div>
       
             

@@ -44,7 +44,7 @@ const NavigationBar = () => {
           </Nav>
           {user ? 
              <Nav>
-               <Nav.Link as={Link} to="/profile">
+               <Nav.Link as={Link} to="/profile/user">
               Profile
             </Nav.Link>
             
