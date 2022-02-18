@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,7 @@ import com.example.falsarii.payload.response.MessageResponse;
 @RestController
 @RequestMapping("/member")
 public class MemberController {
+
   @Autowired
   AuthenticationManager authenticationManager;
 

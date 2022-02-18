@@ -26,3 +26,4 @@ export const Member = {
 		requests.put(`add/${id}`, post),
 	deleteMember: (id: number): Promise<void> => requests.delete(`getAll/${id}`),
 };
+
