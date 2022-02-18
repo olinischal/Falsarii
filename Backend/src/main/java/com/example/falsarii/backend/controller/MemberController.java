@@ -1,32 +1,3 @@
-//package com.example.falsarii.backend.controller;
-//
-//    import com.example.falsarii.backend.model.Member;
-//import com.example.falsarii.backend.security.services.MemberDetailsImpl;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//    import org.springframework.web.bind.annotation.*;
-//
-//    import java.util.List;
-//
-//@RestController
-//@RequestMapping("/member")
-//@CrossOrigin
-//public class MemberController {
-//    @Autowired
-//    private MemberDetailsImpl memberService;
-//
-//    @PostMapping("/add")
-//    public String add(@RequestBody Member member){
-//        memberService.saveMember(member);
-//        return "New Member is added";
-//    }
-//
-//    @GetMapping("/getAll")
-//    public List<Member> list(){
-//        return memberService.getAllMembers();
-//    }
-//}
-
 package com.example.falsarii.backend.controller;
 
 import java.util.HashSet;
@@ -69,96 +40,100 @@ import com.example.falsarii.payload.response.MessageResponse;
 @RestController
 @RequestMapping("/member")
 public class MemberController {
-  @Autowired
-  AuthenticationManager authenticationManager;
+    @Autowired
+    AuthenticationManager authenticationManager;
 
-  @Autowired
-  MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
-  @Autowired
-  RoleRepository roleRepository;
+    @Autowired
+    RoleRepository roleRepository;
 
-  @Autowired
-  PasswordEncoder encoder;
+    @Autowired
+    PasswordEncoder encoder;
 
-  @Autowired
-  JwtUtils jwtUtils;
-  
- 
-  
-  @GetMapping("/getAll")
-  public List<Member> list(){
-      return memberRepository.findAll();
-  }
+    @Autowired
+    JwtUtils jwtUtils;
 
-  
-  @PostMapping("/login")
-  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-    Authentication authentication = authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
-    SecurityContextHolder.getContext().setAuthentication(authentication);
-    String jwt = jwtUtils.generateJwtToken(authentication);
-    
-    MemberDetailsImpl userDetails = (MemberDetailsImpl) authentication.getPrincipal();    
-    List<String> roles = userDetails.getAuthorities().stream()
-        .map(item -> item.getAuthority())
-        .collect(Collectors.toList());
-
-    return ResponseEntity.ok(new JwtResponse(jwt, 
-                         userDetails.getId(), 
-                         userDetails.getEmail(), 
-                         roles));
-  }
-  
-
-  @PostMapping("/add")
-  public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-    if (memberRepository.existsByEmail(signUpRequest.getEmail())) {
-      return ResponseEntity
-          .badRequest()
-          .body(new MessageResponse("Error: Email is already taken!"));
+    @GetMapping("/all")
+    public String allAccess() {
+        return "Public Content.";
     }
 
 
-    // Create new user's account
-    Member member = new Member(signUpRequest.getFirstName(), 
-    		signUpRequest.getLastName(),
-    		signUpRequest.getPhoneNumber(),
-            signUpRequest.getEmail(),
-               encoder.encode(signUpRequest.getPassword()));
+    @GetMapping("/getAll")
+    public List<Member> list(){
+        return memberRepository.findAll();
+    }
 
-    Set<String> strRoles = signUpRequest.getRole();
-    Set<Role> roles = new HashSet<>();
-    if (strRoles == null) {
-      Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-          .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-      roles.add(userRole);
-    } else {
-      strRoles.forEach(role -> {
-        switch (role) {
-        case "admin":
-          Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-          roles.add(adminRole);
 
-          break;
-        case "mod":
-          Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-          roles.add(modRole);
+    @PostMapping("/login")
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication);
 
-          break;
-        default:
-          Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-          roles.add(userRole);
+        MemberDetailsImpl userDetails = (MemberDetailsImpl) authentication.getPrincipal();
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(item -> item.getAuthority())
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(new JwtResponse(jwt,
+                userDetails.getId(),
+                userDetails.getEmail(),
+                roles));
+    }
+
+
+    @PostMapping("/add")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+        if (memberRepository.existsByEmail(signUpRequest.getEmail())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Email is already taken!"));
         }
-      });
+
+
+        // Create new user's account
+        Member member = new Member(signUpRequest.getFirstName(),
+                signUpRequest.getLastName(),
+                signUpRequest.getPhoneNumber(),
+                signUpRequest.getEmail(),
+                encoder.encode(signUpRequest.getPassword()));
+
+        Set<String> strRoles = signUpRequest.getRole();
+        Set<Role> roles = new HashSet<>();
+        if (strRoles == null) {
+            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            roles.add(userRole);
+        } else {
+            strRoles.forEach(role -> {
+                switch (role) {
+                    case "admin":
+                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(adminRole);
+
+                        break;
+                    case "mod":
+                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(modRole);
+
+                        break;
+                    default:
+                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(userRole);
+                }
+            });
+        }
+
+        member.setRoles(roles);
+        memberRepository.save(member);
+
+        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
-
-    member.setRoles(roles);
-    memberRepository.save(member);
-
-    return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-  }
 }

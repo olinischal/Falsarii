@@ -9,6 +9,10 @@ import NavigationBar from './components/navbar';
 import About from './components/About';
 import Contact from './components/contact/contact';
 import MemberList from './components/MemberList';
+import Profile from "./components/User/Profile";
+import BoardUser from './components/BoardMembers/BoardUser';
+
+
 
 
 function App() {
@@ -16,7 +20,11 @@ function App() {
    
     
     <Router>
+    
+      
       <NavigationBar />
+    
+      
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/login" element={<Login/>}/>
@@ -24,9 +32,12 @@ function App() {
         <Route path="/about" element={<About/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/members" element={<MemberList/>}/>
+        <Route path="/profile/*" element={<Profile />}/>
+        <Route path="/user" element={<BoardUser />} />
+        
       </Routes>
    
-  </Router>
+      </Router>
   
   );
 }

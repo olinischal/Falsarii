@@ -1,9 +1,24 @@
 import { Navbar, Nav, Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
+import './index.css'
+import * as AuthService from "../../services/authenticate-service";
 
 const NavigationBar = () => {
+  const navigate = useNavigate();
+  
+
+  let user = AuthService.getCurrentUser();
+  
+  const logOut = () => {
+    AuthService.logout();
+    navigate('/login');
+
+  };
+
+
   return (
-    <Navbar bg="dark" variant={"dark"} expand="lg">
+    <Navbar className='color-nav' bg="dark" variant={"dark"} expand="sm">
       <Container fluid>
         <Navbar.Brand as={Link} to="/">
           <Image 
@@ -17,7 +32,7 @@ const NavigationBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-          <Nav.Link as={Link} to="/members">
+          <Nav.Link as={Link} to="/members" >
               Members
             </Nav.Link>
             <Nav.Link as={Link} to="/about">
@@ -27,16 +42,30 @@ const NavigationBar = () => {
               Contact Us
             </Nav.Link>
           </Nav>
-          <Nav>
+          {user ? 
+             <Nav>
+               <Nav.Link as={Link} to="/profile/user">
+              Profile
+            </Nav.Link>
+            
+             <Nav.Link className ="btn btn-success" style={{
+               padding: "5px",
+               margin: "5px",
+               color: "black"
+             }} onClick={logOut}>
+               Sign Out
+             </Nav.Link>
+           </Nav>
+             :
+               <Nav>
+            
             <Nav.Link className ="btn btn-success" style={{
               padding: "5px",
               margin: "5px",
               color: "black"
             }}as={Link} to="/login">
-              Login
+              Sign in
             </Nav.Link>
-          </Nav>
-          <Nav>
             <Nav.Link className ="btn btn-info" style={{
               padding: "5px",
               margin: "5px",
@@ -44,7 +73,9 @@ const NavigationBar = () => {
             }}as={Link} to="/signup">
               Register
             </Nav.Link>
-          </Nav>
+          </Nav>            
+          }
+         
         </Navbar.Collapse>
       </Container>
     </Navbar>

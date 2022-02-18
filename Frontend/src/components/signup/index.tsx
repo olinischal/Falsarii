@@ -1,7 +1,10 @@
 import { Formik, ErrorMessage, FormikProps, FormikHelpers } from "formik";
 import SignupSchema from "./signup-validation";
 import { Button, Form, Container } from "react-bootstrap";
-import axios from "axios";
+import {useNavigate} from "react-router-dom";
+
+import "./index.css";
+import {register} from "../../services/authenticate-service";
 
 interface signupProps {
   firstName: string;
@@ -21,21 +24,22 @@ const initialValues: signupProps = {
   confirmPassword: "",
 };
 
-const submitForm = (values: signupProps) => {
-  try {
-    axios({
-      method: "post",
-      url: "http://localhost:8080/member/add",
-      data: values,
-    }).then((response: {}) => {
-      console.log(response);
-    });
-  } catch (error) {
-    console.log("Error...");
-  }
-};
+
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const submitForm = (values: signupProps) => {
+    
+    try {     
+      register(values.firstName,values.lastName,values.phoneNumber, values.email, values.password)
+      .then(() => {
+        navigate("/login");
+        window.location.reload();
+      });
+    } catch (error) {
+      console.log("Error...");
+    }
+  };
   return (
     <Formik
       initialValues={initialValues}
@@ -58,7 +62,7 @@ const Signup = () => {
                 margin: "20px",
                 padding: "40px",
                 }}>
-                  <h3>Sign Up</h3>
+                 
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                   
@@ -73,7 +77,7 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="firstName">
-                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
+                  {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
 
@@ -89,7 +93,7 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="lastName">
-                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
+                     {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -104,7 +108,7 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="phoneNumber">
-                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
+                     {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
 
@@ -120,7 +124,7 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="email">
-                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
+                     {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -136,7 +140,7 @@ const Signup = () => {
                   />
 
                   <ErrorMessage name="password">
-                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
+                     {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
 
@@ -146,14 +150,14 @@ const Signup = () => {
                     type="password"
                     name="confirmPassword"
                     id="password"
-                    placeholder="Password"
+                    placeholder="Retype-Password"
                     value={values.confirmPassword}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
 
                   <ErrorMessage name="confirmPassword">
-                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
+                     {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
                 <Button
