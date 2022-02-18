@@ -24,6 +24,7 @@ export const signIn = (email: string, password: string) => {
     })
     .then((response) => {
       if (response.data.accessToken) {
+        
         localStorage.setItem("user", JSON.stringify(response.data ));
       }
       return response.data;
@@ -34,6 +35,6 @@ export const logout = () => {
 };
 export const getCurrentUser = () => {
   const userStr = localStorage.getItem("user");
-  if (userStr) return JSON.parse(userStr);
+  if (userStr) {return JSON.parse(userStr)};
   return null;
 };
