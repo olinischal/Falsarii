@@ -1,4 +1,3 @@
-import React from 'react';
 import Login from './components/login'
 import './App.css';
 import Signup from './components/signup';
@@ -9,8 +8,14 @@ import NavigationBar from './components/navbar';
 import About from './components/About';
 import Contact from './components/contact/contact';
 import MemberList from './components/MemberList';
+
+import Payment from './components/Payment/Payment';
+import Success from './components/Payment/Success';
+import Error from './components/Payment/Error';
+
 import Profile from "./components/User/Profile";
 import BoardUser from './components/BoardMembers/BoardUser';
+
 
 
 
@@ -32,6 +37,11 @@ function App() {
         <Route path="/about" element={<About/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/members" element={<MemberList/>}/>
+
+        <Route path="/payment" element={<Payment/>}/>
+        <Route path="/success" element={<Success/>}/>
+        <Route path="/error" element={<Error/>}/>
+
         <Route path="/profile/*" element={<Profile />}/>
         <Route path="/user" element={<BoardUser />} />
         

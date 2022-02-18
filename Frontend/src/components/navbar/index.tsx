@@ -41,7 +41,11 @@ const NavigationBar = () => {
             <Nav.Link as={Link} to="/contact">
               Contact Us
             </Nav.Link>
+            <Nav.Link as={Link} to="/payment">
+              Donate
+            </Nav.Link>
           </Nav>
+
           {user ? 
              <Nav>
                <Nav.Link as={Link} to="/profile/user">
@@ -66,6 +70,7 @@ const NavigationBar = () => {
             }}as={Link} to="/login">
               Sign in
             </Nav.Link>
+
             <Nav.Link className ="btn btn-info" style={{
               padding: "5px",
               margin: "5px",
@@ -73,9 +78,11 @@ const NavigationBar = () => {
             }}as={Link} to="/signup">
               Register
             </Nav.Link>
+
           </Nav>            
           }
          
+
         </Navbar.Collapse>
       </Container>
     </Navbar>

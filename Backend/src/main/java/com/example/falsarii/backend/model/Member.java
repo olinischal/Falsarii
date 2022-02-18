@@ -1,6 +1,12 @@
 package com.example.falsarii.backend.model;
+
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +18,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 
 
 @Entity
@@ -30,11 +41,25 @@ public class Member {
     private String email;
     private String password;
     
+
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date")
+    private Date createDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "modify_date")
+    private Date modifyDate;
+    
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(  name = "member_roles", 
           joinColumns = @JoinColumn(name = "member_id"), 
           inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
 
     public Member(String firstName, String lastName, String phoneNumber, String email, String password) {
         this.firstName = firstName;

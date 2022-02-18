@@ -62,7 +62,9 @@ const Signup = () => {
                 margin: "20px",
                 padding: "40px",
                 }}>
+
                  
+
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                   
