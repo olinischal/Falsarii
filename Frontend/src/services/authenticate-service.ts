@@ -42,6 +42,6 @@ export const getMember = (id) =>{
   return axios
     .get(API_URL + "getMember/" +parseInt(`${id}`)) 
     .then((response)=> {
-      console.log(response + "error is here");
+      console.log(response);
     });
 };

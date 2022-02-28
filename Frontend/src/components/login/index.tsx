@@ -2,6 +2,7 @@ import { Formik, ErrorMessage } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import LoginSchema from "./login-validation";
 
+
 import { Button, Form, Container} from "react-bootstrap";
 import axios from "axios";
 
@@ -25,15 +26,18 @@ const initialValues = {
 
 const Login = () => {
   const navigate = useNavigate();
+  let temp;
   const submitForm = (values: loginProps) => {
     try {
-      signIn(values.email, values.password).then(() => {
-        navigate("/profile");
+      temp =  signIn(values.email, values.password).then(() => {
+        
+        navigate("/profile/user");
         window.location.reload();
       });
     } catch (error) {
       console.log("Error ..");
     }
+    
   };
 
 
