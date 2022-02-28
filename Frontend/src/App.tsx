@@ -15,6 +15,7 @@ import Error from './components/Payment/Error';
 
 import Profile from "./components/User/Profile";
 import BoardUser from './components/BoardMembers/BoardUser';
+import UpdateMember from './components/MemberList/UpdateMember';
 
 
 
@@ -44,6 +45,7 @@ function App() {
 
         <Route path="/profile/*" element={<Profile />}/>
         <Route path="/user" element={<BoardUser />} />
+        <Route path="/update/:id" element={<UpdateMember/>}/>
         
       </Routes>
    

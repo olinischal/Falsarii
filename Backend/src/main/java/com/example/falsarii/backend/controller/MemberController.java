@@ -38,6 +38,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -45,8 +46,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -169,6 +173,31 @@ public class MemberController {
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
+
+  
+  	@GetMapping("getMember/{id}")
+	public Member getSingleMember(@PathVariable Long id) {
+		return memberRepository.findById(id).get();
+	}
+	
+	@PutMapping("/update/{id}")
+	public ResponseEntity updateMemberDetails(@PathVariable Long id, @RequestBody Member member) {
+		Member currentMember = memberRepository.findById(id).orElseThrow(RuntimeException::new);
+		currentMember.setFirstName(member.getFirstName());
+		currentMember.setLastName(member.getLastName());
+		currentMember.setPhoneNumber(member.getPhoneNumber());
+		currentMember.setEmail(member.getEmail());
+		memberRepository.save(currentMember);
+		return ResponseEntity.ok(currentMember);
+	}
+
+  
+  
+  @DeleteMapping("/delete/{id}")
+	public ResponseEntity<HttpStatus> deleteMemberEntity(@PathVariable Long id) {
+		memberRepository.deleteById(id);
+		return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
+	}
 
 }
 
