@@ -1,6 +1,6 @@
 const AuthHeader = () => {
     const userStr = localStorage.getItem("user");
-    let user = null;
+    let user;
     if (userStr)
       user = JSON.parse(userStr);
     if (user && user.accessToken) {
