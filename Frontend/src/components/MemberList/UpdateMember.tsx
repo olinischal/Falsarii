@@ -4,110 +4,108 @@ import { Link, useParams } from "react-router-dom";
 import { Member } from "../../services/api";
 import MemberData from "../../types/Member";
 
-
-
 const UpdateMember = () => {
+  const [users, setUsers] = useState<MemberData>({
+    firstName: " ",
+    lastName: " ",
+    email: " ",
+    phoneNumber: " ",
+    password: " ",
+  });
 
-    const [users, setUsers] = useState<MemberData>({
-        firstName: " ",
-        lastName: " ",
-        email: " ",
-        phoneNumber: " ",
-        password: " ",
+  // const [firstName, setFirstName] = useState('');
+  // const [lastName, setLastName] = useState('');
+  // const [phoneNumber, setPhoneNumber] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  let { id } = useParams();
+
+  const saveclients = (e) => {
+    e.preventDefault();
+
+    Member.updateMember(parseInt(String(id)), users)
+      .then(() => {
+        navigate("/members");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log("Something went wrong here.", error);
       });
+  };
 
-    // const [firstName, setFirstName] = useState('');
-    // const [lastName, setLastName] = useState('');
-    // const [phoneNumber, setPhoneNumber] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-    const navigate = useNavigate();
-   
-    let { id }  = useParams();
+  useEffect(() => {
+    Member.getAMember(parseInt(String(id)))
+      .then((response) => {
+        setUsers(response);
+      })
+      .catch((error) => {
+        console.log("Something went wrong here.", error);
+      });
+  }, []);
 
-
-    const saveclients = (e) => {
-        e.preventDefault();
-
-        const clients = { users };
-        Member.updateMember(parseInt(String(id)),users)
-        .then(() => {
-            navigate("/members");
-            window.location.reload();
-          })
-        .catch(error=>{
-            console.log("Something went wrong here.", error);
-        })
-    }
-    
-    useEffect(()=> {
-        Member.getAMember(parseInt(String(id)))
-            .then(response => {
-                setUsers(response);
-                
-            })
-            .catch(error=>{
-                console.log("Something went wrong here." , error);
-            })
-    }, [])
-   
-    return (
-        <div className="container">
-            <h3>Update Member</h3>
-            <hr />
-            <form>
-                <div className="form-group">
-                    <input
-                        type="text"
-                        className="form-control col-4"
-                        id="firstName"
-                        value={users.firstName}
-                        onChange={(e) => setUsers({...users, firstName : (e.target.value)})}
-                        placeholder= {users.firstName}
-                    />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="text"
-                        className="form-control col-4"
-                        id="lastName"
-                        value={users.lastName}
-                        onChange={(e) => setUsers({...users, lastName : (e.target.value)})}
-                        placeholder={users.lastName}
-                    />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="text"
-                        className="form-control col-4"
-                        id="location"
-                        value={users.phoneNumber}
-                        onChange={(e) => setUsers({...users, phoneNumber : (e.target.value)})}
-                        placeholder={users.phoneNumber}
-                    />
-
-                </div>
-
-                <div className="form-group">
-                    <input
-                        type="text"
-                        className="form-control col-4"
-                        id="location"
-                        value={users.email}
-                        onChange={(e) => setUsers({...users, phoneNumber : (e.target.value)})}
-                        placeholder={users.email}
-                    />
-
-                </div>
-
-                <div>
-                    <button className="btn btn-primary" onClick={(e) => saveclients(e)}>Save</button>
-                </div>
-            </form>
-            <hr />
-            <Link to={"/members"}>Back to List</Link>
+  return (
+    <div className="container">
+      <h3>Update Member</h3>
+      <hr />
+      <form>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control col-4"
+            id="firstName"
+            value={users.firstName}
+            onChange={(e) => setUsers({ ...users, firstName: e.target.value })}
+            placeholder={users.firstName}
+          />
         </div>
-    );
-}
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control col-4"
+            id="lastName"
+            value={users.lastName}
+            onChange={(e) => setUsers({ ...users, lastName: e.target.value })}
+            placeholder={users.lastName}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control col-4"
+            id="location"
+            value={users.phoneNumber}
+            onChange={(e) =>
+              setUsers({ ...users, phoneNumber: e.target.value })
+            }
+            placeholder={users.phoneNumber}
+          />
+        </div>
+
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control col-4"
+            id="location"
+            value={users.email}
+            onChange={(e) =>
+              setUsers({ ...users, email: e.target.value })
+            }
+            placeholder={users.email}
+          />
+        </div>
+
+        <div>
+          <button className="btn btn-primary" onClick={(e) => saveclients(e)}>
+            Save
+          </button>
+        </div>
+      </form>
+      <hr />
+      <Link to={"/members"}>Back to List</Link>
+    </div>
+  );
+};
 
 export default UpdateMember;
