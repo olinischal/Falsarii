@@ -8,23 +8,29 @@ import MemberData from "../../types/Member";
 
 const UpdateMember = () => {
 
-    const [member, setMember] = useState<MemberData[]>([]);
+    const [users, setUsers] = useState<MemberData>({
+        firstName: " ",
+        lastName: " ",
+        email: " ",
+        phoneNumber: " ",
+        password: " ",
+      });
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    // const [firstName, setFirstName] = useState('');
+    // const [lastName, setLastName] = useState('');
+    // const [phoneNumber, setPhoneNumber] = useState('');
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
     const navigate = useNavigate();
    
     let { id }  = useParams();
 
 
-    const saveEmployee = (e) => {
+    const saveclients = (e) => {
         e.preventDefault();
 
-        const employee = { firstName, lastName, phoneNumber, email, password };
-        Member.updateMember(parseInt(String(id)),employee)
+        const clients = { users };
+        Member.updateMember(parseInt(String(id)),users)
         .then(() => {
             navigate("/members");
             window.location.reload();
@@ -33,20 +39,18 @@ const UpdateMember = () => {
             console.log("Something went wrong here.", error);
         })
     }
-
+    
     useEffect(()=> {
         Member.getAMember(parseInt(String(id)))
-            .then(member => {
-                setFirstName(member.firstName);
-                setLastName(member.lastName);
-                setPhoneNumber(member.phoneNumber);
-                setEmail(member.email);
-                setPassword(member.password);
+            .then(response => {
+                setUsers(response);
+                
             })
             .catch(error=>{
-                console.log("Something went wrong.", error);
+                console.log("Something went wrong here." , error);
             })
     }, [])
+   
     return (
         <div className="container">
             <h3>Update Member</h3>
@@ -57,9 +61,9 @@ const UpdateMember = () => {
                         type="text"
                         className="form-control col-4"
                         id="firstName"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        placeholder= {firstName}
+                        value={users.firstName}
+                        onChange={(e) => setUsers({...users, firstName : (e.target.value)})}
+                        placeholder= {users.firstName}
                     />
                 </div>
                 <div className="form-group">
@@ -67,9 +71,9 @@ const UpdateMember = () => {
                         type="text"
                         className="form-control col-4"
                         id="lastName"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        placeholder={lastName}
+                        value={users.lastName}
+                        onChange={(e) => setUsers({...users, lastName : (e.target.value)})}
+                        placeholder={users.lastName}
                     />
                 </div>
                 <div className="form-group">
@@ -77,9 +81,9 @@ const UpdateMember = () => {
                         type="text"
                         className="form-control col-4"
                         id="location"
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        placeholder={phoneNumber}
+                        value={users.phoneNumber}
+                        onChange={(e) => setUsers({...users, phoneNumber : (e.target.value)})}
+                        placeholder={users.phoneNumber}
                     />
 
                 </div>
@@ -89,15 +93,15 @@ const UpdateMember = () => {
                         type="text"
                         className="form-control col-4"
                         id="location"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder={email}
+                        value={users.email}
+                        onChange={(e) => setUsers({...users, phoneNumber : (e.target.value)})}
+                        placeholder={users.email}
                     />
 
                 </div>
 
                 <div>
-                    <button className="btn btn-primary" onClick={(e) => saveEmployee(e)}>Save</button>
+                    <button className="btn btn-primary" onClick={(e) => saveclients(e)}>Save</button>
                 </div>
             </form>
             <hr />
