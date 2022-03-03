@@ -3,9 +3,14 @@ import React from "react";
 import "./Account.css";
 import { Image } from "react-bootstrap";
 
+
+
+
 interface userDetails {
-  user: MemberData;
+  user: MemberData ;
 }
+
+
 
 const Account: React.FC<userDetails> = ({ user }) => {
   return (
@@ -24,7 +29,7 @@ const Account: React.FC<userDetails> = ({ user }) => {
                 />
                 <div className="mt-3">
                   <h4>{user.firstName + " " + user.lastName}</h4>
-                  <p className="text-secondary mb-1">Email</p>
+                  <p className="text-secondary mb-1">{user.email}</p>
                   <p className="text-muted font-size-sm">Address</p>
                 </div>
               </div>

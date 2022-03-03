@@ -5,12 +5,14 @@ import Profile from "../User/Profile";
 import { useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
 
 const MemberList = () => {
   const navigate = useNavigate();
   const [members, setMembers] = useState<MemberData[]>([]);
   const [isError, setIsError] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchType, setSearchType] = useState("firstName");
 
   useEffect(() => {
     Member.getMembers()
@@ -43,22 +45,41 @@ const MemberList = () => {
             setSearchTerm(event.target.value);
           }}
         />
+        <Dropdown>
+  <Dropdown.Toggle variant="success" id="dropdown-basic">
+    {searchType}
+  </Dropdown.Toggle>
+
+  <Dropdown.Menu>
+    <Dropdown.Item onClick={()=> {setSearchType('firstName')}}>firstName</Dropdown.Item>
+    <Dropdown.Item onClick={()=> {setSearchType('email')}}>email</Dropdown.Item>
+    
+  </Dropdown.Menu>
+</Dropdown>
         {members
           .filter((val) => {
             if (searchTerm == "") {
               return val;
-            } else if (
+            } else if  (
               val.firstName
                 .toLocaleLowerCase()
-                .includes(searchTerm.toLowerCase())
-            ) {
+                .includes(searchTerm.toLowerCase()) && searchType === "firstName"
+            )
+            {
+              return val;
+            } else if  (
+              val.email
+                .toLocaleLowerCase()
+                .includes(searchTerm.toLowerCase()) && searchType === "email"
+            )
+            {
               return val;
             }
           })
           .map((val, key) => {
             return (
               <div key={key}>
-                {/* <p>{val.firstName}</p>{" "} */}
+                
                 <hr />
       <div>
         {/* <Link to="/update" className="btn btn-primary mb-2">Add Member </Link> */}

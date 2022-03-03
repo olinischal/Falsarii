@@ -1,4 +1,4 @@
-import { Formik, ErrorMessage, FormikProps, FormikHelpers } from "formik";
+import { Formik, ErrorMessage } from "formik";
 import SignupSchema from "./signup-validation";
 import { Button, Form, Container } from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
@@ -33,7 +33,7 @@ const Signup = () => {
     try {     
       register(values.firstName,values.lastName,values.phoneNumber, values.email, values.password)
       .then(() => {
-        navigate("/login");
+        navigate("/membership");
         window.location.reload();
       });
     } catch (error) {

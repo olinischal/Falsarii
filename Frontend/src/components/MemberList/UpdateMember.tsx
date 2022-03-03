@@ -13,11 +13,7 @@ const UpdateMember = () => {
     password: " ",
   });
 
-  // const [firstName, setFirstName] = useState('');
-  // const [lastName, setLastName] = useState('');
-  // const [phoneNumber, setPhoneNumber] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
+
   const navigate = useNavigate();
 
   let { id } = useParams();

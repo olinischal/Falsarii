@@ -10,7 +10,7 @@ export const register = (firstName:string, lastName:string, phoneNumber:string, 
     email,
     password,
   }).then((response)=> {
-    console.log(response);
+    
     
     // userDetail = response.data;
     

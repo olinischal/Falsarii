@@ -29,9 +29,51 @@ const NavigationBar = () => {
           />
         </Navbar.Brand>
 
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
+         
+          
+          
+        { user ? (
+           <><Nav className="me-auto">
+
+                <Nav.Link as={Link} to="/members">
+                  Members
+                </Nav.Link>
+                <Nav.Link as={Link} to="/about">
+                  About
+                </Nav.Link>
+                <Nav.Link as={Link} to="/contact">
+                  Contact Us
+                </Nav.Link>
+                <Nav.Link as={Link} to="/payment">
+                  Donate
+                </Nav.Link>
+
+                <Nav.Link as={Link} to="/membership">
+                  Membership
+                </Nav.Link>
+              </Nav>
+                {/* // {user ?  */}
+                <Nav>
+                  <Nav.Link as={Link} to="/profile/user">
+                    Profile
+                  </Nav.Link>
+
+                  <Nav.Link className="btn btn-success" style={{
+                    padding: "5px",
+                    margin: "5px",
+                    color: "black"
+                  }} onClick={logOut}>
+                    Sign Out
+                  </Nav.Link>
+                </Nav>
+                </>
+        ):(
+         <>
+          
           <Nav className="me-auto">
+          
           <Nav.Link as={Link} to="/members" >
               Members
             </Nav.Link>
@@ -41,27 +83,9 @@ const NavigationBar = () => {
             <Nav.Link as={Link} to="/contact">
               Contact Us
             </Nav.Link>
-            <Nav.Link as={Link} to="/payment">
-              Donate
-            </Nav.Link>
-          </Nav>
+            </Nav>
 
-          {user ? 
              <Nav>
-               <Nav.Link as={Link} to="/profile/user">
-              Profile
-            </Nav.Link>
-            
-             <Nav.Link className ="btn btn-success" style={{
-               padding: "5px",
-               margin: "5px",
-               color: "black"
-             }} onClick={logOut}>
-               Sign Out
-             </Nav.Link>
-           </Nav>
-             :
-               <Nav>
             
             <Nav.Link className ="btn btn-success" style={{
               padding: "5px",
@@ -78,12 +102,17 @@ const NavigationBar = () => {
             }}as={Link} to="/signup">
               Register
             </Nav.Link>
+            </Nav>
 
-          </Nav>            
-          }
+             
+            </>
+
+        ) }
          
-
-        </Navbar.Collapse>
+        </Navbar.Collapse> 
+         
+        
+        
       </Container>
     </Navbar>
   );
