@@ -45,8 +45,7 @@ const Signup = () => {
     console.log("Now" +response);
     try {     
       register(values.firstName, values.maidenName,values.lastName,values.phoneNumber,
-         values.email, values.graduationDate, values.password)
-      register(values.firstName,values.lastName,values.phoneNumber, values.email, values.password, response)
+         values.email, values.graduationDate, values.password, response)
       .then(() => {
         navigate("/login");
         window.location.reload();

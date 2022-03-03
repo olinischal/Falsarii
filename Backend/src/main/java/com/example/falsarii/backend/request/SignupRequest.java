@@ -101,6 +101,7 @@ public class SignupRequest {
 
 	public String getGraduationDate() {
 		return graduationDate;
+	}
 
 	public String getCaptchaResponse() {
 		return captchaResponse;

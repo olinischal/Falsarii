@@ -37,7 +37,7 @@ const Profile = () => {
   }, []);
 
 
-  const currentUser = getCurrentUser();
+  // const currentUser = getCurrentUser();
  
     console.log(getCurrentUser());
     const user = Object.assign({}, users[currentUser.id - 1]);
