@@ -25,8 +25,6 @@ const Profile = () => {
       });
   }, []);
 
-
-
   const currentUser = getCurrentUser();
  
     console.log(getCurrentUser());

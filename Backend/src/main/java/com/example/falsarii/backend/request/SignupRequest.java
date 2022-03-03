@@ -25,6 +25,8 @@ public class SignupRequest {
 	@NotBlank
 	@Size(min = 6, max = 40)
 	private String password;
+	
+	private String captchaResponse;
 
 	private Set<String> role;
 
@@ -74,5 +76,13 @@ public class SignupRequest {
 
 	public void setRole(Set<String> role) {
 		this.role = role;
+	}
+
+	public String getCaptchaResponse() {
+		return captchaResponse;
+	}
+
+	public void setCaptchaResponse(String captchaResponse) {
+		this.captchaResponse = captchaResponse;
 	}
 }

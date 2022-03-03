@@ -61,7 +61,7 @@ public class Member {
     private Set<Role> roles = new HashSet<>();
 
 
-    public Member(String firstName, String lastName, String phoneNumber, String email, String password) {
+    public Member(String firstName,String lastName, String phoneNumber, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -80,6 +80,7 @@ public class Member {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+    
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -104,6 +105,8 @@ public class Member {
     public String getFirstName() {
         return firstName;
     }
+
+    
 
     public String getLastName() {
         return lastName;

@@ -2,9 +2,12 @@ import { Formik, ErrorMessage, FormikProps, FormikHelpers } from "formik";
 import SignupSchema from "./signup-validation";
 import { Button, Form, Container } from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
+
 
 import "./index.css";
 import {register} from "../../services/authenticate-service";
+import { useState } from "react";
 
 interface signupProps {
   firstName: string;
@@ -13,6 +16,7 @@ interface signupProps {
   email: string;
   password: string;
   confirmPassword: string;
+  // response:string
 }
 
 const initialValues: signupProps = {
@@ -22,16 +26,22 @@ const initialValues: signupProps = {
   email: "",
   password: "",
   confirmPassword: "",
+  // response:""
 };
+let captcha;
+
 
 
 
 const Signup = () => {
+
+  const [response, setResponse] = useState('');
+
   const navigate = useNavigate();
   const submitForm = (values: signupProps) => {
-    
+    console.log("Now" +response);
     try {     
-      register(values.firstName,values.lastName,values.phoneNumber, values.email, values.password)
+      register(values.firstName,values.lastName,values.phoneNumber, values.email, values.password, response)
       .then(() => {
         navigate("/login");
         window.location.reload();
@@ -39,7 +49,14 @@ const Signup = () => {
     } catch (error) {
       console.log("Error...");
     }
+    captcha.reset();
   };
+
+  const onChangeCaptcha=(e) =>{
+    setResponse(e);
+  }
+
+
   return (
     <Formik
       initialValues={initialValues}
@@ -162,6 +179,20 @@ const Signup = () => {
                      {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
+
+                {/* <ReCAPTCHA
+                    sitekey="6Ld-YKgeAAAAAKDx-GaTPgzij6roHZFLJTiAsbMP"
+                    name="response"
+                    value= {values.response}
+                    onChange={handleChange}
+                  /> */}
+
+                  <ReCAPTCHA
+                    sitekey="6Ld-YKgeAAAAAKDx-GaTPgzij6roHZFLJTiAsbMP"
+                    onChange={onChangeCaptcha}
+                    ref={el => { captcha = el; }}
+                  />
+
                 <Button
                   variant="success"
                   size="lg"
