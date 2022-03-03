@@ -51,8 +51,9 @@ const MemberList = () => {
   </Dropdown.Toggle>
 
   <Dropdown.Menu>
-    <Dropdown.Item onClick={()=> {setSearchType('firstName')}}>firstName</Dropdown.Item>
-    <Dropdown.Item onClick={()=> {setSearchType('email')}}>email</Dropdown.Item>
+    <Dropdown.Item onClick={()=> {setSearchType('firstName')}}>First Name</Dropdown.Item>
+    <Dropdown.Item onClick={()=> {setSearchType('email')}}>Email</Dropdown.Item>
+    <Dropdown.Item onClick={()=> {setSearchType('graduationDate')}}>Grad Date</Dropdown.Item>
     
   </Dropdown.Menu>
 </Dropdown>
@@ -74,7 +75,14 @@ const MemberList = () => {
             )
             {
               return val;
-            }
+            }else if  (
+              val.graduationDate
+                
+                .includes(searchTerm) && searchType === "graduationDate"
+            )
+            {
+              return val;
+            } 
           })
           .map((val, key) => {
             return (
@@ -86,9 +94,11 @@ const MemberList = () => {
         <table className="table table-bordered table-striped">
           <thead className="thead-dark">
             <tr>
-              <th>FirstName</th>
-              <th>LastName</th>
-              <th>PhoneNumber</th>
+              <th>First Name</th>
+              <th>Maiden Name</th>
+              <th>Last Name</th>
+              <th>Phone Number</th>
+              <th>Graduation Date</th>
               <th>Email</th>
             </tr>
           </thead>
@@ -96,8 +106,10 @@ const MemberList = () => {
             
               <tr key={val.id}>
                 <td>{val.firstName}</td>
+                <td>{val.maidenName}</td>
                 <td>{val.lastName}</td>
                 <td>{val.phoneNumber}</td>
+                <td>{val.graduationDate}</td>
                 <td>{val.email}</td>
                 <td>
                   <Link

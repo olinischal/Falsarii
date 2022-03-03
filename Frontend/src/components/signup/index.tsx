@@ -2,24 +2,28 @@ import { Formik, ErrorMessage } from "formik";
 import SignupSchema from "./signup-validation";
 import { Button, Form, Container } from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
-
+import { signIn } from "../../services/authenticate-service";
 import "./index.css";
 import {register} from "../../services/authenticate-service";
 
 interface signupProps {
   firstName: string;
+  maidenName: string;
   lastName: string;
   phoneNumber: string;
   email: string;
+  graduationDate: string;
   password: string;
   confirmPassword: string;
 }
 
 const initialValues: signupProps = {
   firstName: "",
+  maidenName: "",
   lastName: "",
   phoneNumber: "",
   email: "",
+  graduationDate: "",
   password: "",
   confirmPassword: "",
 };
@@ -31,14 +35,24 @@ const Signup = () => {
   const submitForm = (values: signupProps) => {
     
     try {     
-      register(values.firstName,values.lastName,values.phoneNumber, values.email, values.password)
+      register(values.firstName, values.maidenName,values.lastName,values.phoneNumber,
+         values.email, values.graduationDate, values.password)
       .then(() => {
-        navigate("/membership");
+        navigate("/login");
         window.location.reload();
       });
     } catch (error) {
       console.log("Error...");
     }
+    // try {
+    //   signIn(values.email, values.password).then(() => {
+    //     navigate("/membership");
+    //     window.location.reload();
+        
+    //   });
+    // } catch (error) {
+    //   console.log("Error ..");
+    // }
   };
   return (
     <Formik
@@ -85,6 +99,21 @@ const Signup = () => {
 
                 <Form.Group className="mb-3">
                   
+
+                  <Form.Control
+                    type="text"
+                    name="maidenName"
+                    id="maidenName"
+                    placeholder="Maiden Name"
+                    value={values.maidenName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  
                   <Form.Control
                     type="text"
                     name="lastName"
@@ -113,6 +142,22 @@ const Signup = () => {
                      {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
+
+                <Form.Group className="mb-3" controlId="dob">
+                    
+                    <Form.Control
+                      type="date"
+                      name="graduationDate"
+                      placeholder="Graduation Date"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                  <ErrorMessage name="graduationDate">
+                     {(msg) => <div className="error">{msg}</div>}
+                  </ErrorMessage>
+                </Form.Group>
+                
+
 
                 <Form.Group className="mb-3">
                   

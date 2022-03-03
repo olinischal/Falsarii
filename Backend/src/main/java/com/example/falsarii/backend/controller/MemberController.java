@@ -128,11 +128,14 @@ public class MemberController {
 
 
     // Create new user's account
-    Member member = new Member(signUpRequest.getFirstName(), 
+    Member member = new Member(signUpRequest.getFirstName(),
+            signUpRequest.getMaidenName(),
     		signUpRequest.getLastName(),
     		signUpRequest.getPhoneNumber(),
             signUpRequest.getEmail(),
-               encoder.encode(signUpRequest.getPassword()));
+
+               encoder.encode(signUpRequest.getPassword()),
+            signUpRequest.getGraduationDate());
 
 
     Set<String> strRoles = signUpRequest.getRole();
@@ -184,9 +187,11 @@ public class MemberController {
 	public ResponseEntity updateMemberDetails(@PathVariable Long id, @RequestBody Member member) {
 		Member currentMember = memberRepository.findById(id).orElseThrow(RuntimeException::new);
 		currentMember.setFirstName(member.getFirstName());
+        currentMember.setMaidenName(member.getMaidenName());
 		currentMember.setLastName(member.getLastName());
 		currentMember.setPhoneNumber(member.getPhoneNumber());
 		currentMember.setEmail(member.getEmail());
+        currentMember.setGraduationDate(member.getGraduationDate());
 		memberRepository.save(currentMember);
 		return ResponseEntity.ok(currentMember);
 	}

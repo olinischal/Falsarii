@@ -7,8 +7,10 @@ import MemberData from "../../types/Member";
 const UpdateMember = () => {
   const [users, setUsers] = useState<MemberData>({
     firstName: " ",
+    maidenName: " ",
     lastName: " ",
     email: " ",
+    graduationDate: " ",
     phoneNumber: " ",
     password: " ",
   });
@@ -60,6 +62,16 @@ const UpdateMember = () => {
           <input
             type="text"
             className="form-control col-4"
+            id="maidenName"
+            value={users.maidenName}
+            onChange={(e) => setUsers({ ...users, maidenName: e.target.value })}
+            placeholder={users.maidenName}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control col-4"
             id="lastName"
             value={users.lastName}
             onChange={(e) => setUsers({ ...users, lastName: e.target.value })}
@@ -76,6 +88,17 @@ const UpdateMember = () => {
               setUsers({ ...users, phoneNumber: e.target.value })
             }
             placeholder={users.phoneNumber}
+          />
+        </div>
+
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control col-4"
+            id="graduationDate"
+            value={users.graduationDate}
+            onChange={(e) => setUsers({ ...users, graduationDate: e.target.value })}
+            placeholder={users.graduationDate}
           />
         </div>
 

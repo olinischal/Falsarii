@@ -36,11 +36,14 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
+    private String maidenName;
     private String lastName;
     private String phoneNumber;
     private String email;
     private String password;
-    
+    private String graduationDate;
+
+
 
 
     @CreationTimestamp
@@ -61,12 +64,17 @@ public class Member {
     private Set<Role> roles = new HashSet<>();
 
 
-    public Member(String firstName, String lastName, String phoneNumber, String email, String password) {
+    public Member(String firstName, String maidenName, String lastName, String phoneNumber, String email,
+                  String password, String graduationDate) {
         this.firstName = firstName;
+        this.maidenName = maidenName;
+
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
+
+        this.graduationDate = graduationDate;
     }
 
     protected Member(){}
@@ -79,6 +87,9 @@ public class Member {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+    public void setMaidenName(String maidenName) {
+        this.maidenName = maidenName;
     }
 
     public void setLastName(String lastName) {
@@ -95,6 +106,9 @@ public class Member {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    public void setGraduationDate(String graduationDate) {
+        this.graduationDate = graduationDate;
     }
 
     public Long getId() {
@@ -128,5 +142,13 @@ public class Member {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-    
+    public String getMaidenName() {
+        return maidenName;
+    }
+
+    public String getGraduationDate() {
+        return graduationDate;
+    }
+
+
 }

@@ -25,10 +25,10 @@ const initialValues = {
 
 const Login = () => {
   const navigate = useNavigate();
-  let temp;
+  
   const submitForm = (values: loginProps) => {
     try {
-      temp =  signIn(values.email, values.password).then(() => {
+      signIn(values.email, values.password).then(() => {
         
         navigate("/profile/user");
         window.location.reload();

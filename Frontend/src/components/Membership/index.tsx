@@ -11,7 +11,7 @@ interface membershipProps {
   city: string;
   zipCode: string;
   state: string;
-  birthDate: string;
+  birthDate: Date;
   graduationDate: string;
   preferredName: string;
   university: string;
@@ -27,7 +27,7 @@ const initialValues: membershipProps = {
   city: "",
   zipCode: "",
   state: "",
-  birthDate: "",
+  birthDate: new Date(""),
   graduationDate: "",
   preferredName: "",
   university: "",
@@ -40,7 +40,7 @@ const initialValues: membershipProps = {
 
 const Membership = () => {
   const submitForm = (values: membershipProps) => {
-    console.log(JSON.stringify(values, null, 2));
+    console.log(values);
   };
 
   return (

@@ -13,8 +13,10 @@ import Security from "./Security";
 const Profile = () => {
   const [users, setUsers] = useState<MemberData>({
     firstName: " ",
+    maidenName: " ",
     lastName: " ",
     email: " ",
+    graduationDate: " ",
     phoneNumber: " ",
     password: " ",
   });
