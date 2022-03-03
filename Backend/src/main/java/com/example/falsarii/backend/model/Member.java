@@ -66,6 +66,7 @@ public class Member {
 
     public Member(String firstName, String maidenName, String lastName, String phoneNumber, String email,
                   String password, String graduationDate) {
+
         this.firstName = firstName;
         this.maidenName = maidenName;
 
@@ -91,6 +92,7 @@ public class Member {
     public void setMaidenName(String maidenName) {
         this.maidenName = maidenName;
     }
+
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -118,6 +120,8 @@ public class Member {
     public String getFirstName() {
         return firstName;
     }
+
+    
 
     public String getLastName() {
         return lastName;

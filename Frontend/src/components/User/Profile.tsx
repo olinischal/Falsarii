@@ -36,11 +36,17 @@ const Profile = () => {
       });
   }, []);
 
-  // const userLevel =
-  //   currentUser.roles &&
-  //   currentUser.roles.map((role: string, index: number) => (
-  //     <li key={index}>{role}</li>
-  //   ));
+
+  const currentUser = getCurrentUser();
+ 
+    console.log(getCurrentUser());
+    const user = Object.assign({}, users[currentUser.id - 1]);
+    
+   
+    const userLevel = currentUser.roles &&
+      currentUser.roles.map((role: string, index: number) => <li key={index}>{role}</li>);
+ 
+   
 
   return (
     <>

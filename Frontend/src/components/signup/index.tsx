@@ -3,8 +3,10 @@ import SignupSchema from "./signup-validation";
 import { Button, Form, Container } from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import { signIn } from "../../services/authenticate-service";
+import ReCAPTCHA from "react-google-recaptcha";
 import "./index.css";
 import {register} from "../../services/authenticate-service";
+import { useState } from "react";
 
 interface signupProps {
   firstName: string;
@@ -15,6 +17,7 @@ interface signupProps {
   graduationDate: string;
   password: string;
   confirmPassword: string;
+  // response:string
 }
 
 const initialValues: signupProps = {
@@ -26,17 +29,24 @@ const initialValues: signupProps = {
   graduationDate: "",
   password: "",
   confirmPassword: "",
+  // response:""
 };
+let captcha;
+
 
 
 
 const Signup = () => {
+
+  const [response, setResponse] = useState('');
+
   const navigate = useNavigate();
   const submitForm = (values: signupProps) => {
-    
+    console.log("Now" +response);
     try {     
       register(values.firstName, values.maidenName,values.lastName,values.phoneNumber,
          values.email, values.graduationDate, values.password)
+      register(values.firstName,values.lastName,values.phoneNumber, values.email, values.password, response)
       .then(() => {
         navigate("/login");
         window.location.reload();
@@ -44,16 +54,16 @@ const Signup = () => {
     } catch (error) {
       console.log("Error...");
     }
-    // try {
-    //   signIn(values.email, values.password).then(() => {
-    //     navigate("/membership");
-    //     window.location.reload();
-        
-    //   });
-    // } catch (error) {
-    //   console.log("Error ..");
-    // }
+
+    captcha.reset();
+
   };
+
+  const onChangeCaptcha=(e) =>{
+    setResponse(e);
+  }
+
+
   return (
     <Formik
       initialValues={initialValues}
@@ -207,6 +217,20 @@ const Signup = () => {
                      {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
+
+                {/* <ReCAPTCHA
+                    sitekey="6Ld-YKgeAAAAAKDx-GaTPgzij6roHZFLJTiAsbMP"
+                    name="response"
+                    value= {values.response}
+                    onChange={handleChange}
+                  /> */}
+
+                  <ReCAPTCHA
+                    sitekey="6Ld-YKgeAAAAAKDx-GaTPgzij6roHZFLJTiAsbMP"
+                    onChange={onChangeCaptcha}
+                    ref={el => { captcha = el; }}
+                  />
+
                 <Button
                   variant="success"
                   size="lg"

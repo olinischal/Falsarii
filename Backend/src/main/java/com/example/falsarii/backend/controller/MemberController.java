@@ -1,31 +1,3 @@
-//package com.example.falsarii.backend.controller;
-//
-//    import com.example.falsarii.backend.model.Member;
-//import com.example.falsarii.backend.security.services.MemberDetailsImpl;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//    import org.springframework.web.bind.annotation.*;
-//
-//    import java.util.List;
-//
-//@RestController
-//@RequestMapping("/member")
-//@CrossOrigin
-//public class MemberController {
-//    @Autowired
-//    private MemberDetailsImpl memberService;
-//
-//    @PostMapping("/add")
-//    public String add(@RequestBody Member member){
-//        memberService.saveMember(member);
-//        return "New Member is added";
-//    }
-//
-//    @GetMapping("/getAll")
-//    public List<Member> list(){
-//        return memberService.getAllMembers();
-//    }
-//}
 
 package com.example.falsarii.backend.controller;
 
@@ -34,17 +6,22 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,7 +31,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import com.example.falsarii.backend.captcha.ReCaptchaResponse;
+import com.example.falsarii.backend.captcha.VerifyCaptcha;
 import com.example.falsarii.backend.model.ERole;
 import com.example.falsarii.backend.model.Member;
 import com.example.falsarii.backend.model.Role;
@@ -64,7 +44,6 @@ import com.example.falsarii.backend.request.LoginRequest;
 import com.example.falsarii.backend.request.SignupRequest;
 import com.example.falsarii.backend.security.jwt.JwtUtils;
 import com.example.falsarii.backend.security.services.MemberDetailsImpl;
-import com.example.falsarii.backend.security.services.MemberDetailsServiceImpl;
 import com.example.falsarii.payload.response.JwtResponse;
 import com.example.falsarii.payload.response.MessageResponse;
 
@@ -75,10 +54,14 @@ import com.example.falsarii.payload.response.MessageResponse;
 @RequestMapping("/member")
 public class MemberController {
 
+	
 
   @Autowired
   AuthenticationManager authenticationManager;
 
+  @Autowired
+  private RestTemplate restTemplate;
+  
   @Autowired
   MemberRepository memberRepository;
 
@@ -117,10 +100,23 @@ public class MemberController {
                          roles));
   }
   
-
+ 
   @PostMapping("/add")
-  public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-    if (memberRepository.existsByEmail(signUpRequest.getEmail())) {
+  public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest, HttpServletResponse response) throws Exception{
+//	  VerifyCaptcha verifyResponse = new VerifyCaptcha();
+	  
+	  String gRecaptchaResponse = signUpRequest.getCaptchaResponse();
+		 
+		 if(!verifyReCAPTCHA(gRecaptchaResponse)) {
+//			 response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+			 return ResponseEntity
+			          .badRequest()
+			          .body(new MessageResponse("Error: Assure that you are human!"));
+		 }
+		
+	  
+	  
+	  if (memberRepository.existsByEmail(signUpRequest.getEmail())) {
       return ResponseEntity
           .badRequest()
           .body(new MessageResponse("Error: Email is already taken!"));
@@ -131,6 +127,7 @@ public class MemberController {
     Member member = new Member(signUpRequest.getFirstName(),
             signUpRequest.getMaidenName(),
     		signUpRequest.getLastName(),
+
     		signUpRequest.getPhoneNumber(),
             signUpRequest.getEmail(),
 
@@ -202,6 +199,30 @@ public class MemberController {
 	public ResponseEntity<HttpStatus> deleteMemberEntity(@PathVariable Long id) {
 		memberRepository.deleteById(id);
 		return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
+	}
+  
+  private boolean verifyReCAPTCHA(String gRecaptchaResponse) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+		
+		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+		map.add("secret", "6Ld-YKgeAAAAACU0ULvgjqPRa4UFRF5e8yJITm4n");
+		map.add("response", gRecaptchaResponse);
+		
+		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map,headers);
+		
+		 ReCaptchaResponse response = restTemplate.postForObject("https://www.google.com/recaptcha/api/siteverify", map, ReCaptchaResponse.class);
+		
+		 System.out.println("Success: " + response.isSuccess());
+		 System.out.println("Hostname: " + response.getHostname());
+		 System.out.println("Challenge Timestamp: " + response.getChallange_ts());
+		 
+		 if(response.getErrorCode() != null) {
+			 for(String error : response.getErrorCode()) {
+				 System.out.print("\t"+error);
+			 }
+		 }
+		 return response.isSuccess();
 	}
 
 }

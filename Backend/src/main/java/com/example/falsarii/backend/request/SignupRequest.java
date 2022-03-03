@@ -30,6 +30,8 @@ public class SignupRequest {
 	@NotBlank
 	@Size(min = 6, max = 40)
 	private String password;
+	
+	private String captchaResponse;
 
 	@NotBlank
 	@Size(min = 2, max = 50)
@@ -99,5 +101,12 @@ public class SignupRequest {
 
 	public String getGraduationDate() {
 		return graduationDate;
+
+	public String getCaptchaResponse() {
+		return captchaResponse;
+	}
+
+	public void setCaptchaResponse(String captchaResponse) {
+		this.captchaResponse = captchaResponse;
 	}
 }
