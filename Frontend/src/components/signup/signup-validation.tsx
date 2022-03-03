@@ -5,6 +5,7 @@ const SignupSchema = Yup.object().shape({
       .min(2, "Too Short!")
       .max(50, "Too Long!")
       .required("Firstname is required"),
+   
   
     lastName: Yup.string()
       .min(2, "Too Short!")
@@ -17,6 +18,10 @@ const SignupSchema = Yup.object().shape({
         /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
         "Invalid phone number"
       ),
+
+      graduationDate: Yup.string()
+      
+      .required("Date Required"),
   
     email: Yup.string()
     .email('Please input the right email format')

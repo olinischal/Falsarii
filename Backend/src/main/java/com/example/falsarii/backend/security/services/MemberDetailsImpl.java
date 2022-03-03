@@ -1,6 +1,7 @@
 package com.example.falsarii.backend.security.services;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,12 +21,15 @@ public class MemberDetailsImpl implements UserDetails {
 	private Long id;
 	
 	private String firstName;
+
+	private String maidenName;
 	
 	private String lastName;
 	
 	private String phoneNumber;
 
 	private String email;
+	private String graduationDate;
 	
 	@JsonIgnore
 	private String password;
@@ -34,14 +38,17 @@ public class MemberDetailsImpl implements UserDetails {
 	
 	
 
-	public MemberDetailsImpl(Long id, String firstName, String lastName, String phoneNumber, String email,
-			String password, Collection<? extends GrantedAuthority> authorities) {
+	public MemberDetailsImpl(Long id, String firstName, String maidenName, String lastName, String phoneNumber, String email,
+							 String password, String graduationDate, Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
 		this.firstName = firstName;
+		this.maidenName = maidenName;
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
+		this.graduationDate = graduationDate;
 		this.password = password;
+
 		this.authorities = authorities;
 	}
 	
@@ -52,11 +59,14 @@ public class MemberDetailsImpl implements UserDetails {
 
 	    return new MemberDetailsImpl(
 	        member.getId(), 
-	        member.getFirstName(), 
-	        member.getLastName(),
+	        member.getFirstName(),
+				member.getMaidenName(),
+				member.getLastName(),
 	        member.getPhoneNumber(),
 	        member.getEmail(),
-	        member.getPassword(), 
+				member.getPassword(),
+				member.getGraduationDate(),
+
 	        authorities);
 	  }
 
@@ -74,6 +84,22 @@ public class MemberDetailsImpl implements UserDetails {
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+
+	}
+	public String getMaidenName() {
+		return maidenName;
+	}
+
+	public void setMaidenName(String maidenName) {
+		this.maidenName = maidenName;
+	}
+
+	public String getGraduationDate() {
+		return graduationDate;
+	}
+
+	public void setGraduationDate(String graduationDate) {
+		this.graduationDate = graduationDate;
 	}
 
 	public String getLastName() {
@@ -159,5 +185,8 @@ public class MemberDetailsImpl implements UserDetails {
 	    MemberDetailsImpl member = (MemberDetailsImpl) o;
 	    return Objects.equals(id, member.id);
 	  }
+
+
+
 
 }

@@ -1,19 +1,20 @@
-import { Formik, ErrorMessage, FormikProps, FormikHelpers } from "formik";
+import { Formik, ErrorMessage } from "formik";
 import SignupSchema from "./signup-validation";
 import { Button, Form, Container } from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
+import { signIn } from "../../services/authenticate-service";
 import ReCAPTCHA from "react-google-recaptcha";
-
-
 import "./index.css";
 import {register} from "../../services/authenticate-service";
 import { useState } from "react";
 
 interface signupProps {
   firstName: string;
+  maidenName: string;
   lastName: string;
   phoneNumber: string;
   email: string;
+  graduationDate: string;
   password: string;
   confirmPassword: string;
   // response:string
@@ -21,9 +22,11 @@ interface signupProps {
 
 const initialValues: signupProps = {
   firstName: "",
+  maidenName: "",
   lastName: "",
   phoneNumber: "",
   email: "",
+  graduationDate: "",
   password: "",
   confirmPassword: "",
   // response:""
@@ -41,6 +44,8 @@ const Signup = () => {
   const submitForm = (values: signupProps) => {
     console.log("Now" +response);
     try {     
+      register(values.firstName, values.maidenName,values.lastName,values.phoneNumber,
+         values.email, values.graduationDate, values.password)
       register(values.firstName,values.lastName,values.phoneNumber, values.email, values.password, response)
       .then(() => {
         navigate("/login");
@@ -49,7 +54,9 @@ const Signup = () => {
     } catch (error) {
       console.log("Error...");
     }
+
     captcha.reset();
+
   };
 
   const onChangeCaptcha=(e) =>{
@@ -102,6 +109,21 @@ const Signup = () => {
 
                 <Form.Group className="mb-3">
                   
+
+                  <Form.Control
+                    type="text"
+                    name="maidenName"
+                    id="maidenName"
+                    placeholder="Maiden Name"
+                    value={values.maidenName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  
                   <Form.Control
                     type="text"
                     name="lastName"
@@ -130,6 +152,22 @@ const Signup = () => {
                      {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
+
+                <Form.Group className="mb-3" controlId="dob">
+                    
+                    <Form.Control
+                      type="date"
+                      name="graduationDate"
+                      placeholder="Graduation Date"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                  <ErrorMessage name="graduationDate">
+                     {(msg) => <div className="error">{msg}</div>}
+                  </ErrorMessage>
+                </Form.Group>
+                
+
 
                 <Form.Group className="mb-3">
                   
