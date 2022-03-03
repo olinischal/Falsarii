@@ -24,14 +24,8 @@ function App() {
         <Route path="/members" element={<MemberList />} />
       </Routes>
       <div className="page-container" style={{ background: "100%" }}>
-        <div className="content-wrap" style={{ maxWidth: "100%" }}>
-          <img
-            src={require("./063634A1-78AA-4903-AAA9AA82850127C8.jpeg")}
-            alt="Neville High School Photo"
-          />
-        </div>
+        <div className="content-wrap" style={{ maxWidth: "100%" }}></div>
       </div>
-      <Footer />
     </Router>
   );
 }

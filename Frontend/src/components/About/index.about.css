@@ -1,8 +1,9 @@
-/*.div {
-  background-image: url("063634A1-78AA-4903-AAA9AA82850127C8.jpeg");
-  background-repeat: no-repeat;
+.div {
+  height: 100px;
+  width: auto;
+  background-size: 100px;
+  background-position: center;
+  background-repeat: repeat;
   background-size: cover;
   display: flex;
-  justify-content: center;
 }
-*/

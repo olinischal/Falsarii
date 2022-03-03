@@ -4,7 +4,7 @@ import "../navbar/navbar.css";
 
 const NavigationBar = () => {
   return (
-    <Navbar className="color-nav" variant={"light"}>
+    <Navbar className="color-nav" variant={"light"} expand="lg">
       <Container fluid>
         <Navbar.Brand as={Link} to="/">
           <Image src={require("./NAFA_Logo.PNG")} alt="NAFA" />
