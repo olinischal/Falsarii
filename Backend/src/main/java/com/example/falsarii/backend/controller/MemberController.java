@@ -94,9 +94,12 @@ public class MemberController {
   
   @PostMapping("/login")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+	  
     Authentication authentication = authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+    
     SecurityContextHolder.getContext().setAuthentication(authentication);
+    
     String jwt = jwtUtils.generateJwtToken(authentication);
     
     MemberDetailsImpl userDetails = (MemberDetailsImpl) authentication.getPrincipal();    
@@ -129,10 +132,12 @@ public class MemberController {
 
     Set<String> strRoles = signUpRequest.getRole();
     Set<Role> roles = new HashSet<>();
+    
     if (strRoles == null) {
       Role userRole = roleRepository.findByName(ERole.ROLE_USER)
           .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
       roles.add(userRole);
+      
     } else {
       strRoles.forEach(role -> {
         switch (role) {
