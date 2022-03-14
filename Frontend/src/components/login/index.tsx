@@ -2,16 +2,10 @@ import { Formik, ErrorMessage } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import LoginSchema from "./login-validation";
 
-import { Button, Form, Container} from "react-bootstrap";
-import axios from "axios";
-
-
-
-
+import { Button, Form, Container } from "react-bootstrap";
 
 import "./index.css";
 import { signIn } from "../../services/authenticate-service";
-
 
 interface loginProps {
   email: string;
@@ -22,23 +16,19 @@ const initialValues = {
   password: "",
 };
 
-
 const Login = () => {
   const navigate = useNavigate();
-  let temp;
+
   const submitForm = (values: loginProps) => {
     try {
-      temp =  signIn(values.email, values.password).then(() => {
-        
+      signIn(values.email, values.password).then(() => {
         navigate("/profile/user");
         window.location.reload();
       });
     } catch (error) {
       console.log("Error ..");
     }
-    
   };
-
 
   return (
     <Formik
@@ -48,7 +38,6 @@ const Login = () => {
     >
       {({ values, handleChange, handleBlur, handleSubmit }) => {
         return (
-
           <Container
             className="mt-5"
             style={{ width: "30rem", padding: "2rem" }}
@@ -62,8 +51,6 @@ const Login = () => {
                 padding: "40px",
               }}
             >
-              
-
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                   <Form.Control
@@ -107,7 +94,6 @@ const Login = () => {
               </Form>
             </div>
           </Container>
-
         );
       }}
     </Formik>

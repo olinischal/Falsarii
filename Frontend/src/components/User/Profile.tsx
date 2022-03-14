@@ -1,34 +1,47 @@
-import React, { useEffect, useState } from 'react';
+
+import React, { useEffect, useState } from "react";
 import { getCurrentUser } from "../../services/authenticate-service";
 import MemberData from "../../types/Member";
 import { Member } from "../../services/api";
-import Account from './Account';
-import {Nav, NavDropdown} from "react-bootstrap";
-import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import Account from "./Account";
+import { Nav, NavDropdown } from "react-bootstrap";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import EditAccount from './EditAccount';
-import EditNAFA  from './EditNAFA';
-import Security from './Security';
-import { number } from 'yup/lib/locale';
+import EditAccount from "./EditAccount";
+import EditNAFA from "./EditNAFA";
+import Security from "./Security";
 
 const Profile = () => {
-  const [users, setUsers] = useState<MemberData[]>([]);
+  const [users, setUsers] = useState<MemberData>({
+    firstName: " ",
+    maidenName: " ",
+    lastName: " ",
+    email: " ",
+    graduationDate: " ",
+    phoneNumber: " ",
+    password: " ",
+  });
   const [isError, setIsError] = useState<boolean>(false);
 
+  const currentUser = getCurrentUser();
+  const id: number = currentUser.id;
+
   useEffect(() => {
-    Member.getMembers()
-      .then((data) => {
-        setUsers([...data]);
+    Member.getAMember(id)
+      .then((res) => {
+        setUsers(res);
       })
       .catch((err) => {
         setIsError(true);
+        console.log("Error");
+
       });
   }, []);
 
 
 
-  const currentUser = getCurrentUser();
- 
+  // const currentUser = getCurrentUser();
+
     console.log(getCurrentUser());
     const user = Object.assign({}, users[currentUser.id - 1]);
     
@@ -40,57 +53,43 @@ const Profile = () => {
 
   return (
     <>
-    
- <div className = "row">
-   <div className="col-md-4">
-   </div>
-   <div className = "col-md-8">
-   <div className="container-fluid px-4 mt-2">
+      <div className="row">
+        <div className="col-md-4"></div>
+        <div className="col-md-8">
+          <div className="container-fluid px-4 mt-2">
+            <Nav className="nav nav-borders">
+              <Nav.Link className="nav-link ms-0" as={Link} to="/profile/user">
+                My Account
+              </Nav.Link>
+              <NavDropdown title="Edit Account" id="basic-nav-dropdown">
+                <NavDropdown.Item as={Link} to="/profile/edit_profile">
+                  Profile Detais
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/profile/edit_NAFA_details">
+                  NAFA Details
+                </NavDropdown.Item>
+              </NavDropdown>
 
- 
-<Nav className="nav nav-borders">
-       <Nav.Link className="nav-link ms-0" as={Link} to="/profile/user">My Account</Nav.Link>
-       <NavDropdown title="Edit Account" id="basic-nav-dropdown">
-       <NavDropdown.Item as={Link} to="/profile/edit_profile">Profile Detais</NavDropdown.Item>
-       <NavDropdown.Item as={Link} to="/profile/edit_NAFA_details">NAFA Details</NavDropdown.Item>
+              <Nav.Link className="nav-link" as={Link} to="/profile/security">
+                Security
+              </Nav.Link>
+              <a className="nav-link" href="" target="__blank">
+                Billing
+              </a>
+            </Nav>
+            <hr className="mt-0 mb-3" />
+          </div>
+        </div>
+      </div>
 
-       </NavDropdown>
-       
-       <Nav.Link className="nav-link" as={Link} to="/profile/security">Security</Nav.Link>
-       <a className="nav-link" href=""  target="__blank">Billing</a>
-   </Nav>
-   <hr className="mt-0 mb-3"/>
-   </div>
-   </div>
-    
-   </div>
-  
+      <Routes>
+        <Route path="user/" element={<Account user={users} />} />
 
- <Routes>
-        
-        <Route  path="user/" element={<Account user={user} />}/>
-      
-        <Route  path="edit_profile/" element={<EditAccount />} />
-        <Route  path="edit_NAFA_details/" element={<EditNAFA />} />
-        <Route  path="security/" element={<Security />} />
-        
+        <Route path="edit_profile/" element={<EditAccount />} />
+        <Route path="edit_NAFA_details/" element={<EditNAFA />} />
+        <Route path="security/" element={<Security />} />
       </Routes>
-    
-      
-
-
-
-
- 
-
-
- 
- </>
-
-
-
-
-
+    </>
   );
 };
 export default Profile;
