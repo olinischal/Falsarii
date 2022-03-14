@@ -19,10 +19,11 @@ const requests = {
 
 export const Member = {
 	getMembers: (): Promise<MemberData[]> => requests.get('getAll'),
-	getAMember: (id: number): Promise<MemberData> => requests.get(`getAll/${id}`),
+	getAMember: (id: number): Promise<MemberData> => requests.get(`getMember/${id}`),
 	createMember: (post: MemberData): Promise<MemberData> =>
 		requests.post('add', post),
-	updateMember: (post: MemberData, id: number): Promise<MemberData> =>
-		requests.put(`add/${id}`, post),
-	deleteMember: (id: number): Promise<void> => requests.delete(`getAll/${id}`),
+	updateMember: (id:number, put: MemberData): Promise<MemberData> =>
+		requests.put(`update/${id}`, put),
+	deleteMember: (id: number): Promise<void> => requests.delete(`delete/${id}`),
 };
+
