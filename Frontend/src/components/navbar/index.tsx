@@ -6,10 +6,6 @@ const NavigationBar = () => {
   return (
     <Navbar className="color-nav" variant={"light"} expand="lg">
       <Container fluid>
-        <Navbar.Brand as={Link} to="/">
-          <Image src={require("./NAFA_Logo.PNG")} alt="NAFA" />
-        </Navbar.Brand>
-
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -23,28 +19,38 @@ const NavigationBar = () => {
             <Nav.Link as={Link} to="/contact">
               Communities
             </Nav.Link>
-            <Nav.Link as={Link} to="/events">
-              Events
+            <Nav.Link as={Link} to="/allevents">
+              <div className="dropdown">
+                Events
+                <div className="dropdown-content">
+                  <Nav.Link as={Link} to="/Allevents">
+                    All events{" "}
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/calendar">
+                    Calendar{" "}
+                  </Nav.Link>
+                </div>
+              </div>
             </Nav.Link>
             <Nav.Link as={Link} to="/news">
               News
             </Nav.Link>
             <Nav.Link as={Link} to="/give">
-              Give
+              <div className="dropdown">
+                More
+                <div className="dropdown-content">
+                  <Nav.Link as={Link} to="/give">
+                    Donate{" "}
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/Payment">
+                    Other{" "}
+                  </Nav.Link>
+                </div>
+              </div>
             </Nav.Link>
             <Nav.Link as={Link} to="/contact">
               Contact Us
             </Nav.Link>
-
-            <Nav className="info-items">
-              <Nav.Link as={Link} to="/login">
-                Login
-              </Nav.Link>
-
-              <Nav.Link as={Link} to="/register">
-                Register
-              </Nav.Link>
-            </Nav>
           </Nav>
         </Navbar.Collapse>
       </Container>

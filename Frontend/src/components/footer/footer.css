@@ -1,4 +1,34 @@
 .main-footer {
   color: azure;
   background-color: rgb(244, 190, 20);
+  text-align: justify;
+}
+.row {
+  margin-left: 20px;
+}
+
+.col {
+  margin-left: 20px;
+  margin-top: 5px;
+}
+.col-sm {
+  text-align: center;
+}
+
+.list-unstyled {
+  margin-top: 10px;
+  padding-bottom: 10px;
+  line-height: 1.5;
+}
+
+.facebook-logo {
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.insta-logo {
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
 }

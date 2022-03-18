@@ -1,0 +1,83 @@
+.Upcoming {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 20px;
+}
+.events-page {
+  padding: 40px 25px;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  color: grey;
+  text-align: center;
+  min-height: 300px;
+  margin-top: 30px;
+  font-size: 1.3rem;
+}
+.rows {
+  max-width: 98rem;
+  box-sizing: border-box;
+  width: 100%;
+  margin: auto 0 auto 0;
+  display: table;
+  clear: both;
+}
+.column {
+  box-sizing: border-box;
+  position: relative;
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
+  float: left;
+  width: 50%;
+}
+
+.event-block {
+  margin-bottom: 2rem;
+  border-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 12rem;
+  width: 100%;
+  max-width: 42rem;
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  background: #fff;
+  box-shadow: 0 0 3px rgb(0, 0, 0);
+  text-align: center;
+}
+
+.calendar-block {
+  background: crimson;
+  float: left;
+  color: #fff;
+  width: 12rem;
+  height: 100%;
+  padding: 2.5rem 0.5rem;
+  text-align: center;
+  border-radius: 4px 0 0 4px;
+}
+
+.event-details {
+  text-align: left;
+  overflow: hidden;
+  width: auto;
+  height: 100%;
+  position: relative;
+}
+
+.event_name {
+  color: crimson;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding: 1rem;
+}
+
+.event_days {
+  font-size: 1rem;
+  margin-top: 3rem;
+  padding: 1rem;
+}

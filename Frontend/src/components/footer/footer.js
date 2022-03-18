@@ -4,9 +4,8 @@ import "./footer.css";
 const Footer = () => {
   return (
     <div className="main-footer">
-      <div className="container">
+      <div className="containers">
         <div className="row">
-          {/* Column1 */}
           <div className="col">
             <u>
               <h4>Contact</h4>
@@ -19,15 +18,35 @@ const Footer = () => {
               <li>nevillealumini@gmail.com</li>
             </h6>
           </div>
-          {/* Column2 */}
+
           <div className="col">
             <u>
               <h4>Follow us</h4>
             </u>
             <hr />
             <ui className="list-unstyled">
-              <li>Facebook</li>
-              <li>Instagram</li>
+              <div className="Socialwrap">
+                <a
+                  href="https://www.facebook.com/Neville-Alumni-and-Friends-Association-310455590523"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="facebook-logo"
+                    src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-512.png"
+                  />
+                </a>
+                <a
+                  href="https://www.instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="insta-logo"
+                    src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Instagram_colored_svg_1-512.png"
+                  />
+                </a>
+              </div>
             </ui>
           </div>
         </div>

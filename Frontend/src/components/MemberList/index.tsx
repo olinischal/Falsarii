@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MemberData from "../../types/Member";
-import { Member } from "../../api/api";
+import { Member } from "../../services/api";
+import Profile from "../User/Profile";
 
 const MemberList = () => {
   const [members, setMembers] = useState<MemberData[]>([]);
@@ -16,14 +17,21 @@ const MemberList = () => {
       });
   }, []);
 
-  const listItems = members.map((d) => <li key={d.id}>{d.firstName}</li>);
+  const listUsers = members.map((d) => <li key={d.id}>{d.firstName}</li>);
+  const user = members.map(d =>  d);
   return (
-    <>
-      <div>
+ 
+    
+    <div>
         Members are
-        {listItems}
+        {listUsers}
+        
       </div>
-    </>
+      
+            
+   
   );
 };
+
+
 export default MemberList;

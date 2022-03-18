@@ -1,0 +1,25 @@
+.error {
+  font-size: 13px;
+  font-weight: 500;
+  color: #d0342c;
+  margin-top: 0.25rem;
+}
+
+.outerbox {
+  width: 300px;
+  border: 5px solid green;
+
+  border-radius: 10px;
+  margin: 50px;
+  padding-right: 10px;
+}
+.back {
+  background-image: url("https://www.nevillealumni.org/sites/default/files/styles/front_page_slider/public/IMG_7189.JPG?itok=rYXn3Mg8");
+  background-size: cover;
+  opacity: 0.9;
+  min-height: 100%;
+  max-width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: stretch;
+}

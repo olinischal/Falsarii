@@ -1,7 +1,7 @@
+import { Link } from "react-router-dom";
 
 const Events = () => {
-
-    return <>All the events are here</>;
-}
+  return <></>;
+};
 
 export default Events;

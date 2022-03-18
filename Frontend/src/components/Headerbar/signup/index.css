@@ -1,0 +1,20 @@
+.error {
+  font-size: 13px;
+  font-weight: 500;
+  color: #d0342c;
+  margin-top: 0.25rem;
+}
+
+.background {
+  background-image: url("https://www.nevillealumni.org/sites/default/files/styles/front_page_slider/public/reunion.jpeg?itok=AxEvaynM");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 100%;
+  opacity: 0.9;
+  min-height: 100%;
+  max-width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: stretch;
+  margin-left: 0%;
+}

@@ -1,0 +1,20 @@
+.fill {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.fill img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+.text-block {
+  position: absolute;
+  color: black;
+  background-color: white;
+  top: 20px;
+  left: 20px;
+  text-align: center;
+}
