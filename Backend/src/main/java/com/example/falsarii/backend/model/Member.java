@@ -45,6 +45,14 @@ public class Member {
 
 
 
+    private Boolean enabled;
+
+
+
+    private String address;
+
+
+
 
 
     @CreationTimestamp
@@ -66,7 +74,7 @@ public class Member {
 
 
     public Member(String firstName, String maidenName, String lastName, String phoneNumber, String email,
-                  String password, String graduationDate) {
+                  String password) {
 
 
         this.firstName = firstName;
@@ -76,12 +84,23 @@ public class Member {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
+        this.enabled = false;
 
-        this.graduationDate = graduationDate;
+//        this.graduationDate = graduationDate;
     }
 
     protected Member(){}
 
+//    public Member(String firstName, String lastName, String email, String password, ERole roleUser) {
+//        this.firstName = firstName;
+//        this.maidenName = maidenName;
+//
+//        this.lastName = lastName;
+//        this.phoneNumber = phoneNumber;
+//        this.email = email;
+//        this.password = password;
+//        this.enabled = false;
+//    }
 
 
     public void setId(Long id) {
@@ -113,6 +132,22 @@ public class Member {
     }
     public void setGraduationDate(String graduationDate) {
         this.graduationDate = graduationDate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Long getId() {

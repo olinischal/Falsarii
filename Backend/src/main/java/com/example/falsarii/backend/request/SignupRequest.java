@@ -33,9 +33,9 @@ public class SignupRequest {
 	
 	private String captchaResponse;
 
-	@NotBlank
-	@Size(min = 2, max = 50)
-	private String graduationDate;
+
+//	@Size(min = 2, max = 50)
+//	private String graduationDate;
 
 	private Set<String> role;
 
@@ -67,9 +67,9 @@ public class SignupRequest {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public void setGraduationDate(String graduationDate) {
-		this.graduationDate = graduationDate;
-	}
+	//public void setGraduationDate(String graduationDate) {
+//		this.graduationDate = graduationDate;
+//	}
 
 	public String getEmail() {
 		return email;
@@ -99,9 +99,9 @@ public class SignupRequest {
 		return maidenName;
 	}
 
-	public String getGraduationDate() {
-		return graduationDate;
-	}
+//	public String getGraduationDate() {
+//		return graduationDate;
+//	}
 
 	public String getCaptchaResponse() {
 		return captchaResponse;

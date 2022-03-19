@@ -1,7 +1,7 @@
 import axios from "axios";
 const API_URL = "http://localhost:8080/member/";
 
-export const register = (firstName:string, maidenName:string, lastName:string, phoneNumber:string, email: string, graduationDate:string, password: string, captchaResponse:string) => {
+export const register = (firstName:string, maidenName:string, lastName:string, phoneNumber:string, email: string,  password: string, captchaResponse:string) => {
   
 // export const register = (firstName:string, lastName:string, phoneNumber:string, email: string, password: string, captchaResponse:string) => {
   console.log("this is" + captchaResponse);
@@ -13,7 +13,7 @@ export const register = (firstName:string, maidenName:string, lastName:string, p
     lastName,
     phoneNumber,
     email,
-    graduationDate,
+    
     password,
     captchaResponse
   }).then((response)=> {

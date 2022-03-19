@@ -86,7 +86,7 @@ const Login = () => {
                   Login
                 </Button>
                 <p>
-                  Forgot <Link to="/">password?</Link>
+                  Forgot <Link to={"/forgotpassword"}>password?</Link>
                   <span className="float-end">
                     <Link to="/signup">Sign Up</Link>
                   </span>

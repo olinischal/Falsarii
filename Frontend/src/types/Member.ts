@@ -6,5 +6,6 @@ export default interface MemberData {
     email: string,
     graduationDate: string,
     phoneNumber: string,
+    address: string,
     password: string,
 }

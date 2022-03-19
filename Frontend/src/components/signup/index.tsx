@@ -14,7 +14,7 @@ interface signupProps {
   lastName: string;
   phoneNumber: string;
   email: string;
-  graduationDate: string;
+ 
   password: string;
   confirmPassword: string;
   // response:string
@@ -26,7 +26,7 @@ const initialValues: signupProps = {
   lastName: "",
   phoneNumber: "",
   email: "",
-  graduationDate: "",
+  
   password: "",
   confirmPassword: "",
   // response:""
@@ -45,7 +45,7 @@ const Signup = () => {
     console.log("Now" +response);
     try {     
       register(values.firstName, values.maidenName,values.lastName,values.phoneNumber,
-         values.email, values.graduationDate, values.password, response)
+         values.email, values.password, response)
       .then(() => {
         navigate("/login");
         window.location.reload();
@@ -152,7 +152,7 @@ const Signup = () => {
                   </ErrorMessage>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="dob">
+                {/* <Form.Group className="mb-3" controlId="dob">
                     
                     <Form.Control
                       type="date"
@@ -164,7 +164,7 @@ const Signup = () => {
                   <ErrorMessage name="graduationDate">
                      {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>
-                </Form.Group>
+                </Form.Group> */}
                 
 
 

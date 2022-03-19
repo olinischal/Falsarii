@@ -20,6 +20,7 @@ const Profile = () => {
     graduationDate: " ",
     phoneNumber: " ",
     password: " ",
+    address: " ",
   });
   const [isError, setIsError] = useState<boolean>(false);
 
@@ -85,7 +86,7 @@ const Profile = () => {
       <Routes>
         <Route path="user/" element={<Account user={users} />} />
 
-        <Route path="edit_profile/" element={<EditAccount />} />
+        <Route path="edit_profile/" element={<EditAccount user={users} />} />
         <Route path="edit_NAFA_details/" element={<EditNAFA />} />
         <Route path="security/" element={<Security />} />
       </Routes>

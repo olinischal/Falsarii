@@ -17,6 +17,8 @@ import Profile from "./components/User/Profile";
 import BoardUser from './components/BoardMembers/BoardUser';
 import UpdateMember from './components/MemberList/UpdateMember';
 import Membership from './components/Membership';
+import LoginReset from './components/LoginReset';
+import NewPassword from './components/LoginReset/NewPassword';
 
 
 
@@ -48,6 +50,8 @@ function App() {
         <Route path="/user" element={<BoardUser />} />
         <Route path="/update/:id" element={<UpdateMember/>}/>
         <Route path="/membership" element={<Membership/>}/>
+        <Route path="/forgotpassword" element={<LoginReset/>}/>
+        <Route path="/newpassword/:id" element={<NewPassword/>}/>
 
         
       </Routes>

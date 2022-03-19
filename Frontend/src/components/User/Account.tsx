@@ -77,7 +77,7 @@ const Account: React.FC<userDetails> = ({ user }) => {
                   <h6 className="mb-0">Address</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  Monroe, Louisiana, LA
+                  
                 </div>
               </div>
               <hr />

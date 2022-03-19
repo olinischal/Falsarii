@@ -19,9 +19,9 @@ const SignupSchema = Yup.object().shape({
         "Invalid phone number"
       ),
 
-      graduationDate: Yup.string()
+      // graduationDate: Yup.string()
       
-      .required("Date Required"),
+      // .required("Date Required"),
   
     email: Yup.string()
     .email('Please input the right email format')

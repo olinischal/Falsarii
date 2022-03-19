@@ -7,9 +7,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import com.example.falsarii.backend.security.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -24,15 +26,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.falsarii.backend.captcha.ReCaptchaResponse;
@@ -57,7 +51,8 @@ import com.example.falsarii.payload.response.MessageResponse;
 public class MemberController {
 
 
-
+    @Autowired
+    RegistrationService registrationService;
   @Autowired
   AuthenticationManager authenticationManager;
 
@@ -108,16 +103,18 @@ public class MemberController {
  
   @PostMapping("/add")
   public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest, HttpServletResponse response) throws Exception{
-//	  VerifyCaptcha verifyResponse = new VerifyCaptcha();
-	  
+	  VerifyCaptcha verifyResponse = new VerifyCaptcha();
+
+
 	  String gRecaptchaResponse = signUpRequest.getCaptchaResponse();
-		 
+
 		 if(!verifyReCAPTCHA(gRecaptchaResponse)) {
-//			 response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+			 response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			 return ResponseEntity
 			          .badRequest()
 			          .body(new MessageResponse("Error: Assure that you are human!"));
 		 }
+      //registrationService.register(signUpRequest);
 		
 	  
 	  
@@ -136,10 +133,16 @@ public class MemberController {
     		signUpRequest.getPhoneNumber(),
             signUpRequest.getEmail(),
 
-               encoder.encode(signUpRequest.getPassword()),
-            signUpRequest.getGraduationDate());
+               encoder.encode(signUpRequest.getPassword())
+            );
 
+    try{
+        registrationService.register(signUpRequest);
 
+    }catch(Exception e) {
+
+        System.out.print("Failed to register email" );
+    }
 
     Set<String> strRoles = signUpRequest.getRole();
     Set<Role> roles = new HashSet<>();
@@ -197,11 +200,18 @@ public class MemberController {
 		currentMember.setLastName(member.getLastName());
 		currentMember.setPhoneNumber(member.getPhoneNumber());
 		currentMember.setEmail(member.getEmail());
+        currentMember.setPassword(member.getPassword());
         currentMember.setGraduationDate(member.getGraduationDate());
+        currentMember.setAddress(member.getAddress());
 
 		memberRepository.save(currentMember);
 		return ResponseEntity.ok(currentMember);
 	}
+
+    @GetMapping(path = "registration/confirm")
+    public String confirm(@RequestParam("token") String token) {
+        return registrationService.confirmToken(token);
+    }
 
   
   

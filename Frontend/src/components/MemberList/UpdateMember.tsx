@@ -13,6 +13,7 @@ const UpdateMember = () => {
     graduationDate: " ",
     phoneNumber: " ",
     password: " ",
+    address: " ",
   });
 
 
@@ -93,7 +94,7 @@ const UpdateMember = () => {
 
         <div className="form-group">
           <input
-            type="text"
+            type="date"
             className="form-control col-4"
             id="graduationDate"
             value={users.graduationDate}

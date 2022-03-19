@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MemberData from "../../types/Member";
 import { Member } from "../../services/api";
-import Profile from "../User/Profile";
+
 
 import { useNavigate } from "react-router-dom";
 
