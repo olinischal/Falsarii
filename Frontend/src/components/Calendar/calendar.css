@@ -84,7 +84,7 @@
   }
   .calendar {
     justify-content: center;
-    position: absolute;
+    position: relative;
     font-family: serif;
     font-weight: bold;
     color: black;

@@ -23,23 +23,51 @@ import Events from './components/Events';
 import Calendar from './components/Calendar';
 
 
-
+import IdleTimer from "./components/Timeout/idleTimer";
+import { useState, useEffect } from "react";
+import * as AuthService from "./services/authenticate-service";
+import NewLogin from "./components/login/NewLogin";
+import NewSignUp from "./components/signup/NewSignUp";
+import Footer from "./components/footer/Footer";
 
 
 function App() {
-  return (     
-   
+  const [isTimeout, setIsTimeout] = useState(false);
+  const onTimeExpired = () => {
+    const userStr = localStorage.getItem("user");
+    if (userStr) {
+      AuthService.logout();
+      window.location.href = "/login";
+      alert('You have been logged out due to inactivity');
+    }
+  };
+  useEffect(() => {
+    const timer = new IdleTimer({
+      timeout: 1000, //expire after 10 seconds
+      onTimeout: () => {
+        setIsTimeout(true);
+      },
+      onExpired: () => {
+        // do something if expired on load
+        setIsTimeout(true);
+        // AuthService.logout();
+      },
+    });
+
+    return () => {
+      timer.cleanUp();
+    };
+  }, []);
+  return (
+    <>
     
-    <Router>
-    
-      
+      {isTimeout && onTimeExpired()}
+      <Router>
       <NavigationBar />
-    
-      
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/login" element={<NewLogin/>}/>
+        <Route path="/signup" element={<NewSignUp/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/events" element={<Events/>}/>
         <Route path="/calendar" element={<Calendar/>}/>
@@ -57,11 +85,15 @@ function App() {
         <Route path="/forgotpassword" element={<LoginReset/>}/>
         <Route path="/newpassword/:id" element={<NewPassword/>}/>
 
+          <Route path="/profile/*" element={<Profile />} />
+          <Route path="/user" element={<BoardUser />} />
+          <Route path="/update/:id" element={<UpdateMember />} />
+          <Route path="/membership" element={<Membership />} />
+        </Routes>
         
-      </Routes>
-   
       </Router>
-  
+      <Footer/>
+    </>
   );
 }
 

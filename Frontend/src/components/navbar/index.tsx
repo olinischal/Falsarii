@@ -131,8 +131,6 @@ const NavigationBar = () => {
               Register
             </Nav.Link>
             </Nav>
-
-             
             </>
 
         ) }

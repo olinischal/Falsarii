@@ -6,7 +6,7 @@ const Calendar = () => {
         <p className="title">Calendar</p>
         <p className="subtitle">All the events shown on a calendar</p>
       </div>
-      <div className="calendar">
+      <div className="calendar" style={{height:'700px'}}>
         <div className="fc-left">
           <h2>
             <a href="#" className="previous round">
