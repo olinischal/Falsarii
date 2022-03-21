@@ -1,6 +1,20 @@
 .error {
-    font-size: 13px;
-    font-weight: 500;
-    color: #D0342C;
-     margin-top: 0.25rem;
-   }
+  font-size: 17px;
+  font-weight: 500;
+  color: #ff4c3b;
+  margin-top: 0.25rem;
+}
+
+.errorOccured {
+  border: none;
+  background-color: #353839;
+  border-bottom: 1px solid #FF4C3B;
+  font-size: 20px;
+}
+.noError {
+  background-color: #353839;
+  border:none;
+  border-bottom: 1px solid #ffc40c;
+  font-size: 20px;
+  color:#ffc40c;
+}

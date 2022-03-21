@@ -104,7 +104,6 @@ const Home = () => {
                     <Col lg={2}></Col>
                 </Row>
             </Container>
-            <Footer/>
         </Container>
 
     ); 

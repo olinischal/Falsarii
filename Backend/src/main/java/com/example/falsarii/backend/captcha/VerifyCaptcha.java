@@ -34,13 +34,13 @@ public class VerifyCaptcha {
 		map.add("response", gRecaptchaResponse);
 
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
-		System.out.println("response: " + request);
+//		System.out.println("response: " + request);
 		ReCaptchaResponse response = restTemplate.postForObject("https://www.google.com/recaptcha/api/siteverify", map, ReCaptchaResponse.class);
 		
-
-		System.out.println("Success: " + response.isSuccess());
-		System.out.println("Hostname: " + response.getHostname());
-		System.out.println("Challenge Timestamp: " + response.getChallange_ts());
+//
+//		System.out.println("Success: " + response.isSuccess());
+//		System.out.println("Hostname: " + response.getHostname());
+//		System.out.println("Challenge Timestamp: " + response.getChallange_ts());
 
 		if (response.getErrorCode() != null) {
 			for (String error : response.getErrorCode()) {

@@ -1,0 +1,12 @@
+.logo{
+    position: absolute;
+    top: 280px;
+    right:1000px;
+  }
+  .child{
+    position: absolute;
+    top: 430px;
+    right: 850px ;
+    font-size: 30px;
+    color: black;
+  }
