@@ -1,4 +1,5 @@
 import { Button, Carousel, Col, Container, Dropdown, Row, Stack } from "react-bootstrap";
+import Events from "../Events";
 import Footer from "../footer/Footer";
 
 const Home = () => {
@@ -63,13 +64,7 @@ const Home = () => {
             </Row>
             <br></br>
             <Container fluid ="lg" id="Events">
-                <h1>Upcoming Events</h1>
-                <hr></hr>
-                <Stack gap={3}>
-                        <h3>Football</h3>
-                        <h3>Basketball</h3>
-                        <h3>Class of 2014 Reunion</h3>
-                </Stack>
+                <Events />
             </Container>
             <Container fluid="lg" id="News">
                 <Row>

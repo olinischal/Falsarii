@@ -19,6 +19,8 @@ import UpdateMember from './components/MemberList/UpdateMember';
 import Membership from './components/Membership';
 import LoginReset from './components/LoginReset';
 import NewPassword from './components/LoginReset/NewPassword';
+import Events from './components/Events';
+import Calendar from './components/Calendar';
 
 
 
@@ -39,6 +41,8 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/about" element={<About/>}/>
+        <Route path="/events" element={<Events/>}/>
+        <Route path="/calendar" element={<Calendar/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/members" element={<MemberList/>}/>
 

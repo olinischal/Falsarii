@@ -1,5 +1,6 @@
 import MemberData from "../../types/Member";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import { useNavigate } from "react-router";
 import { Member } from "../../services/api";
 
 interface userDetails {
@@ -18,11 +19,14 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
         address: " ",
       });
 
+      const navigate = useNavigate();
+
       const saveclients = (e) => {
         e.preventDefault();
     
         Member.updateMember(parseInt(users.id), users)
           .then(() => {
+            navigate('/profile/user');
             
             window.location.reload();
           })
@@ -30,6 +34,16 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
             console.log("Something went wrong here.", error);
           });
       };
+
+      useEffect(() => {
+        Member.getAMember(parseInt(user.id))
+          .then((response) => {
+            setUsers(response);
+          })
+          .catch((error) => {
+            console.log("Something went wrong here.", error);
+          });
+      }, []);
       
 
   return (
@@ -70,7 +84,7 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       className="form-control"
                       id="firstName"
                       type="text"
-                      placeholder={user.firstName}
+                      value={users.firstName}
                       onChange={(e) => setUsers({ ...users, firstName: e.target.value })}
                     />
                   </div>
@@ -83,7 +97,7 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       className="form-control"
                       id="inputLastName"
                       type="text"
-                      value={user.lastName}
+                      value={users.lastName}
                       onChange={(e) => setUsers({ ...users, lastName: e.target.value })}
                     />
                   </div>
@@ -98,7 +112,7 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       className="form-control"
                       id="inputOrgName"
                       type="text"
-                      value={user.email}
+                      value={users.email}
                       onChange={(e) => setUsers({ ...users, email: e.target.value })}
                     />
                   </div>
@@ -111,7 +125,8 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       className="form-control"
                       id="inputLocation"
                       type="text"
-                      value={user.phoneNumber}
+                      value={users.phoneNumber}
+                      
                       onChange={(e) => setUsers({ ...users, phoneNumber: e.target.value })}
                     />
                   </div>
@@ -135,8 +150,9 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                   <input
                     className="form-control"
                     id="inputEmailAddress"
-                    type="email"
-                    placeholder="Enter your street address"
+                    type="text"
+                    value={users.address}
+                    onChange={(e) => setUsers({ ...users, address: e.target.value })}
                   />
                 </div>
 

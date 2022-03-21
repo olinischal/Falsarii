@@ -1,4 +1,4 @@
-import { Navbar, Nav, Container, Image } from "react-bootstrap";
+import { Navbar, Nav, Container, Image, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
 import './index.css'
@@ -40,12 +40,26 @@ const NavigationBar = () => {
                 <Nav.Link as={Link} to="/members">
                   Members
                 </Nav.Link>
+                <Nav>
+        <NavDropdown
+          id="nav-dropdown-dark-example"
+          title="Dropdown"
+          menuVariant="dark"
+        >
+           
+          <NavDropdown.Item href="/events">All Events</NavDropdown.Item>
+          <NavDropdown.Item href="/calendar">Calendar</NavDropdown.Item>          
+        </NavDropdown>
+          </Nav>
+
+                
                 <Nav.Link as={Link} to="/about">
                   About
                 </Nav.Link>
                 <Nav.Link as={Link} to="/contact">
                   Contact Us
                 </Nav.Link>
+
                 <Nav.Link as={Link} to="/payment">
                   Donate
                 </Nav.Link>
@@ -77,12 +91,26 @@ const NavigationBar = () => {
           <Nav.Link as={Link} to="/members" >
               Members
             </Nav.Link>
+            <Nav>
+        <NavDropdown
+          id="nav-dropdown-dark-example"
+          title="Events"
+          menuVariant="dark"
+          
+        >
+          
+          <NavDropdown.Item href="/events">All Events</NavDropdown.Item>
+          <NavDropdown.Item href="/calendar">Calendar</NavDropdown.Item>          
+        </NavDropdown>
+          </Nav>
+           
             <Nav.Link as={Link} to="/about">
               About
             </Nav.Link>
             <Nav.Link as={Link} to="/contact">
               Contact Us
             </Nav.Link>
+            
             </Nav>
 
              <Nav>

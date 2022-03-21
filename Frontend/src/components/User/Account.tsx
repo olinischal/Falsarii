@@ -30,7 +30,7 @@ const Account: React.FC<userDetails> = ({ user }) => {
                 <div className="mt-3">
                   <h4>{user.firstName + " " + user.lastName}</h4>
                   <p className="text-secondary mb-1">{user.email}</p>
-                  <p className="text-muted font-size-sm">Address</p>
+                  <p className="text-muted font-size-sm">{user.address}</p>
                 </div>
               </div>
             </div>
@@ -77,7 +77,7 @@ const Account: React.FC<userDetails> = ({ user }) => {
                   <h6 className="mb-0">Address</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  
+                  {user.address}
                 </div>
               </div>
               <hr />

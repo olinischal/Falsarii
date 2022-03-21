@@ -110,11 +110,7 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
 
         confirmationTokenService.saveConfirmationToken(confirmationToken);
 
-
     }
-
-
-
 
     @Transactional
     @Modifying
