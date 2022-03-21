@@ -18,3 +18,23 @@
   font-size: 20px;
   color:#ffc40c;
 }
+
+.box-size{
+ 
+    width: 35rem;
+    background-color: #353839;
+    border-radius:10px;
+    margin: 20px;
+    padding: 40px;
+}
+@media only screen and (max-width: 900px) {
+  .box-size{
+ 
+    width: 25rem;
+    background-color: #353839;
+    border-radius:10px;
+    margin: 20px;
+    padding: 40px;
+}
+
+}

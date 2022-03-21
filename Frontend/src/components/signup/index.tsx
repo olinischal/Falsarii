@@ -84,14 +84,7 @@ const Signup = () => {
               className="mt-7"
               style={{ width: "30rem", padding: "2rem", }}
             >
-              <div
-                style={{
-                  width: "35rem",
-                  backgroundColor: "#353839",
-                  borderRadius: "10px",
-                  margin: "20px",
-                  padding: "40px",
-                }}
+              <div className='box-size'
               >
                 <div
                   style={{
@@ -119,7 +112,6 @@ const Signup = () => {
                           value={values.firstName}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          autoComplete="off"
                         /> 
                         <ErrorMessage name="firstName">
                           {(msg) => <div className="error">{msg}</div>}
