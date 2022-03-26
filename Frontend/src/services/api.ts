@@ -1,5 +1,6 @@
 import axios, {AxiosResponse} from 'axios';
 import MemberData from '../types/Member';
+import EventData from '../types/Event';
 
 
 const instance = axios.create({
@@ -27,3 +28,13 @@ export const Member = {
 	deleteMember: (id: number): Promise<void> => requests.delete(`delete/${id}`),
 };
 
+// update the event api link
+export const Event = {
+	getMembers: (): Promise<EventData[]> => requests.get('getAll'),
+	getAMember: (id: number): Promise<EventData> => requests.get(`getMember/${id}`),
+	createMember: (post: EventData): Promise<EventData> =>
+		requests.post('add', post),
+	updateMember: (id:number, put: EventData): Promise<EventData> =>
+		requests.put(`update/${id}`, put),
+	deleteMember: (id: number): Promise<void> => requests.delete(`delete/${id}`),
+};
