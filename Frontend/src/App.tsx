@@ -30,6 +30,9 @@ import NewLogin from "./components/login/NewLogin";
 import NewSignUp from "./components/signup/NewSignUp";
 import Footer from "./components/footer/Footer";
 
+import Scholarships from './components/Scholarships';
+import ScholarshipPage from './components/Scholarships/ScholarshipPage';
+
 
 function App() {
   const [isTimeout, setIsTimeout] = useState(false);
@@ -85,10 +88,9 @@ function App() {
         <Route path="/forgotpassword" element={<LoginReset/>}/>
         <Route path="/newpassword/:id" element={<NewPassword/>}/>
 
-          <Route path="/profile/*" element={<Profile />} />
-          <Route path="/user" element={<BoardUser />} />
-          <Route path="/update/:id" element={<UpdateMember />} />
-          <Route path="/membership" element={<Membership />} />
+          <Route path="/scholarships" element={<Scholarships />} />
+          <Route path="/s/page/:id" element={<ScholarshipPage />} />
+          
         </Routes>
         
       </Router>

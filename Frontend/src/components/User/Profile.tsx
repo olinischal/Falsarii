@@ -64,7 +64,7 @@ const Profile = () => {
               </Nav.Link>
               <NavDropdown title="Edit Account" id="basic-nav-dropdown">
                 <NavDropdown.Item as={Link} to="/profile/edit_profile">
-                  Profile Detais
+                  Profile Details
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/profile/edit_NAFA_details">
                   NAFA Details
