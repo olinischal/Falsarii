@@ -1,6 +1,5 @@
 package com.example.falsarii.backend.service;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.falsarii.backend.model.Scholarships;
 import com.example.falsarii.backend.repository.ScholarshipRepository;
+
 
 @Service
 public class ScholarshipService {
@@ -24,16 +24,22 @@ public class ScholarshipService {
 	//Create scholarship
 	public void createScholarship(Scholarships scholarship) {
 		try {
-			scholarshipRepository.save(scholarship);
+			System.out.println();
+			if(scholarshipRepository.findByScholarshipId(scholarship.getScholarshipId()) == null) {
+				scholarshipRepository.save(scholarship);
+			}else {
+				System.out.println("Scholarship is already in database");
+			}
+			
 		}catch(Exception e) {
 			System.out.println(e.toString() + " scholarship save error");
 		}
 	}
 	
 	//Change status of scholarship
-	public void changeStatusScholarship(String scholarshipName, boolean status) {
+	public void changeStatusScholarship(Long scholarshipId, boolean status) {
 		try {
-			scholarshipRepository.setStatus(scholarshipName, status);
+			scholarshipRepository.setStatus(scholarshipId, status);
 		}catch(Exception e) {
 			System.out.println(e.toString() + " scholarship activate error");
 		}
