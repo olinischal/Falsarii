@@ -2,6 +2,7 @@ import axios, {AxiosResponse} from 'axios';
 import MemberData from '../types/Member';
 import EventData from '../types/Event';
 import ScholarshipData from '../types/Scholarship';
+import GroupData from '../types/Group';
 
 
 const instance = axios.create({
@@ -47,4 +48,13 @@ export const ScholarshipRequests = {
 	updateScholarships: (id:number, put: ScholarshipData): Promise<ScholarshipData> =>
 		requests.put(`update/${id}`, put),
 	deleteScholarships: (id: number): Promise<void> => requests.delete(`delete/${id}`),
+};
+
+export const GroupRequests = {
+	getGroups: (): Promise<GroupData[]> => requests.get('member/getAllGroups'),
+	createGroup: (post: GroupData): Promise<GroupData> =>
+		requests.post('member/createGroup', post),
+	// updateScholarships: (id:number, put: GroupData): Promise<GroupData> =>
+	// 	requests.put(`update/${id}`, put),
+	// deleteScholarships: (id: number): Promise<void> => requests.delete(`delete/${id}`),
 };

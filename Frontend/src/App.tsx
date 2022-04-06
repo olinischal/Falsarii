@@ -32,6 +32,7 @@ import Footer from "./components/footer/Footer";
 
 import Scholarships from './components/Scholarships';
 import ScholarshipPage from './components/Scholarships/ScholarshipPage';
+import Groups from './components/Group';
 
 
 function App() {
@@ -83,6 +84,10 @@ function App() {
 
         <Route path="/profile/*" element={<Profile />}/>
         <Route path="/user" element={<BoardUser />} />
+        
+        {/* Modify later */}
+        <Route path="/groups" element={<Groups />} />
+        
         <Route path="/update/:id" element={<UpdateMember/>}/>
         <Route path="/membership" element={<Membership/>}/>
         <Route path="/forgotpassword" element={<LoginReset/>}/>
