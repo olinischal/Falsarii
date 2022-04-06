@@ -29,6 +29,9 @@ import * as AuthService from "./services/authenticate-service";
 import NewLogin from "./components/login/NewLogin";
 import NewSignUp from "./components/signup/NewSignUp";
 import Footer from "./components/footer/Footer";
+import Team from './components/Team/team';
+import TshirtSale from './components/TshirtSale/tshirtSale';
+import Donation from './components/Donation/Donation';
 
 
 function App() {
@@ -69,12 +72,14 @@ function App() {
         <Route path="/login" element={<NewLogin/>}/>
         <Route path="/signup" element={<NewSignUp/>}/>
         <Route path="/about" element={<About/>}/>
+        <Route path="/team" element={<Team/>}/>
         <Route path="/events" element={<Events/>}/>
         <Route path="/calendar" element={<Calendar/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/members" element={<MemberList/>}/>
 
         <Route path="/payment" element={<Payment/>}/>
+        <Route path="/donation" element={<Donation/>}/>
         <Route path="/success" element={<Success/>}/>
         <Route path="/error" element={<Error/>}/>
 
@@ -89,6 +94,7 @@ function App() {
           <Route path="/user" element={<BoardUser />} />
           <Route path="/update/:id" element={<UpdateMember />} />
           <Route path="/membership" element={<Membership />} />
+          <Route path="/tshirtSale" element={<TshirtSale />} />
         </Routes>
         
       </Router>

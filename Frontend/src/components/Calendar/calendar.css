@@ -1,4 +1,4 @@
-.page_title {
+/* .page_title {
     padding: 1rem 0;
     text-align: center;
     background: #f5f5f5;
@@ -21,14 +21,14 @@
     text-decoration: none;
     display: inline-block;
     padding: 8px 16px;
-  }
+  } */
   
   /* a:hover {
     background-color: cyan;
     color: black;
   } */
   
-  .previous {
+  /* .previous {
     margin-right: 10px;
     background-color: #f1f1f1;
     color: black;
@@ -123,4 +123,4 @@
     color: crimson;
     background: orange;
     cursor: pointer;
-  }
+  } */

@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <>
 
-<footer className="footer">
+<footer className="footer bg-dark">
   <div className="footer-left col-md-4 col-sm-6">
     <p className="about">
        It is the mission of NAFA to provide supplemental funding for programs or projects to enhance the quality of instructional delivery and student life, and to

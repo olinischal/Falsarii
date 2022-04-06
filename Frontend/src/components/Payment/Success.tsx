@@ -2,7 +2,7 @@ import React from 'react'
 
 function Success() {
   return (
-    <div>
+    <div style={{paddingTop:'69px'}}>
        <h1> The payment was succesful</h1>
     </div>
   )

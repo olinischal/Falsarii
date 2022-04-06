@@ -1,8 +1,8 @@
 import MemberData from "../../types/Member";
-import React from "react";
+import React, { useState } from "react";
 import "./Account.css";
 import { Image } from "react-bootstrap";
-
+import profile from './profileImage.png';
 
 
 
@@ -12,7 +12,19 @@ interface userDetails {
 
 
 
+
 const Account: React.FC<userDetails> = ({ user }) => {
+
+  const [profilePic, setProfilePic] = useState(profile);
+  const imageHandler =(e) =>{
+    const reader = new FileReader();
+    reader.onload = () => {
+      if(reader.readyState ===2 ){
+        setProfilePic(String(reader.result));
+      }
+    }
+    reader.readAsDataURL(e.target.files[0]);
+  }
   return (
     <div className="container-fluid mt-2">
       <div className="row">
@@ -22,15 +34,20 @@ const Account: React.FC<userDetails> = ({ user }) => {
             <div className="card-body">
               <div className="d-flex flex-column align-items-center text-center">
                 <Image
-                  src={require("./profileImage.png")}
+                  src={profilePic}
                   alt="Admin"
                   className="rounded-circle"
                   width="150"
+                  height='150'
                 />
                 <div className="mt-3">
                   <h4>{user.firstName + " " + user.lastName}</h4>
                   <p className="text-secondary mb-1">{user.email}</p>
                   <p className="text-muted font-size-sm">{user.address}</p>
+                  <input type="file" name="image-upload" id="input-image" accept="image/*" onChange={imageHandler} style={{display:'none'}}/>
+                  <div className="label">
+                    <label htmlFor="input-image" className="image-upload" ><i className="bi bi-images" ></i>Change Your Profile Photo</label>
+                  </div>
                 </div>
               </div>
             </div>

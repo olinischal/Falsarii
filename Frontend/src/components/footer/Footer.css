@@ -1,4 +1,6 @@
 .footer {
+  position: relative;
+  bottom: 0px;
     background-color: #414141;
     width: 100%;
     text-align: left;

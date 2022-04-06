@@ -1,0 +1,37 @@
+.team .card-body{
+    font-size: 20px;
+}
+
+.portfolio .card{
+    box-shadow: 15px 15px 40px rgba(0,0,0,0.15);
+}
+
+.team .card{
+    box-shadow: 15px 15px 40px rgba(0,0,0,0.15);
+}
+
+@media only screen and (min-width:768px) and (max-width:991px){
+    .card{
+        margin-bottom: 30px;
+    }
+    .img-area img{
+        width: 100%;
+    }
+    .card{
+        height: auto;
+    }
+    
+}
+
+.card{
+    height: 400px;
+}
+@media only screen and (max-width:767px) {
+    .card{
+        margin-bottom: 30px;
+    }
+    .card{
+        height: auto;
+    }
+    
+}

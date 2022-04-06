@@ -6,17 +6,19 @@ import { useNavigate } from "react-router";
 
 
 
-function Payment() {
+function Payment(props) {
+  
   const navigate = useNavigate();
   const [totalAmount, setTotalAmount] = useState('');
 
   async function handleToken(token) {
+    setTotalAmount(props.amount);
     await axios.post("http://localhost:8080/payment/charge", "", {
       headers: {
         token: token.id,
-        amount: totalAmount,
+        // amount: totalAmount,
+        amount:props.amount,
       }
-
       ,
     }).then(() => {
       navigate('/success');
@@ -25,16 +27,15 @@ function Payment() {
     });
   }
   return (
-    <>
-      Donate For Football Scholarship
-      <div>Must be at least $0.5
+    <div style={{paddingTop:'50px'}}>
+      {/* <div>Must be at least $0.5
         <label style={{position: "relative", left:"15px"}}>$</label>
         <input type="text" name="amount" placeholder="" style={{textIndent:"15px", marginTop:"20px"}}onChange={e => setTotalAmount(e.target.value)} />
-      </div>
+      </div> */}
 
       <div className="payment" style={{ marginTop:"20px"}}>
         <Stripe
-          name={"$ "+totalAmount +" Donation"}
+          name={"$ "+props.amount +" Payment"}
           description="For Naville Alumni Association"
           panelLabel="Donate Now"
           ComponentClass="edit"
@@ -44,7 +45,7 @@ function Payment() {
           token={handleToken}
         />
       </div>
-    </>
+    </div>
   );
 }
 export default Payment;
