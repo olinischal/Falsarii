@@ -110,6 +110,9 @@ const NavigationBar = () => {
             <Nav.Link as={Link} to="/contact">
               Contact Us
             </Nav.Link>
+            <Nav.Link as={Link} to="/payment">
+                  Donate
+            </Nav.Link>
             
             </Nav>
 

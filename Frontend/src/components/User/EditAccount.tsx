@@ -19,11 +19,18 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
         address: " ",
       });
 
-      const navigate = useNavigate();
+      const [fullAdress, setFullAddress] = useState({
+        streetAddress: " ",
+        city: " ",
+        postalCode: " "
+      })
 
+      const navigate = useNavigate();
+      // let city = " ";
+      // let postalCode= " ";
       const saveclients = (e) => {
         e.preventDefault();
-    
+        setUsers({ ...users, address: `${users.address}, ${fullAdress.city}, ${fullAdress.postalCode}` })
         Member.updateMember(parseInt(users.id), users)
           .then(() => {
             navigate('/profile/user');
@@ -144,12 +151,12 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                 </div> */}
 
                 <div className="mb-3">
-                  <label className="small mb-1" placeholder="inputEmailAddress">
+                  <label className="small mb-1" placeholder="inputAddress">
                     Street Address
                   </label>
                   <input
                     className="form-control"
-                    id="inputEmailAddress"
+                    id="inputAddress"
                     type="text"
                     value={users.address}
                     onChange={(e) => setUsers({ ...users, address: e.target.value })}
@@ -165,7 +172,8 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       className="form-control"
                       id="inputPhone"
                       type="tel"
-                      placeholder="Enter your City"
+                      value={fullAdress.city}
+                      onChange={(e) => setFullAddress({ ...fullAdress, city: e.target.value })}
                     />
                   </div>
 
@@ -178,7 +186,8 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       id="inputBirthday"
                       type="text"
                       name="birthday"
-                      placeholder="Enter zip code"
+                      value={fullAdress.postalCode}
+                      onChange={(e) => setFullAddress({ ...fullAdress, postalCode: e.target.value })}
                     />
                   </div>
                 </div>
