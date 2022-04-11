@@ -62,6 +62,10 @@ const NavigationBar = () => {
                   <span className="text-warning">Contact</span>
                 </Nav.Link>
 
+                <Nav.Link href="/calendar">
+                  <span className="text-warning">Calendar</span>
+                </Nav.Link>
+
                 <Nav.Link as={Link} to="/donation">
                   <span className="text-warning">Donate</span>
                 </Nav.Link>
@@ -122,6 +126,9 @@ const NavigationBar = () => {
                 <Nav.Link href="/contact">
                   <span className="text-warning">Contact</span>
                   
+                </Nav.Link>
+                <Nav.Link href="/calendar">
+                  <span className="text-warning">Calendar</span>
                 </Nav.Link>
                 <Nav.Link as={Link} to="/donation">
                   <span className="text-warning">Donate</span>

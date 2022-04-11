@@ -20,7 +20,6 @@ import Membership from './components/Membership';
 import LoginReset from './components/LoginReset';
 import NewPassword from './components/LoginReset/NewPassword';
 import Events from './components/Events';
-import Calendar from './components/Calendar';
 
 
 import IdleTimer from "./components/Timeout/idleTimer";
@@ -32,6 +31,8 @@ import Footer from "./components/footer/Footer";
 import Team from './components/Team/team';
 import TshirtSale from './components/TshirtSale/tshirtSale';
 import Donation from './components/Donation/Donation';
+import Calendar from './components/Calendar/calendar';
+import CalendarDisplay from './components/Calendar/calendar';
 
 
 function App() {
@@ -74,7 +75,7 @@ function App() {
         <Route path="/about" element={<About/>}/>
         <Route path="/team" element={<Team/>}/>
         <Route path="/events" element={<Events/>}/>
-        <Route path="/calendar" element={<Calendar/>}/>
+        <Route path="/calendar" element={<CalendarDisplay/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/members" element={<MemberList/>}/>
 

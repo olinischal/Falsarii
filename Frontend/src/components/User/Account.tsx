@@ -26,7 +26,7 @@ const Account: React.FC<userDetails> = ({ user }) => {
     reader.readAsDataURL(e.target.files[0]);
   }
   return (
-    <div className="container-fluid mt-2">
+    <div className="container-fluid mt-2" style={{paddingTop:"50px"}}>
       <div className="row">
         <div className="col-md-4 px-4 mt-0">
           <div className="card mb-4 mb-xl-0">
