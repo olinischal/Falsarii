@@ -20,7 +20,7 @@ import Membership from './components/Membership';
 import LoginReset from './components/LoginReset';
 import NewPassword from './components/LoginReset/NewPassword';
 import Events from './components/Events';
-import Calendar from './components/Calendar';
+import CalendarDisplay from './components/Calendar/calendar';
 
 
 import IdleTimer from "./components/Timeout/idleTimer";
@@ -86,9 +86,9 @@ function App() {
         <Route path="/login" element={<NewLogin/>}/>
         <Route path="/signup" element={<NewSignUp/>}/>
         <Route path="/about" element={<About/>}/>
-        <Route path="/fixEvents" element={<Events/>}/>
+        <Route path="/events" element={<Events/>}/>
         {/* <Route path="/events" element={<UpdateEvent events={undefined}/>}/> */}
-        <Route path="/calendar" element={<Calendar/>}/>
+        <Route path="/calendar" element={<CalendarDisplay/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/forgotpassword" element={<LoginReset/>}/>
         <Route path="/newpassword/:id" element={<NewPassword/>}/>
