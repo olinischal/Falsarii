@@ -1,68 +1,41 @@
-import { Formik, ErrorMessage } from "formik";
+import { Formik, ErrorMessage, FormikProps, FormikHelpers } from "formik";
 import SignupSchema from "./signup-validation";
 import { Button, Form, Container } from "react-bootstrap";
-import {useNavigate} from "react-router-dom";
-import { signIn } from "../../services/authenticate-service";
-import ReCAPTCHA from "react-google-recaptcha";
-import "./index.css";
-import {register} from "../../services/authenticate-service";
-import { useState } from "react";
+import axios from "axios";
 
 interface signupProps {
   firstName: string;
-  maidenName: string;
   lastName: string;
   phoneNumber: string;
   email: string;
-  graduationDate: string;
   password: string;
   confirmPassword: string;
-  // response:string
 }
 
 const initialValues: signupProps = {
   firstName: "",
-  maidenName: "",
   lastName: "",
   phoneNumber: "",
   email: "",
-  graduationDate: "",
   password: "",
   confirmPassword: "",
-  // response:""
 };
-let captcha;
 
-
-
+const submitForm = (values: signupProps) => {
+  try {
+    axios({
+      method: "post",
+      url: "http://localhost:8080/member/add",
+      data: values,
+    }).then((response: {}) => {
+      console.log(response);
+    });
+  } catch (error) {
+    console.log("Error...");
+  }
+};
 
 const Signup = () => {
-
-  const [response, setResponse] = useState('');
-
-  const navigate = useNavigate();
-  const submitForm = (values: signupProps) => {
-    console.log("Now" +response);
-    try {     
-      register(values.firstName, values.maidenName,values.lastName,values.phoneNumber,
-         values.email, values.graduationDate, values.password, response)
-      .then(() => {
-        navigate("/login");
-        window.location.reload();
-      });
-    } catch (error) {
-      console.log("Error...");
-    }
-
-    captcha.reset();
-
-  };
-
-  const onChangeCaptcha=(e) =>{
-    setResponse(e);
-  }
-
-
   return (
     <Formik
       initialValues={initialValues}
@@ -85,9 +58,7 @@ const Signup = () => {
                 margin: "20px",
                 padding: "40px",
                 }}>
-
-                 
-
+                  <h3>Sign Up</h3>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                   
@@ -102,23 +73,8 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="firstName">
-                  {(msg) => <div className="error">{msg}</div>}
+                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
                   </ErrorMessage>
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                  
-
-                  <Form.Control
-                    type="text"
-                    name="maidenName"
-                    id="maidenName"
-                    placeholder="Maiden Name"
-                    value={values.maidenName}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  
                 </Form.Group>
 
                 <Form.Group className="mb-3">
@@ -133,7 +89,7 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="lastName">
-                     {(msg) => <div className="error">{msg}</div>}
+                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -148,25 +104,9 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="phoneNumber">
-                     {(msg) => <div className="error">{msg}</div>}
+                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
-
-                <Form.Group className="mb-3" controlId="dob">
-                    
-                    <Form.Control
-                      type="date"
-                      name="graduationDate"
-                      placeholder="Graduation Date"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                  <ErrorMessage name="graduationDate">
-                     {(msg) => <div className="error">{msg}</div>}
-                  </ErrorMessage>
-                </Form.Group>
-                
-
 
                 <Form.Group className="mb-3">
                   
@@ -180,7 +120,7 @@ const Signup = () => {
                     onBlur={handleBlur}
                   />
                   <ErrorMessage name="email">
-                     {(msg) => <div className="error">{msg}</div>}
+                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -196,7 +136,7 @@ const Signup = () => {
                   />
 
                   <ErrorMessage name="password">
-                     {(msg) => <div className="error">{msg}</div>}
+                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
 
@@ -206,30 +146,16 @@ const Signup = () => {
                     type="password"
                     name="confirmPassword"
                     id="password"
-                    placeholder="Retype-Password"
+                    placeholder="Password"
                     value={values.confirmPassword}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
 
                   <ErrorMessage name="confirmPassword">
-                     {(msg) => <div className="error">{msg}</div>}
+                    {(msg) => <div style={{color:"red"}}>{msg}</div>}
                   </ErrorMessage>
                 </Form.Group>
-
-                {/* <ReCAPTCHA
-                    sitekey="6Ld-YKgeAAAAAKDx-GaTPgzij6roHZFLJTiAsbMP"
-                    name="response"
-                    value= {values.response}
-                    onChange={handleChange}
-                  /> */}
-
-                  <ReCAPTCHA
-                    sitekey="6Ld-YKgeAAAAAKDx-GaTPgzij6roHZFLJTiAsbMP"
-                    onChange={onChangeCaptcha}
-                    ref={el => { captcha = el; }}
-                  />
-
                 <Button
                   variant="success"
                   size="lg"

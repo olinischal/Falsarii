@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.falsarii.backend.model.Scholarships;
 import com.example.falsarii.backend.service.ScholarshipService;
 
-
 @RestController
 public class ScholarshipController {
 	

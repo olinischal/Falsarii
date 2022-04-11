@@ -24,8 +24,15 @@ public class Groups {
 		
 		@JsonIgnore
 		@ManyToMany(mappedBy = "groups", cascade=CascadeType.ALL)
-		List<Users> users = new ArrayList<>();
+		Set<Users> users = new HashSet<>();
 		
+		public Set<Users> getUsers() {
+			return users;
+		}
+		public void setUsers(Set<Users> users) {
+			this.users = users;
+		}
+	
 		public String getGroupName() {
 			return groupName;
 		}

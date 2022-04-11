@@ -1,12 +1,6 @@
 package com.example.falsarii.backend.model;
-
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,11 +14,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-
-
 @Entity
 @Table(name = "members", uniqueConstraints = {
 		@UniqueConstraint(columnNames = {
@@ -36,48 +25,23 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
-    private String maidenName;
     private String lastName;
     private String phoneNumber;
     private String email;
     private String password;
-    private String graduationDate;
-
-
-
-
-
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date")
-    private Date createDate;
-
-    @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "modify_date")
-    private Date modifyDate;
     
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(  name = "member_roles", 
           joinColumns = @JoinColumn(name = "member_id"), 
           inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-
-    public Member(String firstName, String maidenName, String lastName, String phoneNumber, String email,
-                  String password, String graduationDate) {
-
-
+    public Member(String firstName, String lastName, String phoneNumber, String email, String password) {
         this.firstName = firstName;
-        this.maidenName = maidenName;
-
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
-
-        this.graduationDate = graduationDate;
     }
 
     protected Member(){}
@@ -91,10 +55,6 @@ public class Member {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-    public void setMaidenName(String maidenName) {
-        this.maidenName = maidenName;
-    }
-
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -111,9 +71,6 @@ public class Member {
     public void setPassword(String password) {
         this.password = password;
     }
-    public void setGraduationDate(String graduationDate) {
-        this.graduationDate = graduationDate;
-    }
 
     public Long getId() {
         return id;
@@ -122,8 +79,6 @@ public class Member {
     public String getFirstName() {
         return firstName;
     }
-
-    
 
     public String getLastName() {
         return lastName;
@@ -148,13 +103,5 @@ public class Member {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-    public String getMaidenName() {
-        return maidenName;
-    }
-
-    public String getGraduationDate() {
-        return graduationDate;
-    }
-
-
+    
 }
