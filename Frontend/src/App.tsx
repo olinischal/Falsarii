@@ -91,10 +91,10 @@ function App() {
         <Route path="/forgotpassword" element={<LoginReset/>}/>
         <Route path="/newpassword/:id" element={<NewPassword/>}/>
 
-          <Route path="/profile/*" element={<Profile />} />
+          {/* <Route path="/profile/*" element={<Profile />} />
           <Route path="/user" element={<BoardUser />} />
           <Route path="/update/:id" element={<UpdateMember />} />
-          <Route path="/membership" element={<Membership />} />
+          <Route path="/membership" element={<Membership />} /> */}
           <Route path="/tshirtSale" element={<TshirtSale />} />
         </Routes>
         
