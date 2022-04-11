@@ -33,6 +33,7 @@ import Footer from "./components/footer/Footer";
 import Scholarships from './components/Scholarships';
 import ScholarshipPage from './components/Scholarships/ScholarshipPage';
 import Groups from './components/Group';
+import UpdateScholarships from './components/Scholarships/UpdateScholarships';
 
 
 function App() {
@@ -94,6 +95,8 @@ function App() {
         <Route path="/newpassword/:id" element={<NewPassword/>}/>
 
           <Route path="/scholarships" element={<Scholarships />} />
+          <Route path="/scholarshipList" element={<UpdateScholarships />} />
+          
           <Route path="/s/page/:id" element={<ScholarshipPage />} />
           
         </Routes>
