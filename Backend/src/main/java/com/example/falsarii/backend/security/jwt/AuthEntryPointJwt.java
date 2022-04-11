@@ -17,6 +17,8 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import net.bytebuddy.asm.Advice.Return;
+
 @Component
 public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 
@@ -26,7 +28,7 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
   public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
       throws IOException, ServletException {
     logger.error("Unauthorized error: {}", authException.getMessage());
-
+    
     response.setContentType(MediaType.APPLICATION_JSON_VALUE);
     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
@@ -38,6 +40,7 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 
     final ObjectMapper mapper = new ObjectMapper();
     mapper.writeValue(response.getOutputStream(), body);
+//    System.out.println ("THIS is response" + body.get("message"));
   }
 
 }

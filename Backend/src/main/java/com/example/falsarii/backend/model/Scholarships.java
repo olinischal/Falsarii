@@ -4,19 +4,18 @@ package com.example.falsarii.backend.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Scholarships {
 
-	//Instance variables	
+
+
+	//Instance variables
 	@Id
+
 	private String scholarshipName;
 	private String description;
 	private String deadline;
@@ -52,6 +51,8 @@ public class Scholarships {
 	public void setDonateToScholarships(Set<DonateToScholarships> donateToScholarships) {
 		this.donateToScholarships = donateToScholarships;
 	}
+
+
 	
 	public String getScholarshipName() {
 		return scholarshipName;
@@ -68,6 +69,7 @@ public class Scholarships {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 
 	public String getDeadline() {
 		return deadline;

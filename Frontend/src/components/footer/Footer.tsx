@@ -8,7 +8,7 @@ const Footer = () => {
 <footer className="footer">
   <div className="footer-left col-md-4 col-sm-6">
     <p className="about">
-      <span> About Us</span> It is the mission of NAFA to provide supplemental funding for programs or projects to enhance the quality of instructional delivery and student life, and to
+       It is the mission of NAFA to provide supplemental funding for programs or projects to enhance the quality of instructional delivery and student life, and to
 promote excellence in higher education at NHS.
 If you have any information or event that needs to be featured on this site, please contact Dana Jefferson, NAFA Executive Director.
     </p>
@@ -35,7 +35,7 @@ If you have any information or event that needs to be featured on this site, ple
     </div>
   </div>
   <div className="footer-right col-md-4 col-sm-6">
-    <h2> Company<span> logo</span></h2>
+  <img src={require("../../components/navbar/NAFA_Logo.PNG")} alt="Logo" height="60"/>
     <p className="menu">
      
       

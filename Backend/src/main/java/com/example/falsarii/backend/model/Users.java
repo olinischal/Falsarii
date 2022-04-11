@@ -8,14 +8,11 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,14 +22,9 @@ public class Users {
 	
 	//Instance variables	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long userId;
-	
 	private String emailId;
 	private String fname;
-	private String middleName;
 	private String lname;
-	private String maidenName;
 	private String password;
 	private String graduationDate;
 	private String phoneNum;
@@ -62,8 +54,6 @@ public class Users {
 		
 	}
 	
-	
-	
 	//Relation between Users and Groups i.e Many to Many
 	@JsonIgnore
 	@ManyToMany(
@@ -71,24 +61,13 @@ public class Users {
 	@JoinTable(
 			name = "Group_On",
 			joinColumns = @JoinColumn(
-					name = "userId",
-					referencedColumnName = "userId"),
+					name = "emailId",
+					referencedColumnName = "emailId"),
 			inverseJoinColumns = @JoinColumn(
-					name = "groupId",
-					referencedColumnName = "groupId")
+					name = "groupName",
+					referencedColumnName = "groupName")
 			)
 	private Set<Groups> groups = new HashSet<>();
-	
-	
-	//Returns the set of groups
-	public Set<Groups> getGroups(){
-		return groups;
-	}
-	//Sets the set of groups
-	public void setGroups(Set<Groups> groups) {
-		this.groups = groups;
-	}	
-	
 	
 	
 	//Relation between Users and donate_scholarship i.e One to many
@@ -102,94 +81,23 @@ public class Users {
 	public Set<DonateToScholarships> getDonateToScholarships() {
 		return donateToScholarships;
 	}
+	
 	//Returns the set of donateToScholarships
 	public void setDonateToScholarships(Set<DonateToScholarships> donateToScholarships) {
 		this.donateToScholarships = donateToScholarships;
 	}
-	
-	
 
-	//Relation between Users and DonateToEvents i.e. One to Many
-	@JsonIgnore
-	@OneToMany(mappedBy = "user")
-	private Set<DonateToEvents> donateToEvents = new HashSet<>();
-	
-	
-	//Sets the set of donateToEvents
-	public Set<DonateToEvents> getDonateToEvents() {
-		return donateToEvents;
+	//Returns list of groups ***change to set later
+	public Set<Groups> getGroups(){
+		return groups;
 	}
-		
-	//Returns the set of donateToEvents
-	public void setDonateToEvents(Set<DonateToEvents> donateToEvents) {
-		this.donateToEvents = donateToEvents;
-	}	
-	
-	
-	
-	//Relation between users and parents i.e. self referencing entity
-	@JsonIgnore
-	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Users> parents = new HashSet<>();
-	
-	//Sets the set of parents
-	public void setParents(Set<Users> parents) {
-		this.parents = parents;
-	}
-	//Returns the set of parents
-	public Set<Users> getParents(){
-		return parents;
+
+	//Sets the list of groups ***change to set later
+	public void setGroups(Set<Groups> groups) {
+		this.groups = groups;
 	}
 	
 	
-	//Relation between users and children i.e. self referencing entity
-	@JsonIgnore
-	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Users> children = new HashSet<>();
-	
-	//Sets the set of children
-	public void setChildren(Set<Users> children) {
-		this.children = children;
-	}	
-	//Returns set of children
-	public Set<Users> getChildren(){
-		return children;
-	}
-	
-	
-	
-	//Relation between users and siblings i.e. self referencing entity
-	@JsonIgnore
-	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Users> siblings = new HashSet<>();
-	
-	//Sets the set of siblings
-	public void setSiblings(Set<Users> siblings) {
-		this.siblings = siblings;
-	}	
-	//Returns set of siblings
-	public Set<Users> getSiblings(){
-		return siblings;
-	}
-	
-	
-	
-	//Relation between user and spouse i.e. selft referencing entity
-	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
-	private Users spouse;
-	
-	//Sets the spouse of the user
-	public void setSpouse(Users spouse) {
-		this.spouse = spouse;
-	}	
-	//Returns the spouse of the user
-	public Users getSpouse() {
-		return spouse;
-	}
-	
-	
-	//Basic setters and getters
 	public String getEmailId() {
 		return emailId;
 	}

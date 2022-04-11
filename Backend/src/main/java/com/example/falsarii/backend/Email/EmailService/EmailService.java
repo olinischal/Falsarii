@@ -5,9 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
+import com.amazonaws.services.simpleemail.model.*;
 import com.amazonaws.services.simpleemail.model.BulkEmailDestination;
 import com.amazonaws.services.simpleemail.model.CreateTemplateRequest;
 import com.amazonaws.services.simpleemail.model.DeleteTemplateRequest;
@@ -24,7 +26,7 @@ public class EmailService {
 	AmazonSimpleEmailService amazonSimpleEmailService;
 	
 	private EmailDetails emailDetails;
-	
+	private static final String CHAR_SET = "UTF-8";
 	private final String templateName = "Template_Name";
 	private String subject;
 	private String text;
@@ -33,6 +35,14 @@ public class EmailService {
 	private String templateDefaultData;
 	
 	private String from = "khadge933@gmail.com";
+	//private final String sender;
+
+//	@Autowired
+//	public EmailService(AmazonSimpleEmailService emailService,
+//						 @Value("${email.sender}") String sender) {
+//
+//		this.sender = sender;
+//	}
 	
 	
 	//Create template
@@ -82,6 +92,30 @@ public class EmailService {
 			System.out.println("Error occured: " + e.toString());
 		}
 	}
+
+//	public void sendEmail(String email, String body) {
+//		try {
+//
+//			//int requestTimeout = 3000;
+//			SendEmailRequest request = new SendEmailRequest()
+//					.withDestination(
+//							new Destination().withToAddresses(email))
+//					.withMessage(new Message()
+//							.withBody(new Body()
+//									.withText(new Content()
+//											.withCharset(CHAR_SET).withData(body)))
+//							.withSubject(new Content()
+//									.withCharset(CHAR_SET).withData(this.subject)))
+//					.withSource(sender);
+//					//.withSdkRequestTimeout(requestTimeout);
+//			amazonSimpleEmailService.sendEmail(request);
+//		} catch (RuntimeException e) {
+//			System.out.println("Error occurred sending email to {} " + email + e);
+//		}
+//	}
+
+
+
 	
 	
 	public void deleteTemplate() {

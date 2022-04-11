@@ -1,9 +1,12 @@
 import { Formik, ErrorMessage } from "formik";
-import {Link} from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import LoginSchema from "./login-validation";
-import {useNavigate } from "react-router";
-import { Button, Form, Container} from "react-bootstrap";
-import axios from "axios";
+
+import { Button, Form, Container } from "react-bootstrap";
+
+import "./index.css";
+import { signIn } from "../../services/authenticate-service";
+import { useState } from "react";
 
 interface loginProps {
   email: string;
@@ -14,112 +17,104 @@ const initialValues = {
   password: "",
 };
 
-// const submitForm = (values: loginProps) => {
-//   try {
-//     axios({
-//       method: "post",
-//       url: "http://localhost:8080/member/login",
-//       data: values,
-//     }).then((response: {}) => {
-//       console.log(response);
-      
-//     });
-//   } catch (error) {
-//     console.log("Error...");
-//   }
-// };
-
 const Login = () => {
-    const navigate= useNavigate();
-    const submitForm = (values: loginProps) => {
-      try {
-        axios({
-          method: "post",
-          url: "http://localhost:8080/member/login",
-          data: values,
-        }).then((response: {}) => {
-          console.log(response);
-          navigate('/');
-        });
-      } catch (error) {
-        console.log("Error...");
-      }
-    };
+  const navigate = useNavigate();
+  const [errorString, setErrorString] = useState("");
+
+  const submitForm = (values: loginProps) => {
+    try {
+      signIn(values.email, values.password).then(() => {
+        if (localStorage.getItem("badCredential")) {
+          setErrorString("Bad Credentials! Please try again!");
+          console.log(errorString);
+        } else if (localStorage.getItem("otherError")) {
+          setErrorString("Some Error Occured! Please try again!");
+        } else {
+          navigate("/profile/user");
+          window.location.reload();
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={LoginSchema}
-      onSubmit={submitForm}
-    >
-      {({ values, handleChange, handleBlur, handleSubmit }) => {
-        return (
-          
-           <Container className="mt-5" 
-            style={{ width: "30rem", padding: "2rem"}} > 
-              
-              <div style={{
-                width: "25rem",
-                backgroundColor: "#F0F8FF",
-                borderRadius: "10px",
-                margin: "20px",
-                padding: "40px",
-                }}>
-                < h3>Sign in</h3>
-
-                <Form onSubmit={handleSubmit}>
-               
-                  <Form.Group className="mb-3">
+    <>
+      <div className="parent-login" style={{height:"600px"}}>
+        <div>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={LoginSchema}
+            onSubmit={submitForm}
+          >
+            {/* {({ values, handleChange, handleBlur, handleSubmit }) => { */}
+            {(formik) => {
+        const { values, handleChange, handleBlur, handleSubmit } = formik;
+              return (
+                <Container
+                  className="mt-5"
+                  style={{ width: "30rem", padding: "2rem" }}
+                >
                   
+                  <div className="login-box">
+                  <div style={{fontSize:"25px", marginBottom:"25px", fontWeight:"bold", color:"#ffc40c"}}>Log in to your account</div>
+                    <Form onSubmit={handleSubmit}>
+                      <Form.Group className="mb-3">
+                        <Form.Control
+                          className={(formik.errors.email && formik.touched.email)? "errorOccured" : 'noError'}
+                          style={{backgroundColor:"#353839", color:"#ffc40c"}}
+                          type="email"
+                          name="email"
+                          id="email"
+                          placeholder="Email"
+                          value={values.email}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        <ErrorMessage name="email">
+                          {(msg) => <div className="error">{msg}</div>}
+                        </ErrorMessage>
+                      </Form.Group>
 
-                    <Form.Control
-                      type="email"
-                      name="email"
-                      id="email"
-                      placeholder="Email"
-                      value={values.email}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    <ErrorMessage name="email">
-                      {(msg) => <div>{msg}</div>}
-                    </ErrorMessage>
-                   
-                  </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Control
+                        className={(formik.errors.password && formik.touched.password)? "errorOccured" : 'noError'}
+                        style={{backgroundColor:"#353839", color:"#ffc40c"}}
+                          type="password"
+                          name="password"
+                          id="password"
+                          placeholder="Password"
+                          value={values.password}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
 
-                  <Form.Group className="mb-3">
-                    <Form.Control
-                      type="password"
-                      name="password"
-                      id="password"
-                      placeholder="Password"
-                      value={values.password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-
-                    <ErrorMessage name="password">
-                      {(msg) => <div>{msg}</div>}
-                    </ErrorMessage>
-                    </Form.Group>
-                    <Button
-                      variant="warning"
-                      size="lg"
-                      type="submit"
-                    >
-                      Sign In
-                    </Button>
-                    <p>
-                    Forgot <Link to="/">password?</Link>
-                
-                <span className="float-end"><Link to="/signup" >Sign Up</Link></span> 
-                </p> 
-                </Form>
-                </div>
-            </Container> 
-          
-        );
-      }}
-    </Formik>
+                        <ErrorMessage name="password">
+                          {(msg) => <div className="error">{msg} </div>}
+                        </ErrorMessage>
+                      </Form.Group>
+                      <Button variant="warning" size="lg" type="submit">
+                        Login
+                      </Button>
+                      <p>
+                         <Link to="/" style={{color:"#ffc40c"}}>Forgot password?</Link>
+                        <span className="float-end">
+                          <Link to="/signup" style={{color:"#ffc40c"}}>Sign Up</Link>
+                        </span>
+                      </p>
+                    </Form>
+                    {errorString && (
+                      <div style={{ color: "red" }}> {errorString} </div>
+                    )}
+                  </div>
+                </Container>
+              );
+            }}
+          </Formik>
+        </div>
+      </div>
+    </>
   );
 };
 

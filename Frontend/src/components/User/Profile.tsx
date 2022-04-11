@@ -20,6 +20,7 @@ const Profile = () => {
     graduationDate: " ",
     phoneNumber: " ",
     password: " ",
+    address: " ",
   });
   const [isError, setIsError] = useState<boolean>(false);
 
@@ -63,7 +64,7 @@ const Profile = () => {
               </Nav.Link>
               <NavDropdown title="Edit Account" id="basic-nav-dropdown">
                 <NavDropdown.Item as={Link} to="/profile/edit_profile">
-                  Profile Detais
+                  Profile Details
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/profile/edit_NAFA_details">
                   NAFA Details
@@ -85,7 +86,7 @@ const Profile = () => {
       <Routes>
         <Route path="user/" element={<Account user={users} />} />
 
-        <Route path="edit_profile/" element={<EditAccount />} />
+        <Route path="edit_profile/" element={<EditAccount user={users} />} />
         <Route path="edit_NAFA_details/" element={<EditNAFA />} />
         <Route path="security/" element={<Security />} />
       </Routes>
