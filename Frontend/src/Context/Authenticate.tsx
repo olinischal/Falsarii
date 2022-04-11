@@ -11,10 +11,12 @@ export const AuthProvider = ({ children }) => {
         <Authenticate.Provider value={{ auth, setAuth }}>
         {children}
     </Authenticate.Provider>
+    
         
     );
+    
 }
 
 
 
-export default AuthProvider;
+export default Authenticate;

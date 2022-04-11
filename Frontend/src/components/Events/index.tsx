@@ -1,6 +1,7 @@
 import { Formik } from "formik";
 import { useState } from "react";
 import { Button, Modal, Stack, Form, Container } from "react-bootstrap";
+import { EventRequests } from "../../services/api";
 import EventData from "../../types/Event";
 import UpdateEvent from "./UpdateEvent";
 
@@ -10,9 +11,13 @@ interface eventProps {
   date: string;
 }
 const initialValues = {
-  title: "",
-  address: "",
-  date: "",
+  title: " ",
+  address: " ",
+  date: " ",
+  description: " ",
+  deadline: " ",
+  anonymity: false,
+  amount: 0.0,
 };
 
 const Events = () => {
@@ -42,11 +47,12 @@ const Events = () => {
 
   return (
     <>
-      <div style={{ position: "relative", top: "10px", left: "10px" }}>
+    {/* Uncomment this section once the event API is updated in backend */}
+      {/* <div style={{ position: "relative", top: "10px", left: "10px" }}>
         <Button variant="secondary" size="lg" onClick={handleShow}>
           + Create New Event
         </Button>
-      </div>
+      </div> */}
 
       <>
         <Modal

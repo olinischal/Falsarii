@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import EditAccount from "./EditAccount";
 import EditNAFA from "./EditNAFA";
 import Security from "./Security";
+import UseAuth from "../Authenticate/useAuth";
 
 const Profile = () => {
   const [users, setUsers] = useState<MemberData>({
@@ -23,14 +24,29 @@ const Profile = () => {
     address: " ",
   });
   const [isError, setIsError] = useState<boolean>(false);
-
+  const {setAuth}: any = UseAuth();
+  
+  const [userEmail, setUserEmail] = useState("");
+  const [userRole, setUserRole] = useState("");
+  
   const currentUser = getCurrentUser();
   const id: number = currentUser.id;
+  
+  useEffect(() => {
+    setUserEmail(currentUser.email);
+    setUserRole(currentUser.roles);
+    console.log(getCurrentUser().roles + " email: ", userRole);
+    setAuth({ userEmail, userRole });
+}, [userEmail])
 
   useEffect(() => {
     Member.getAMember(id)
       .then((res) => {
         setUsers(res);
+        
+       
+        
+
       })
       .catch((err) => {
         setIsError(true);
@@ -39,12 +55,14 @@ const Profile = () => {
       });
   }, []);
 
+  
+
 
 
   // const currentUser = getCurrentUser();
 
-    console.log(getCurrentUser());
-    const user = Object.assign({}, users[currentUser.id - 1]);
+    
+    
     
    
     const userLevel = currentUser.roles &&
