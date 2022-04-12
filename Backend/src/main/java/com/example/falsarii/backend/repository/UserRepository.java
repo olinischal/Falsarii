@@ -72,4 +72,42 @@ public interface UserRepository extends JpaRepository<Users, Long>{
 			value = "Select spouse_user_id from users where user_id = :userId",
 			nativeQuery = true)
 	Long findSpouseId(@Param("userId") Long userId);
+	
+	//Remove parent
+	@Transactional
+	@Modifying
+	//Delete from group_on where user_id = :userId and group_id in :groupId
+	@Query(
+			value = "Delete from users_parents where users_user_id = userId and parents_user_id = parentId",
+			nativeQuery = true)
+	int removeParent(@Param("userId") Long userId, @Param("parentId") Long parentId);
+	
+	//Remove sibling
+	@Transactional
+	@Modifying
+	@Query(
+			value = "Delete from users_siblings where users_user_id = userId and siblings_user_id = siblingId",
+			nativeQuery = true)
+	int removeSibling(@Param("userId") Long userId, @Param("siblingId") Long siblingId);
+	
+	//Remove child
+	@Transactional
+	@Modifying
+	@Query(
+			value = "Delete from users_children where users_user_id = userId and children_user_id = childId",
+			nativeQuery = true)
+	int removeChild(@Param("userId") Long userId, @Param("childId") Long childId);
+	
+	
+	//Remove spouse
+	//testing
+	//need to update instaead of delete
+	@Transactional
+	@Modifying
+	@Query(
+			value = "Update users set spouse_user_id = null where user_id = userId and spouse_user_id = spouseId",
+			nativeQuery = true)
+	int removeSpouse(@Param("userId") Long userId, @Param("spouseId") Long spouseId);
+	
+	
 }

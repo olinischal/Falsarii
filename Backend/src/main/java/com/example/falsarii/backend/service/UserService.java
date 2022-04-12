@@ -13,6 +13,8 @@ import org.hibernate.annotations.NaturalId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.falsarii.backend.Email.EmailDetails.EmailDetails;
+import com.example.falsarii.backend.Email.EmailService.EmailService;
 import com.example.falsarii.backend.model.DonateToEvents;
 import com.example.falsarii.backend.model.DonateToScholarships;
 import com.example.falsarii.backend.model.Events;
@@ -43,7 +45,8 @@ public class UserService {
 	private DonateToScholarshipsRepository donateToScholarshipsRepository;
 	@Autowired
 	private DonateToEventsRepository donateToEventsRepository;
-	
+	@Autowired
+	private EmailService emailService;
 	
 	//Create user
 	public void createUser(Users user) {
@@ -121,35 +124,49 @@ public class UserService {
 	public void addFamilyInfomation(Long userId, FamilyDetail familyDetail) {
 		try {
 			Users user = userRepository.findByUserId(userId);
+			//List for emails to be sent
+			List<String> tempEmailList = new ArrayList<>();
 			
 			//Adding parents to the parents set
 			for(Long parentEmailId: familyDetail.getParentEmailId()) {
 				Users parent = userRepository.findByUserId(parentEmailId);
 				user.getParents().add(parent);
+				tempEmailList.add(parent.getEmailId());
 			}
 			
 			//Adding children to the children set
 			for(Long childEmailId: familyDetail.getChildrenEmailId()) {
 				Users child = userRepository.findByUserId(childEmailId);
 				user.getChildren().add(child);
+				tempEmailList.add(child.getEmailId());
 			}
 			
 			//Adding siblings to the siblings set
 			for(Long siblingEmailId: familyDetail.getSiblingEmailId()) {
 				Users sibling = userRepository.findByUserId(siblingEmailId);
 				user.getSiblings().add(sibling);
+				tempEmailList.add(sibling.getEmailId());
 			}
 			
 			//Adding spouse of the user
 			Users spouse = userRepository.findByUserId(familyDetail.getSpouse());
 			user.setSpouse(spouse);
+			tempEmailList.add(spouse.getEmailId());
 
 			userRepository.save(user);
 			
 			//send email to saved members**************************************
-			
-			
-			
+			//Create emailDetail service object
+			EmailDetails emailDetails = new EmailDetails();
+			emailDetails.setSubject("Nafa notice");
+			emailDetails.setText("You were added as a family member by " + user.getEmailId() + ". Contact administrator if the information is incorrect");
+			try {
+				emailService.setEmailDetails(emailDetails);
+				emailService.createTemplate();
+				emailService.sendEmail();
+			}finally {
+				emailService.deleteTemplate();
+			}			
 		} catch (Exception e) {
 			System.out.println(e.toString() + "error in family detail service");
 		}
@@ -180,6 +197,22 @@ public class UserService {
 		map.put("spouse", spouseList);
 		
 		return map;
+	}
+	
+	
+	//Removing family member from a user
+	public void editFamilyInformation(Long userId, Long familyMemberId, String relationship) {
+		if(relationship == "parent") {
+			userRepository.removeParent(userId, familyMemberId);
+		}else if(relationship == "sibling") {
+			userRepository.removeSibling(userId, familyMemberId);
+		}else if(relationship == "child") {
+			userRepository.removeChild(userId, familyMemberId);
+		}else if(relationship == "spouse") {
+			userRepository.removeSpouse(userId, familyMemberId);
+		}else {
+			System.out.println("Error in editfamilyinformation in service");
+		}
 	}
 	
 	

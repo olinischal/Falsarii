@@ -52,6 +52,7 @@ public class UserController {
 		}
 	}
 	
+	//For user and admin
 	@PostMapping("/user/remove-group")
 	public String removeGroup(@RequestParam Long userId, @RequestParam List<Long> groupIdList) {
 		try {
@@ -62,6 +63,7 @@ public class UserController {
 		}
 	}
 	
+	//For user
 	@PostMapping("/scholarship/donate")
 	public void donateToScholarship(@RequestParam Long userId, @RequestParam Long scholarshipId, @RequestParam String date, @RequestParam double amount, @RequestParam boolean anonymity) {
 		try {
@@ -72,6 +74,7 @@ public class UserController {
 	}
 	
 	//User donates to events
+	//For user
 	@PostMapping("/event/donate")
 	public void donateToEvent(@RequestParam Long userId, @RequestParam Long eventId, @RequestParam String date, @RequestParam double amount) {
 		try {
@@ -84,6 +87,7 @@ public class UserController {
 	
 	
 	//User adds family information test
+	//For user
 	@PostMapping("/user/set-family-information")
 	public void addInformation(@RequestParam Long userId ,@RequestBody FamilyDetail familyDetail) {
 		try {
@@ -96,8 +100,8 @@ public class UserController {
 	
 	//Get user family information
 	//Use gender to search
-	//Test this thing **********************************__________+++++
 	//Check sibling mappings
+	//For user and admin
 	@GetMapping("/user/get-family-information")
 	public Map<String, List> getFamilyInformation(@RequestParam Long userId) {
 		try {
@@ -109,6 +113,16 @@ public class UserController {
 		}
 	}
 	
+	//For admin
+	//Remove family information
+	@PostMapping("/edit/family-information")
+	public void editFamilyInformation(@RequestParam Long userId, @RequestParam Long familyMemberId, @RequestParam String relationship) {
+		try {
+			userService.editFamilyInformation(userId, familyMemberId, relationship);			
+		} catch (Exception e) {
+			System.out.println(e.toString() + "error in edit family information");
+		}
+	}
 	
 	
 }
