@@ -44,6 +44,30 @@ public class ScholarshipService {
 			System.out.println(e.toString() + " scholarship activate error");
 		}
 	}
+	
+	
+	//Edit scholarship details
+	public void editScholarship(Long scholarshipId, Scholarships scholarship) {
+		try {
+			if(scholarshipRepository.findByScholarshipId(scholarshipId) != null) {
+				Scholarships scholarshipTemp = scholarshipRepository.findByScholarshipId(scholarshipId);
+				scholarshipTemp.setDeadline(scholarship.getDeadline());
+				scholarshipTemp.setDescription(scholarship.getDescription());
+				scholarshipTemp.setScholarshipName(scholarship.getScholarshipName());
+				scholarshipTemp.setStatus(scholarship.isStatus());
+					
+				scholarshipRepository.save(scholarshipTemp);				
+			}
+			else {
+				System.out.println("Scholarship does not exist");
+			}
+				
+				
+			} catch (Exception e) {
+				System.out.println(e.toString() + " scholarship edit error");
+			}
+		}
+
 		
 
 }

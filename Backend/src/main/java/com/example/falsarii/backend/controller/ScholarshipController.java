@@ -37,7 +37,7 @@ public class ScholarshipController {
 	}
 	
 	//Activate scholarship
-	@PostMapping("/scholarship/changeStatus")
+	@PostMapping("/scholarship/change-status")
 	public void activateScholarship(@RequestParam Long scholarshipId, @RequestParam boolean status) {
 		try {
 			scholarshipService.changeStatusScholarship(scholarshipId, status);
@@ -47,7 +47,16 @@ public class ScholarshipController {
 		}
 	}
 	
-	
+	//Edit scholarship
+	@PostMapping("/scholarship/edit")
+	public void createScholarship(@RequestParam Long scholarshipId,@RequestBody Scholarships scholarship) {
+		try {
+			scholarshipService.editScholarship(scholarshipId, scholarship);
+		}catch (Exception e) {
+			System.out.println(e.toString() + "scholarship controller error");
+		}
+	}
+
 	
 	
 }
