@@ -1,5 +1,7 @@
 package com.example.falsarii.backend.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,14 @@ public class EventService {
 	//Repository injection
 	@Autowired
 	private EventsRepository eventRepository;
+	
+	
+	//View Events
+	public List<Events> viewAllEvents(){
+		List<Events> events = eventRepository.findAll();
+		return events;
+	}
+	
 	
 	//Create events
 	public void createEvent(Events event) {

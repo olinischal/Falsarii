@@ -1,6 +1,9 @@
 package com.example.falsarii.backend.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +18,12 @@ public class EventController {
 	//Service injection
 	@Autowired
 	private EventService eventService;
+	
+	//View all events
+	@GetMapping("/event/view")
+	public List<Events> viewAllEvents(){
+		return eventService.viewAllEvents();
+	}
 	
 	//Create events
 	@PostMapping("/event/create")
