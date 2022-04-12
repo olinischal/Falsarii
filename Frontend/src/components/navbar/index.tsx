@@ -48,6 +48,20 @@ const NavigationBar = () => {
                 </div>
               </div>
             </Nav.Link>
+
+            <Nav.Link as={Link} to="">
+              <div className="dropdown">
+                Scholarship
+                <div className="dropdown-content">
+                  <Nav.Link as={Link} to="/addscholarship">
+                    Add
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/viewscholarship">
+                    View
+                  </Nav.Link>
+                </div>
+              </div>
+            </Nav.Link>
             <Nav.Link as={Link} to="/contact">
               Contact Us
             </Nav.Link>

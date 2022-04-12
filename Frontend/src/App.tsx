@@ -19,7 +19,8 @@ import Events from "./components/event";
 import Calendar from "./components/Calendar";
 import Allevents from "./components/AllEvents";
 import Give from "./components/Give";
-import { useLocation } from "react-router-dom";
+import ViewScholarship from "./components/Scholarship/ViewScholarship";
+import AddScholarship from "./components/Scholarship/AddScholarship";
 
 function App() {
   return (
@@ -38,7 +39,6 @@ function App() {
         <Route path="/members" element={<MemberList />} />
         <Route path="/events" element={<Events />} />
         <Route path="/calendar" element={<Calendar />} />
-
         <Route path="/allevents" element={<Allevents />} />
         <Route path="/give" element={<Give />} />
         <Route path="/payment" element={<Payment />} />
@@ -46,8 +46,10 @@ function App() {
         <Route path="/error" element={<Error />} />
         <Route path="/profile/*" element={<Profile />} />
         <Route path="/user" element={<BoardUser />} />
+        <Route path="/addScholarship" element={<AddScholarship />} />
+        <Route path="/viewScholarship" element={<ViewScholarship />} />
       </Routes>
-      {window.location.pathname !== "/calendar" && <Footer />}
+      <Footer />
     </Router>
   );
 }
