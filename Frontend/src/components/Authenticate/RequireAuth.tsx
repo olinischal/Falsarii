@@ -4,7 +4,8 @@ import useAuth from "./useAuth";
 const RequireAuth = ({ allowedRoles }) => {
     const { auth } : any = useAuth();
     const location = useLocation();
-
+    console.log(auth.userEmail, "userEmail passed to usecontext");
+    
     return (
         
          auth?.userRole?.find(role => allowedRoles?.includes(role))

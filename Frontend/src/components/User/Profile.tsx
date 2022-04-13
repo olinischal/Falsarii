@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { getCurrentUser } from "../../services/authenticate-service";
 import MemberData from "../../types/Member";
@@ -24,51 +23,41 @@ const Profile = () => {
     address: " ",
   });
   const [isError, setIsError] = useState<boolean>(false);
-  const {setAuth}: any = UseAuth();
-  
-  const [userEmail, setUserEmail] = useState("");
-  const [userRole, setUserRole] = useState("");
-  
+  const { setAuth }: any = UseAuth();
+
+  // const [userEmail, setUserEmail] = useState("");
+  // const [userRole, setUserRole] = useState("");
+ 
+
   const currentUser = getCurrentUser();
   const id: number = currentUser.id;
-  
+  const userEmail = currentUser.email;
+  const userRole = currentUser.roles;
   useEffect(() => {
-    setUserEmail(currentUser.email);
-    setUserRole(currentUser.roles);
-    console.log(getCurrentUser().roles + " email: ", userRole);
     setAuth({ userEmail, userRole });
-}, [userEmail])
+
+  }, [])
+  
 
   useEffect(() => {
     Member.getAMember(id)
       .then((res) => {
         setUsers(res);
         
-       
-        
-
       })
       .catch((err) => {
         setIsError(true);
         console.log("Error");
-
       });
   }, []);
 
-  
-
-
-
   // const currentUser = getCurrentUser();
 
-    
-    
-    
-   
-    const userLevel = currentUser.roles &&
-      currentUser.roles.map((role: string, index: number) => <li key={index}>{role}</li>);
- 
-   
+  const userLevel =
+    currentUser.roles &&
+    currentUser.roles.map((role: string, index: number) => (
+      <li key={index}>{role}</li>
+    ));
 
   return (
     <>

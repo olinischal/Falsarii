@@ -28,21 +28,24 @@ export const register = (firstName:string, maidenName:string, lastName:string, p
 };
 
 export const signIn = (email: string, password: string) => {
- // const {setAuth } = UseAuth();
-  // const accessToken:any = null;
-  // const roles: any = null;
+ // const {setAuth }: any = UseAuth();
+ 
+
   return axios
     .post(API_URL + "login", {
       email,
       password,
     })
     .then((response) => {
+       // const userEmail: any = response.data.email;
+        // const userRole: any = response.data.roles;
+        // setAuth({ userEmail, userRole});
       if (response.data.accessToken) {
         localStorage.removeItem("badCredential");
         localStorage.removeItem("otherError");
         localStorage.removeItem("serverError");
         localStorage.setItem("user", JSON.stringify(response.data ));
-      //  setAuth({ email, accessToken, roles});
+       
       }
       else {
         throw new Error("Server can't be reached.");
