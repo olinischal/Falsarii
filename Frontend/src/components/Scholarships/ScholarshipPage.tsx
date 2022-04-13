@@ -17,10 +17,20 @@ const ScholarshipPage  = () => {
       let { id } = useParams();
 
 
-    return (
-    <div>
-        The name of scholarship is 
-        
+    return (id)
+}
+  
+    <container fluid = "md">
+      <Row>
+        <col>Picture goes here</col>
+      </Row>
+      <Row>
+      <col>Discription here</col>
+      </Row>
+    </container>
+
+
+
     </div>);
 }
 
