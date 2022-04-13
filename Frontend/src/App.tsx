@@ -94,7 +94,7 @@ function App() {
         <Route path="/newpassword/:id" element={<NewPassword/>}/>
 
           <Route path="/scholarships" element={<Scholarships />} />
-          <Route path="/s/page/:id" element={<ScholarshipPage />} />
+          <Route path="/s/page/" element={<ScholarshipPage />} />
           
         </Routes>
         

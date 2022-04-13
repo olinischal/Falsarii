@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import ScholarshipData from "../../types/Scholarship";
 
@@ -17,21 +18,23 @@ const ScholarshipPage  = () => {
       let { id } = useParams();
 
 
-    return (id)
-}
+    return (
+
   
-    <container fluid = "md">
+    <Container fluid = "md">
       <Row>
-        <col>Picture goes here</col>
+        <Col>Picture goes here</Col>
       </Row>
       <Row>
-      <col>Discription here</col>
+      <Col>Discription here</Col>
       </Row>
-    </container>
+    </Container>
 
 
 
-    </div>);
+    
+    
+    );
 }
 
 export default ScholarshipPage;
