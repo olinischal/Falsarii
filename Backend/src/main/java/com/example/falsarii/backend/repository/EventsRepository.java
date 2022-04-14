@@ -11,6 +11,7 @@ import com.example.falsarii.backend.model.Events;
 
 @Repository
 public interface EventsRepository extends JpaRepository<Events, Long>{
+
 	
 	//Find by email id
 	public Events findByEventId(Long eventId);
@@ -24,3 +25,4 @@ public interface EventsRepository extends JpaRepository<Events, Long>{
 	int setStatus(@Param("eventId") Long eventId ,@Param("status") boolean status);
 
 }
+

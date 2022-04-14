@@ -13,6 +13,7 @@ const ScholarshipPage  = () => {
         status: false,
       });
 
+
       let { id } = useParams();
 
 

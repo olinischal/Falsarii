@@ -31,7 +31,7 @@ const Contact = () => {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group"> <label htmlFor="form_need">Please specify your need *</label> <select id="form_need" name="need" className="form-control"  data-error="Please specify your need.">
-                                                <option value="" selected disabled>--Select Your Issue--</option>
+                                                <option value="" >--Select Your Issue--</option>
                                                 <option>Account creation help</option>
                                                 <option>Edit profile information help</option>
                                                 <option>Payment issue</option>

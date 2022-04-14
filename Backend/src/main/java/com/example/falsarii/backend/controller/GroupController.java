@@ -6,17 +6,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.ReadOnlyProperty;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.falsarii.backend.model.Groups;
 import com.example.falsarii.backend.service.GroupService;
 
+
+@CrossOrigin(origins = "*", maxAge = 3600)
+
 @RestController
+@RequestMapping("/member")
 public class GroupController {
 
 	//Service injection

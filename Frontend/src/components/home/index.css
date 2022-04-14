@@ -1,0 +1,94 @@
+*{
+    font-family: montserrat;
+}
+    
+.section-padding{
+    padding: 100px 0;
+}
+
+.carousel-item{
+     height: 100vh;
+     min-height: 300px;
+}
+
+
+.carousel-caption{
+    top:280px;
+    z-index: 2;
+}
+
+.carousel-caption h5{
+    font-size: 45px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 25px;
+}
+
+.carousel-caption p{
+    width: 60%;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.9 ;
+}
+.carousel-inner::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1;
+}
+
+.navbar-nav a{
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+/* .navbar-dark .navbar-brand{
+    color: #000;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+.navbar-dark .navbar-brand:focus,
+.navbar-dark .navbar-brand:hover{
+    color: #000;
+} */
+
+.w-100{
+    height: 100vh;
+}
+
+@media only screen and (min-width:768px) and (max-width:991px){
+    .carousel-caption{
+        top: 100px;
+    }
+    .carousel-caption p{
+        width: 100%;
+    }
+    
+}
+
+@media only screen and (max-width:767px) {
+    .navbar-nav{
+        text-align: center;
+    }
+    .carousel-caption{
+        top: 125px;
+    }
+    .carousel-caption h5{
+        font-size: 17px;
+    }
+    .carousel-caption a{
+        padding: 10px 15px;
+    }
+    .carousel-caption p{
+        width: 100%;
+        line-height: 1.6;
+        font-size: 12px;
+    }
+    
+}

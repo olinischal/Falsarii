@@ -35,7 +35,7 @@ function Payment() {
       <div className="payment" style={{ marginTop:"20px"}}>
         <Stripe
           name={"$ "+totalAmount +" Donation"}
-          description="For Naville Alumni Association"
+          description="For Neville Alumni Association"
           panelLabel="Donate Now"
           ComponentClass="edit"
           billingAddress={true}

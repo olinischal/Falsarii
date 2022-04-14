@@ -1,5 +1,6 @@
 package com.example.falsarii.backend.service;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.example.falsarii.backend.repository.EventsRepository;
 
 @Service
 public class EventService {
+
 	
 	//Repository injection
 	@Autowired
@@ -62,3 +64,4 @@ public class EventService {
 	}
 
 }
+

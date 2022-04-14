@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class DonateToEvents {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long donateToEventId;
@@ -49,3 +50,4 @@ public class DonateToEvents {
 	
 	
 }
+

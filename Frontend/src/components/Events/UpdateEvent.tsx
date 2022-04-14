@@ -16,7 +16,6 @@ const UpdateEvent: React.FC<eventDetails> = ({ events }) => {
             </div>
           </div>
          
-
           <div className="row gx-5">
             <div className="col-lg-4 mb-5">
               <div className="card h-100 shadow border-0">
