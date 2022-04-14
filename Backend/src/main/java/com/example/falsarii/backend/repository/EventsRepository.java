@@ -12,15 +12,17 @@ import com.example.falsarii.backend.model.Events;
 @Repository
 public interface EventsRepository extends JpaRepository<Events, Long>{
 
-    //Find by email id
-    public Events findByEventId(Long eventId);
-
-    //Change status of scholarship
-    @Transactional
-    @Modifying
-    @Query(
-            value = "update events set status = :status where event_id = :eventId",
-            nativeQuery = true)
-    int setStatus(@Param("eventId") Long eventId ,@Param("status") boolean status);
+	
+	//Find by email id
+	public Events findByEventId(Long eventId);
+	
+	//Change status of scholarship
+	@Transactional
+	@Modifying
+	@Query(
+			value = "update events set status = :status where event_id = :eventId",
+			nativeQuery = true)
+	int setStatus(@Param("eventId") Long eventId ,@Param("status") boolean status);
 
 }
+

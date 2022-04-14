@@ -13,19 +13,18 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.falsarii.backend.model.Scholarships;
 
 @Repository
-public interface ScholarshipRepository extends JpaRepository<Scholarships, Long>{
+public interface ScholarshipRepository extends JpaRepository<Scholarships, String>{
 
 	//Find by email id
-	public Scholarships findByScholarshipId(Long scholarshipId);
-
+	public Scholarships findByScholarshipName(String scholarshipName);
+	
 	//Change status of scholarship
 	@Transactional
 	@Modifying
 	@Query(
-			value = "update scholarships set status = :status where scholarship_id = :scholarshipId",
+			value = "update scholarships set status = :status where scholarship_name = :scholarshipName",
 			nativeQuery = true)
-	int setStatus(@Param("scholarshipId") Long scholarshipId ,@Param("status") boolean status);
+	int setStatus(@Param("scholarshipName") String scholarshipName ,@Param("status") boolean status);
 
-
-
+	
 }
