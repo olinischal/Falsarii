@@ -10,3 +10,4 @@ import com.example.falsarii.backend.model.DonateToEvents;
 public interface DonateToEventsRepository extends JpaRepository<DonateToEvents, Long>{
 
 }
+

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.falsarii.backend.model.DonateToScholarships;
 
 @Repository
-public interface DonateToScholarshipsRepository extends JpaRepository<DonateToScholarships, Integer> {
+public interface DonateToScholarshipsRepository extends JpaRepository<DonateToScholarships, Long> {
 	
 }

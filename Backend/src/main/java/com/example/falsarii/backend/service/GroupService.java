@@ -1,17 +1,17 @@
 package com.example.falsarii.backend.service;
 
 
-import java.util.List;
+	import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+	import org.springframework.beans.factory.annotation.Autowired;
+	import org.springframework.stereotype.Service;
 
 import com.example.falsarii.backend.model.Groups;
 import com.example.falsarii.backend.repository.GroupRepository;
 
-
-@Service
-public class GroupService {
+	
+	@Service
+	public class GroupService {
 
 	//Injecting repository
 	@Autowired
@@ -34,10 +34,17 @@ public class GroupService {
 	}
 	
 	//Get selected groups
-	public List<Groups> getSelectedGroups(List<String> groupList) {
-		return groupRepository.findAllById(groupList);
+	public List<Groups> getSelectedGroups(List<Long> groupIdList) {
+		return groupRepository.findAllByGroupId(groupIdList);
 	}
-		
+	
+	//Remove user from group
+	public void removeUserFromGroup(Long userId, Long groupId) {
+		try {
+			groupRepository.removeUserFromGroup(userId, groupId);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+	}
 	
 }
-
