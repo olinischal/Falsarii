@@ -32,11 +32,11 @@ export const Member = {
 
 // update the event api link
 export const EventRequests = {
-	getEvent: (): Promise<EventData[]> => requests.get('getAll'),
-	getAMember: (id: number): Promise<EventData> => requests.get(`getMember/${id}`),
+	getEvents: (): Promise<EventData[]> => requests.get('member/event/view'),
+	getAEvent: (id: number): Promise<EventData> => requests.get(`getMember/${id}`),
 	createEvent: (post: EventData): Promise<EventData> =>
-		requests.post('add', post),
-	updateMember: (id:number, put: EventData): Promise<EventData> =>
+		requests.post('member/event/create', post),
+	updateEvent: (id:number, put: EventData): Promise<EventData> =>
 		requests.put(`update/${id}`, put),
 	deleteMember: (id: number): Promise<void> => requests.delete(`delete/${id}`),
 };

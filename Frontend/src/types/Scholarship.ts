@@ -1,5 +1,5 @@
 export default interface ScholarshipData {
-  id?: any | null,
+  scholarshipId?: any | null,
   scholarshipName: string,
   description: string,
   deadline: string,

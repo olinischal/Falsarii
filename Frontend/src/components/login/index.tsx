@@ -6,7 +6,7 @@ import { Button, Form, Container } from "react-bootstrap";
 
 import "./index.css";
 import { signIn } from "../../services/authenticate-service";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UseAuth from "../Authenticate/useAuth";
 
 interface loginProps {
@@ -22,30 +22,39 @@ const Login = () => {
   const navigate = useNavigate();
   const [errorString, setErrorString] = useState("");
   const {setAuth }: any = UseAuth();
+    const [userEmail, setUserEmail] = useState("");
+   const [userRole, setUserRole] = useState("");
 
   const submitForm = (values: loginProps) => {
     try {
-      signIn(values.email, values.password).then((res) => {
+      //const temp = "random";
+       signIn(values.email, values.password).then((res) => {
         console.log(res);
-        const userEmail = res.email;
-        const userRole = res.roles;
-        console.log("EMail:", userEmail, "Role: ", userRole);
-       // setAuth({ userEmail, userRole});
+        setAuth({res});
+        
+       
         if (localStorage.getItem("badCredential")) {
           setErrorString("Bad Credentials! Please try again!");
           console.log(errorString);
         } else if (localStorage.getItem("otherError")) {
           setErrorString("Some Error Occured! Please try again!");
         } else {
-         
+          
           navigate("/profile/user");
           window.location.reload();
         }
       });
+      
+
     } catch (error) {
       console.log(error);
     }
+    
+
+    
   };
+
+ 
 
   return (
     <>

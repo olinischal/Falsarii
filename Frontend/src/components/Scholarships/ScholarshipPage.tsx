@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import ScholarshipData from "../../types/Scholarship";
 
 
-
+ 
 const ScholarshipPage  = () => {
 
     const [scholarship, setScholarship] = useState<ScholarshipData>({

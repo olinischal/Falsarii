@@ -111,10 +111,11 @@ function App() {
         <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
           {/* Routes for Admin only */}
         <Route path="/members" element={<MemberList/>}/>  
-        <Route path="/scholarships" element={<Scholarships />} /> 
+         
         
           
         </Route>
+        <Route path="/scholarships" element={<Scholarships />} />
         
         {/* Needs updating */}
         <Route path="/user" element={<BoardUser />} />        

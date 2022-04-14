@@ -11,7 +11,7 @@ const UpdateScholarships = () => {
   useEffect(() => {
     ScholarshipRequests.getScholarships()
       .then((response) => {
-        setScholarship([...response]);
+        setScholarship([...response]); 
       })
       .catch((error) => {
         console.log("Something went wrong here.", error);
@@ -31,10 +31,10 @@ const UpdateScholarships = () => {
           </div>
 
           <div className="row gx-5">
-            {scholarship.map((val) => {
+            {scholarship.map((val, key) => {
               
               return (
-                <ScholarshipList scholarship = {val} key={val.id} />
+                <ScholarshipList scholarship = {val} key={key} />
                 
                
               );

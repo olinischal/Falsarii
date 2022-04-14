@@ -12,6 +12,7 @@ import Security from "./Security";
 import UseAuth from "../Authenticate/useAuth";
 
 const Profile = () => {
+  const { auth } : any = UseAuth();
   const [users, setUsers] = useState<MemberData>({
     firstName: " ",
     maidenName: " ",
@@ -22,21 +23,12 @@ const Profile = () => {
     password: " ",
     address: " ",
   });
-  const [isError, setIsError] = useState<boolean>(false);
-  const { setAuth }: any = UseAuth();
-
-  // const [userEmail, setUserEmail] = useState("");
-  // const [userRole, setUserRole] = useState("");
- 
-
-  const currentUser = getCurrentUser();
+  const [isError, setIsError] = useState<boolean>(false);  
+  const currentUser = getCurrentUser();  
   const id: number = currentUser.id;
-  const userEmail = currentUser.email;
-  const userRole = currentUser.roles;
-  useEffect(() => {
-    setAuth({ userEmail, userRole });
 
-  }, [])
+  console.log(auth.temp, "userEmail passed to usecontext");
+  
   
 
   useEffect(() => {

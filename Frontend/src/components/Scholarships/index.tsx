@@ -52,7 +52,7 @@ const Scholarships = () => {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>New Event</Modal.Title>
+            <Modal.Title>Create Scholarship</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Formik initialValues={initialValues} onSubmit={submitForm}>

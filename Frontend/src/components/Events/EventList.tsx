@@ -1,20 +1,21 @@
 import { Link } from "react-router-dom";
+import EventData from "../../types/Event";
 import ScholarshipData from "../../types/Scholarship";
 
-interface scholarshipDetails {
-    scholarship: ScholarshipData ;
+interface eventDetails {
+    event: EventData ;
     key: any;
     
 } 
 
-const ScholarshipList: React.FC<scholarshipDetails> = ({scholarship}) => {
+const EventList: React.FC<eventDetails> = ({event}) => {
     return (
         <>
         
-              <div className="col-lg-4 mb-5" key={scholarship.scholarshipId}>
+              <div className="col-lg-4 mb-5" key={event.eventId}>
                   <div className="card h-100 shadow border-0">
                     <Link
-                      to={`s/page/${scholarship.scholarshipName}`}
+                      to={`s/page/${event.eventName}`}
                       className="text-decoration-none link-dark stretched-link"
                     >
                       <img
@@ -24,11 +25,11 @@ const ScholarshipList: React.FC<scholarshipDetails> = ({scholarship}) => {
                       />
                       <div className="card-body p-4">
                         <h5 className="card-title mb-3">
-                          {scholarship.scholarshipName}
+                          {event.eventName}
                         </h5>
 
-                        <p className="card-text mb-0">{scholarship.description}</p>
-                        <p>{scholarship.deadline}</p>
+                        <p className="card-text mb-0">{event.description}</p>
+                        <p>{event.date}</p>
                       </div>
                     </Link>
                   </div>
@@ -38,4 +39,4 @@ const ScholarshipList: React.FC<scholarshipDetails> = ({scholarship}) => {
   );
 };
 
-export default ScholarshipList;
+export default EventList;
