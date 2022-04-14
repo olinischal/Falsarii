@@ -34,17 +34,7 @@ const NavigationBar = () => {
                 <Nav.Link as={Link} to="/members">
                   <span className="text-warning">Member</span>
                 </Nav.Link>
-                {/* <Nav>
-        <NavDropdown
-          // id="nav-dropdown-dark-example"
-          title={<span className="text-warning">Events</span>}
-          menuVariant="dark"
-        >
-           
-          <NavDropdown.Item href="/events"><span className="text-warning">All Events</span></NavDropdown.Item>
-          <NavDropdown.Item href="/calendar"><span className="text-warning">Calender</span></NavDropdown.Item>          
-        </NavDropdown>
-          </Nav> */}
+
                 <Nav.Link href="/events">
                   <span className="text-warning">Events</span>
                 </Nav.Link>
@@ -57,7 +47,6 @@ const NavigationBar = () => {
                   <span className="text-warning">Team</span>
                 </Nav.Link>
 
-                
                 <Nav.Link href="/contact">
                   <span className="text-warning">Contact</span>
                 </Nav.Link>
@@ -102,18 +91,7 @@ const NavigationBar = () => {
                 <Nav.Link as={Link} to="/members">
                   <span className="text-warning">Members</span>
                 </Nav.Link>
-                {/* <Nav>
-        <NavDropdown
-          id="nav-dropdown-dark-example"
-          title={<span className="text-warning">Events</span>}
-          menuVariant="dark"
-          
-        >
-          
-          <NavDropdown.Item href="/events"><span className="text-warning">All Events</span></NavDropdown.Item>
-          <NavDropdown.Item href="/calendar"><span className="text-warning">Calender</span></NavDropdown.Item>          
-        </NavDropdown>
-          </Nav> */}
+
                 <Nav.Link href="/events">
                   <span className="text-warning">Events</span>
                 </Nav.Link>
@@ -125,18 +103,32 @@ const NavigationBar = () => {
                 </Nav.Link>
                 <Nav.Link href="/contact">
                   <span className="text-warning">Contact</span>
-                  
                 </Nav.Link>
                 <Nav.Link href="/calendar">
                   <span className="text-warning">Calendar</span>
                 </Nav.Link>
+
                 <Nav.Link as={Link} to="/donation">
                   <span className="text-warning">Donate</span>
                 </Nav.Link>
+                <Nav>
+                  <NavDropdown
+                    id="nav-dropdown-dark-example"
+                    title={<span className="text-warning">ScholarShip</span>}
+                    menuVariant="dark"
+                  >
+                    <NavDropdown.Item href="/AddScholarship">
+                      <span className="text-warning">Add</span>
+                    </NavDropdown.Item>
+
+                    <NavDropdown.Item href="/ViewScholarship">
+                      <span className="text-warning">View</span>
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </Nav>
                 <Nav.Link href="/tshirtSale">
                   <span className="text-warning">Buy Tshirt</span>
                 </Nav.Link>
-                
               </Nav>
 
               <Nav>

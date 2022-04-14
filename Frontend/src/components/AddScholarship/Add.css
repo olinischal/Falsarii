@@ -1,0 +1,93 @@
+#addScholarship .feedback-input {
+    color: black;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 5px;
+    line-height: 22px;
+    background-color: transparent;
+    border: 2px solid #6A5C95;
+    transition: all 0.3s;
+    padding: 13px;
+    margin-bottom: 15px;
+    width: 80%;
+    box-sizing: border-box;
+    outline: 0;
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+  
+  #addScholarship .feedback-title {
+    margin-top: 5rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    font-weight: 500;
+    font-size: 35px;
+    text-decoration: solid;
+    background-color: transparent;
+    color: black;
+  }
+  
+ #addScholarship .feedback-subtitle {
+    font-weight: 500;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    font-size: 20px;
+    text-decoration: solid;
+    background-color: transparent;
+    color: black;
+    margin-top: 30px;
+  }
+
+  #addScholarship #deadline{
+    width: 11rem;
+  }
+  
+  
+ #addScholarship #renewable {
+    font-size: 18px;
+    text-decoration: solid;
+    background-color: transparent;
+    color: black;
+    margin-bottom: 10px;
+  }
+  #addScholarship .checkbox {
+    font-size: 18px;
+    text-decoration: solid;
+    background-color: transparent;
+    color: black;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    padding-bottom: 2rem;
+
+  }
+  #addScholarship .feedback-input:focus {
+    border: 2px solid #6A5C95;
+  }
+  
+  #addScholarship textarea {
+    height: 150px;
+    line-height: 150%;
+    resize: vertical;
+  }
+  
+  #addScholarship [type="submit"] {
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    width: 7%;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    background: #6A5C95;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: all 0.3s;
+    margin-top: -4px;
+    font-weight: 700;
+  }
+  [type="submit"]:hover {
+    background: #504378;
+  }

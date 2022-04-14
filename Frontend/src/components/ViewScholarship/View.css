@@ -1,0 +1,110 @@
+.view .button {
+    background-color: #4CAF50; 
+    border-radius: 10px;
+    border: none;
+    color: white;
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  .view .page_title{
+    margin-top: 6rem;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .view .deadline{
+    margin-top: 20px;
+    font-size: 20px;
+    text-decoration: underline;
+  }
+  .view .Upcoming {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 26px;
+  }
+  .view .events-page {
+    padding: 40px 25px;
+    width: 100%;
+    max-width: 200rem;
+    margin: 0 auto;
+    color: grey;
+    text-align: center;
+    min-height: 300px;
+    margin-top: 30px;
+    font-size: 1.3rem;
+  }
+  .view .rows {
+    max-width: 98rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: auto 0 auto 0;
+    display: table;
+    clear: both;
+  }
+  .view .column {
+    box-sizing: border-box;
+    position: relative;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    float: left;
+    width: 50%;
+  }
+  
+  .view .event-block {
+    margin-bottom: 2rem;
+    border-color: white;
+    border-radius: 4px;
+    height: 20rem;
+    width: 100%;
+    max-width: 50rem;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    background: #fff;
+    box-shadow: 0 0 3px rgb(0, 0, 0);
+    text-align: center;
+  }
+  
+  .view .calendar-block {
+    background: #6A5C95;
+    float: left;
+    color: #fff;
+    width: 12rem;
+    height: 100%;
+    padding: 2rem 0.5rem;
+    text-align: center;
+    border-radius: 4px 0 0 4px;
+  }
+  
+  .view .event-details {
+    text-align: left;
+    overflow: hidden;
+    width: auto;
+    height: 100%;
+    position: relative;
+  }
+  
+  .view .event_name {
+    color: #6A5C95;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding: 1rem;
+  }
+  
+  .view .event_days {
+    font-size: 1em;
+    padding: 1rem;
+  }
