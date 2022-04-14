@@ -33,6 +33,9 @@ import TshirtSale from './components/TshirtSale/tshirtSale';
 import Donation from './components/Donation/Donation';
 import Calendar from './components/Calendar/calendar';
 import CalendarDisplay from './components/Calendar/calendar';
+import searchMember from './components/searchMember/searchMember';
+import SearchMember from './components/searchMember/searchMember';
+import SendEmail from './components/SendEmail/sendEmail';
 
 
 function App() {
@@ -90,12 +93,10 @@ function App() {
         <Route path="/membership" element={<Membership/>}/>
         <Route path="/forgotpassword" element={<LoginReset/>}/>
         <Route path="/newpassword/:id" element={<NewPassword/>}/>
+        <Route path="/tshirtSale" element={<TshirtSale />} />
+        <Route path ="/searchMember"  element={<SearchMember />}/>
+        <Route path="/sendEmail" element={<SendEmail/>}/>
 
-          {/* <Route path="/profile/*" element={<Profile />} />
-          <Route path="/user" element={<BoardUser />} />
-          <Route path="/update/:id" element={<UpdateMember />} />
-          <Route path="/membership" element={<Membership />} /> */}
-          <Route path="/tshirtSale" element={<TshirtSale />} />
         </Routes>
         
       </Router>

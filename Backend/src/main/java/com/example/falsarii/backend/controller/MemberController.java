@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import com.example.falsarii.backend.security.services.RegistrationService;
+
+import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -42,6 +44,7 @@ import com.example.falsarii.backend.security.jwt.JwtUtils;
 import com.example.falsarii.backend.security.services.MemberDetailsImpl;
 import com.example.falsarii.payload.response.JwtResponse;
 import com.example.falsarii.payload.response.MessageResponse;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 
@@ -76,6 +79,14 @@ public class MemberController {
 	@GetMapping("/getAll")
 	public List<Member> list(){
 		return memberRepository.findAll();
+	}
+	
+	@RequestMapping("/searchMember/{keyword}")
+	public List<Member> list( @PathVariable String keyword){
+		if(keyword.equals("all")) {
+			return memberRepository.findAll();
+		}
+		return memberRepository.searchMember(keyword);
 	}
 
 

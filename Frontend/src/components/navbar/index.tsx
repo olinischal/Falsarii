@@ -136,6 +136,9 @@ const NavigationBar = () => {
                 <Nav.Link href="/tshirtSale">
                   <span className="text-warning">Buy Tshirt</span>
                 </Nav.Link>
+                <Nav.Link href="/searchMember">
+                  <span className="text-warning">Search Member</span>
+                </Nav.Link>
                 
               </Nav>
 

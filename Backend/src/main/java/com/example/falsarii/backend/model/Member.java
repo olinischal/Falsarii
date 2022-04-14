@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
@@ -26,6 +27,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 
 @Entity
+//@CascadeOnDelete
 @Table(name = "members", uniqueConstraints = {
 		@UniqueConstraint(columnNames = {
 				"email"
@@ -43,17 +45,9 @@ public class Member {
     private String password;
     private String graduationDate;
 
-
-
     private Boolean enabled;
 
-
-
     private String address;
-
-
-
-
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

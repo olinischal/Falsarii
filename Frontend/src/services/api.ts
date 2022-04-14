@@ -3,7 +3,7 @@ import MemberData from '../types/Member';
 
 
 const instance = axios.create({
-	baseURL: 'http://localhost:8080/member/',
+	baseURL: 'http://localhost:8080/',
 	timeout: 150000,
 });
 
@@ -18,12 +18,13 @@ const requests = {
 
 
 export const Member = {
-	getMembers: (): Promise<MemberData[]> => requests.get('getAll'),
-	getAMember: (id: number): Promise<MemberData> => requests.get(`getMember/${id}`),
+	getMembers: (): Promise<MemberData[]> => requests.get('member/getAll'),
+	getAMember: (id: number): Promise<MemberData> => requests.get(`member/getMember/${id}`),
 	createMember: (post: MemberData): Promise<MemberData> =>
 		requests.post('add', post),
 	updateMember: (id:number, put: MemberData): Promise<MemberData> =>
 		requests.put(`update/${id}`, put),
-	deleteMember: (id: number): Promise<void> => requests.delete(`delete/${id}`),
+	deleteMember: (id: number): Promise<void> => requests.delete(`member/delete/${id}`),
+	searchMember:(keyword:string): Promise<MemberData[]> => requests.get(`member/searchMember/${keyword}`),
 };
 
