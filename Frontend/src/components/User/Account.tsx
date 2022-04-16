@@ -41,9 +41,9 @@ const Account: React.FC<userDetails> = ({ user }) => {
                   height='150'
                 />
                 <div className="mt-3">
-                  <h4>{user.firstName + " " + user.lastName}</h4>
-                  <p className="text-secondary mb-1">{user.email}</p>
-                  <p className="text-muted font-size-sm">{user.address}</p>
+                  <h4>{user.fname + " " + user.lname}</h4>
+                  <p className="text-secondary mb-1">{user.emailId}</p>
+                  {/* <p className="text-muted font-size-sm">{user.address}</p> */}
                   <input type="file" name="image-upload" id="input-image" accept="image/*" onChange={imageHandler} style={{display:'none'}}/>
                   <div className="label">
                     <label htmlFor="input-image" className="image-upload" ><i className="bi bi-images" ></i>Change Your Profile Photo</label>
@@ -62,7 +62,7 @@ const Account: React.FC<userDetails> = ({ user }) => {
                   <h6 className="mb-0">Full Name</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  {user.firstName + " " + user.lastName}
+                  {user.fname + " " + user.lname}
                 </div>
               </div>
               <hr />
@@ -70,7 +70,7 @@ const Account: React.FC<userDetails> = ({ user }) => {
                 <div className="col-sm-3">
                   <h6 className="mb-0">Email</h6>
                 </div>
-                <div className="col-sm-9 text-secondary">{user.email}</div>
+                <div className="col-sm-9 text-secondary">{user.emailId}</div>
               </div>
               <hr />
               <div className="row">
@@ -78,7 +78,7 @@ const Account: React.FC<userDetails> = ({ user }) => {
                   <h6 className="mb-0">Phone</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  {user.phoneNumber}
+                  {user.phoneNum}
                 </div>
               </div>
               <hr />
@@ -93,9 +93,9 @@ const Account: React.FC<userDetails> = ({ user }) => {
                 <div className="col-sm-3">
                   <h6 className="mb-0">Address</h6>
                 </div>
-                <div className="col-sm-9 text-secondary">
+                {/* <div className="col-sm-9 text-secondary">
                   {user.address}
-                </div>
+                </div> */}
               </div>
               <hr />
             </div>

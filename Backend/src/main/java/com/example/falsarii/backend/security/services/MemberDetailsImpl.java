@@ -11,7 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 
-import com.example.falsarii.backend.model.Member;
+import com.example.falsarii.backend.model.Users;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class MemberDetailsImpl implements UserDetails {
@@ -20,16 +20,13 @@ public class MemberDetailsImpl implements UserDetails {
 
 	private Long id;
 	
-	private String firstName;
+	private String emailId;
 
-	private String maidenName;
+	private String fname;
 	
-	private String lastName;
+	private String lname;
 	
 	private String phoneNumber;
-
-	private String email;
-	private String graduationDate;
 	
 	@JsonIgnore
 	private String password;
@@ -38,38 +35,66 @@ public class MemberDetailsImpl implements UserDetails {
 	
 	
 
-	public MemberDetailsImpl(Long id, String firstName, String maidenName, String lastName, String phoneNumber, String email,
-							 String password, String graduationDate, Collection<? extends GrantedAuthority> authorities) {
+//	public MemberDetailsImpl(Long id, String firstName, String maidenName, String lastName, String phoneNumber, String email,
+//							 String password, String graduationDate, Collection<? extends GrantedAuthority> authorities) {
+//		this.id = id;
+//		this.firstName = firstName;
+//		this.maidenName = maidenName;
+//		this.lastName = lastName;
+//		this.phoneNumber = phoneNumber;
+//		this.email = email;
+//		this.graduationDate = graduationDate;
+//		this.password = password;
+//
+//		this.authorities = authorities;
+//	}
+	
+	public MemberDetailsImpl(Long id, String emailId, String fname, String lname, String password, String phoneNum,Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
-		this.firstName = firstName;
-		this.maidenName = maidenName;
-		this.lastName = lastName;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
-		this.graduationDate = graduationDate;
-		this.password = password;
-
-		this.authorities = authorities;
+		this.emailId = emailId;
+		this.fname = fname;
+		this.lname=lname;
+		this.password=password;
+		this.phoneNumber= phoneNum;
+		this.authorities=authorities;
 	}
 	
-	public static MemberDetailsImpl build(Member member) {
+//	public static MemberDetailsImpl build(Member member) {
+//	    List<GrantedAuthority> authorities = member.getRoles().stream()
+//	        .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+//	        .collect(Collectors.toList());
+//
+//	    return new MemberDetailsImpl(
+//	        member.getId(), 
+//	        member.getFirstName(),
+//				member.getMaidenName(),
+//				member.getLastName(),
+//	        member.getPhoneNumber(),
+//	        member.getEmail(),
+//				member.getPassword(),
+//				member.getGraduationDate(),
+//
+//	        authorities);
+//	  }
+	
+	
+	public static MemberDetailsImpl build(Users member) {
 	    List<GrantedAuthority> authorities = member.getRoles().stream()
 	        .map(role -> new SimpleGrantedAuthority(role.getName().name()))
 	        .collect(Collectors.toList());
 
 	    return new MemberDetailsImpl(
-	        member.getId(), 
-	        member.getFirstName(),
-				member.getMaidenName(),
-				member.getLastName(),
-	        member.getPhoneNumber(),
-	        member.getEmail(),
+	    		member.getUserId(),
+	    		member.getEmailId(),
+	    		member.getFname(),
+				member.getLname(),
+	        member.getPhoneNum(),
 				member.getPassword(),
-				member.getGraduationDate(),
-
-	        authorities);
+				authorities);
 	  }
 
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -78,36 +103,28 @@ public class MemberDetailsImpl implements UserDetails {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getEmailId() {
+		return emailId;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-
-	}
-	public String getMaidenName() {
-		return maidenName;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
-	public void setMaidenName(String maidenName) {
-		this.maidenName = maidenName;
+	public String getFname() {
+		return fname;
 	}
 
-	public String getGraduationDate() {
-		return graduationDate;
+	public void setFname(String fname) {
+		this.fname = fname;
 	}
 
-	public void setGraduationDate(String graduationDate) {
-		this.graduationDate = graduationDate;
+	public String getLname() {
+		return lname;
 	}
 
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLname(String lname) {
+		this.lname = lname;
 	}
 
 	public String getPhoneNumber() {
@@ -117,33 +134,11 @@ public class MemberDetailsImpl implements UserDetails {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
+	
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-		this.authorities = authorities;
-	}
-
-	
-
-	
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities;
 	}
 
 	@Override
@@ -151,32 +146,22 @@ public class MemberDetailsImpl implements UserDetails {
 		return password;
 	}
 
-	@Override
-	public String getUsername() {
-		return email;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override
-	public boolean isAccountNonExpired() {
-		return true;
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return authorities;
 	}
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
+	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+		this.authorities = authorities;
 	}
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
+//	
 
 	@Override
-	public boolean isEnabled() {
-		return true;
-	}
-	
-	 @Override
 	  public boolean equals(Object o) {
 	    if (this == o)
 	      return true;
@@ -187,6 +172,38 @@ public class MemberDetailsImpl implements UserDetails {
 	  }
 
 
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return emailId;
+	}
 
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
+	
+	
 }
+
+	

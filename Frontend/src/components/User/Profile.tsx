@@ -13,14 +13,22 @@ import Security from "./Security";
 
 const Profile = () => {
   const [users, setUsers] = useState<MemberData>({
-    firstName: " ",
-    maidenName: " ",
-    lastName: " ",
-    email: " ",
-    graduationDate: " ",
-    phoneNumber: " ",
-    password: " ",
-    address: " ",
+    emailId: "",
+    fname: "",
+    middleName: "",
+    lname: "",
+    maidenName: "",
+    password: "",
+    phoneNum: "",
+    // firstName: " ",
+    // maidenName: " ",
+    // lastName: " ",
+    // email: " ",
+    // graduationDate: " ",
+    // phoneNumber: " ",
+    // password: " ",
+    // address: " ",
+   
   });
   const [isError, setIsError] = useState<boolean>(false);
 

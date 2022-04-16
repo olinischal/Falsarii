@@ -48,7 +48,7 @@ const SearchMember = (props) => {
 
   const sendEmailToMembers = () => {
     const emailArray = searchMembers.map(function (el) {
-      return el.email;
+      return el.emailId;
     });
     setEmailList(emailArray);
     console.log("Hello I came here");
@@ -186,24 +186,24 @@ const SearchMember = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr key={val.id}>
-                      <td>{val.firstName}</td>
+                    <tr key={val.userId}>
+                      <td>{val.fname}</td>
                       <td>{val.maidenName}</td>
-                      <td>{val.lastName}</td>
-                      <td>{val.phoneNumber}</td>
-                      <td>{val.graduationDate}</td>
-                      <td>{val.email}</td>
+                      <td>{val.lname}</td>
+                      <td>{val.phoneNum}</td>
+                      <td>{val.middleName}</td>
+                      <td>{val.emailId}</td>
                       <td>
                         <Link
                           className="btn btn-info"
-                          to={"/update/" + `${val.id}`}
+                          to={"/update/" + `${val.userId}`}
                         >
                           Update
                         </Link>
                         <button
                           className="btn btn-danger ml-2"
                           onClick={(e) => {
-                            handleDelete(val.id);
+                            handleDelete(val.userId);
                           }}
                         >
                           Delete

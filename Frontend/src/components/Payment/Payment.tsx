@@ -37,7 +37,7 @@ function Payment(props) {
         <Stripe
           name={"$ "+props.amount +" Payment"}
           description="For Naville Alumni Association"
-          panelLabel="Donate Now"
+          panelLabel="Pay Now"
           ComponentClass="edit"
           billingAddress={true}
           image="https://www.nevillealumni.org/sites/default/files/nafa_logo_108x114_1.png"

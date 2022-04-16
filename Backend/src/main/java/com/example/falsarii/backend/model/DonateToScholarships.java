@@ -18,16 +18,16 @@ public class DonateToScholarships {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long donateToScholarshipId;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "emailId")
+	@JoinColumn(name = "userId")
 	private Users user;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "scholarshipName")
+	@JoinColumn(name = "scholarshipId")
 	private Scholarships scholarship;
 	
 	@Column
@@ -54,15 +54,14 @@ public class DonateToScholarships {
 		this.anonymity = anonymity;
 	}
 
-	public Scholarships getScholarship() {
-		return scholarship;
-	}
-
-	public void setScholarship(Scholarships scholarship) {
-		this.scholarship = scholarship;
-	}
+//	public Scholarships getScholarship() {
+//		return scholarship;
+//	}
+//
+//	public void setScholarship(Scholarships scholarship) {
+//		this.scholarship = scholarship;
+//	}
 	
 	
 
 }
-

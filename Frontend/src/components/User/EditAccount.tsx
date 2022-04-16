@@ -1,5 +1,5 @@
 import MemberData from "../../types/Member";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Member } from "../../services/api";
 
@@ -8,43 +8,49 @@ interface userDetails {
 }
 
 const EditAccount: React.FC<userDetails> = ({ user }) => {
-    const [users, setUsers] = useState<MemberData>({
-        firstName: " ",
-        maidenName: " ",
-        lastName: " ",
-        email: " ",
-        graduationDate: " ",
-        phoneNumber: " ",
-        password: " ",
-        address: " ",
+  const [users, setUsers] = useState<MemberData>({
+    emailId: "",
+    fname: "",
+    middleName: "",
+    lname: "",
+    maidenName: "",
+    password: "",
+    phoneNum: "",
+    // firstName: " ",
+    // maidenName: " ",
+    // lastName: " ",
+    // email: " ",
+    // graduationDate: " ",
+    // phoneNumber: " ",
+    // password: " ",
+    // address: " ",
+  });
+
+  const navigate = useNavigate();
+
+  const saveclients = (e) => {
+    e.preventDefault();
+
+    Member.updateMember(parseInt(users.userId), users)
+      .then(() => {
+        navigate("/profile/user");
+
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log("Something went wrong here.", error);
       });
+  };
 
-      const navigate = useNavigate();
-
-      const saveclients = (e) => {
-        e.preventDefault();
-    
-        Member.updateMember(parseInt(users.id), users)
-          .then(() => {
-            navigate('/profile/user');
-            
-            window.location.reload();
-          })
-          .catch((error) => {
-            console.log("Something went wrong here.", error);
-          });
-      };
-
-      useEffect(() => {
-        Member.getAMember(parseInt(user.id))
-          .then((response) => {
-            setUsers(response);
-          })
-          .catch((error) => {
-            console.log("Something went wrong here.", error);
-          });
-      }, []);
-      
+  useEffect(() => {
+    Member.getAMember(parseInt(user.userId))
+      .then((response) => {
+        setUsers(response);
+      })
+      .catch((error) => {
+        console.log("Something went wrong here.", error);
+      });
+  }, []);
 
   return (
     <div className="container-fluid mt-2 px-2">
@@ -84,8 +90,10 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       className="form-control"
                       id="firstName"
                       type="text"
-                      value={users.firstName}
-                      onChange={(e) => setUsers({ ...users, firstName: e.target.value })}
+                      value={users.fname}
+                      onChange={(e) =>
+                        setUsers({ ...users, fname: e.target.value })
+                      }
                     />
                   </div>
 
@@ -97,8 +105,10 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       className="form-control"
                       id="inputLastName"
                       type="text"
-                      value={users.lastName}
-                      onChange={(e) => setUsers({ ...users, lastName: e.target.value })}
+                      value={users.lname}
+                      onChange={(e) =>
+                        setUsers({ ...users, lname: e.target.value })
+                      }
                     />
                   </div>
                 </div>
@@ -112,8 +122,10 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       className="form-control"
                       id="inputOrgName"
                       type="text"
-                      value={users.email}
-                      onChange={(e) => setUsers({ ...users, email: e.target.value })}
+                      value={users.emailId}
+                      onChange={(e) =>
+                        setUsers({ ...users, emailId: e.target.value })
+                      }
                     />
                   </div>
 
@@ -125,9 +137,10 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       className="form-control"
                       id="inputLocation"
                       type="text"
-                      value={users.phoneNumber}
-                      
-                      onChange={(e) => setUsers({ ...users, phoneNumber: e.target.value })}
+                      value={users.phoneNum}
+                      onChange={(e) =>
+                        setUsers({ ...users, phoneNum: e.target.value })
+                      }
                     />
                   </div>
                 </div>
@@ -143,7 +156,8 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                   />
                 </div> */}
 
-                <div className="mb-3">
+                {/* commented out for new user class*/}
+                {/* <div className="mb-3">
                   <label className="small mb-1" placeholder="inputEmailAddress">
                     Street Address
                   </label>
@@ -154,7 +168,7 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                     value={users.address}
                     onChange={(e) => setUsers({ ...users, address: e.target.value })}
                   />
-                </div>
+                </div> */}
 
                 <div className="row gx-3 mb-3">
                   <div className="col-md-6">
@@ -183,7 +197,11 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                   </div>
                 </div>
 
-                <button className="btn btn-primary" type="button" onClick={(e) => saveclients(e)}>
+                <button
+                  className="btn btn-primary"
+                  type="button"
+                  onClick={(e) => saveclients(e)}
+                >
                   Save changes
                 </button>
               </form>

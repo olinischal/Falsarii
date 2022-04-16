@@ -79,25 +79,26 @@ const MemberList = () => {
             if (searchTerm == "") {
               return val;
             } else if (
-              val.firstName
+              val.fname
                 .toLocaleLowerCase()
                 .includes(searchTerm.toLowerCase()) &&
               searchType === "firstName"
             ) {
               return val;
             } else if (
-              val.email
+              val.emailId
                 .toLocaleLowerCase()
                 .includes(searchTerm.toLowerCase()) &&
               searchType === "email"
             ) {
               return val;
-            } else if (
-              val.graduationDate.includes(searchTerm) &&
-              searchType === "graduationDate"
-            ) {
-              return val;
-            }
+            } 
+            // else if (
+            //   val.graduationDate.includes(searchTerm) &&
+            //   searchType === "graduationDate"
+            // ) {
+            //   return val;
+            // }
           })
           .map((val, key) => {
             return (
@@ -117,24 +118,24 @@ const MemberList = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr key={val.id}>
-                        <td>{val.firstName}</td>
-                        <td>{val.maidenName}</td>
-                        <td>{val.lastName}</td>
-                        <td>{val.phoneNumber}</td>
-                        <td>{val.graduationDate}</td>
-                        <td>{val.email}</td>
-                        <td>
+                    <tr key={val.userId}>
+                      <td>{val.fname}</td>
+                      <td>{val.maidenName}</td>
+                      <td>{val.lname}</td>
+                      <td>{val.phoneNum}</td>
+                      <td>{val.middleName}</td>
+                      <td>{val.emailId}</td>
+                      <td>
                           <Link
                             className="btn btn-info"
-                            to={"/update/" + `${val.id}`}
+                            to={"/update/" + `${val.userId}`}
                           >
                             Update
                           </Link>
                           <button
                             className="btn btn-danger ml-2"
                             onClick={(e) => {
-                              handleDelete(val.id);
+                              handleDelete(val.userId);
                             }}
                           >
                             Delete
