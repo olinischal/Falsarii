@@ -62,8 +62,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     return new BCryptPasswordEncoder();
   }
 
+
+  
+  
   @Override
-  protected void configure(HttpSecurity http) throws Exception {
+  protected void configure(HttpSecurity http) throws Exception {;
 	  
 	  http.sessionManagement()
       .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
