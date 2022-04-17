@@ -60,7 +60,7 @@ const NavigationBar = () => {
           
         >
           
-          <NavDropdown.Item href="/events">All Events</NavDropdown.Item>
+          <NavDropdown.Item href="/eventList">All Events</NavDropdown.Item>
           <NavDropdown.Item href="/calendar">Calendar</NavDropdown.Item>          
         </NavDropdown>
           </Nav>
@@ -77,7 +77,7 @@ const NavigationBar = () => {
             title="Donate"
             menuVariant="dark"
           >
-            <NavDropdown.Item href="/events">Donate</NavDropdown.Item>
+           
             <NavDropdown.Item href="/scholarshipList">
               Scholarships
             </NavDropdown.Item>

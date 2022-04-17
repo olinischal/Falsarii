@@ -20,7 +20,7 @@ import Membership from './components/Membership';
 import LoginReset from './components/LoginReset';
 import NewPassword from './components/LoginReset/NewPassword';
 import Events from './components/Events';
-import CalendarDisplay from './components/Calendar/calendar';
+
 
 
 import IdleTimer from "./components/Timeout/idleTimer";
@@ -39,6 +39,7 @@ import UpdateScholarships from './components/Scholarships/UpdateScholarships';
 import Layout from './components/Routing/Layout';
 import RequireAuth from './components/Authenticate/RequireAuth';
 import UpdateEvent from './components/Events/UpdateEvent';
+import Calendar from './components/Calendar/Calendar';
 
 
 function App() {
@@ -86,9 +87,9 @@ function App() {
         <Route path="/login" element={<NewLogin/>}/>
         <Route path="/signup" element={<NewSignUp/>}/>
         <Route path="/about" element={<About/>}/>
-        <Route path="/events" element={<Events/>}/>
-        {/* <Route path="/events" element={<UpdateEvent events={undefined}/>}/> */}
-        <Route path="/calendar" element={<CalendarDisplay/>}/>
+        
+        <Route path="/eventList" element={<UpdateEvent />}/>
+        <Route path="/calendar" element={<Calendar/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/forgotpassword" element={<LoginReset/>}/>
         <Route path="/newpassword/:id" element={<NewPassword/>}/>
@@ -106,16 +107,18 @@ function App() {
         <Route path="/success" element={<Success/>}/>
         <Route path="/error" element={<Error/>}/>
         <Route path="/scholarshipList" element={<UpdateScholarships />} />
-        <Route path="/unauthorized" element={<UnAuthorize />} />      
+        <Route path="/unauthorized" element={<UnAuthorize />} /> 
+        <Route path="/members" element={<MemberList/>}/>       
 
         <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
           {/* Routes for Admin only */}
-        <Route path="/members" element={<MemberList/>}/>  
+        
          
         
           
         </Route>
         <Route path="/scholarships" element={<Scholarships />} />
+        <Route path="/events" element={<Events/>}/>
         
         {/* Needs updating */}
         <Route path="/user" element={<BoardUser />} />        

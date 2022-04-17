@@ -3,9 +3,7 @@ import EventData from "../../types/Event";
 import { EventRequests } from "../../services/api";
 import EventList from "./EventList";
 
-interface eventDetails {
-  events: EventData;
-}
+
 
 const UpdateEvent = () => {
   const [event, setEvent] = useState<EventData[]>([]);

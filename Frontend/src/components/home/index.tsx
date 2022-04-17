@@ -21,6 +21,7 @@ import * as AuthService from "../../services/authenticate-service";
 import About from "../About";
 //import Team from "../Team/team";
 import Contact from "../contact/contact";
+import UpdateEvent from "../Events/UpdateEvent";
 //import TshirtSale from "../TshirtSale/tshirtSale";
 
 const Home = () => {
@@ -92,7 +93,7 @@ const Home = () => {
       </Carousel>
       <About />
 
-      <Events />
+      <UpdateEvent />
       <div style={{ textAlign: "center" }}>
         <a href="/events" className="btn btn-warning">
           Click to view all events

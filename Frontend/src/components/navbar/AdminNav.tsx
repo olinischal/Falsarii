@@ -28,7 +28,7 @@ const AdminNav = () => {
             title="Events"
             menuVariant="dark"
           >
-            <NavDropdown.Item href="/events">All Events</NavDropdown.Item>
+            <NavDropdown.Item href="/events">Create Events</NavDropdown.Item>
             <NavDropdown.Item href="/calendar">Calendar</NavDropdown.Item>
           </NavDropdown>
         </Nav>
@@ -46,9 +46,9 @@ const AdminNav = () => {
             title="Donate"
             menuVariant="dark"
           >
-            <NavDropdown.Item href="/events">Donate</NavDropdown.Item>
+            
             <NavDropdown.Item href="/scholarships">
-              Scholarships
+              Create Scholarships
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>

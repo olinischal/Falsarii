@@ -28,9 +28,7 @@ const Login = () => {
   const submitForm = (values: loginProps) => {
     try {
       //const temp = "random";
-       signIn(values.email, values.password).then((res) => {
-        console.log(res);
-        setAuth({res});
+       const res: any = signIn(values.email, values.password).then(() => {
         
        
         if (localStorage.getItem("badCredential")) {
@@ -43,10 +41,14 @@ const Login = () => {
           navigate("/profile/user");
           window.location.reload();
         }
+        console.log(res.email);
+        setAuth({res});
+        
       });
       
 
     } catch (error) {
+      
       console.log(error);
     }
     

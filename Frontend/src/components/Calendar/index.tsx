@@ -1,51 +1,57 @@
 import { Formik } from "formik";
 import { useState } from "react";
 import { Button, Modal, Stack, Form, Container } from "react-bootstrap";
-import UpdateScholarships from "./UpdateScholarships";
-import { ScholarshipRequests } from "../../services/api";
-import ScholarshipData from "../../types/Scholarship";
-import './Scholarship.css';
+import { EventRequests } from "../../services/api";
+import EventData from "../../types/Event";
+import Calendar from "./Calendar";
+
 
 
 const initialValues = {
-  name: " ",
-  active: false,
-  deadline: "",
-  description: " ",
+  eventName: "",
+  date: "",
+  description: "",
+  entranceFee: 0.0,
+  status: false
 };
 
-const Scholarships = () => {
+const CalendarEvents = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [scholarship, setScholarship] = useState<ScholarshipData>({
-    scholarshipName: " ",
-    description: " ",
-    deadline: "",
-    status: false,
+ 
+  const [events, setEvents] = useState<EventData>({
+    eventName: "",
+    date: "",
+    description: "",
+    entranceFee: 0.0,
+    status: false
   });
 
-  const submitForm =  () => {
-    console.log(scholarship);
-
-    ScholarshipRequests.createScholarships(scholarship)
-    .catch((error) => {
+  const submitForm = () => {
+    
+    setShow(false);
+    EventRequests.createEvent(events) .catch((error) => {
       console.log("Request cannot be completed.", error);
     });
     setShow(false);
     window.location.reload();
+
+    
   };
+
   return (
     <>
-      <>
-        <div style={{ position: "relative", top: "10px", left: "10px" }}>
-          <Button variant="secondary" size="lg" onClick={handleShow}>
-            + Create New Scholarships
-          </Button>
-        </div>
+    {/* Uncomment this section once the event API is updated in backend */}
+      <div style={{ position: "relative", top: "10px", left: "10px" }}>
+        <Button variant="secondary" size="lg" onClick={handleShow}>
+          + Create New Event
+        </Button>
+      </div>
 
+      <>
         <Modal
           show={show}
           onHide={handleClose}
@@ -53,12 +59,13 @@ const Scholarships = () => {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Create Scholarship</Modal.Title>
+            <Modal.Title>Create Event</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Formik initialValues={initialValues} onSubmit={submitForm}>
               {(formik) => {
-                const { handleBlur, handleSubmit } = formik;
+                const { handleBlur, handleSubmit } =
+                  formik;
                 return (
                   <Container
                     className="mt-5"
@@ -66,10 +73,9 @@ const Scholarships = () => {
                   >
                     <Form id="submitForm" onSubmit={handleSubmit}>
                       <Form.Group className="mb-3">
-                      <label className="feedback-subtitle"> Scholarship Name</label>
                         <Form.Control
                           className={
-                            formik.errors.name && formik.touched.name
+                            formik.errors.eventName && formik.touched.eventName
                               ? "errorOccured"
                               : "noError"
                           }
@@ -77,27 +83,24 @@ const Scholarships = () => {
                             backgroundColor: "#353839",
                             color: "#ffc40c",
                           }}
-                         
                           type="text"
                           name="name"
                           id="name"
-                          placeholder="Scholarship Name"
-                          value={scholarship.scholarshipName}
+                          placeholder="Event Title"
+                          value={events.eventName}
                           onChange={(e) =>
-                            setScholarship({
-                              ...scholarship,
-                              scholarshipName: e.target.value,
+                            setEvents({
+                              ...events,
+                              eventName: e.target.value,
                             })
                           }
                           onBlur={handleBlur}
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
-                      <label className="feedback-subtitle"> Scholarship Description</label>
                         <Form.Control
                           className={
-                            formik.errors.description &&
-                            formik.touched.description
+                            formik.errors.description && formik.touched.description
                               ? "errorOccured"
                               : "noError"
                           }
@@ -109,10 +112,10 @@ const Scholarships = () => {
                           name="description"
                           id="description"
                           placeholder="description"
-                          value={scholarship.description}
+                          value={events.description}
                           onChange={(e) =>
-                            setScholarship({
-                              ...scholarship,
+                            setEvents({
+                              ...events,
                               description: e.target.value,
                             })
                           }
@@ -120,10 +123,9 @@ const Scholarships = () => {
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
-                      <label className="feedback-subtitle"> Scholarship Deadline</label>
                         <Form.Control
                           className={
-                            formik.errors.deadline && formik.touched.deadline
+                            formik.errors.date && formik.touched.date
                               ? "errorOccured"
                               : "noError"
                           }
@@ -131,16 +133,15 @@ const Scholarships = () => {
                             backgroundColor: "#353839",
                             color: "#ffc40c",
                           }}
-                          
                           type="date"
-                          name="deadline"
-                          id="deadline"
-                          placeholder="Event deadline"
-                          value={scholarship.deadline}
+                          name="date"
+                          id="date"
+                          placeholder="Event Date"
+                          value={events.date}
                           onChange={(e) =>
-                            setScholarship({
-                              ...scholarship,
-                              deadline: e.target.value,
+                            setEvents({
+                              ...events,
+                              date: e.target.value,
                             })
                           }
                           onBlur={handleBlur}
@@ -162,12 +163,11 @@ const Scholarships = () => {
           </Modal.Footer>
         </Modal>
       </>
-      <>
-        
-        <UpdateScholarships />
-      </>
+      <Calendar />
+
+    
     </>
   );
 };
 
-export default Scholarships;
+export default CalendarEvents;
