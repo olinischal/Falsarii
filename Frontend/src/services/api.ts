@@ -21,9 +21,9 @@ export const Member = {
 	getMembers: (): Promise<MemberData[]> => requests.get('member/getAll'),
 	getAMember: (id: number): Promise<MemberData> => requests.get(`member/getMember/${id}`),
 	createMember: (post: MemberData): Promise<MemberData> =>
-		requests.post('add', post),
+		requests.post('member/add', post),
 	updateMember: (id:number, put: MemberData): Promise<MemberData> =>
-		requests.put(`update/${id}`, put),
+		requests.put(`member/update/${id}`, put),
 	deleteMember: (id: number): Promise<void> => requests.delete(`member/delete/${id}`),
 	searchMember:(keyword:string): Promise<MemberData[]> => requests.get(`member/searchMember/${keyword}`),
 };

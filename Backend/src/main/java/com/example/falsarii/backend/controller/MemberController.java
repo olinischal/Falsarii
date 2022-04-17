@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.BCryptVersion;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
@@ -94,7 +95,7 @@ public class MemberController {
 
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
+		System.out.println(loginRequest.getEmail()+" and " + loginRequest.getPassword());
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 		System.out.println(authentication);
@@ -106,7 +107,7 @@ public class MemberController {
 		List<String> roles = userDetails.getAuthorities().stream()
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
-		System.out.println();
+		System.out.println("apple");
 		return ResponseEntity.ok(new JwtResponse(jwt,
 				userDetails.getEmailId(),
 				roles));
@@ -215,7 +216,8 @@ public class MemberController {
 
 	@PutMapping("/update/{id}")
 	public ResponseEntity updateMemberDetails(@PathVariable Long id, @RequestBody Users member) {
-		Users currentMember = userRepository.findById(id).orElseThrow(RuntimeException::new);
+		Users currentMember = userRepository.findByUserId(id);
+		System.out.println((currentMember).getEmailId());
 		currentMember.setFname(member.getFname());
 
 		currentMember.setMaidenName(member.getMaidenName());
