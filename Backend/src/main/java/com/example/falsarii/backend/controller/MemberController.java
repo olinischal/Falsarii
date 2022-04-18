@@ -3,6 +3,7 @@ package com.example.falsarii.backend.controller;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,6 +30,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import com.amazonaws.services.identitymanagement.model.User;
 import com.example.falsarii.backend.captcha.ReCaptchaResponse;
 import com.example.falsarii.backend.captcha.VerifyCaptcha;
 import com.example.falsarii.backend.model.ERole;
@@ -40,6 +42,7 @@ import com.example.falsarii.backend.request.LoginRequest;
 import com.example.falsarii.backend.request.SignupRequest;
 import com.example.falsarii.backend.security.jwt.JwtUtils;
 import com.example.falsarii.backend.security.services.MemberDetailsImpl;
+import com.example.falsarii.backend.security.services.MemberDetailsServiceImpl;
 import com.example.falsarii.payload.response.JwtResponse;
 import com.example.falsarii.payload.response.MessageResponse;
 
@@ -72,7 +75,9 @@ public class MemberController {
 
 	@Autowired
 	JwtUtils jwtUtils;
-
+	
+	@Autowired
+	MemberDetailsServiceImpl serviceImpl;
 
 	@GetMapping("/getAll")
 	public List<Users> list(){
@@ -89,10 +94,9 @@ public class MemberController {
 
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-		System.out.println(loginRequest.getEmail()+" and " + loginRequest.getPassword());
+		
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()) );
-		System.out.println(authentication);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		String jwt = jwtUtils.generateJwtToken(authentication);
@@ -101,8 +105,8 @@ public class MemberController {
 		List<String> roles = userDetails.getAuthorities().stream()
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
-		System.out.println("apple");
-		return ResponseEntity.ok(new JwtResponse(jwt,
+		System.out.println(userDetails.getId());
+		return ResponseEntity.ok(new JwtResponse(userDetails.getId(),jwt,
 				userDetails.getEmailId(),
 				roles));
 	}
@@ -146,7 +150,6 @@ public class MemberController {
 			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-
 			roles.add(userRole);
 
 		} else {
@@ -174,8 +177,9 @@ public class MemberController {
 			});
 		}
 		user.setRoles(roles);
+		
 		userRepository.save(user);
-
+		
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
 

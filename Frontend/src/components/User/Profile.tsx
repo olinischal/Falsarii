@@ -20,20 +20,12 @@ const Profile = () => {
     maidenName: "",
     password: "",
     phoneNum: "",
-    // firstName: " ",
-    // maidenName: " ",
-    // lastName: " ",
-    // email: " ",
-    // graduationDate: " ",
-    // phoneNumber: " ",
-    // password: " ",
-    // address: " ",
    
   });
   const [isError, setIsError] = useState<boolean>(false);
 
   const currentUser = getCurrentUser();
-  const id: number = currentUser.id;
+  const id: number = currentUser.userId;
 
   useEffect(() => {
     Member.getAMember(id)

@@ -1,8 +1,5 @@
 package com.example.falsarii.backend.security;
 
-
-import java.security.SecureRandom;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.client.RestTemplate;
@@ -21,8 +19,6 @@ import org.springframework.web.client.RestTemplate;
 import com.example.falsarii.backend.security.jwt.AuthEntryPointJwt;
 import com.example.falsarii.backend.security.jwt.AuthTokenFilter;
 import com.example.falsarii.backend.security.services.MemberDetailsServiceImpl;
-
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @Configuration
@@ -61,11 +57,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Bean
   public PasswordEncoder passwordEncoder() {
-	  return new BCryptPasswordEncoder(10, new SecureRandom());
-//    return new BCryptPasswordEncoder();
+    return new BCryptPasswordEncoder();
   }
   
-
   
   @Override
   protected void configure(HttpSecurity http) throws Exception {;

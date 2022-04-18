@@ -19,19 +19,19 @@ import com.example.falsarii.backend.model.Users;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long>{
 	
-	Optional<Users> findByEmailId(String email);
+	Optional<Users> findByEmailId(String emailId);
 //	Users findByEmailId(String email);
-	Boolean existsByEmailId(String email);
+	Boolean existsByEmailId(String emailId);
 	
 	@Query("SELECT m FROM Users m WHERE CONCAT(m.fname, ' ', m.lname, ' ', m.phoneNum,' ',m.emailId) LIKE %?1%")
 	List<Users> searchMember(String keyword);
 	
 	
-	//Find user_id using emailId
-	@Query("select userId from Users u where u.emailId=?1")
-	Long findUserId(String emailId);
-	
-	
+//	//Find user_id using emailId
+//	@Query("select userId from Users u where u.emailId=?1")
+//	Long findUserId(String emailId);
+//	
+//	
 	//Find user by userId
 	@Query(
 			value = "select * from users where user_id = :userId",

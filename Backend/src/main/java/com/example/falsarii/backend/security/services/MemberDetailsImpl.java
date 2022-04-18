@@ -82,14 +82,15 @@ public class MemberDetailsImpl implements UserDetails {
 	    List<GrantedAuthority> authorities = member.getRoles().stream()
 	        .map(role -> new SimpleGrantedAuthority(role.getName().name()))
 	        .collect(Collectors.toList());
-
+	    
 	    return new MemberDetailsImpl(
 	    		member.getUserId(),
 	    		member.getEmailId(),
 	    		member.getFname(),
 				member.getLname(),
-	        member.getPhoneNum(),
 				member.getPassword(),
+	        member.getPhoneNum(),
+				
 				authorities);
 	  }
 
@@ -159,19 +160,6 @@ public class MemberDetailsImpl implements UserDetails {
 		this.authorities = authorities;
 	}
 
-//	
-
-	@Override
-	  public boolean equals(Object o) {
-	    if (this == o)
-	      return true;
-	    if (o == null || getClass() != o.getClass())
-	      return false;
-	    MemberDetailsImpl member = (MemberDetailsImpl) o;
-	    return Objects.equals(userId, member.userId);
-	  }
-
-
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
@@ -202,6 +190,15 @@ public class MemberDetailsImpl implements UserDetails {
 		return true;
 	}
 	
+	@Override
+	  public boolean equals(Object o) {
+	    if (this == o)
+	      return true;
+	    if (o == null || getClass() != o.getClass())
+	      return false;
+	    MemberDetailsImpl member = (MemberDetailsImpl) o;
+	    return Objects.equals(userId, member.userId);
+	  }
 	
 	
 }

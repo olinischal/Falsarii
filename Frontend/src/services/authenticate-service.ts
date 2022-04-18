@@ -40,6 +40,7 @@ export const signIn = (email: string, password: string) => {
         localStorage.removeItem("otherError");
         localStorage.removeItem("serverError");
         localStorage.setItem("user", JSON.stringify(response.data ));
+        console.log(localStorage.getItem("user"));
       }
       else {
         throw new Error("Server can't be reached.");
