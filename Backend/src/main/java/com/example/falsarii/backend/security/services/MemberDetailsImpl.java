@@ -18,7 +18,7 @@ public class MemberDetailsImpl implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
+	private Long userId;
 	
 	private String emailId;
 
@@ -49,8 +49,8 @@ public class MemberDetailsImpl implements UserDetails {
 //		this.authorities = authorities;
 //	}
 	
-	public MemberDetailsImpl(Long id, String emailId, String fname, String lname, String password, String phoneNum,Collection<? extends GrantedAuthority> authorities) {
-		this.id = id;
+	public MemberDetailsImpl(Long userId, String emailId, String fname, String lname, String password, String phoneNum,Collection<? extends GrantedAuthority> authorities) {
+		this.userId = userId;
 		this.emailId = emailId;
 		this.fname = fname;
 		this.lname=lname;
@@ -96,11 +96,11 @@ public class MemberDetailsImpl implements UserDetails {
 	
 	
 	public Long getId() {
-		return id;
+		return userId;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.userId = id;
 	}
 
 	public String getEmailId() {
@@ -168,7 +168,7 @@ public class MemberDetailsImpl implements UserDetails {
 	    if (o == null || getClass() != o.getClass())
 	      return false;
 	    MemberDetailsImpl member = (MemberDetailsImpl) o;
-	    return Objects.equals(id, member.id);
+	    return Objects.equals(userId, member.userId);
 	  }
 
 

@@ -6,15 +6,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.BCryptVersion;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import com.example.falsarii.backend.security.services.RegistrationService;
 
-import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -45,7 +42,7 @@ import com.example.falsarii.backend.security.jwt.JwtUtils;
 import com.example.falsarii.backend.security.services.MemberDetailsImpl;
 import com.example.falsarii.payload.response.JwtResponse;
 import com.example.falsarii.payload.response.MessageResponse;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+
 
 
 
@@ -57,14 +54,13 @@ public class MemberController {
 
 	@Autowired
 	RegistrationService registrationService;
+	
 	@Autowired
 	AuthenticationManager authenticationManager;
 
 	@Autowired
 	private RestTemplate restTemplate;
 
-//	@Autowired
-//	MemberRepository memberRepository;
 	@Autowired
 	UserRepository userRepository;
 
@@ -76,7 +72,6 @@ public class MemberController {
 
 	@Autowired
 	JwtUtils jwtUtils;
-
 
 
 	@GetMapping("/getAll")
@@ -92,12 +87,11 @@ public class MemberController {
 		return userRepository.searchMember(keyword);
 	}
 
-
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 		System.out.println(loginRequest.getEmail()+" and " + loginRequest.getPassword());
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()) );
 		System.out.println(authentication);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -124,29 +118,11 @@ public class MemberController {
 		if(!verifyReCAPTCHA(gRecaptchaResponse)) {
 			return ResponseEntity.ok("Error: Assure that you are human!");
 		}
-		//registrationService.register(signUpRequest);
-
-
-
-//		if (memberRepository.existsByEmail(signUpRequest.getEmail())) {
-//			return ResponseEntity.ok("Error: Email is already taken!");
-//		}
+		
 		
 		if (userRepository.existsByEmailId(signUpRequest.getEmail())) {
 			return ResponseEntity.ok("Error: Email is already taken!");
 		}
-
-
-		// Create new user's account
-//		Member member = new Member(signUpRequest.getFirstName(),
-//				signUpRequest.getMaidenName(),
-//				signUpRequest.getLastName(),
-//
-//				signUpRequest.getPhoneNumber(),
-//				signUpRequest.getEmail(),
-//
-//				encoder.encode(signUpRequest.getPassword())
-//		);
 		
 		Users user = new Users(signUpRequest.getEmail(),
 				signUpRequest.getFirstName(),
@@ -198,9 +174,6 @@ public class MemberController {
 			});
 		}
 		user.setRoles(roles);
-//		member.setRoles(roles);
-		
-//		memberRepository.save(member);
 		userRepository.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
@@ -208,16 +181,13 @@ public class MemberController {
 
 
 	@GetMapping("getMember/{id}")
-//	public Member getSingleMember(@PathVariable Long id) {
 	public Users getSingleMember(@PathVariable Long id) {
-//		return memberRepository.findById(id).get();
-		return userRepository.findById(id).get();
+		return userRepository.findByUserId(id);
 	}
 
 	@PutMapping("/update/{id}")
 	public ResponseEntity updateMemberDetails(@PathVariable Long id, @RequestBody Users member) {
 		Users currentMember = userRepository.findByUserId(id);
-		System.out.println((currentMember).getEmailId());
 		currentMember.setFname(member.getFname());
 
 		currentMember.setMaidenName(member.getMaidenName());
@@ -225,8 +195,6 @@ public class MemberController {
 		currentMember.setPhoneNum(member.getPhoneNum());
 		currentMember.setEmailId(member.getEmailId());
 		currentMember.setPassword(member.getPassword());
-//		currentMember.setGraduationDate(member.getGraduationDate());
-//		currentMember.setAddress(member.getAddress());
 
 		userRepository.save(currentMember);
 		return ResponseEntity.ok(currentMember);
