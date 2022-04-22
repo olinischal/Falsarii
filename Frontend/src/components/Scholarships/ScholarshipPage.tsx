@@ -6,11 +6,11 @@ import { CSSProperties } from "react";
 import navbar from "../navbar";
 
 const ScholarshipPage  = () => {
-
+/*once the information gets submitted for the scholarships delete the added placeholder info*/
     const [scholarship, setScholarship] = useState<ScholarshipData>({
-        scholarshipName: " ",
-        description: " ",
-        deadline: "",
+        scholarshipName: "Uncle Timmy Memorial Scholarship ",
+        description: "The description of why Uncle Timmy was the best and how he gave so much to the school goes here ",
+        deadline: "05/20/9999",
         status: false,
       });
 
@@ -23,22 +23,10 @@ const ScholarshipPage  = () => {
                 <div className="card mb-4">
                     <a href="#!"><img className="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
                     <div className="card-body">
-                        <div className="small text-muted">Date of last years winner</div>
-                        <h2 className="card-title">Scholarship Name</h2>
-                        <p className="card-text">Description of the scholarship goes here</p>
+                        <div className="small text-muted"> {scholarship.deadline} </div>
+                        <h2 className="card-title">{scholarship.scholarshipName}</h2>
+                        <p className="card-text">{scholarship.description}</p>
                         <a className="btn btn-primary" href="#!">Donate</a>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-lg-6">
-                        <div className="card mb-4">
-                            <div className="card-body">
-                                <div className="small text-muted">January 1, 2022</div>
-                                <h2 className="card-title h4">Contributors</h2>
-                                <p className="card-text">List of people who have donated to the scholarship</p>
-                                <a className="btn btn-primary" href="#!">Donate</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
