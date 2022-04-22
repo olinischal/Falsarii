@@ -124,6 +124,51 @@ public class UserController {
 		}
 	}
 	
+	//For admin
+	//Get list of all donations for a particular event
+	@GetMapping("/event/get-all-donations")
+	public List<List> getAllDonationForEvent(@RequestParam Long eventId){
+		try {
+			return userService.getAllDonationForEvent(eventId);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	//Get list of all donation to all events by a person
+	@GetMapping("/event/get-all-donations-by-person")
+	public List<List> getAllDonationForEventByPerson(@RequestParam Long userId){
+		try {
+			return userService.getAllDonationForEventByPerson(userId);
+			
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	//For admin
+	//Get list of all donations for a particular scholarship
+	@GetMapping("/scholarship/get-all-donations")
+	public List<List> getAllDonationForScholarship(@RequestParam Long scholarshipId){
+		try {
+			return userService.getAllDonationForScholarship(scholarshipId);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	//For admin and user
+	//Get list of all donation to all scholarships by a person
+	@GetMapping("/event/get-all-donations-by-person")
+	public List<List> getAllDonationForScholarshipByPerson(@RequestParam Long userId){
+		try {
+			return userService.getAllDonationForScholarshipByPerson(userId);
+			
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 	
 }
 

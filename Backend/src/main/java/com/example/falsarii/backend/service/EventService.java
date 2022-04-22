@@ -60,5 +60,10 @@ public class EventService {
 			System.out.println(e.toString() + "error in saving even");
 		}
 	}
+	
+	public void changeEventStatus(Long eventId, boolean status) {
+		eventRepository.setStatus(eventId, status);
+		
+	}
 
 }

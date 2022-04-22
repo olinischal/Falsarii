@@ -21,6 +21,10 @@ public class ScholarshipService {
 		return scholarshipRepository.findAll();
 	}
 	
+	public Scholarships getScholarship(Long scholarshipId) {
+		return scholarshipRepository.findByScholarshipId(scholarshipId);
+	}
+	
 	//Create scholarship
 	public void createScholarship(Scholarships scholarship) {
 		try {

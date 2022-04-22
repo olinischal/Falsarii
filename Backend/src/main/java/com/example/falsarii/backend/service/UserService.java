@@ -2,6 +2,7 @@ package com.example.falsarii.backend.service;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -215,7 +216,79 @@ public class UserService {
 		}
 	}
 	
+	//For users and admin
+	//List of donations made to a all event by a particular person
+	public List<List> getAllDonationForEventByPerson(Long userId){
+		try {
+			List<String> list = donateToEventsRepository.getAllDonationForEventByPerson(userId);
+			List<List> donationForEventByPerson = new ArrayList<>();
+		
+			for(String data: list) {
+		
+				List<String> tempList = Arrays.asList(data.split(","));
+				donationForEventByPerson.add(tempList);
+			}	
+			
+			return donationForEventByPerson;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	//For admin
+	//List of all donations made to a particular event
+	public List<List> getAllDonationForEvent(Long eventId) {
+		try {	
+			List<String> list = donateToEventsRepository.getAllDonationForEvent(eventId);
+			List<List> donationForEventData = new ArrayList<>();
+			
+			for(String data: list) {
+				List<String> tempList = Arrays.asList(data.split(","));
+				donationForEventData.add(tempList);
+			}						
+			return donationForEventData;
+			
+		} catch (Exception e) {
+			return null;
+			}
+	}
+	
+	//For user and admin
+	//List of donations made to a all event by a particular person
+	public List<List> getAllDonationForScholarshipByPerson(Long userId){
+		try {
+			List<String> list = donateToScholarshipsRepository.getAllDonationForScholarshipByPerson(userId);
+			List<List> donationForScholarshipByPerson = new ArrayList<>();
+		
+			for(String data: list) {
+				List<String> tempList = Arrays.asList(data.split(","));
+				donationForScholarshipByPerson.add(tempList);
+			}	
+			
+			return donationForScholarshipByPerson;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 	
 	
+	//For admin
+	//List of all donations made to a particular scholarship
+	public List<List> getAllDonationForScholarship(Long scholarshipId) {
+		try {	
+			List<String> list = donateToScholarshipsRepository.getAllDonationForScholarship(scholarshipId);
+			List<List> donationForScholarshipData = new ArrayList<>();
+			
+			for(String data: list) {
+				List<String> tempList = Arrays.asList(data.split(","));
+				donationForScholarshipData.add(tempList);
+			}						
+			return donationForScholarshipData;
+			
+		} catch (Exception e) {
+			return null;
+			}
+	}
+
 	
 }

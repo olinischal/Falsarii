@@ -24,7 +24,7 @@ public class DonateToEvents {
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "eventID")
+	@JoinColumn(name = "eventId")
 	private Events event;
 	
 	@Column
@@ -46,6 +46,37 @@ public class DonateToEvents {
 		this.amount = amount;
 	}
 	
-	
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
+	public Events getEvent() {
+		return event;
+	}
+
+	public void setEvent(Events event) {
+		this.event = event;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
 	
 }

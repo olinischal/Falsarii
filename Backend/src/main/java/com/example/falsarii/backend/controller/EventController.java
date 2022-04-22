@@ -44,6 +44,15 @@ public class EventController {
 			System.out.println(e.toString() + "event controller error");
 		}
 	}
-
 	
+	//Change event status
+	@PostMapping("/event/change-status")
+	public void activateScholarship(@RequestParam Long eventId, @RequestParam boolean status) {
+		try {
+			eventService.changeEventStatus(eventId, status);
+		}catch(Exception e)
+		{
+			System.out.println(e.toString() + " scholarship controller activate error");
+		}
+	}
 }
