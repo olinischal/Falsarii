@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -57,6 +58,7 @@ public class MemberController {
 
 	@Autowired
 	RegistrationService registrationService;
+
 	
 	@Autowired
 	AuthenticationManager authenticationManager;
@@ -97,6 +99,7 @@ public class MemberController {
 		
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()) );
+
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		String jwt = jwtUtils.generateJwtToken(authentication);
@@ -105,6 +108,7 @@ public class MemberController {
 		List<String> roles = userDetails.getAuthorities().stream()
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
+
 		System.out.println(userDetails.getId());
 		return ResponseEntity.ok(new JwtResponse(userDetails.getId(),jwt,
 				userDetails.getEmailId(),
@@ -122,6 +126,7 @@ public class MemberController {
 		if(!verifyReCAPTCHA(gRecaptchaResponse)) {
 			return ResponseEntity.ok("Error: Assure that you are human!");
 		}
+
 		
 		
 		if (userRepository.existsByEmailId(signUpRequest.getEmail())) {
@@ -135,6 +140,7 @@ public class MemberController {
 				signUpRequest.getPhoneNumber()
 		);
 		
+
 		try{
 			registrationService.register(signUpRequest);
 
@@ -150,6 +156,7 @@ public class MemberController {
 			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+
 			roles.add(userRole);
 
 		} else {
@@ -176,17 +183,21 @@ public class MemberController {
 				}
 			});
 		}
+
 		user.setRoles(roles);
 		
 		userRepository.save(user);
 		
+
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
+
 
 
 	@GetMapping("/getMember/{id}")
 	public Users getSingleMember(@PathVariable Long id) {
 		return userRepository.findByUserId(id);
+
 	}
 
 	@PutMapping("/update/{id}")
@@ -195,10 +206,12 @@ public class MemberController {
 		currentMember.setFname(member.getFname());
 
 		currentMember.setMaidenName(member.getMaidenName());
+
 		currentMember.setLname(member.getLname());
 		currentMember.setPhoneNum(member.getPhoneNum());
 		currentMember.setEmailId(member.getEmailId());
 		currentMember.setPassword(member.getPassword());
+
 
 		userRepository.save(currentMember);
 		return ResponseEntity.ok(currentMember);

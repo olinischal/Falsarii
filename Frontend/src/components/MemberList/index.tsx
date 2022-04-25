@@ -35,7 +35,7 @@ const MemberList = () => {
     }
   };
   return (
-    <div className="container">
+    <div className="container" style={{paddingTop: "100px"}}>
       <h3>List of Members</h3>
       <div>
         <input

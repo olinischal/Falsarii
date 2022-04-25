@@ -28,6 +28,7 @@ export const Member = {
 	updateMember: (id:number, put: MemberData): Promise<MemberData> =>
 		requests.put(`member/update/${id}`, put),
 	deleteMember: (id: number): Promise<void> => requests.delete(`member/delete/${id}`),
+	searchMember:(keyword:string): Promise<MemberData[]> => requests.get(`member/searchMember/${keyword}`),
 };
 
 // update the event api link
@@ -88,4 +89,17 @@ export const JoinGroup = (email: string, grpName: string) => {
   
   }
 
-  
+  export const sendEmail = (subject:String, text:string, emailList:string[]) =>{
+	return axios.post("http://localhost:8080/sendEmail", {    
+	  subject,
+	  text,
+	  emailList
+	}).then((response)=> {
+	  if(!(String(response.data.message)=== 'email successfully sent')){
+		localStorage.setItem("emailError",(response.data));
+	  }
+	  return response;
+	})
+	
+	;
+  };

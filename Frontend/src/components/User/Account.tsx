@@ -11,7 +11,7 @@ const Account = () => {
   const {userDetail}: any  = useContext(Authenticate);
  
   return (
-    <div className="container">
+    <div className="container" >
       <div className="row">
       <div className="col-xl-3 col-lg-4 col-md-4 col-xs-12">
           {/* <div className="card mb-4 mb-xl-0">

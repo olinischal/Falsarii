@@ -3,8 +3,10 @@ package com.example.falsarii.backend.security.services;
 
 import com.example.falsarii.backend.Email.EmailService.EmailRegisterService;
 import com.example.falsarii.backend.model.ERole;
+
 import com.example.falsarii.backend.model.Users;
 import com.example.falsarii.backend.repository.UserRepository;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,9 +32,7 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
 
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailRegisterService emailService;
-    
-//    @Autowired
-//    MemberRepository memberRepository;
+
     
     @Autowired
     UserRepository userRepository;
@@ -46,6 +46,8 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
         this.emailService = emailService;
     }
 
+
+
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -55,16 +57,19 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
       return MemberDetailsImpl.build(member);
     }
 
+
     public String signUpUser(Users member) {
         boolean userExists = userRepository.findByEmailId(member.getEmailId()).isPresent();
 
         if (userExists) {
 
             Users memberPrevious =  userRepository.findByEmailId(member.getEmailId()).get();
+
             Boolean isEnabled = memberPrevious.getEnabled();
 
             if (!isEnabled) {
                 //       String token = UUID.randomUUID().toString();
+
                 String token = String.valueOf(new Users(
                 		member.getEmailId(),
                         member.getFname(),
@@ -72,22 +77,28 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
                         member.getPassword(),
                         member.getPhoneNum()));
 
+
                 //A method to save user and token in this class
                 saveConfirmationToken(memberPrevious, token);
 
                 return token;
 
             }
+
             throw new IllegalStateException(String.format("User with email %s already exists!", member.getEmailId()));
+
         }
 
 
 
         //Saving the user after encoding the password
+
         userRepository.save(member);
+
 
         //Creating a token from UUID
 //       String token = UUID.randomUUID().toString();
+
 
         String token = String.valueOf(new Users(
         		member.getEmailId(),
@@ -99,10 +110,13 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
 
 
 
+
         //Getting the confirmation token and then saving it
         saveConfirmationToken(member, token);
+
         
         System.out.println("THis is token :" + token);
+
 
         //Returning token
         return token;
@@ -112,6 +126,7 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
         ConfirmationToken confirmationToken = new ConfirmationToken(token, LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15),member);
 
+
         confirmationTokenService.saveConfirmationToken(confirmationToken);
 
     }
@@ -120,7 +135,9 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
     @Modifying
     @Query("UPDATE Member a SET a.enabled=true WHERE a.email=?1")
     public boolean existsByEmail(String email) {
+
         return userRepository.existsByEmailId(email);
+
 
     }
     

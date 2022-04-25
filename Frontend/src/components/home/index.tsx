@@ -19,10 +19,9 @@ import Events from "../Events";
 import { useNavigate } from "react-router-dom";
 import * as AuthService from "../../services/authenticate-service";
 import About from "../About";
-//import Team from "../Team/team";
+
 import Contact from "../contact/contact";
-import UpdateEvent from "../Events/UpdateEvent";
-//import TshirtSale from "../TshirtSale/tshirtSale";
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -93,7 +92,7 @@ const Home = () => {
       </Carousel>
       <About />
 
-      <UpdateEvent />
+      <Events />
       <div style={{ textAlign: "center" }}>
         <a href="/events" className="btn btn-warning">
           Click to view all events
@@ -107,11 +106,11 @@ const Home = () => {
         </a>
       </div>
       {/* <Team /> */}
-      {/* <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: "center" }}>
         <a href="/team" className="btn btn-warning">
           Click to view all team members.
         </a>
-      </div> */}
+      </div>
 
       <Contact/>
 

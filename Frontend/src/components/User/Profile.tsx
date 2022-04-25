@@ -50,7 +50,7 @@ const Profile = () => {
 
   return (
     <>
-      <div className="row">
+      <div className="row" style={{paddingTop : "100px"}}>
         <div className="col-md-4"></div>
         <div className="col-md-8">
           <div className="container-fluid px-4 mt-2">
