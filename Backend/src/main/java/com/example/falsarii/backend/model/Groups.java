@@ -8,6 +8,8 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -18,13 +20,23 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Groups {
 			
 		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long groupId;
+		
 		private String groupName;
 		private String year;
 		private int noOfMembers;
 		
 		@JsonIgnore
 		@ManyToMany(mappedBy = "groups", cascade=CascadeType.ALL)
-		List<Users> users = new ArrayList<>();
+		Set<Users> users = new HashSet<>();
+		
+		public Set<Users> getUsers() {
+			return users;
+		}
+		public void setUsers(Set<Users> users) {
+			this.users = users;
+		}
 		
 		public String getGroupName() {
 			return groupName;
@@ -46,4 +58,3 @@ public class Groups {
 		}
 
 }
-

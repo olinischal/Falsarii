@@ -11,9 +11,6 @@ public class SignupRequest {
 	@Size(min = 2, max = 50)
 	private String firstName;
 
-	@NotBlank
-	@Size(min = 2, max = 50)
-	private String maidenName;
 
 	@NotBlank
 	@Size(min = 2, max = 50)
@@ -28,7 +25,7 @@ public class SignupRequest {
 	private String email;
 
 	@NotBlank
-	@Size(min = 6, max = 40)
+	@Size(min = 6)
 	private String password;
 	
 	private String captchaResponse;
@@ -47,9 +44,7 @@ public class SignupRequest {
 		this.firstName = firstName;
 	}
 
-	public void setMaidenName(String maidenName) {
-		this.maidenName = maidenName;
-	}
+
 
 	public String getLastName() {
 		return lastName;
@@ -95,9 +90,7 @@ public class SignupRequest {
 		this.role = role;
 	}
 
-	public String getMaidenName() {
-		return maidenName;
-	}
+
 
 //	public String getGraduationDate() {
 //		return graduationDate;

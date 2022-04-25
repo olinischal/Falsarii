@@ -13,6 +13,8 @@ body{margin-top:20px;
     }
     .card .card-header {
         font-weight: 500;
+        
+
     }
     .card-header:first-child {
         border-radius: 0.35rem 0.35rem 0 0;

@@ -6,7 +6,9 @@ import { Button, Form, Container } from "react-bootstrap";
 
 import "./index.css";
 import { signIn } from "../../services/authenticate-service";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
+import Authenticate from "../../Context/Authenticate";
 
 interface loginProps {
   email: string;
@@ -20,24 +22,41 @@ const initialValues = {
 const Login = () => {
   const navigate = useNavigate();
   const [errorString, setErrorString] = useState("");
+  const {setAuth}: any  = useContext(Authenticate);
+   
 
   const submitForm = (values: loginProps) => {
     try {
-      signIn(values.email, values.password).then(() => {
+      
+      signIn(values.email, values.password).then((res) => {
+        
+       
         if (localStorage.getItem("badCredential")) {
           setErrorString("Bad Credentials! Please try again!");
           console.log(errorString);
         } else if (localStorage.getItem("otherError")) {
           setErrorString("Some Error Occured! Please try again!");
         } else {
+         // window.location.reload();
           navigate("/profile/user");
-          window.location.reload();
+          
         }
+        console.log(res);
+        setAuth({res});
+        
       });
+      
+
     } catch (error) {
+      
       console.log(error);
     }
+    
+
+    
   };
+
+ 
 
   return (
     <>

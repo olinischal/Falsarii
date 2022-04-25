@@ -1,18 +1,17 @@
 import { Formik } from "formik";
 import { useState } from "react";
 import { Button, Modal, Stack, Form, Container } from "react-bootstrap";
+import { EventRequests } from "../../services/api";
 import EventData from "../../types/Event";
 import UpdateEvent from "./UpdateEvent";
 
-interface eventProps {
-  title: string;
-  address: string;
-  date: string;
-}
+
 const initialValues = {
-  title: "",
-  address: "",
+  eventName: "",
   date: "",
+  description: "",
+  entranceFee: 0.0,
+  status: false
 };
 
 const Events = () => {
@@ -21,27 +20,30 @@ const Events = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  //remove later
+ 
   const [events, setEvents] = useState<EventData>({
-    title: " ",
-    address: " ",
-    date: " ",
-    description: " ",
-    deadline: " ",
-    anonymity: false,
-    amount: 0.0,
+    eventName: "",
+    date: "",
+    description: "",
+    entranceFee: 0.0,
+    status: false
   });
 
-  const submitForm = (values: eventProps) => {
-    console.log(values);
-    setEvents({ ...events, title: values.title });
-    setEvents({ ...events, address: values.address });
-    setEvents({ ...events, date: values.date });
+  const submitForm = () => {
+    
     setShow(false);
+    EventRequests.createEvent(events) .catch((error) => {
+      console.log("Request cannot be completed.", error);
+    });
+    
+    window.location.reload();
+
+    
   };
 
   return (
     <>
+    
       <div style={{ position: "relative", top: "10px", left: "10px" }}>
         <Button variant="secondary" size="lg" onClick={handleShow}>
           + Create New Event
@@ -56,12 +58,12 @@ const Events = () => {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>New Event</Modal.Title>
+            <Modal.Title>Create Event</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Formik initialValues={initialValues} onSubmit={submitForm}>
               {(formik) => {
-                const { values, handleChange, handleBlur, handleSubmit } =
+                const { handleBlur, handleSubmit } =
                   formik;
                 return (
                   <Container
@@ -72,7 +74,7 @@ const Events = () => {
                       <Form.Group className="mb-3">
                         <Form.Control
                           className={
-                            formik.errors.title && formik.touched.title
+                            formik.errors.eventName && formik.touched.eventName
                               ? "errorOccured"
                               : "noError"
                           }
@@ -81,18 +83,23 @@ const Events = () => {
                             color: "#ffc40c",
                           }}
                           type="text"
-                          name="title"
-                          id="title"
+                          name="name"
+                          id="name"
                           placeholder="Event Title"
-                          value={values.title}
-                          onChange={handleChange}
+                          value={events.eventName}
+                          onChange={(e) =>
+                            setEvents({
+                              ...events,
+                              eventName: e.target.value,
+                            })
+                          }
                           onBlur={handleBlur}
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
                         <Form.Control
                           className={
-                            formik.errors.address && formik.touched.address
+                            formik.errors.description && formik.touched.description
                               ? "errorOccured"
                               : "noError"
                           }
@@ -101,11 +108,16 @@ const Events = () => {
                             color: "#ffc40c",
                           }}
                           type="text"
-                          name="address"
-                          id="address"
-                          placeholder="address"
-                          value={values.address}
-                          onChange={handleChange}
+                          name="description"
+                          id="description"
+                          placeholder="description"
+                          value={events.description}
+                          onChange={(e) =>
+                            setEvents({
+                              ...events,
+                              description: e.target.value,
+                            })
+                          }
                           onBlur={handleBlur}
                         />
                       </Form.Group>
@@ -124,8 +136,13 @@ const Events = () => {
                           name="date"
                           id="date"
                           placeholder="Event Date"
-                          value={values.date}
-                          onChange={handleChange}
+                          value={events.date}
+                          onChange={(e) =>
+                            setEvents({
+                              ...events,
+                              date: e.target.value,
+                            })
+                          }
                           onBlur={handleBlur}
                         />
                       </Form.Group>
@@ -145,58 +162,9 @@ const Events = () => {
           </Modal.Footer>
         </Modal>
       </>
-      <UpdateEvent events={events} />
+      <UpdateEvent />
 
-      {/* <section className="py-5">
-                <div className="container px-5 my-5">
-                    <div className="row gx-5 justify-content-center">
-                        <div className="col-lg-8 col-xl-6">
-                            <div className="text-center">
-                                <h2 className="fw-bolder">All Events</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <UpdateEvent events ={events} />
-                    <div className="row gx-5">
-                        <div className="col-lg-4 mb-5">
-                            <div className="card h-100 shadow border-0">
-                                <img className="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
-                                <div className="card-body p-4">
-
-                                    <a className="text-decoration-none link-dark stretched-link" href="#!"><h5 className="card-title mb-3">Football</h5></a>
-                                    <p className="card-text mb-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div className="col-lg-4 mb-5">
-                            <div className="card h-100 shadow border-0">
-                                <img className="card-img-top" src="https://dummyimage.com/600x350/adb5bd/495057" alt="..." />
-                                <div className="card-body p-4">
-
-                                    <a className="text-decoration-none link-dark stretched-link" href="#!"><h5 className="card-title mb-3">Basketball</h5></a>
-                                    <p className="card-text mb-0">This text is a bit longer to illustrate the adaptive height of each card. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div className="col-lg-4 mb-5">
-                            <div className="card h-100 shadow border-0">
-                                <img className="card-img-top" src="https://dummyimage.com/600x350/6c757d/343a40" alt="..." />
-                                <div className="card-body p-4">
-                                    <a className="text-decoration-none link-dark stretched-link" href="#!"><h5 className="card-title mb-3">Class of 2014 Reunion</h5></a>
-                                    <p className="card-text mb-0">Some more quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </section>
-        
-         */}
+    
     </>
   );
 };

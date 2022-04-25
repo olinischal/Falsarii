@@ -4,6 +4,7 @@ import { Button, Modal, Stack, Form, Container } from "react-bootstrap";
 import UpdateScholarships from "./UpdateScholarships";
 import { ScholarshipRequests } from "../../services/api";
 import ScholarshipData from "../../types/Scholarship";
+import './Scholarship.css';
 
 
 const initialValues = {
@@ -52,7 +53,7 @@ const Scholarships = () => {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>New Event</Modal.Title>
+            <Modal.Title>Create Scholarship</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Formik initialValues={initialValues} onSubmit={submitForm}>
@@ -65,6 +66,7 @@ const Scholarships = () => {
                   >
                     <Form id="submitForm" onSubmit={handleSubmit}>
                       <Form.Group className="mb-3">
+                      <label className="feedback-subtitle"> Scholarship Name</label>
                         <Form.Control
                           className={
                             formik.errors.name && formik.touched.name
@@ -75,6 +77,7 @@ const Scholarships = () => {
                             backgroundColor: "#353839",
                             color: "#ffc40c",
                           }}
+                         
                           type="text"
                           name="name"
                           id="name"
@@ -90,6 +93,7 @@ const Scholarships = () => {
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
+                      <label className="feedback-subtitle"> Scholarship Description</label>
                         <Form.Control
                           className={
                             formik.errors.description &&
@@ -116,6 +120,7 @@ const Scholarships = () => {
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
+                      <label className="feedback-subtitle"> Scholarship Deadline</label>
                         <Form.Control
                           className={
                             formik.errors.deadline && formik.touched.deadline
@@ -126,6 +131,7 @@ const Scholarships = () => {
                             backgroundColor: "#353839",
                             color: "#ffc40c",
                           }}
+                          
                           type="date"
                           name="deadline"
                           id="deadline"

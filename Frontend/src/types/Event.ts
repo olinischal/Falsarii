@@ -1,10 +1,8 @@
 export default interface EventData {
-    id? : any |null,
-    title: string,
-    address: string,
-    date: string,
+    eventId? : any |null,
+    eventName: string,
     description: string,
-    deadline: string,
-    anonymity: boolean,
-    amount: number
+    date: string,
+    entranceFee: number,
+    status: boolean
 }

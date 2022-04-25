@@ -4,18 +4,24 @@ package com.example.falsarii.backend.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Scholarships {
 
-
-
-	//Instance variables
+	//Instance variables	
 	@Id
-
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long scholarshipId;
+	
 	private String scholarshipName;
 	private String description;
 	private String deadline;
@@ -37,6 +43,7 @@ public class Scholarships {
 		this.status = status;
 	} 
 	
+	//Relation between Users and donateToScholarships i.e. One to Many
 	@JsonIgnore
 	@OneToMany(mappedBy = "scholarship",
 			cascade=CascadeType.ALL)
@@ -51,8 +58,6 @@ public class Scholarships {
 	public void setDonateToScholarships(Set<DonateToScholarships> donateToScholarships) {
 		this.donateToScholarships = donateToScholarships;
 	}
-
-
 	
 	public String getScholarshipName() {
 		return scholarshipName;
@@ -70,7 +75,6 @@ public class Scholarships {
 		this.description = description;
 	}
 
-
 	public String getDeadline() {
 		return deadline;
 	}
@@ -86,5 +90,7 @@ public class Scholarships {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	
+	public Long getScholarshipId() {
+		return scholarshipId;
+	}
 }

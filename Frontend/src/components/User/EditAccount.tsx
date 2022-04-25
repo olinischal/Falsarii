@@ -1,56 +1,66 @@
 import MemberData from "../../types/Member";
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { useNavigate } from "react-router";
 import { Member } from "../../services/api";
+import GroupList from "../Group/GroupList";
+import Authenticate from "../../Context/Authenticate";
+import EditNAFA from "./EditNAFA";
 
-interface userDetails {
-  user: MemberData;
-}
 
-const EditAccount: React.FC<userDetails> = ({ user }) => {
+
+const EditAccount = () => {
     const [users, setUsers] = useState<MemberData>({
-        firstName: " ",
-        maidenName: " ",
-        lastName: " ",
-        email: " ",
-        graduationDate: " ",
-        phoneNumber: " ",
-        password: " ",
-        address: " ",
+      userId: " ",
+      emailId: " ",
+      fname: " ",
+      middleName: " ",
+      lname: " ",
+      graduationDate: " ",
+      password: " ",
+      streetAddress: " ",
+      city: " ",
+      zipCode: " ",
+      phoneNum: " ",
       });
 
-      const [fullAdress, setFullAddress] = useState({
-        streetAddress: " ",
-        city: " ",
-        postalCode: " "
-      })
+      const {userDetail}: any  = useContext(Authenticate);
+      
+      const {setSubmit} : any = useContext(Authenticate);
 
+    
+      
       const navigate = useNavigate();
       // let city = " ";
       // let postalCode= " ";
       const saveclients = (e) => {
         e.preventDefault();
-        setUsers({ ...users, address: `${users.address}, ${fullAdress.city}, ${fullAdress.postalCode}` })
-        Member.updateMember(parseInt(users.id), users)
+        // setUsers({ ...users, address: `${users.address}, ${fullAdress.city}, ${fullAdress.postalCode}` })
+        Member.updateMember(parseInt(users.userId), users)
           .then(() => {
+            setSubmit(true);
             navigate('/profile/user');
-            
-            window.location.reload();
+            //uncomment this section once submit button is settled
+           // window.location.reload();
           })
           .catch((error) => {
             console.log("Something went wrong here.", error);
           });
+          
+
+
       };
 
       useEffect(() => {
-        Member.getAMember(parseInt(user.id))
-          .then((response) => {
-            setUsers(response);
-          })
-          .catch((error) => {
-            console.log("Something went wrong here.", error);
-          });
+        try{
+          setUsers(userDetail);
+
+        } catch(error){
+          console.log(error);
+        }
+            
+         
       }, []);
+      
       
 
   return (
@@ -91,8 +101,8 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       className="form-control"
                       id="firstName"
                       type="text"
-                      value={users.firstName}
-                      onChange={(e) => setUsers({ ...users, firstName: e.target.value })}
+                      value={users.fname}
+                      onChange={(e) => setUsers({ ...users, fname: e.target.value })}
                     />
                   </div>
 
@@ -104,8 +114,8 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       className="form-control"
                       id="inputLastName"
                       type="text"
-                      value={users.lastName}
-                      onChange={(e) => setUsers({ ...users, lastName: e.target.value })}
+                      value={users.lname}
+                      onChange={(e) => setUsers({ ...users, lname: e.target.value })}
                     />
                   </div>
                 </div>
@@ -119,8 +129,8 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       className="form-control"
                       id="inputOrgName"
                       type="text"
-                      value={users.email}
-                      onChange={(e) => setUsers({ ...users, email: e.target.value })}
+                      value={users.emailId}
+                      onChange={(e) => setUsers({ ...users, emailId: e.target.value })}
                     />
                   </div>
 
@@ -132,9 +142,9 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       className="form-control"
                       id="inputLocation"
                       type="text"
-                      value={users.phoneNumber}
+                      value={users.phoneNum}
                       
-                      onChange={(e) => setUsers({ ...users, phoneNumber: e.target.value })}
+                      onChange={(e) => setUsers({ ...users, phoneNum: e.target.value })}
                     />
                   </div>
                 </div>
@@ -158,8 +168,8 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                     className="form-control"
                     id="inputAddress"
                     type="text"
-                    value={users.address}
-                    onChange={(e) => setUsers({ ...users, address: e.target.value })}
+                    value={users.streetAddress}
+                    onChange={(e) => setUsers({ ...users, streetAddress: e.target.value })}
                   />
                 </div>
 
@@ -172,8 +182,9 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       className="form-control"
                       id="inputPhone"
                       type="tel"
-                      value={fullAdress.city}
-                      onChange={(e) => setFullAddress({ ...fullAdress, city: e.target.value })}
+                      placeholder="Input City"
+                      // value={fullAdress.city}
+                      // onChange={(e) => setFullAddress({ ...fullAdress, city: e.target.value })}
                     />
                   </div>
 
@@ -186,11 +197,23 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
                       id="inputBirthday"
                       type="text"
                       name="birthday"
-                      value={fullAdress.postalCode}
-                      onChange={(e) => setFullAddress({ ...fullAdress, postalCode: e.target.value })}
+                      placeholder="Input Postal code"
+                      // value={fullAdress.postalCode}
+                      // onChange={(e) => setFullAddress({ ...fullAdress, postalCode: e.target.value })}
                     />
                   </div>
                 </div>
+                <div className="row gx-3 mb-3">
+                  <div className="col-md-6">
+                  <label className="small mb-1" placeholder="inputBirthday">
+                      Group
+                    </label>
+
+                   <GroupList />
+                  </div>
+                  </div>
+
+                  
 
                 <button className="btn btn-primary" type="button" onClick={(e) => saveclients(e)}>
                   Save changes

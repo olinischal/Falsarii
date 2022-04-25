@@ -6,17 +6,14 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.falsarii.backend.model.Users;
 import com.example.falsarii.backend.service.UserService;
 
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@RequestMapping("/member")
 public class UserController {
 	
 	//Service injection
@@ -41,7 +38,7 @@ public class UserController {
 		
 	//User joins a group
 	@PostMapping("/user/joinGroup")
-	public void joinGroup(@RequestParam String emailId, String groupName) {
+	public void joinGroup(@RequestParam String emailId, @RequestParam String groupName) {
 		try {
 			userService.joinGroup(emailId, groupName);
 		}catch(Exception e) {

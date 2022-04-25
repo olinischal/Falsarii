@@ -1,6 +1,5 @@
 package com.example.falsarii.backend.model;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class DonateToEvents {
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

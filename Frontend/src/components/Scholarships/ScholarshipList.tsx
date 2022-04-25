@@ -5,13 +5,13 @@ interface scholarshipDetails {
     scholarship: ScholarshipData ;
     key: any;
     
-}
+} 
 
-const ScholarshipList: React.FC<scholarshipDetails> = ({scholarship, key}) => {
+const ScholarshipList: React.FC<scholarshipDetails> = ({scholarship}) => {
     return (
         <>
         
-              <div className="col-lg-4 mb-5" key={key}>
+              <div className="col-lg-4 mb-5" key={scholarship.scholarshipId}>
                   <div className="card h-100 shadow border-0">
                     <Link
                       to={`s/page/${scholarship.scholarshipName}`}

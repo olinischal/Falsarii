@@ -1,6 +1,5 @@
 package com.example.falsarii.backend.security;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +19,6 @@ import org.springframework.web.client.RestTemplate;
 import com.example.falsarii.backend.security.jwt.AuthEntryPointJwt;
 import com.example.falsarii.backend.security.jwt.AuthTokenFilter;
 import com.example.falsarii.backend.security.services.MemberDetailsServiceImpl;
-
 
 
 @Configuration
@@ -61,9 +59,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
-
+  
+  
   @Override
-  protected void configure(HttpSecurity http) throws Exception {
+  protected void configure(HttpSecurity http) throws Exception {;
 	  
 	  http.sessionManagement()
       .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
@@ -73,8 +72,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
       .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
       .authorizeRequests().antMatchers("/member/**").permitAll()
+      .antMatchers("/sendEmail").permitAll()
+      .antMatchers("/sendBulkEmail/**").permitAll()
       .antMatchers("/member/test/**").permitAll()
-
       .antMatchers("/payment/charge/**").permitAll()
 
       .anyRequest().authenticated();
