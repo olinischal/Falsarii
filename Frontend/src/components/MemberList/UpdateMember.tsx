@@ -6,14 +6,16 @@ import MemberData from "../../types/Member";
 
 const UpdateMember = () => {
   const [users, setUsers] = useState<MemberData>({
-    firstName: " ",
-    maidenName: " ",
-    lastName: " ",
-    email: " ",
+    fname: " ",
+    middleName: " ",
+    lname: " ",
+    emailId: " ",
     graduationDate: " ",
-    phoneNumber: " ",
+    phoneNum: " ",
     password: " ",
-    address: " ",
+    streetAddress: " ",
+    city: " ",
+    zipCode: " ",
   });
 
 
@@ -54,9 +56,9 @@ const UpdateMember = () => {
             type="text"
             className="form-control col-4"
             id="firstName"
-            value={users.firstName}
-            onChange={(e) => setUsers({ ...users, firstName: e.target.value })}
-            placeholder={users.firstName}
+            value={users.fname}
+            onChange={(e) => setUsers({ ...users, fname: e.target.value })}
+            placeholder={users.fname}
           />
         </div>
         <div className="form-group">
@@ -64,9 +66,9 @@ const UpdateMember = () => {
             type="text"
             className="form-control col-4"
             id="maidenName"
-            value={users.maidenName}
-            onChange={(e) => setUsers({ ...users, maidenName: e.target.value })}
-            placeholder={users.maidenName}
+            value={users.middleName}
+            onChange={(e) => setUsers({ ...users, middleName: e.target.value })}
+            placeholder={users.middleName}
           />
         </div>
         <div className="form-group">
@@ -74,9 +76,9 @@ const UpdateMember = () => {
             type="text"
             className="form-control col-4"
             id="lastName"
-            value={users.lastName}
-            onChange={(e) => setUsers({ ...users, lastName: e.target.value })}
-            placeholder={users.lastName}
+            value={users.lname}
+            onChange={(e) => setUsers({ ...users, lname: e.target.value })}
+            placeholder={users.lname}
           />
         </div>
         <div className="form-group">
@@ -84,11 +86,11 @@ const UpdateMember = () => {
             type="text"
             className="form-control col-4"
             id="location"
-            value={users.phoneNumber}
+            value={users.phoneNum}
             onChange={(e) =>
-              setUsers({ ...users, phoneNumber: e.target.value })
+              setUsers({ ...users, phoneNum: e.target.value })
             }
-            placeholder={users.phoneNumber}
+            placeholder={users.phoneNum}
           />
         </div>
 
@@ -108,11 +110,11 @@ const UpdateMember = () => {
             type="text"
             className="form-control col-4"
             id="location"
-            value={users.email}
+            value={users.emailId}
             onChange={(e) =>
-              setUsers({ ...users, email: e.target.value })
+              setUsers({ ...users, emailId: e.target.value })
             }
-            placeholder={users.email}
+            placeholder={users.emailId}
           />
         </div>
 

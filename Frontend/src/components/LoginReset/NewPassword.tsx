@@ -11,14 +11,16 @@ const NewPassword = () => {
     let { id } = useParams();
 
     const [users, setUsers] = useState<MemberData>({
-        firstName: " ",
-        maidenName: " ",
-        lastName: " ",
-        email: " ",
+        fname: " ",
+        middleName: " ",
+        lname: " ",
+        emailId: " ",
         graduationDate: " ",
-        phoneNumber: " ",
+        phoneNum: " ",
         password: " ",
-        address: " ",
+        streetAddress: " ",
+        city: " ",
+        zipCode: " "
       });
     const saveclients = (e) => {
         e.preventDefault();

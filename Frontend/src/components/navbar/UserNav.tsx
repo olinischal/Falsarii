@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Navbar, Nav, Container, Image, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 import * as AuthService from "../../services/authenticate-service";
-import UseAuth from "../Authenticate/useAuth";
+
+import Authenticate from "../../Context/Authenticate";
 
 const UserNav = () => {
   const navigate = useNavigate();
-  const { setAuth }: any = UseAuth();
+  const {setAuth}: any  = useContext(Authenticate);
 
-  const logOut = async () => {
+  const logOut= () => {
     AuthService.logout();
     setAuth({});
     navigate("/login");
@@ -42,7 +43,7 @@ const UserNav = () => {
             title="Donate"
             menuVariant="dark"
           >
-            <NavDropdown.Item href="/events">Donate</NavDropdown.Item>
+            
             <NavDropdown.Item href="/scholarshipList">
               Scholarships
             </NavDropdown.Item>

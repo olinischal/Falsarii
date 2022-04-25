@@ -40,7 +40,7 @@ public class UserService {
 	//Users add themselves to a group
 	public void joinGroup(String emailId, String groupName) {
 		try {
-			Users user = userRepository.findByEmailId(emailId);
+			Users user = userRepository.findByEmailId(emailId).get();
 			Groups group = groupRepository.findbyGroupName(groupName);
 			user.getGroups().add(group);
 			
@@ -70,7 +70,7 @@ public class UserService {
 	//Donate to scholarship
 	public void donatetoScholarship(String emailId, String scholarshipName, String date, double amount, boolean anonymity) {
 		//Get user and scholarship objects
-		Users user = userRepository.findByEmailId(emailId);
+		Users user = userRepository.findByEmailId(emailId).get();
 		Scholarships scholarship = scholarshipRepository.findByScholarshipName(scholarshipName);
 		
 		//Save the objects in donate to scholarship
@@ -85,7 +85,7 @@ public class UserService {
 	
 	//Test
 	public List<String> test(String emailId) {
-		Users user = userRepository.findByEmailId(emailId);
+		Users user = userRepository.findByEmailId(emailId).get();
 		Set<DonateToScholarships> s = user.getDonateToScholarships();
 		System.out.println("Set size: " + s.size());
 		List<String> list = new ArrayList<>();

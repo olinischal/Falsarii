@@ -35,7 +35,7 @@ const Events = () => {
     EventRequests.createEvent(events) .catch((error) => {
       console.log("Request cannot be completed.", error);
     });
-    setShow(false);
+    
     window.location.reload();
 
     
@@ -43,7 +43,7 @@ const Events = () => {
 
   return (
     <>
-    {/* Uncomment this section once the event API is updated in backend */}
+    
       <div style={{ position: "relative", top: "10px", left: "10px" }}>
         <Button variant="secondary" size="lg" onClick={handleShow}>
           + Create New Event

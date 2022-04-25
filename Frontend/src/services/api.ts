@@ -54,7 +54,38 @@ export const GroupRequests = {
 	getGroups: (): Promise<GroupData[]> => requests.get('member/getAllGroups'),
 	createGroup: (post: GroupData): Promise<GroupData> =>
 		requests.post('member/createGroup', post),
+	
 	// updateScholarships: (id:number, put: GroupData): Promise<GroupData> =>
 	// 	requests.put(`update/${id}`, put),
 	// deleteScholarships: (id: number): Promise<void> => requests.delete(`delete/${id}`),
 };
+
+export const JoinGroup = (email: string, grpName: string) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.post(
+	  API_URL + "user/joinGroup", null ,
+	{
+	  params: {
+		emailId: email,
+		groupName: grpName
+	  }
+	});
+  
+  }
+
+  export const GetUserGroup = (email: string) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.get(
+	  API_URL + "user/getGroups",
+	{
+	  params: {
+		emailId: email,
+	
+	  }
+	});
+  
+  }
+
+  

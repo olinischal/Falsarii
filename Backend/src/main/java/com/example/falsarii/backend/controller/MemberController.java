@@ -3,15 +3,16 @@ package com.example.falsarii.backend.controller;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import com.example.falsarii.backend.security.services.RegistrationService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -29,19 +30,22 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import com.amazonaws.services.identitymanagement.model.User;
 import com.example.falsarii.backend.captcha.ReCaptchaResponse;
 import com.example.falsarii.backend.captcha.VerifyCaptcha;
 import com.example.falsarii.backend.model.ERole;
-import com.example.falsarii.backend.model.Member;
 import com.example.falsarii.backend.model.Role;
-import com.example.falsarii.backend.repository.MemberRepository;
+import com.example.falsarii.backend.model.Users;
 import com.example.falsarii.backend.repository.RoleRepository;
+import com.example.falsarii.backend.repository.UserRepository;
 import com.example.falsarii.backend.request.LoginRequest;
 import com.example.falsarii.backend.request.SignupRequest;
 import com.example.falsarii.backend.security.jwt.JwtUtils;
 import com.example.falsarii.backend.security.services.MemberDetailsImpl;
+import com.example.falsarii.backend.security.services.MemberDetailsServiceImpl;
 import com.example.falsarii.payload.response.JwtResponse;
 import com.example.falsarii.payload.response.MessageResponse;
+
 
 
 
@@ -53,6 +57,7 @@ public class MemberController {
 
 	@Autowired
 	RegistrationService registrationService;
+	
 	@Autowired
 	AuthenticationManager authenticationManager;
 
@@ -60,7 +65,7 @@ public class MemberController {
 	private RestTemplate restTemplate;
 
 	@Autowired
-	MemberRepository memberRepository;
+	UserRepository userRepository;
 
 	@Autowired
 	RoleRepository roleRepository;
@@ -70,21 +75,28 @@ public class MemberController {
 
 	@Autowired
 	JwtUtils jwtUtils;
-
-
+	
+	@Autowired
+	MemberDetailsServiceImpl serviceImpl;
 
 	@GetMapping("/getAll")
-	public List<Member> list(){
-		return memberRepository.findAll();
+	public List<Users> list(){
+		return userRepository.findAll();
 	}
-
+	
+	@RequestMapping("/searchMember/{keyword}")
+	public List<Users> list( @PathVariable String keyword){
+		if(keyword.equals("all")) {
+			return userRepository.findAll();
+		}
+		return userRepository.searchMember(keyword);
+	}
 
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
+		
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
-
+				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()) );
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		String jwt = jwtUtils.generateJwtToken(authentication);
@@ -93,10 +105,9 @@ public class MemberController {
 		List<String> roles = userDetails.getAuthorities().stream()
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
-
-		return ResponseEntity.ok(new JwtResponse(jwt,
-				userDetails.getId(),
-				userDetails.getEmail(),
+		System.out.println(userDetails.getId());
+		return ResponseEntity.ok(new JwtResponse(userDetails.getId(),jwt,
+				userDetails.getEmailId(),
 				roles));
 	}
 
@@ -111,26 +122,19 @@ public class MemberController {
 		if(!verifyReCAPTCHA(gRecaptchaResponse)) {
 			return ResponseEntity.ok("Error: Assure that you are human!");
 		}
-		//registrationService.register(signUpRequest);
-
-
-
-		if (memberRepository.existsByEmail(signUpRequest.getEmail())) {
+		
+		
+		if (userRepository.existsByEmailId(signUpRequest.getEmail())) {
 			return ResponseEntity.ok("Error: Email is already taken!");
 		}
-
-
-		// Create new user's account
-		Member member = new Member(signUpRequest.getFirstName(),
-				signUpRequest.getMaidenName(),
+		
+		Users user = new Users(signUpRequest.getEmail(),
+				signUpRequest.getFirstName(),
 				signUpRequest.getLastName(),
-
-				signUpRequest.getPhoneNumber(),
-				signUpRequest.getEmail(),
-
-				encoder.encode(signUpRequest.getPassword())
+				encoder.encode(signUpRequest.getPassword()),
+				signUpRequest.getPhoneNumber()
 		);
-
+		
 		try{
 			registrationService.register(signUpRequest);
 
@@ -146,7 +150,6 @@ public class MemberController {
 			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-
 			roles.add(userRole);
 
 		} else {
@@ -173,33 +176,31 @@ public class MemberController {
 				}
 			});
 		}
-
-		member.setRoles(roles);
-		memberRepository.save(member);
-
+		user.setRoles(roles);
+		
+		userRepository.save(user);
+		
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
 
 
-	@GetMapping("getMember/{id}")
-	public Member getSingleMember(@PathVariable Long id) {
-		return memberRepository.findById(id).get();
+	@GetMapping("/getMember/{id}")
+	public Users getSingleMember(@PathVariable Long id) {
+		return userRepository.findByUserId(id);
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity updateMemberDetails(@PathVariable Long id, @RequestBody Member member) {
-		Member currentMember = memberRepository.findById(id).orElseThrow(RuntimeException::new);
-		currentMember.setFirstName(member.getFirstName());
+	public ResponseEntity updateMemberDetails(@PathVariable Long id, @RequestBody Users member) {
+		Users currentMember = userRepository.findByUserId(id);
+		currentMember.setFname(member.getFname());
 
 		currentMember.setMaidenName(member.getMaidenName());
-		currentMember.setLastName(member.getLastName());
-		currentMember.setPhoneNumber(member.getPhoneNumber());
-		currentMember.setEmail(member.getEmail());
+		currentMember.setLname(member.getLname());
+		currentMember.setPhoneNum(member.getPhoneNum());
+		currentMember.setEmailId(member.getEmailId());
 		currentMember.setPassword(member.getPassword());
-		currentMember.setGraduationDate(member.getGraduationDate());
-		currentMember.setAddress(member.getAddress());
 
-		memberRepository.save(currentMember);
+		userRepository.save(currentMember);
 		return ResponseEntity.ok(currentMember);
 	}
 
@@ -212,7 +213,7 @@ public class MemberController {
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<HttpStatus> deleteMemberEntity(@PathVariable Long id) {
-		memberRepository.deleteById(id);
+		userRepository.deleteById(id);
 		return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
 	}
 

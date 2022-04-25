@@ -26,6 +26,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
   @Autowired
   private MemberDetailsServiceImpl memberDetailsService;
 
+
   private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
   @Override

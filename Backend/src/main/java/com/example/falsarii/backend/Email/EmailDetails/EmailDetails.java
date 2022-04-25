@@ -17,22 +17,13 @@ public class EmailDetails {
 	public String getSubject() {
 		return subject;
 	}
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
 	
 	public String getText() {
 		return text;
 	}
-	public void setText(String text) {
-		this.text = text;
-	}
 	
 	public List<String> getEmailList() {
 		return emailList;
-	}
-	public void setEmailList(List<String> emailList) {
-		this.emailList = emailList;
 	}
 	
 }

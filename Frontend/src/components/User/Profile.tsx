@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getCurrentUser } from "../../services/authenticate-service";
 import MemberData from "../../types/Member";
 import { Member } from "../../services/api";
@@ -9,47 +9,44 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import EditAccount from "./EditAccount";
 import EditNAFA from "./EditNAFA";
 import Security from "./Security";
-import UseAuth from "../Authenticate/useAuth";
+import Authenticate from "../../Context/Authenticate";
+
 
 const Profile = () => {
-  const { auth } : any = UseAuth();
-  const [users, setUsers] = useState<MemberData>({
-    firstName: " ",
-    maidenName: " ",
-    lastName: " ",
-    email: " ",
-    graduationDate: " ",
-    phoneNumber: " ",
-    password: " ",
-    address: " ",
-  });
+
+  // const [users, setUsers] = useState<MemberData>({
+  //   userId: " ",
+  //   emailId: " ",
+  //   fname: " ",
+  //   middleName: " ",
+  //   lname: " ",
+  //   graduationDate: " ",
+  //   password: " ",
+  //   address: " ",
+  //   phoneNum: " ",
+   
+  // });
+  const {setUserDetail}: any  = useContext(Authenticate);
   const [isError, setIsError] = useState<boolean>(false);  
   const currentUser = getCurrentUser();  
-  const id: number = currentUser.id;
-
-  console.log(auth.temp, "userEmail passed to usecontext");
+  const id:number = currentUser.userId;
   
-  
-
   useEffect(() => {
     Member.getAMember(id)
       .then((res) => {
-        setUsers(res);
+        //setUsers(res);
+        setUserDetail(res);
         
       })
       .catch((err) => {
         setIsError(true);
-        console.log("Error");
+        console.log("Error Could not retireve Profile Details");
       });
   }, []);
 
-  // const currentUser = getCurrentUser();
+  
 
-  const userLevel =
-    currentUser.roles &&
-    currentUser.roles.map((role: string, index: number) => (
-      <li key={index}>{role}</li>
-    ));
+  
 
   return (
     <>
@@ -83,9 +80,9 @@ const Profile = () => {
       </div>
 
       <Routes>
-        <Route path="user/" element={<Account user={users} />} />
+        <Route path="user/" element={<Account  />} />
 
-        <Route path="edit_profile/" element={<EditAccount user={users} />} />
+        <Route path="edit_profile/" element={<EditAccount />} />
         <Route path="edit_NAFA_details/" element={<EditNAFA />} />
         <Route path="security/" element={<Security />} />
       </Routes>

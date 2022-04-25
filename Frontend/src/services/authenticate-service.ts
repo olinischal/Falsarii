@@ -1,13 +1,10 @@
 import axios from "axios";
-import UseAuth from "../components/Authenticate/useAuth";
+
 const API_URL = "http://localhost:8080/member/";
 
 export const register = (firstName:string, maidenName:string, lastName:string, phoneNumber:string, email: string,  password: string, captchaResponse:string) => {
   
-// export const register = (firstName:string, lastName:string, phoneNumber:string, email: string, password: string, captchaResponse:string) => {
-  // console.log("this is" + captchaResponse);
 
-  // let userDetail;
   return axios.post(API_URL + "add", {    
     firstName,
     maidenName,
@@ -28,7 +25,7 @@ export const register = (firstName:string, maidenName:string, lastName:string, p
 };
 
 export const signIn = (email: string, password: string) => {
- // const {setAuth }: any = UseAuth();
+
  
 
   return axios
@@ -37,9 +34,7 @@ export const signIn = (email: string, password: string) => {
       password,
     })
     .then((response) => {
-       // const userEmail: any = response.data.email;
-        // const userRole: any = response.data.roles;
-        // setAuth({ userEmail, userRole});
+       
       if (response.data.accessToken) {
         localStorage.removeItem("badCredential");
         localStorage.removeItem("otherError");
@@ -70,8 +65,10 @@ export const signIn = (email: string, password: string) => {
     
     
 };
+
 export const logout = () => {
   localStorage.removeItem("user");
+  localStorage.removeItem("data");
 };
 export const getCurrentUser = () => {
   const userStr = localStorage.getItem("user");

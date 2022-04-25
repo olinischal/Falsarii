@@ -1,6 +1,7 @@
 package com.example.falsarii.backend.Email.EmailController;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.falsarii.backend.Email.EmailDetails.EmailDetails;
 import com.example.falsarii.backend.Email.EmailService.EmailService;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class EmailController {
 
@@ -26,7 +28,7 @@ public class EmailController {
 			emailService.deleteTemplate();
 		}
 		
-		return null;
+		return "email successfully sent";
 	}
 	
 	@PostMapping("/sendBulkEmail")

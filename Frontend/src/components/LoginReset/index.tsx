@@ -25,8 +25,8 @@ const LoginReset = () => {
   const submitForm = (searchTerm) => {
     try {
         members.filter(val => {
-            if(val.email.includes(searchTerm) ){
-                navigate("/newpassword/" + `${val.id}`);
+            if(val.emailId.includes(searchTerm) ){
+                navigate("/newpassword/" + `${val.userId}`);
             }
         })
       } catch (error) {

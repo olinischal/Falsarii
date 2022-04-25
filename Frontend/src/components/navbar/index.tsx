@@ -4,24 +4,19 @@ import { Link } from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
 import './index.css'
 import * as AuthService from "../../services/authenticate-service";
-import UseAuth from "../Authenticate/useAuth";
+
 import UserNav from "./UserNav";
 import AdminNav from "./AdminNav";
 
 
 const NavigationBar = () => {
   const navigate = useNavigate();
-  const { setAuth }: any = UseAuth();
+ 
 
  
   let user = AuthService.getCurrentUser();
   
-  const logOut = async () => {
-    AuthService.logout();
-    setAuth({});
-    navigate('/login');
 
-  };
 
 
   return (

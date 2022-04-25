@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext} from "react";
 import { Navbar, Nav, Container, Image, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 import * as AuthService from "../../services/authenticate-service";
-import UseAuth from "../Authenticate/useAuth";
+
+import Authenticate from "../../Context/Authenticate";
 
 const AdminNav = () => {
   const navigate = useNavigate();
-  const { setAuth }: any = UseAuth();
-
-  const logOut = async () => {
+  const {setAuth}: any = useContext(Authenticate);
+  
+  const logOut = () => {
     AuthService.logout();
     setAuth({});
     navigate("/login");
@@ -29,7 +30,7 @@ const AdminNav = () => {
             menuVariant="dark"
           >
             <NavDropdown.Item href="/events">Create Events</NavDropdown.Item>
-            <NavDropdown.Item href="/calendar">Calendar</NavDropdown.Item>
+            <NavDropdown.Item href="/calendarDisplay">Calendar</NavDropdown.Item>
           </NavDropdown>
         </Nav>
 

@@ -1,5 +1,5 @@
 package com.example.falsarii.backend.security.token;
-import com.example.falsarii.backend.model.Member;
+import com.example.falsarii.backend.model.Users;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -24,13 +24,13 @@ import java.time.LocalDateTime;
 
         @ManyToOne
         @JoinColumn(nullable = false,
-                name = "member_id")
-        private Member member;
+                name = "user_id")
+        private Users member;
 
         public ConfirmationToken() {
         }
 
-        public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, Member member) {
+        public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, Users member) {
             this.token = token;
             this.createdAt = createdAt;
             this.expiresAt = expiresAt;
@@ -77,11 +77,11 @@ import java.time.LocalDateTime;
             this.confirmedAt = confirmedAt;
         }
 
-        public Member getMember() {
+        public Users getMember() {
             return member;
         }
 
-        public void setMember(Member member) {
+        public void setMember(Users member) {
             this.member = member;
         }
     }

@@ -2,7 +2,8 @@ package com.example.falsarii.backend.security.services;
 
 import com.example.falsarii.backend.Email.EmailService.EmailRegisterService;
 import com.example.falsarii.backend.model.ERole;
-import com.example.falsarii.backend.model.Member;
+//import com.example.falsarii.backend.model.Member;
+import com.example.falsarii.backend.model.Users;
 import com.example.falsarii.backend.request.SignupRequest;
 import com.example.falsarii.backend.security.token.ConfirmationToken;
 import com.example.falsarii.backend.security.token.ConfirmationTokenService;
@@ -37,12 +38,12 @@ public class RegistrationService {
     public String register(SignupRequest request) {
 
 
-            String tokenForNewUser = String.valueOf(new Member(request.getFirstName(),
-                    request.getMaidenName(),
+            String tokenForNewUser = String.valueOf(new Users(request.getEmail(),
+                    request.getFirstName(),
                     request.getLastName(),
-                    request.getPhoneNumber(),
-                    request.getEmail(),
-                    request.getPassword()));
+                    request.getPassword(),
+                    request.getPhoneNumber()
+                    ));
 
 
             String link = "http://localhost:8080/member/registration/confirm?token=" + tokenForNewUser;
@@ -59,7 +60,7 @@ public class RegistrationService {
     public String confirmToken(String token) {
         Optional<ConfirmationToken> confirmToken = confirmTokenService.getToken(token);
 
-        if (confirmToken.isEmpty()) {
+        if (confirmToken!=null) {
             throw new IllegalStateException("Token not found!");
         }
 
@@ -74,7 +75,7 @@ public class RegistrationService {
         }
 
         confirmTokenService.setConfirmedAt(token);
-        memberService.existsByEmail(confirmToken.get().getMember().getEmail());
+        memberService.existsByEmail(confirmToken.get().getMember().getEmailId());
 
         //Returning confirmation message if the token matches
         return "Your email is confirmed. Thank you for using our service!";

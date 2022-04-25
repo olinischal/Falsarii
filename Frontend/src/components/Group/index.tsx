@@ -16,7 +16,7 @@ const Groups = () => {
             console.log("Request cannot be completed.", error);
           });
           console.log(group);
-          //window.location.reload();
+          window.location.reload();
 
     };
     return (
@@ -38,7 +38,7 @@ const Groups = () => {
                   Submit
         </button>
 
-        <GroupList />
+        {/* <GroupList /> */}
     
     
     
