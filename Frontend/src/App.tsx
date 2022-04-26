@@ -89,7 +89,7 @@ function App() {
           
           <Route path="/contact" element={<Contact />} />
 
-          <Route path="/s/page" element={<ScholarshipPage />} />
+          <Route path="/scholarshipList/s/page/:id" element={<ScholarshipPage />} />
           <Route path="/payment" element={<Payment />} />
 
         

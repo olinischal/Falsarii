@@ -1,4 +1,6 @@
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Authenticate from "../../Context/Authenticate";
 import ScholarshipData from "../../types/Scholarship";
 
 interface scholarshipDetails {
@@ -8,13 +10,24 @@ interface scholarshipDetails {
 } 
 
 const ScholarshipList: React.FC<scholarshipDetails> = ({scholarship}) => {
+  const {setScholarshipDetail}:any = useContext(Authenticate);
+  
+
+  useEffect(() => {
+    setScholarshipDetail(scholarship);
+
+  }, []);
+
+  
+  
+  
     return (
         <>
         
               <div className="col-lg-4 mb-5" key={scholarship.scholarshipId}>
                   <div className="card h-100 shadow border-0">
                     <Link
-                      to={`s/page/${scholarship.scholarshipName}`}
+                      to={`s/page/${scholarship.scholarshipId}`}
                       className="text-decoration-none link-dark stretched-link"
                     >
                       <img

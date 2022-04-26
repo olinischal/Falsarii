@@ -20,7 +20,7 @@ const UpdateEvent = () => {
 
   return (
     <>
-    <section className="py-5">
+    {/* <section className="py-5">
       <div className="container px-5 my-5">
         <div className="row gx-5 justify-content-center">
           <div className="col-lg-8 col-xl-6">
@@ -41,7 +41,40 @@ const UpdateEvent = () => {
           })}
         </div>
       </div>
+    </section> */}
+    <section id="events" style={{ paddingBottom: "0px" }}>
+        <div className="container px-5 my-5">
+          <div className="row gx-5 justify-content-center">
+            <div className="col-lg-8 col-xl-6">
+              <div className="text-center">
+                <h2 className="fw-bolder">NAFA Events</h2>
+                
+                <hr style={{ maxWidth: "100%" }}></hr>
+                <p style={{ fontSize: "20px" }}>Upcoming Events</p>
+              </div>
+            </div>
+          </div>
+          <div className="events-page">
+            <div className="rows">
+            {event.map((val, key) => {
+            
+            return (
+              <EventList event = {val} key={key} />
+              
+             
+            );
+          })}
+        </div>
+      </div>
+
+
+
+          </div>
     </section>
+
+
+
+
   </>
   );
 };

@@ -34,6 +34,9 @@ export const AuthUser = ({ children,  } : AuthUser) => {
     //while Updating user profile submit state stores the 'submit' event handler
     const [submit, setSubmit] = useState<boolean>(false);
 
+    //Scholarship state of each scholarship
+    const [scholarshipDetail, setScholarshipDetail] = useState({});
+
     
 
     useEffect(() => {
@@ -47,7 +50,8 @@ export const AuthUser = ({ children,  } : AuthUser) => {
     
 
     return (
-        <Authenticate.Provider value={{ auth, setAuth, userDetail, setUserDetail, submit, setSubmit }}>
+        <Authenticate.Provider value={{ auth, setAuth, userDetail, setUserDetail, submit, setSubmit, 
+        scholarshipDetail, setScholarshipDetail }}>
         {children}
     </Authenticate.Provider>
     

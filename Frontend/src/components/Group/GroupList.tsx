@@ -76,7 +76,7 @@ const GroupList  = () => {
     <div>
   
       <label>
-            <select onChange={handleChange}>
+            <select defaultValue={'DEFAULT'} onChange={handleChange}>
             {groups.map((option, key) => (
             <option key ={key} value={option.groupName} >{option.groupName}</option>
           ))}

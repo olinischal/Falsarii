@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
+import Authenticate from "../../Context/Authenticate";
 import { ScholarshipRequests } from "../../services/api";
 import ScholarshipData from "../../types/Scholarship";
 import ScholarshipList from "./ScholarshipList";
@@ -7,11 +8,13 @@ import ScholarshipPage from "./ScholarshipPage";
 
 const UpdateScholarships = () => {
   const [scholarship, setScholarship] = useState<ScholarshipData[]>([]);
+  
 
   useEffect(() => {
     ScholarshipRequests.getScholarships()
       .then((response) => {
-        setScholarship([...response]); 
+        setScholarship([...response]);
+        
       })
       .catch((error) => {
         console.log("Something went wrong here.", error);

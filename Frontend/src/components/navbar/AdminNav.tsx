@@ -21,47 +21,48 @@ const AdminNav = () => {
     <>
       <Nav className="me-auto">
         <Nav.Link as={Link} to="/members">
-          Members
+        <span className="text-warning">Members</span>
+         
         </Nav.Link>
         <Nav>
           <NavDropdown
             id="nav-dropdown-dark-example"
-            title="Events"
+            title={<span className="text-warning">Events</span>}
             menuVariant="dark"
           >
-            <NavDropdown.Item href="/events">Create Events</NavDropdown.Item>
-            <NavDropdown.Item href="/calendarDisplay">Calendar</NavDropdown.Item>
+            <NavDropdown.Item href="/events"><span className="text-warning">Create Events</span></NavDropdown.Item>
+            <NavDropdown.Item href="/calendarDisplay"><span className="text-warning">Calender</span></NavDropdown.Item>
           </NavDropdown>
         </Nav>
 
         <Nav.Link as={Link} to="/about">
-          About
+        <span className="text-warning">About</span>
         </Nav.Link>
         <Nav.Link as={Link} to="/contact">
-          Contact Us
+        <span className="text-warning">Contact Us </span>
         </Nav.Link>
 
         <Nav>
           <NavDropdown
             id="nav-dropdown-dark-example"
-            title="Donate"
+            title={<span className="text-warning">Donate</span>}
             menuVariant="dark"
           >
             
             <NavDropdown.Item href="/scholarships">
-              Create Scholarships
+            <span className="text-warning">Create Scholarship</span>
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>
 
         <Nav.Link as={Link} to="/membership">
-          Membership
+        <span className="text-warning">Membership</span>
         </Nav.Link>
       </Nav>
       {/* // {user ?  */}
       <Nav>
         <Nav.Link as={Link} to="/profile/user">
-          Profile
+        <span className="text-warning">Profile</span>
         </Nav.Link>
 
         <Nav.Link

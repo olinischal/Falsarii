@@ -1,37 +1,16 @@
-import React from "react";
-
-import {
-  Navbar,
-  Nav,
-  Container,
-  Image,
-  NavDropdown,
-  Carousel,
-} from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
-
-import { Link } from "react-router-dom";
 
 import "./index.css";
 import Events from "../Events";
 
-import { useNavigate } from "react-router-dom";
-import * as AuthService from "../../services/authenticate-service";
 import About from "../About";
 
 import Contact from "../contact/contact";
-
+import UpdateEvent from "../Events/UpdateEvent";
 
 const Home = () => {
-  const navigate = useNavigate();
-
-  let user = AuthService.getCurrentUser();
-
-  const logOut = () => {
-    AuthService.logout();
-    navigate("/login");
-  };
   return (
     <>
       <Carousel className="inner" id="home">
@@ -92,7 +71,7 @@ const Home = () => {
       </Carousel>
       <About />
 
-      <Events />
+      <UpdateEvent />
       <div style={{ textAlign: "center" }}>
         <a href="/events" className="btn btn-warning">
           Click to view all events
@@ -112,8 +91,7 @@ const Home = () => {
         </a>
       </div>
 
-      <Contact/>
-
+      <Contact />
     </>
   );
 };

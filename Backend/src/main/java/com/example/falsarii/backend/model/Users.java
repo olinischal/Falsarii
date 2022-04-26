@@ -36,9 +36,9 @@ public class Users {
 	private String maidenName;
 	private String password;
 	private String phoneNum;
-	private String streetAddress;
-	private String city;
-	private String zipCode;
+	private String streetAddress = " ";
+	private String city = " ";
+	private String zipCode = " ";
 	
 	private Boolean enabled;
 	
@@ -55,9 +55,7 @@ public class Users {
 		this.lname = null;
 		this.password = null;
 		this.phoneNum = null;
-		this.streetAddress = " ";
-		this.city = " ";
-		this.zipCode = " ";
+
 	}
 	
 	//Constructor	
