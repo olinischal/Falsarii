@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-import com.example.falsarii.backend.model.Events;
+import com.example.falsarii.backend.request.model.Events;
 import com.example.falsarii.backend.service.EventService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -16,7 +16,6 @@ import com.example.falsarii.backend.service.EventService;
 @RequestMapping("/member")
 public class EventController {
 
-    //Service injection
     @Autowired
     private EventService eventService;
 
@@ -46,5 +45,14 @@ public class EventController {
         }
     }
 
-
+    //Change event status
+    @PostMapping("/event/change-status")
+    public void activateScholarship(@RequestParam Long eventId, @RequestParam boolean status) {
+        try {
+            eventService.changeEventStatus(eventId, status);
+        }catch(Exception e)
+        {
+            System.out.println(e.toString() + " scholarship controller activate error");
+        }
+    }
 }

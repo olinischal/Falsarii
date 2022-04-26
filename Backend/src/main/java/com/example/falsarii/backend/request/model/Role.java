@@ -1,4 +1,4 @@
-package com.example.falsarii.backend.model;
+package com.example.falsarii.backend.request.model;
 
 import javax.persistence.*;
 

@@ -1,5 +1,5 @@
 package com.example.falsarii.backend.repository;
-import com.example.falsarii.backend.model.Member;
+import com.example.falsarii.backend.request.model.Member;
 
 import java.util.Optional;
 

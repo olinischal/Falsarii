@@ -1,4 +1,4 @@
-package com.example.falsarii.backend.model;
+package com.example.falsarii.backend.request.model;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ public class FamilyDetail {
 	private List<Long> childrenEmailId;
 	private List<Long> siblingEmailId;
 	private Long spouseId;
-	
-	
+
+
 	public FamilyDetail() {
 		this.parentEmailId = null;
 		this.childrenEmailId = null;
@@ -21,7 +21,7 @@ public class FamilyDetail {
 
 
 	public FamilyDetail(List<Long> parentEmailId, List<Long> childrenEmailId, List<Long> siblingEmailId,
-			Long spouseId) {
+						Long spouseId) {
 		super();
 		this.parentEmailId = parentEmailId;
 		this.childrenEmailId = childrenEmailId;
@@ -29,7 +29,7 @@ public class FamilyDetail {
 		this.spouseId = spouseId;
 	}
 
-	
+
 	//Getters and setters
 	public List<Long> getParentEmailId() {
 		return parentEmailId;
@@ -55,9 +55,9 @@ public class FamilyDetail {
 	public void setSpouse(Long spouseId) {
 		this.spouseId = spouseId;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }

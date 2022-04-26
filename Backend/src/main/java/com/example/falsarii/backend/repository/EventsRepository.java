@@ -7,11 +7,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.falsarii.backend.model.Events;
+import com.example.falsarii.backend.request.model.Events;
 
 @Repository
 public interface EventsRepository extends JpaRepository<Events, Long>{
-
 
     //Find by email id
     public Events findByEventId(Long eventId);

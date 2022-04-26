@@ -1,6 +1,6 @@
 package com.example.falsarii.backend.security.token;
 
-import com.example.falsarii.backend.model.Users;
+import com.example.falsarii.backend.request.model.Users;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

@@ -3,12 +3,10 @@ package com.example.falsarii.backend.controller;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -31,12 +29,11 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import com.amazonaws.services.identitymanagement.model.User;
 import com.example.falsarii.backend.captcha.ReCaptchaResponse;
 import com.example.falsarii.backend.captcha.VerifyCaptcha;
-import com.example.falsarii.backend.model.ERole;
-import com.example.falsarii.backend.model.Role;
-import com.example.falsarii.backend.model.Users;
+import com.example.falsarii.backend.request.model.ERole;
+import com.example.falsarii.backend.request.model.Role;
+import com.example.falsarii.backend.request.model.Users;
 import com.example.falsarii.backend.repository.RoleRepository;
 import com.example.falsarii.backend.repository.UserRepository;
 import com.example.falsarii.backend.request.LoginRequest;

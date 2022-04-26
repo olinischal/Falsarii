@@ -1,17 +1,16 @@
 package com.example.falsarii.backend.service;
 
-
 import java.util.List;
 
+import com.example.falsarii.backend.request.model.Events;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.falsarii.backend.model.Events;
+
 import com.example.falsarii.backend.repository.EventsRepository;
 
 @Service
 public class EventService {
-
 
     //Repository injection
     @Autowired
@@ -61,6 +60,11 @@ public class EventService {
         catch(Exception e) {
             System.out.println(e.toString() + "error in saving even");
         }
+    }
+
+    public void changeEventStatus(Long eventId, boolean status) {
+        eventRepository.setStatus(eventId, status);
+
     }
 
 }

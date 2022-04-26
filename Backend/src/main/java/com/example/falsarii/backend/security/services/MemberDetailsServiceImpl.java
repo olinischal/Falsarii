@@ -2,16 +2,12 @@ package com.example.falsarii.backend.security.services;
 
 
 import com.example.falsarii.backend.Email.EmailService.EmailRegisterService;
-import com.example.falsarii.backend.model.ERole;
 
-import com.example.falsarii.backend.model.Users;
+import com.example.falsarii.backend.request.model.Users;
 import com.example.falsarii.backend.repository.UserRepository;
 
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 
 import com.example.falsarii.backend.security.token.ConfirmationToken;

@@ -1,7 +1,6 @@
  package com.example.falsarii.backend.security.services;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -11,7 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 
-import com.example.falsarii.backend.model.Users;
+import com.example.falsarii.backend.request.model.Users;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class MemberDetailsImpl implements UserDetails {

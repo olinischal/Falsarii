@@ -5,8 +5,8 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.falsarii.backend.model.ERole;
-import com.example.falsarii.backend.model.Role;
+import com.example.falsarii.backend.request.model.ERole;
+import com.example.falsarii.backend.request.model.Role;
 
 
 

@@ -1,4 +1,4 @@
-package com.example.falsarii.backend.model;
+package com.example.falsarii.backend.request.model;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,18 +15,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Events {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long eventId; 
-	
+	private Long eventId;
+
 	private String eventName;
 	private String description;
 	private String date;
 	private double entranceFee;
 	private boolean status;
-	
-	
+
+
 	//Constructors
 	public Events() {
 		this.eventName = "Dummy name";
@@ -35,7 +34,7 @@ public class Events {
 		this.entranceFee = 0.00;
 		this.status = true;
 	}
-		
+
 	public Events(String eventName, String description, String date, double entranceFee, boolean status) {
 		this.eventName = eventName;
 		this.description = description;
@@ -43,14 +42,14 @@ public class Events {
 		this.entranceFee = entranceFee;
 		this.status = status;
 	}
-	
-	
+
+
 	//Relation between Users and Groups i.e. One to Many
 	@JsonIgnore
 	@OneToMany(mappedBy = "event",
 			cascade = CascadeType.ALL)
 	private Set<DonateToEvents> donateToEvents = new HashSet<>();
-	
+
 	//Sets the donateToEvents set
 	public void setDonateToEvents(Set<DonateToEvents> donateToEvents) {
 		this.donateToEvents = donateToEvents;
@@ -59,17 +58,17 @@ public class Events {
 	public Set<DonateToEvents> getDonateToEvents(){
 		return donateToEvents;
 	}
-	
-	
+
+
 	//Basic setters and getters
 	public String getEventName() {
 		return eventName;
 	}
-	
+
 	public void setEventName(String eventName) {
-			this.eventName = eventName;
+		this.eventName = eventName;
 	}
-	
+
 	public String getDescription() {
 		return description;
 	}
@@ -87,7 +86,7 @@ public class Events {
 	}
 	public void setEntranceFee(double entranceFee) {
 		this.entranceFee = entranceFee;
-	}	
+	}
 	public boolean getStatus() {
 		return status;
 	}
@@ -97,7 +96,7 @@ public class Events {
 	public Long getEventId() {
 		return eventId;
 	}
-	
-	
-	
+
+
+
 }
