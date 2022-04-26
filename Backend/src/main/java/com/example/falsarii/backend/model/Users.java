@@ -160,7 +160,6 @@ public class Users {
 	}
 	
 	
-	
 	//Relation between users and siblings i.e. self referencing entity
 	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -177,7 +176,7 @@ public class Users {
 	
 	
 	
-	//Relation between user and spouse i.e. selft referencing entity
+	//Relation between user and spouse i.e. self referencing entity
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private Users spouse;
@@ -190,6 +189,24 @@ public class Users {
 	public Users getSpouse() {
 		return spouse;
 	}
+	
+	
+	
+	//Relation between user and email i.e. One to many
+	@JsonIgnore
+	@OneToMany(mappedBy = "user",
+			cascade = CascadeType.ALL)
+	private Set<Emails> emails = new HashSet<>();
+	
+	//Sets the set of emails
+	public void setEmail(Set<Emails> emails) {
+		this.emails = emails;
+	}	
+	//Returns the set of emails
+	public Set<Emails> getEmail() {
+		return emails;
+	}
+	
 	
 	
 	//Basic setters and getters

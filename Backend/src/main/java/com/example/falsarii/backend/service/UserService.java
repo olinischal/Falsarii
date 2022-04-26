@@ -1,6 +1,7 @@
 package com.example.falsarii.backend.service;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import com.example.falsarii.backend.Email.EmailDetails.EmailDetails;
 import com.example.falsarii.backend.Email.EmailService.EmailService;
 import com.example.falsarii.backend.model.DonateToEvents;
 import com.example.falsarii.backend.model.DonateToScholarships;
+import com.example.falsarii.backend.model.Emails;
 import com.example.falsarii.backend.model.Events;
 import com.example.falsarii.backend.model.FamilyDetail;
 import com.example.falsarii.backend.model.Groups;
@@ -127,12 +129,14 @@ public class UserService {
 			Users user = userRepository.findByUserId(userId);
 			//List for emails to be sent
 			List<String> tempEmailList = new ArrayList<>();
+			List<Long> tempRecipientIds = new ArrayList<>();
 			
 			//Adding parents to the parents set
 			for(Long parentEmailId: familyDetail.getParentEmailId()) {
 				Users parent = userRepository.findByUserId(parentEmailId);
 				user.getParents().add(parent);
 				tempEmailList.add(parent.getEmailId());
+				tempRecipientIds.add(parentEmailId);
 			}
 			
 			//Adding children to the children set
@@ -140,6 +144,7 @@ public class UserService {
 				Users child = userRepository.findByUserId(childEmailId);
 				user.getChildren().add(child);
 				tempEmailList.add(child.getEmailId());
+				tempRecipientIds.add(childEmailId);
 			}
 			
 			//Adding siblings to the siblings set
@@ -147,29 +152,46 @@ public class UserService {
 				Users sibling = userRepository.findByUserId(siblingEmailId);
 				user.getSiblings().add(sibling);
 				tempEmailList.add(sibling.getEmailId());
+				tempRecipientIds.add(siblingEmailId);
 			}
 			
 			//Adding spouse of the user
 			Users spouse = userRepository.findByUserId(familyDetail.getSpouse());
 			user.setSpouse(spouse);
 			tempEmailList.add(spouse.getEmailId());
+			tempRecipientIds.add(familyDetail.getSpouse());
 
 			userRepository.save(user);
 			
 			//send email to saved members**************************************
 			//Create emailDetail service object
 			EmailDetails emailDetails = new EmailDetails();
-			emailDetails.setSubject("Nafa notice");
-			emailDetails.setText("You were added as a family member by " + user.getEmailId() + ". Contact administrator if the information is incorrect");
+			
+			String subject = "Nafa notice";
+			String text = "You were added as a family member by " + user.getEmailId() + ". Contact administrator if the information is incorrect";
+			
+			emailDetails.setSubject(subject);
+			emailDetails.setText(text);
+			emailDetails.setEmailList(tempEmailList);
+			
 			try {
 				emailService.setEmailDetails(emailDetails);
 				emailService.createTemplate();
 				emailService.sendEmail();
+				
+				//Save email logs in database
+				LocalDate localDate = LocalDate.now();
+							
+				Emails email = new Emails(localDate, subject, text, tempRecipientIds.toString());
+				user.getEmail().add(email);
+				email.setUser(user);
+				userRepository.save(user);
+				
 			}finally {
 				emailService.deleteTemplate();
-			}			
+			}		
 		} catch (Exception e) {
-			System.out.println(e.toString() + "error in family detail service");
+			System.out.println(e.toString() + "error in add family method in service");
 		}
 	}
 	

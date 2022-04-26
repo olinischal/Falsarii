@@ -170,5 +170,12 @@ public class UserController {
 	}
 
 	
+	//For admin
+	//Get all emails sent
+	@GetMapping("/emails/view")
+	public void getAllEmailsHistory() {
+		
+	}
+	
 }
 
