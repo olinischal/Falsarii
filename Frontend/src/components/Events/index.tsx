@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button, Modal, Stack, Form, Container } from "react-bootstrap";
 import EventData from "../../types/Event";
 import UpdateEvent from "./UpdateEvent";
+import 'bootstrap/dist/js/bootstrap.bundle';
 
 interface eventProps {
   title: string;
@@ -147,56 +148,60 @@ const Events = () => {
       </>
       <UpdateEvent events={events} />
 
-      {/* <section className="py-5">
-                <div className="container px-5 my-5">
-                    <div className="row gx-5 justify-content-center">
-                        <div className="col-lg-8 col-xl-6">
-                            <div className="text-center">
-                                <h2 className="fw-bolder">All Events</h2>
+      { <section className="py-5">
+      <div className="container">
+        <div className="row">
+            <div className="col-lg-8">
+                <div className="card mb-4">
+                    <a href="#!"><img className="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                    <div className="card-body">
+                    <h2 className="card-title">{events.title}</h2>
+                    <div className="small text-muted"><h5>Event location {events.address} </h5> </div>
+                    <div className="small text-muted"><h5>Event price ${events.amount} </h5> </div>
+                        <div className="small text-muted"><h5>Payment deadline {events.deadline} </h5> </div>
+                        {/*This is the start of the drop down button. The button is placed right but does not toggle.
+                           I'm not sure if its a CSS issue or bootstrap one.*/}
+                        <div className = "text-end">
+                        <div className="dropdown">
+                          <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="false">Event Options</button>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a className="dropdown-item" href="#!" >Reserve Online</a>
+                                <a className="dropdown-item" href= "#!">Make a Contribution</a>
+                                <a className="dropdown-item" href="#!">Pay in person</a>
                             </div>
                         </div>
-                    </div>
-                    <UpdateEvent events ={events} />
-                    <div className="row gx-5">
-                        <div className="col-lg-4 mb-5">
-                            <div className="card h-100 shadow border-0">
-                                <img className="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
-                                <div className="card-body p-4">
-
-                                    <a className="text-decoration-none link-dark stretched-link" href="#!"><h5 className="card-title mb-3">Football</h5></a>
-                                    <p className="card-text mb-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-                            </div>
                         </div>
-                        <div className="col-lg-4 mb-5">
-                            <div className="card h-100 shadow border-0">
-                                <img className="card-img-top" src="https://dummyimage.com/600x350/adb5bd/495057" alt="..." />
-                                <div className="card-body p-4">
-
-                                    <a className="text-decoration-none link-dark stretched-link" href="#!"><h5 className="card-title mb-3">Basketball</h5></a>
-                                    <p className="card-text mb-0">This text is a bit longer to illustrate the adaptive height of each card. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-                            </div>
                         </div>
-                        <div className="col-lg-4 mb-5">
-                            <div className="card h-100 shadow border-0">
-                                <img className="card-img-top" src="https://dummyimage.com/600x350/6c757d/343a40" alt="..." />
-                                <div className="card-body p-4">
-                                    <a className="text-decoration-none link-dark stretched-link" href="#!"><h5 className="card-title mb-3">Class of 2014 Reunion</h5></a>
-                                    <p className="card-text mb-0">Some more quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
-            </section>
-        
-         */}
+            </div>
+            <div className="col-lg-4">
+                <div className="card mb-4">
+                    <div className="card-header"><h2>Contributors</h2></div>
+                    <div className="card-body">List of contributors to the event</div>
+                </div>
+            </div>
+            <div className="col-lg-8">
+                <div className="card mb-4">
+                    <div className="card-body">
+                        <p className="card-text">{events.description}</p>
+                        <div className= "text-end">
+                          {/*replace the following <a></a> with the drop down button from above to place it in the description box*/}
+                        <a className="btn btn-primary" href="#!">Make Reservation</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="col-lg-4">
+                <div className="card mb-4">
+                    <div className="card-header"><h2> Contact Us</h2></div>
+                    <div className="card-body"><p>Email Address</p>
+                    <p>Phone number</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>}
     </>
   );
 };
