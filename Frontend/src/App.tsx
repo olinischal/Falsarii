@@ -38,7 +38,10 @@ import SearchMember from './components/searchMember/searchMember';
 import SendEmail from './components/SendEmail/sendEmail';
 
 
+
+
 function App() {
+  const [isLoading, setIsLoading] = useState(true)
   const [isTimeout, setIsTimeout] = useState(false);
   const onTimeExpired = () => {
     const userStr = localStorage.getItem("user");
@@ -68,7 +71,7 @@ function App() {
   return (
     <>
     
-      {isTimeout && onTimeExpired()}
+      {localStorage.getItem("user") && isTimeout && onTimeExpired()}
       <Router>
       <NavigationBar />
       <Routes>
@@ -101,6 +104,7 @@ function App() {
         
       </Router>
       <Footer/>
+      
     </>
   );
 }

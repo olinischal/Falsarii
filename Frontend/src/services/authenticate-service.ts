@@ -40,7 +40,8 @@ export const signIn = (email: string, password: string) => {
         localStorage.removeItem("otherError");
         localStorage.removeItem("serverError");
         localStorage.setItem("user", JSON.stringify(response.data ));
-        console.log(localStorage.getItem("user"));
+        localStorage.setItem("userEmail",(response.data.email));
+        
       }
       else {
         throw new Error("Server can't be reached.");
@@ -68,6 +69,7 @@ export const signIn = (email: string, password: string) => {
 
 export const logout = () => {
   localStorage.removeItem("user");
+  localStorage.removeItem("userEmail");
 };
 
 export const sendEmail = (subject:String, text:string, emailList:string[]) =>{

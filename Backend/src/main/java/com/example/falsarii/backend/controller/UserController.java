@@ -59,14 +59,14 @@ public class UserController {
 		}
 	}
 	
-	@PostMapping("/donateToScholarship")
-	public void donateToScholarship(@RequestParam String emailId, @RequestParam String scholarshipName, @RequestParam String date, @RequestParam double amount, @RequestParam boolean anonymity) {
-		try {
-			userService.donatetoScholarship(emailId, scholarshipName, date, amount, anonymity);
-		}catch(Exception e) {
-			System.out.println(e.toString());
-		}
-	}
+//	@PostMapping("/donateToScholarship")
+//	public void donateToScholarship(@RequestParam String emailId, @RequestParam String scholarshipName, @RequestParam String date, @RequestParam double amount, @RequestParam boolean anonymity) {
+//		try {
+//			userService.donatetoScholarship(emailId, scholarshipName, date, amount, anonymity);
+//		}catch(Exception e) {
+//			System.out.println(e.toString());
+//		}
+//	}
 	
 	@GetMapping("/tester")
 	public List<String> test(@RequestParam String emailId){

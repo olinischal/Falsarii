@@ -9,6 +9,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.amazonaws.services.opsworks.model.Recipes;
 import com.example.falsarii.backend.model.DonateToScholarships;
 import com.example.falsarii.backend.model.Groups;
 import com.example.falsarii.backend.model.Scholarships;
@@ -68,13 +69,13 @@ public class UserService {
 	}
 	
 	//Donate to scholarship
-	public void donatetoScholarship(String emailId, String scholarshipName, String date, double amount, boolean anonymity) {
+	public void donatetoScholarship(String scholarshipName, String emailId, String name, String address , String receiptUrl, String stripeId,String date, double amount, boolean anonymity) {
 		//Get user and scholarship objects
 		Users user = userRepository.findByEmailId(emailId).get();
 		Scholarships scholarship = scholarshipRepository.findByScholarshipName(scholarshipName);
 		
 		//Save the objects in donate to scholarship
-		DonateToScholarships donate = new DonateToScholarships(user, scholarship, date, amount, anonymity);
+		DonateToScholarships donate = new DonateToScholarships(user, scholarship, emailId, name, address, receiptUrl, stripeId, date, amount, anonymity);
 		user.getDonateToScholarships().add(donate);
 		scholarship.getDonateToScholarships().add(donate);
 		
