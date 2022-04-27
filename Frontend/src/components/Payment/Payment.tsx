@@ -26,11 +26,7 @@ function Payment() {
   }
   return (
     <>
-      Donate For Football Scholarship
-      <div>Must be at least $0.5
-        <label style={{position: "relative", left:"15px"}}>$</label>
-        <input type="text" name="amount" placeholder="" style={{textIndent:"15px", marginTop:"20px"}}onChange={e => setTotalAmount(e.target.value)} />
-      </div>
+     
 
       <div className="payment" style={{ marginTop:"20px"}}>
         <Stripe

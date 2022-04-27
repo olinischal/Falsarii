@@ -8,18 +8,23 @@ import ScholarshipPage from "./ScholarshipPage";
 
 const UpdateScholarships = () => {
   const [scholarship, setScholarship] = useState<ScholarshipData[]>([]);
+  const {setScholarshipDetail}:any = useContext(Authenticate);
+  const {scholarshipDetail}:any = useContext(Authenticate);
   
 
   useEffect(() => {
     ScholarshipRequests.getScholarships()
       .then((response) => {
         setScholarship([...response]);
+        setScholarshipDetail([...response]);
         
       })
       .catch((error) => {
         console.log("Something went wrong here.", error);
       });
   }, []);
+
+  
 
   return (
     <>

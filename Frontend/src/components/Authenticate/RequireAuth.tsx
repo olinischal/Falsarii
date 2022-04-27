@@ -6,7 +6,7 @@ import Authenticate from "../../Context/Authenticate";
 const RequireAuth = ({ allowedRoles }) => {
     const {auth} : any = useContext(Authenticate);
     const location = useLocation();
-    console.log(auth?.res?.roles, "userEmail passed to usecontext");
+    
     
     return (
         

@@ -89,7 +89,11 @@ function App() {
           
           <Route path="/contact" element={<Contact />} />
 
-          <Route path="/scholarshipList/s/page/:id" element={<ScholarshipPage />} />
+          {/* {["/scholarshipList/s/page/:id", "/scholarships/s/page/:id"].map((path, index) => 
+        <Route path={path} element={<ScholarshipPage />} key={index} />
+    )} */}
+
+          <Route path="/s/page/:id" element={<ScholarshipPage />} />
           <Route path="/payment" element={<Payment />} />
 
         
