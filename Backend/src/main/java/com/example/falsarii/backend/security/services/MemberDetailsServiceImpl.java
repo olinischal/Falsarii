@@ -75,7 +75,10 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
                         member.getFname(),
                         member.getLname(),
                         member.getPassword(),
-                        member.getPhoneNum()));
+                        member.getPhoneNum(),
+                        member.getAddress(),
+                        member.getGender(),
+                        member.getGraduationDate()));
 
 
                 //A method to save user and token in this class
@@ -105,7 +108,10 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
                 member.getFname(),
                 member.getLname(),
                 member.getPassword(),
-                member.getPhoneNum()));
+                member.getPhoneNum(),
+                member.getAddress(),
+                member.getGender(),
+                member.getGraduationDate()));
 
 
 

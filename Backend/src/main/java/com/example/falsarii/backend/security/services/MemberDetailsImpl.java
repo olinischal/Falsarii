@@ -33,21 +33,7 @@ public class MemberDetailsImpl implements UserDetails {
 
 	private Collection<? extends GrantedAuthority> authorities;
 	
-	
 
-//	public MemberDetailsImpl(Long id, String firstName, String maidenName, String lastName, String phoneNumber, String email,
-//							 String password, String graduationDate, Collection<? extends GrantedAuthority> authorities) {
-//		this.id = id;
-//		this.firstName = firstName;
-//		this.maidenName = maidenName;
-//		this.lastName = lastName;
-//		this.phoneNumber = phoneNumber;
-//		this.email = email;
-//		this.graduationDate = graduationDate;
-//		this.password = password;
-//
-//		this.authorities = authorities;
-//	}
 	
 	public MemberDetailsImpl(Long userId, String emailId, String fname, String lname, String password, String phoneNum,Collection<? extends GrantedAuthority> authorities) {
 		this.userId = userId;
@@ -59,23 +45,6 @@ public class MemberDetailsImpl implements UserDetails {
 		this.authorities=authorities;
 	}
 	
-//	public static MemberDetailsImpl build(Member member) {
-//	    List<GrantedAuthority> authorities = member.getRoles().stream()
-//	        .map(role -> new SimpleGrantedAuthority(role.getName().name()))
-//	        .collect(Collectors.toList());
-//
-//	    return new MemberDetailsImpl(
-//	        member.getId(), 
-//	        member.getFirstName(),
-//				member.getMaidenName(),
-//				member.getLastName(),
-//	        member.getPhoneNumber(),
-//	        member.getEmail(),
-//				member.getPassword(),
-//				member.getGraduationDate(),
-//
-//	        authorities);
-//	  }
 	
 	
 	public static MemberDetailsImpl build(Users member) {
@@ -89,7 +58,7 @@ public class MemberDetailsImpl implements UserDetails {
 	    		member.getFname(),
 				member.getLname(),
 				member.getPassword(),
-	        member.getPhoneNum(),
+				member.getPhoneNum(),
 				
 				authorities);
 	  }

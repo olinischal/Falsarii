@@ -137,7 +137,10 @@ public class MemberController {
 				signUpRequest.getFirstName(),
 				signUpRequest.getLastName(),
 				encoder.encode(signUpRequest.getPassword()),
-				signUpRequest.getPhoneNumber()
+				null,
+				signUpRequest.getPhoneNumber(),
+				null,
+				null
 		);
 		
 

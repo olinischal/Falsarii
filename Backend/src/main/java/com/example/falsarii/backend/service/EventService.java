@@ -12,7 +12,6 @@ import com.example.falsarii.backend.repository.EventsRepository;
 @Service
 public class EventService {
 
-
     //Repository injection
     @Autowired
     private EventsRepository eventRepository;
@@ -61,6 +60,11 @@ public class EventService {
         catch(Exception e) {
             System.out.println(e.toString() + "error in saving even");
         }
+    }
+
+    public void changeEventStatus(Long eventId, boolean status) {
+        eventRepository.setStatus(eventId, status);
+
     }
 
 }
