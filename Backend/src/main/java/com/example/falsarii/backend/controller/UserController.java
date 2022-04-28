@@ -155,7 +155,7 @@ public class UserController {
 		
 		//For admin and user
 		//Get list of all donation to all scholarships by a person
-		@GetMapping("/event/get-all-donations-by-person")
+		@GetMapping("/scholarship/get-all-donations-by-person")
 		public List<List> getAllDonationForScholarshipByPerson(@RequestParam Long userId){
 			try {
 				return userService.getAllDonationForScholarshipByPerson(userId);

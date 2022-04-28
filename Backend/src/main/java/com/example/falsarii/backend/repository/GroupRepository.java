@@ -34,7 +34,7 @@ public interface GroupRepository extends JpaRepository<Groups, Long> {
 	@Query(
 			value = "Delete from group_on where user_id = :userId and group_id in :groupId",
 			nativeQuery = true)
-	int removeUserFromGroup(@Param("userId") Long userId, @Param("groupName") Long groupId);
+	int removeUserFromGroup(@Param("userId") Long userId, @Param("groupId") Long groupId);
 
 	//GetSelectedGroup
 	@Query(

@@ -53,7 +53,7 @@ public interface UserRepository extends JpaRepository<Users, Long>{
 		@Query(
 				value = "Delete from group_on where user_id = :userId and group_id in :groupIdList",
 				nativeQuery = true)
-		int removeGroup(@Param("userId") Long userId, @Param("groupList") List<Long> groupIdList);
+		int removeGroup(@Param("userId") Long userId, @Param("groupIdList") List<Long> groupIdList);
 		
 		//Find family information
 		//Find parent information
