@@ -13,21 +13,27 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.example.falsarii.backend.Email.EmailDetails.EmailDetails;
 import com.example.falsarii.backend.Email.EmailService.EmailService;
 import com.example.falsarii.backend.model.DonateToEvents;
 import com.example.falsarii.backend.model.DonateToScholarships;
 import com.example.falsarii.backend.model.Emails;
+import com.example.falsarii.backend.model.EventImages;
 import com.example.falsarii.backend.model.Events;
 import com.example.falsarii.backend.model.FamilyDetail;
 import com.example.falsarii.backend.model.Groups;
+import com.example.falsarii.backend.model.UserImages;
 import com.example.falsarii.backend.model.Scholarships;
 import com.example.falsarii.backend.model.Users;
 import com.example.falsarii.backend.repository.DonateToEventsRepository;
 import com.example.falsarii.backend.repository.DonateToScholarshipsRepository;
 import com.example.falsarii.backend.repository.EventsRepository;
 import com.example.falsarii.backend.repository.GroupRepository;
+import com.example.falsarii.backend.repository.UserImageRepository;
 import com.example.falsarii.backend.repository.ScholarshipRepository;
 import com.example.falsarii.backend.repository.UserRepository;
 
@@ -49,6 +55,12 @@ public class UserService {
 	private DonateToEventsRepository donateToEventsRepository;
 	@Autowired
 	private EmailService emailService;
+	@Autowired
+	private UserImageRepository userImageRepository;
+	@Autowired
+	private AmazonS3 s3Client;
+	
+	private String bucketName = "devtestnafa";
 	
 	//Create user
 	public void createUser(Users user) {
@@ -310,6 +322,43 @@ public class UserService {
 			return null;
 			}
 	}
+	
+	//For user
+	//Upload and save profile picture
+	public void uploadProfilePicture(Long userId, String fileName, MultipartFile file) {
+		try {
+			ObjectMetadata metadata = new ObjectMetadata();
+			metadata.setContentLength(file.getSize());
+			
+			s3Client.putObject(bucketName, fileName, file.getInputStream(), metadata);
+			
+			Users user = userRepository.findByUserId(userId);
+			
+			//check if already exists
+			if (userImageRepository.checkEventPicture(userId) != null) {
+				userImageRepository.removeEventPicture(userId);
+				
+				//Save picture key to database
+				UserImages userImage = new UserImages(fileName);
+				userImage.setUser(user);
+				user.setImage(userImage);
+				userImageRepository.save(userImage);
 
+				
+			}else {
+				//Save picture key to database
+				UserImages userImage = new UserImages(fileName);
+				userImage.setUser(user);
+				user.setImage(userImage);
+				userImageRepository.save(userImage);
+
+			}
+			
+							
+		} catch (Exception e) {
+			System.out.println(e.toString() + "Error in uploadProfilePicture service");
+		}
+	}
+	
 	
 }

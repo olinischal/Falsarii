@@ -222,6 +222,20 @@ public class Users {
 		return emails;
 	}
 
+	//Relation between user and image i.e. One to one
+	@OneToOne(mappedBy = "user",
+			cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY)
+	private UserImages image;
+	
+	//Sets the spouse of the user
+	public void setImage(UserImages Image) {
+		this.image = image;
+	}	
+	//Returns the spouse of the user
+	public UserImages getImage() {
+		return image;
+	}	
 
 
 	//Basic setters and getters
