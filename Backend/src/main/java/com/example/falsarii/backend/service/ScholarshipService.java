@@ -34,7 +34,9 @@ public class ScholarshipService {
 	public void changeStatusScholarship(String scholarshipName, boolean status) {
 		try {
 			scholarshipRepository.setStatus(scholarshipName, status);
+			System.out.println(status);
 		}catch(Exception e) {
+
 			System.out.println(e.toString() + " scholarship activate error");
 		}
 	}

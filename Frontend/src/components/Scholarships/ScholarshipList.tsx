@@ -3,18 +3,15 @@ import { Link } from "react-router-dom";
 import Authenticate from "../../Context/Authenticate";
 import ScholarshipData from "../../types/Scholarship";
 
-interface scholarshipDetails {
-  scholarship: ScholarshipData;
-  key: any;
-}
 
-const ScholarshipList: React.FC<scholarshipDetails> = ({ scholarship }) => {
+
+const ScholarshipList = ({ scholarship, index}) => {
   return (
     <>
-      <div className="col-lg-4 mb-5" key={scholarship.scholarshipId}>
+      <div className="col-lg-4 mb-5"   key={scholarship.scholarshipId}>
         <div className="card h-100 shadow border-0">
           <Link
-            to={`/s/page/${scholarship.scholarshipId}`}
+            to={`/s/page/${index}`}
             className="text-decoration-none link-dark stretched-link"
           >
             <img

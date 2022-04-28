@@ -103,3 +103,40 @@ export const JoinGroup = (email: string, grpName: string) => {
 	
 	;
   };
+
+  export const donateScholarship = (emailId: String, scholarshipName: String, date: any, amount: any, anonymity: boolean) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.post(
+	  API_URL + "donateToScholarship", null, 
+	{
+	  params: {
+		emailId: emailId,
+		scholarshipName: scholarshipName,
+		date: date,
+		amount: amount,
+		anonymity: anonymity,
+
+	
+	  }
+	});
+  
+  }
+
+  export const activateScholarship = (scholarshipName: String, status: boolean) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.post(
+		API_URL + "scholarship/changeStatus", null, 
+	  {
+		params: {
+		 
+		  scholarshipName: scholarshipName,
+		  status: status
+  
+	  
+		}
+	  });
+
+
+  }

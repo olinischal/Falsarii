@@ -210,7 +210,7 @@ const EditAccount = () => {
                       Group
                     </label>
 
-                   {/* <GroupList /> */}
+                   <GroupList />
                   </div>
                   </div>
 

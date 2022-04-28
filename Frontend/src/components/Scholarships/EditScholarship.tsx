@@ -1,48 +1,57 @@
+
 import { Formik } from "formik";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Modal, Stack, Form, Container } from "react-bootstrap";
 import UpdateScholarships from "./UpdateScholarships";
-import { ScholarshipRequests } from "../../services/api";
+import { activateScholarship, ScholarshipRequests } from "../../services/api";
 import ScholarshipData from "../../types/Scholarship";
 import './Scholarship.css';
+import ScholarshipPage from "./ScholarshipPage";
+import Authenticate from "../../Context/Authenticate";
+import { useNavigate } from "react-router";
 
 
 const initialValues = {
   name: " ",
-  active: true,
+  active: false,
   deadline: "",
   description: " ",
 };
 
-const Scholarships = () => {
+const Scholarships = ({scholarship}) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [scholarship, setScholarship] = useState<ScholarshipData>({
-    scholarshipName: " ",
-    description: " ",
-    deadline: "",
-    status: true,
-  });
+  const navigate = useNavigate();
+
+  const [editScholarship, setEditScholarship] = useState(scholarship);
+
+  
 
   const submitForm =  () => {
-    console.log(scholarship);
+    
 
-    ScholarshipRequests.createScholarships(scholarship)
-    .catch((error) => {
-      console.log("Request cannot be completed.", error);
-    });
-    setShow(false);
+   
+
+     setShow(false);
+  
+     activateScholarship(editScholarship.scholarshipName, editScholarship.status).then(response =>{
+        console.log('scholarship has been successfully edited', response);
+  }).catch((error) => {
+    console.log("Could not edit scholarship.", error);
+  });
+     navigate('/scholarships');
     window.location.reload();
   };
+  console.log("The scholarship is active ", editScholarship.status);
   return (
     <>
       <>
         <div style={{ position: "relative", top: "10px", left: "10px" }}>
           <Button variant="secondary" size="lg" onClick={handleShow}>
-            + Create New Scholarships
+            + Edit Scholarships
           </Button>
         </div>
 
@@ -53,7 +62,7 @@ const Scholarships = () => {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Create Scholarship</Modal.Title>
+            <Modal.Title>Edit Scholarship</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Formik initialValues={initialValues} onSubmit={submitForm}>
@@ -77,16 +86,16 @@ const Scholarships = () => {
                             backgroundColor: "#353839",
                             color: "#ffc40c",
                           }}
-                         
+                          
                           type="text"
                           name="name"
                           id="name"
-                          placeholder="Scholarship Name"
-                          value={scholarship.scholarshipName}
+                          
+                          value={editScholarship.scholarshipName}
                           onChange={(e) =>
-                            setScholarship({
-                              ...scholarship,
-                              scholarshipName: e.target.value,
+                            setEditScholarship({
+                              ...editScholarship,
+                               scholarshipName: e.target.value
                             })
                           }
                           onBlur={handleBlur}
@@ -108,12 +117,12 @@ const Scholarships = () => {
                           type="text"
                           name="description"
                           id="description"
-                          placeholder="description"
-                          value={scholarship.description}
+                          
+                          value={editScholarship.description}
                           onChange={(e) =>
-                            setScholarship({
-                              ...scholarship,
-                              description: e.target.value,
+                            setEditScholarship({
+                              ...editScholarship,
+                               description: e.target.value
                             })
                           }
                           onBlur={handleBlur}
@@ -135,17 +144,37 @@ const Scholarships = () => {
                           type="date"
                           name="deadline"
                           id="deadline"
-                          placeholder="Event deadline"
-                          value={scholarship.deadline}
+                          
+                          value={editScholarship.deadline}
                           onChange={(e) =>
-                            setScholarship({
-                              ...scholarship,
-                              deadline: e.target.value,
+                            setEditScholarship({
+                              ...editScholarship,
+                               deadline: e.target.value
                             })
                           }
                           onBlur={handleBlur}
                         />
                       </Form.Group>
+                      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                        <div>
+     <input type="checkbox"  id = "formBasicCheckbox" 
+     className="checkbox disable-team team_values"
+     
+     
+                    onChange={(e) =>
+                    setEditScholarship({ ...editScholarship,
+                      status: e.target.checked === true ? false : true })
+                      
+                  } />
+                  <label id ="formBasicCheckbox">Remove Scholarship</label>
+                  {editScholarship.status === false ? (
+                  <p>This will remove the scholarship</p>
+                ) : (
+                  <p></p>
+                )}
+                
+                  </div>
+  </Form.Group>
                     </Form>
                   </Container>
                 );
@@ -164,7 +193,7 @@ const Scholarships = () => {
       </>
       <>
         
-        <UpdateScholarships />
+      {/* <ScholarshipPage /> */}
       </>
     </>
   );
