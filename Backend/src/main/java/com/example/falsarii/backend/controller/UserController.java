@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.falsarii.backend.model.FamilyDetail;
+import com.example.falsarii.backend.model.UserDetails;
 import com.example.falsarii.backend.model.Users;
 import com.example.falsarii.backend.service.UserService;
 
@@ -22,13 +23,13 @@ public class UserController {
 		@Autowired
 		private UserService userService;
 		
-		//Create user ***edit with spring web security
-		@PostMapping("/user/create")
-		public void createUser(@RequestBody Users user) {
+		//Add user details
+		@PostMapping("/user/details")
+		public void addUserDetails(@RequestParam Long userId, @RequestBody UserDetails userDetail) {
 			try {
-				userService.createUser(user);
+				userService.addUserDetails(userId, userDetail);
 			}catch(Exception e) {
-				System.out.println(e.toString());
+				System.out.println(e.toString() + "Error in add user detail controller");
 			}
 		}
 		
@@ -40,7 +41,7 @@ public class UserController {
 			
 		//User joins a group
 		@PostMapping("/user/join-group")
-		public void joinGroup(@RequestParam Long userId, Long groupId) {
+		public void joinGroup(@RequestParam Long userId, @RequestParam Long groupId) {
 			try {
 				userService.joinGroup(userId, groupId);
 			}catch(Exception e) {

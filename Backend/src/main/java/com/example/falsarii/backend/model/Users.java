@@ -37,6 +37,8 @@ public class Users {
 	private String phoneNum;
 	private String address;
 	private String gender;
+	private String highSchool;
+	private String university;
 
 	private boolean enabled;
 	
@@ -45,24 +47,18 @@ public class Users {
 		this.fname = null;
 		this.lname = null;
 		this.password = null;
-		this.graduationDate = null;
 		this.phoneNum = null;
-		this.address = null;
-		this.gender = null;
 	}
 
 	//Constructor
-	public Users(String emailId, String fname, String lname, String password, String graduationDate, String phoneNum,
-				 String address, String gender) {
+	public Users(String emailId, String fname, String lname, String password, String phoneNum) {
 
 		this.emailId = emailId;
 		this.fname = fname;
 		this.lname = lname;
 		this.password = password;
-		this.graduationDate = graduationDate;
 		this.phoneNum = phoneNum;
-		this.address = address;
-		this.gender = gender;
+		
 
 	}
 
@@ -290,7 +286,6 @@ public class Users {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	
 	public String getMaidenName() {
 		return maidenName;
 	}
@@ -298,6 +293,25 @@ public class Users {
 		this.maidenName = maidenName;
 	}
 	
+	public String getMiddleName() {
+		return middleName;
+	}
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+	public String getHighSchool() {
+		return highSchool;
+	}
+	public void setHighSchool(String highSchool) {
+		this.highSchool = highSchool;
+	}
+	public String getUniversity() {
+		return university;
+	}
+	public void setUniversity(String university) {
+		this.university = university;
+	}
+
 	public Boolean getEnabled() {
 		// TODO Auto-generated method stub
 		return null;

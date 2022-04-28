@@ -28,6 +28,7 @@ import com.example.falsarii.backend.model.FamilyDetail;
 import com.example.falsarii.backend.model.Groups;
 import com.example.falsarii.backend.model.UserImages;
 import com.example.falsarii.backend.model.Scholarships;
+import com.example.falsarii.backend.model.UserDetails;
 import com.example.falsarii.backend.model.Users;
 import com.example.falsarii.backend.repository.DonateToEventsRepository;
 import com.example.falsarii.backend.repository.DonateToScholarshipsRepository;
@@ -62,12 +63,26 @@ public class UserService {
 	
 	private String bucketName = "devtestnafa";
 	
-	//Create user
-	public void createUser(Users user) {
-		userRepository.save(user);
+	
+	//Add user details
+	public void addUserDetails(Long userId, UserDetails userDetail) {
+		try {
+			Users user = userRepository.findByUserId(userId);
+			
+			user.setMiddleName(userDetail.getMiddleName());
+			user.setMaidenName(userDetail.getMaidenName());
+			user.setGraduationDate(userDetail.getGraduationDate());
+			user.setAddress(userDetail.getAddress());
+			user.setGraduationDate(userDetail.getGraduationDate());
+			user.setHighSchool(userDetail.getHighSchool());
+			user.setUniversity(userDetail.getUniversity());
+			
+			userRepository.save(user);
+			
+		} catch (Exception e) {
+			System.out.println(e.toString() + "Error in adduserdetails service");
+		}
 	}
-	
-	
 	
 	//Users add themselves to a group
 	public void joinGroup(Long userId, Long groupId) {

@@ -75,10 +75,7 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
                         member.getFname(),
                         member.getLname(),
                         member.getPassword(),
-                        member.getPhoneNum(),
-                        member.getAddress(),
-                        member.getGender(),
-                        member.getGraduationDate()));
+                        member.getPhoneNum()));
 
 
                 //A method to save user and token in this class
@@ -108,13 +105,7 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
                 member.getFname(),
                 member.getLname(),
                 member.getPassword(),
-                member.getPhoneNum(),
-                member.getAddress(),
-                member.getGender(),
-                member.getGraduationDate()));
-
-
-
+                member.getPhoneNum()));
 
 
         //Getting the confirmation token and then saving it
