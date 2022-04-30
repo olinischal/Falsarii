@@ -6,10 +6,12 @@
     font-weight: bold;
     font-size: 16px;
     padding: 50px;
-    margin-top: 50px;
+    padding-bottom: 100px;
+  margin-top: 160px;
     align-self: flex-end;
     position: relative;
     bottom: 0;
+    
   }
   
   .footer .footer-left,
@@ -46,13 +48,32 @@
   .footer .icons {
     margin-top: 25px;
   }
+
+  .footer .facebook-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .footer .insta-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .footer .twitter-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .footer .linkedin-logo {
+    width: 30px;
+    height: 30px;
+  }
   
   .footer .icons a {
     display: inline-block;
     width: 35px;
     height: 35px;
     cursor: pointer;
-    background-color: #33383b;
     border-radius: 2px;
     font-size: 20px;
     color: #ffffff;
@@ -61,6 +82,7 @@
     margin-right: 3px;
     margin-bottom: 5px;
   }
+  
   
   
   /* footer center*/

@@ -8,8 +8,6 @@ import { EventRequests } from "../../services/api";
 import DisplayEvents from "./DisplayEvent";
 import "./calendar.css";
 
-
-
 const Calendar = () => {
   const [event, setEvent] = useState<EventData[]>([]);
   const [display, setDisplay] = useState(true);
@@ -25,6 +23,15 @@ const Calendar = () => {
       });
   }, []);
 
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+  ></link>;
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Yantramanav"
+    rel="stylesheet"
+  ></link>;
   const newEvent = event.map((val, key) => {
     return {
       key: key,
@@ -32,7 +39,10 @@ const Calendar = () => {
       start: val.date,
     };
   });
-
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
+  ></link>;
   const eventClick = (eventClick) => {
     setDisplay(!display);
 
@@ -54,13 +64,15 @@ const Calendar = () => {
       <div className="demo-app">
         <div className="demo-app-main">
           <FullCalendar
+            firstDay={1}
             headerToolbar={{
-              right: "today prev,next",
-              center: "title",
-              left: "",
+              right: "prev,next",
+              center: "today",
+              left: "title",
             }}
             initialView="dayGridMonth"
             plugins={[dayGridPlugin, bootstrap5Plugin]}
+            themeSystem="bootstrap5"
             events={newEvent}
             eventClick={eventClick}
           />

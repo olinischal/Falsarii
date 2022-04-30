@@ -40,7 +40,6 @@ import UpdateEvent from "./components/Events/UpdateEvent";
 import Calendar from "./components/Calendar/Calendar";
 import CalendarEvents from "./components/Calendar";
 
-
 function App() {
   const [isTimeout, setIsTimeout] = useState(false);
   const ROLES = {
@@ -86,7 +85,7 @@ function App() {
           <Route path="/about" element={<About />} />
 
           <Route path="/eventList" element={<UpdateEvent />} />
-          
+
           <Route path="/contact" element={<Contact />} />
 
           {/* {["/scholarshipList/s/page/:id", "/scholarships/s/page/:id"].map((path, index) => 
@@ -96,9 +95,6 @@ function App() {
           <Route path="/s/page/:id" element={<ScholarshipPage />} />
           <Route path="/payment" element={<Payment />} />
 
-        
-
-          
           {/* Routes for all User level */}
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/success" element={<Success />} />
@@ -120,8 +116,7 @@ function App() {
             element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}
           >
             <Route path="/membership" element={<Membership />} />
-            
-           
+
             <Route path="/forgotpassword" element={<LoginReset />} />
             <Route path="/newpassword/:id" element={<NewPassword />} />
           </Route>
