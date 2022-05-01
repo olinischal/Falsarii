@@ -36,6 +36,7 @@ import CalendarDisplay from './components/Calendar/calendar';
 import searchMember from './components/searchMember/searchMember';
 import SearchMember from './components/searchMember/searchMember';
 import SendEmail from './components/SendEmail/sendEmail';
+import { fontFamily } from '@mui/system';
 
 
 
@@ -69,7 +70,9 @@ function App() {
     };
   }, []);
   return (
-    <>
+    <div style={{
+      backgroundColor:'#FFFFF4'
+    }}>
     
       {localStorage.getItem("user") && isTimeout && onTimeExpired()}
       <Router>
@@ -105,7 +108,7 @@ function App() {
       </Router>
       <Footer/>
       
-    </>
+    </div>
   );
 }
 

@@ -26,36 +26,9 @@ const Account: React.FC<userDetails> = ({ user }) => {
     reader.readAsDataURL(e.target.files[0]);
   }
   return (
-    <div className="container-fluid mt-2" style={{paddingTop:"50px"}}>
-      <div className="row">
-        <div className="col-md-4 px-4 mt-0">
-          <div className="card mb-4 mb-xl-0">
-            <div className="card-header">Profile Picture</div>
-            <div className="card-body">
-              <div className="d-flex flex-column align-items-center text-center">
-                <Image
-                  src={profilePic}
-                  alt="Admin"
-                  className="rounded-circle"
-                  width="150"
-                  height='150'
-                />
-                <div className="mt-3">
-                  <h4>{user.fname + " " + user.lname}</h4>
-                  <p className="text-secondary mb-1">{user.emailId}</p>
-                  {/* <p className="text-muted font-size-sm">{user.address}</p> */}
-                  <input type="file" name="image-upload" id="input-image" accept="image/*" onChange={imageHandler} style={{display:'none'}}/>
-                  <div className="label">
-                    <label htmlFor="input-image" className="image-upload" ><i className="bi bi-images" ></i>Change Your Profile Photo</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-8">
-          <div className="card mb-4">
-            <div className="card-header">Account Details</div>
+        <div>
+          <div className="card mb-4" style={{ fontSize:'20px' }}>
+            <div className="card-header">Personal Details</div>
             <div className="card-body">
               <div className="row">
                 <div className="col-sm-3">
@@ -84,13 +57,6 @@ const Account: React.FC<userDetails> = ({ user }) => {
               <hr />
               <div className="row">
                 <div className="col-sm-3">
-                  <h6 className="mb-0">Mobile</h6>
-                </div>
-                <div className="col-sm-9 text-secondary">800080000</div>
-              </div>
-              <hr />
-              <div className="row">
-                <div className="col-sm-3">
                   <h6 className="mb-0">Address</h6>
                 </div>
                 {/* <div className="col-sm-9 text-secondary">
@@ -98,11 +64,73 @@ const Account: React.FC<userDetails> = ({ user }) => {
                 </div> */}
               </div>
               <hr />
+
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Spouse</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">
+                  {"Spouse Name Goes here"}
+                </div>
+              </div>
+              <hr />
+            </div>
+          </div>
+
+
+          <div className="card mb-4" style={{ fontSize:'20px' }}>
+            <div className="card-header">Educational Details</div>
+            <div className="card-body">
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">High School</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">
+                  {"High School Name Goes Here"}
+                </div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Graduation Year</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">{"Graduation Year Goes Here"}</div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Interest</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">
+                  {"Interest List Goes Here"}
+                </div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">University</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">{"University name goes here"}</div>
+              </div>
+              <hr />
+            </div>
+          </div>
+
+          <div className="card mb-4" style={{ fontSize:'20px', height:"100%" }}>
+            <div className="card-header">Membership</div>
+            <div className="card-body">
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Membership type</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">
+                  {"Membership type goes here"}
+                </div>
+              </div>
+              <hr />
             </div>
           </div>
         </div>
-      </div>
-    </div>
   );
 };
 

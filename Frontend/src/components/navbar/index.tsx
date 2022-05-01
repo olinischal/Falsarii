@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 import * as AuthService from "../../services/authenticate-service";
+import { useState } from "react";
 
 const NavigationBar = () => {
   const navigate = useNavigate();
@@ -13,6 +14,8 @@ const NavigationBar = () => {
     AuthService.logout();
     navigate("/login");
   };
+  
+  const [color, setColor] = useState('#ffc40c');
 
   return (
     <Navbar
@@ -76,15 +79,15 @@ const NavigationBar = () => {
                 <Nav.Link href="/tshirtSale">
                   <span className="text-warning">Buy Tshirt</span>
                 </Nav.Link>
+                
               </Nav>
-              {/* // {user ?  */}
               <Nav>
                 <Nav.Link as={Link} to="/profile/user">
                   <span className="text-warning">Profile</span>
                 </Nav.Link>
 
                 <Nav.Link
-                  className="btn btn-success"
+                  className="btn btn-warning"
                   style={{
                     padding: "5px",
                     margin: "5px",
@@ -144,7 +147,7 @@ const NavigationBar = () => {
 
               <Nav>
                 <Nav.Link
-                  className="btn btn-success"
+                  className="btn btn-warning"
                   style={{
                     padding: "5px",
                     margin: "5px",
@@ -157,12 +160,14 @@ const NavigationBar = () => {
                 </Nav.Link>
 
                 <Nav.Link
-                  className="btn btn-info"
+                  className="btn btn-outline-warning"
                   style={{
                     padding: "5px",
                     margin: "5px",
-                    color: "black",
+                    color: color,
                   }}
+                  onMouseEnter={()=>setColor('black')}
+                  onMouseLeave={()=> setColor('#ffc40c')}
                   as={Link}
                   to="/signup"
                 >

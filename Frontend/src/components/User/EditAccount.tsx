@@ -2,6 +2,10 @@ import MemberData from "../../types/Member";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Member } from "../../services/api";
+import EditNAFA from "./EditNAFA";
+
+import { FAB } from "react-native-elements";
+import { backdropClasses } from "@mui/material";
 
 interface userDetails {
   user: MemberData;
@@ -16,14 +20,6 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
     maidenName: "",
     password: "",
     phoneNum: "",
-    // firstName: " ",
-    // maidenName: " ",
-    // lastName: " ",
-    // email: " ",
-    // graduationDate: " ",
-    // phoneNumber: " ",
-    // password: " ",
-    // address: " ",
   });
 
   const navigate = useNavigate();
@@ -53,163 +49,330 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
   }, []);
 
   return (
-    <div className="container-fluid mt-2 px-2">
-      <div className="row">
-        <div className="col-md-4 px-4 mt-0">
-          <div className="card mb-4 mb-xl-0">
-            <div className="card-header">Profile Picture</div>
-            <div className="card-body text-center">
-              <img
-                className="img-account-profile rounded-circle mb-2"
-                src="./profileImage.png"
-                alt=""
-              />
-
-              <div className="small font-italic text-muted mb-4">
-                JPG or PNG no larger than 5 MB
-              </div>
-
-              <button className="btn btn-primary" type="button">
-                Upload new image
-              </button>
-            </div>
-          </div>
+    <>
+      <div >
+        <div className='card mb-4' style={{ height:"100%", border:'none', boxShadow:'none' ,backgroundColor:'#FFFFF4'}}>
+        <div >
+        <button
+          style={{
+            textAlign: "center",
+            marginRight:'8px'
+          }}
+          className="btn btn-warning"
+          type="button"
+          onClick={(e) => saveclients(e)}
+        >
+          Save Changes
+        </button>
+        <button
+          style={{
+            textAlign: "center",
+            
+          }}
+          className="btn btn-secondary"
+          type="button"
+        >
+          Discard Changes
+        </button>
         </div>
-        <div className="col-md-8">
-          <div className="card mb-4">
-            <div className="card-header">Profile Details</div>
-            <div className="card-body">
-              <form>
-                <div className="row gx-3 mb-3">
-                  <div className="col-md-6">
-                    <label className="small mb-1" placeholder="firstName">
-                      First name
-                    </label>
+        </div>
+        <div className="card mb-4" style={{ fontSize: "20px", height: "100%",}}>
+          <div className="card-header">Profile Details</div>
+          <div className="card-body">
+            <form>
+              <div className="row gx-3 mb-3">
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="firstName">
+                    First name
+                  </label>
 
-                    <input
-                      className="form-control"
-                      id="firstName"
-                      type="text"
-                      value={users.fname}
-                      onChange={(e) =>
-                        setUsers({ ...users, fname: e.target.value })
-                      }
-                    />
-                  </div>
-
-                  <div className="col-md-6">
-                    <label className="small mb-1" placeholder="inputLastName">
-                      Last name
-                    </label>
-                    <input
-                      className="form-control"
-                      id="inputLastName"
-                      type="text"
-                      value={users.lname}
-                      onChange={(e) =>
-                        setUsers({ ...users, lname: e.target.value })
-                      }
-                    />
-                  </div>
-                </div>
-
-                <div className="row gx-3 mb-3">
-                  <div className="col-md-6">
-                    <label className="small mb-1" placeholder="inputOrgName">
-                      Email Address
-                    </label>
-                    <input
-                      className="form-control"
-                      id="inputOrgName"
-                      type="text"
-                      value={users.emailId}
-                      onChange={(e) =>
-                        setUsers({ ...users, emailId: e.target.value })
-                      }
-                    />
-                  </div>
-
-                  <div className="col-md-6">
-                    <label className="small mb-1" placeholder="inputLocation">
-                      Phone Number
-                    </label>
-                    <input
-                      className="form-control"
-                      id="inputLocation"
-                      type="text"
-                      value={users.phoneNum}
-                      onChange={(e) =>
-                        setUsers({ ...users, phoneNum: e.target.value })
-                      }
-                    />
-                  </div>
-                </div>
-                {/* <div className="mb-3">
-                  <label className="small mb-1">Graduation Date</label>
                   <input
                     className="form-control"
-                    id="inputGraduationDate"
-                    type="date"
-                    value={user.graduationDate}
-                    onChange={(e) => setUsers({ ...users, graduationDate: e.target.value })}
-                  
+                    id="firstName"
+                    type="text"
+                    value={users.fname}
+                    onChange={(e) =>
+                      setUsers({ ...users, fname: e.target.value })
+                    }
                   />
-                </div> */}
+                </div>
 
-                {/* commented out for new user class*/}
-                {/* <div className="mb-3">
-                  <label className="small mb-1" placeholder="inputEmailAddress">
-                    Street Address
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="inputLastName">
+                    Last name
                   </label>
                   <input
                     className="form-control"
-                    id="inputEmailAddress"
+                    id="inputLastName"
                     type="text"
-                    value={users.address}
-                    onChange={(e) => setUsers({ ...users, address: e.target.value })}
+                    value={users.lname}
+                    onChange={(e) =>
+                      setUsers({ ...users, lname: e.target.value })
+                    }
                   />
-                </div> */}
+                </div>
+              </div>
 
-                <div className="row gx-3 mb-3">
-                  <div className="col-md-6">
-                    <label className="small mb-1" placeholder="inputPhone">
-                      City
-                    </label>
-                    <input
-                      className="form-control"
-                      id="inputPhone"
-                      type="tel"
-                      placeholder="Enter your City"
-                    />
-                  </div>
-
-                  <div className="col-md-6">
-                    <label className="small mb-1" placeholder="inputBirthday">
-                      Postal Code
-                    </label>
-                    <input
-                      className="form-control"
-                      id="inputBirthday"
-                      type="text"
-                      name="birthday"
-                      placeholder="Enter zip code"
-                    />
-                  </div>
+              <div className="row gx-3 mb-3">
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="">
+                    Middle Name
+                  </label>
+                  <input
+                    className="form-control"
+                    id=""
+                    type="text"
+                    placeholder="Enter Middle Name"
+                  />
                 </div>
 
-                <button
-                  className="btn btn-primary"
-                  type="button"
-                  onClick={(e) => saveclients(e)}
-                >
-                  Save changes
-                </button>
-              </form>
-            </div>
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="inputLocation">
+                    Miaden Name
+                  </label>
+                  <input
+                    className="form-control"
+                    id="inputLocation"
+                    type="text"
+                    placeholder="Enter Maiden Name"
+                  />
+                </div>
+              </div>
+
+              <div className="row gx-3 mb-3" style={{ width: "40%" }}>
+                <label className="small mb-1">Date of Birth</label>
+                <input
+                  className="form-control"
+                  type="date"
+                  id="birthday"
+                  name="birthday"
+                ></input>
+              </div>
+
+              <div className="row gx-3 mb-3">
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="inputOrgName">
+                    Email Address
+                  </label>
+                  <input
+                    className="form-control"
+                    id="inputOrgName"
+                    type="text"
+                    value={users.emailId}
+                    onChange={(e) =>
+                      setUsers({ ...users, emailId: e.target.value })
+                    }
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="inputLocation">
+                    Phone Number
+                  </label>
+                  <input
+                    className="form-control"
+                    id="inputLocation"
+                    type="text"
+                    value={users.phoneNum}
+                    onChange={(e) =>
+                      setUsers({ ...users, phoneNum: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
+
+              <div className="row gx-3 mb-3">
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="inputPhone">
+                    City
+                  </label>
+                  <input
+                    className="form-control"
+                    id="inputPhone"
+                    type="tel"
+                    placeholder="Enter your City"
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="inputBirthday">
+                    Postal Code
+                  </label>
+                  <input
+                    className="form-control"
+                    id="inputBirthday"
+                    type="text"
+                    name="birthday"
+                    placeholder="Enter zip code"
+                  />
+                </div>
+              </div>
+            </form>
           </div>
         </div>
+        <div className="card mb-4" style={{ fontSize: "20px", height: "100%" }}>
+          <div className="card-header">Family Details</div>
+          <div className="card-body">
+            <form>
+              <div className="row gx-3 mb-3">
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="firstName">
+                    Spouse First name
+                  </label>
+
+                  <input
+                    className="form-control"
+                    id="spouseFirstName"
+                    type="text"
+                    placeholder="Enter First Name"
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="inputLastName">
+                    Spouse Last name
+                  </label>
+                  <input
+                    className="form-control"
+                    id="inputLastName"
+                    type="text"
+                    placeholder="Input Last Name"
+                  />
+                </div>
+              </div>
+
+              <div className="row gx-3 mb-3">
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="">
+                    Spouse Middle Name
+                  </label>
+                  <input
+                    className="form-control"
+                    id=""
+                    type="text"
+                    placeholder="Enter Middle Name"
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="inputLocation">
+                    Spouse Miaden Name
+                  </label>
+                  <input
+                    className="form-control"
+                    id="inputLocation"
+                    type="text"
+                    placeholder="Enter Maiden Name"
+                  />
+                </div>
+              </div>
+
+              <div className="row gx-3 mb-3">
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="inputOrgName">
+                    Spouse Email Address
+                  </label>
+                  <input
+                    className="form-control"
+                    id="inputOrgName"
+                    type="text"
+                    placeholder="Enter Email Address"
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="inputLocation">
+                    Spouse Phone Number
+                  </label>
+                  <input
+                    className="form-control"
+                    id="inputLocation"
+                    type="text"
+                    placeholder="Enter Phone Number"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="card mb-4" style={{ fontSize: "20px", height: "100%" }}>
+          <div className="card-header">Education Details</div>
+          <div className="card-body">
+            <form>
+              <div className="row gx-3 mb-3">
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="inputFirstName">
+                    High School
+                  </label>
+
+                  <input
+                    className="form-control"
+                    id="inputFirstName"
+                    type="text"
+                    placeholder="Enter High school name"
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="inputLastName">
+                    University
+                  </label>
+                  <input
+                    className="form-control"
+                    id="inputLastName"
+                    type="text"
+                    placeholder="Enter University name"
+                  />
+                </div>
+              </div>
+
+              <div className="mb-3">
+                <label className="small mb-1" placeholder="inputEmailAddress">
+                  Interests
+                </label>
+                <input
+                  className="form-control"
+                  id="inputEmailAddress"
+                  type="email"
+                  placeholder="Enter Interest"
+                />
+              </div>
+
+              <div className="row gx-3 mb-3">
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="inputPhone">
+                    Graduation Year
+                  </label>
+                  <br />
+                  <input
+                    className="form-control"
+                    id="year"
+                    type="text"
+                    placeholder="Enter Graduation year"
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="small mb-1" placeholder="inputBirthday">
+                    Friend of the Year
+                  </label>
+
+                  <input
+                    className="form-control"
+                    id="inputBirthday"
+                    type="text"
+                    name="birthday"
+                    placeholder="Enter Friend Name"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+     
+      
       </div>
-    </div>
+    </>
   );
 };
 

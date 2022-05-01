@@ -1,10 +1,9 @@
 const Security = () => {
+
+  
   return (
-    <div className="row">
-        <div className="col-lg-4">            
-        </div>
-      <div className="col-lg-8">
-        <div className="card mb-4">
+    <div>
+        <div className="card mb-4" style={{fontSize:'20px', height:'100%'}}>
           <div className="card-header">Change Password</div>
           <div className="card-body">
             <form>
@@ -43,14 +42,13 @@ const Security = () => {
                   placeholder="Confirm new password"
                 />
               </div>
-              <button className="btn btn-primary" type="button">
+              <button className="btn btn-warning" type="button">
                 Save
               </button>
             </form>
           </div>
         </div>
-      </div>
-    </div>
+        </div>
   );
 };
 

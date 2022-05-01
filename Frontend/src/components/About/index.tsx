@@ -27,10 +27,6 @@ const About = () => {
                 needs to be featured on this site, please contact Dana
                 Jefferson, NAFA Executive Director.
               </p>
-              <a href="#" className="btn btn-warning">
-                {" "}
-                Learn More
-              </a>
             </div>
           </div>
         </div>
