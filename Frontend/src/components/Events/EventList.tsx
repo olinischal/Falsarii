@@ -3,18 +3,14 @@ import EventData from "../../types/Event";
 import ScholarshipData from "../../types/Scholarship";
 import './Events.css'
 
-interface eventDetails {
-    event: EventData ;
-    key: any;
-    
-} 
 
-const EventList: React.FC<eventDetails> = ({event}) => {
+
+const EventList = ({event, index}) => {
   let d = new Date(event.date);
   var  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 let month = months[d.getMonth()];	
-let date = d.getDate();		
+let date = d.getDate() + 1;		
 let year = d.getFullYear();
 
     return (
@@ -22,6 +18,7 @@ let year = d.getFullYear();
 
                 <section id="events">
                 <div className="column">
+                  <Link to={`/e/page/${index}`} >
                 <div className="event-block">
                   <div className="calendar-block">
                   <p className="day">{date}</p>
@@ -38,6 +35,7 @@ let year = d.getFullYear();
                     </div>
                   </div>
                 </div>
+                </Link>
               </div>
 
                 </section>

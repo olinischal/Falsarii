@@ -38,7 +38,7 @@ public class EventController {
 
     //Edit event
     @PostMapping("/event/edit")
-    public void createScholarship(@RequestParam Long eventId,@RequestBody Events event) {
+    public void editEvent(@RequestParam Long eventId,@RequestBody Events event) {
         try {
             eventService.editEvent(eventId, event);
         }catch (Exception e) {
@@ -48,7 +48,7 @@ public class EventController {
     
     //Change event status
   	@PostMapping("/event/change-status")
-  	public void activateScholarship(@RequestParam Long eventId, @RequestParam boolean status) {
+  	public void activateEvent(@RequestParam Long eventId, @RequestParam boolean status) {
   		try {
   			eventService.changeEventStatus(eventId, status);
   		}catch(Exception e)

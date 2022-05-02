@@ -35,10 +35,7 @@ public class Users {
 	private String password;
 	private String graduationDate;
 	private String phoneNum;
-	private String streetAddress;
-	private String city;
-	private String state;
-	private String zipCode;
+	private String address;
 	private String gender;
 	private String highSchool;
 	private String university;
@@ -277,7 +274,12 @@ public class Users {
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
-
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public String getGender() {
 		return gender;
 	}
@@ -319,35 +321,4 @@ public class Users {
         this.enabled = enabled;
     }
 
-	public String getStreetAddress() {
-		return streetAddress;
-	}
-
-	public void setStreetAddress(String streetAddress) {
-		this.streetAddress = streetAddress;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
 }

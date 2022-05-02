@@ -1,3 +1,4 @@
+
 import axios, {AxiosResponse} from 'axios';
 import MemberData from '../types/Member';
 import EventData from '../types/Event';
@@ -31,7 +32,6 @@ export const Member = {
 	searchMember:(keyword:string): Promise<MemberData[]> => requests.get(`member/searchMember/${keyword}`),
 };
 
-// update the event api link
 export const EventRequests = {
 	getEvents: (): Promise<EventData[]> => requests.get('member/event/view'),
 	getAEvent: (id: number): Promise<EventData> => requests.get(`getMember/${id}`),
@@ -55,7 +55,6 @@ export const GroupRequests = {
 	getGroups: (): Promise<GroupData[]> => requests.get('member/getAllGroups'),
 	createGroup: (post: GroupData): Promise<GroupData> =>
 		requests.post('member/createGroup', post),
-	
 	// updateScholarships: (id:number, put: GroupData): Promise<GroupData> =>
 	// 	requests.put(`update/${id}`, put),
 	// deleteScholarships: (id: number): Promise<void> => requests.delete(`delete/${id}`),
@@ -104,15 +103,15 @@ export const JoinGroup = (email: string, grpName: string) => {
 	;
   };
 
-  export const donateScholarship = (emailId: String, scholarshipName: String, date: any, amount: any, anonymity: boolean) => {
+  export const donateScholarship = (userId: String, scholarshipId: String, date: any, amount: any, anonymity: boolean) => {
 	const API_URL = "http://localhost:8080/member/";
 
 	return axios.post(
-	  API_URL + "donateToScholarship", null, 
+	  API_URL + "scholarship/donate", null, 
 	{
 	  params: {
-		emailId: emailId,
-		scholarshipName: scholarshipName,
+		userId: userId,
+		scholarshipId: scholarshipId,
 		date: date,
 		amount: amount,
 		anonymity: anonymity,
@@ -123,7 +122,26 @@ export const JoinGroup = (email: string, grpName: string) => {
   
   }
 
-  export const editScholarships = (scholarshipId: any, scholarship) => {
+  export const getScholarshipDonateList = ( userId) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.get(
+	  API_URL + "scholarship/get-all-donations-by-person",
+	{
+	  params: {
+		
+		userId: userId,
+	
+
+	
+	  }
+	});
+  
+  }
+
+  
+
+  export const editScholarships = (scholarshipId: number, scholarship) => {
 	const API_URL = "http://localhost:8080/member/";
 
 	return axios.post(
@@ -131,8 +149,8 @@ export const JoinGroup = (email: string, grpName: string) => {
 	  {
 		params: {
 		 
-		  scholarshipName: scholarshipId,
-		  scholarship: scholarship
+		  scholarshipId: scholarshipId
+		  
   
 	  
 		}
@@ -140,6 +158,25 @@ export const JoinGroup = (email: string, grpName: string) => {
 
 
   }
+
+  export const eventEdit = (eventId: number, event) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.post(
+		API_URL + "event/edit", event, 
+	  {
+		params: {
+		 
+		  eventId: eventId
+		  
+  
+	  
+		}
+	  });
+
+
+  }
+
 
   export const uploadFile = (fileName, file) => {
 	const API_URL = "http://localhost:8080/member/";
@@ -165,3 +202,4 @@ export const JoinGroup = (email: string, grpName: string) => {
 	return axios.get(API_URL + "list/files");
   };
   
+

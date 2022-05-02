@@ -72,7 +72,7 @@ public class UserService {
 			user.setMiddleName(userDetail.getMiddleName());
 			user.setMaidenName(userDetail.getMaidenName());
 			user.setGraduationDate(userDetail.getGraduationDate());
-			user.setStreetAddress(userDetail.getAddress());
+			user.setAddress(userDetail.getAddress());
 			user.setGraduationDate(userDetail.getGraduationDate());
 			user.setHighSchool(userDetail.getHighSchool());
 			user.setUniversity(userDetail.getUniversity());

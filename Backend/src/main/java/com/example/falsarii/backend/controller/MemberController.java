@@ -211,10 +211,6 @@ public class MemberController {
 		currentMember.setPhoneNum(member.getPhoneNum());
 		currentMember.setEmailId(member.getEmailId());
 		currentMember.setPassword(member.getPassword());
-		currentMember.setStreetAddress(member.getStreetAddress());
-		currentMember.setZipCode(member.getZipCode());
-		currentMember.setCity(member.getCity());
-
 
 
 		userRepository.save(currentMember);

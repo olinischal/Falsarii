@@ -92,12 +92,13 @@ const MemberList = () => {
               searchType === "email"
             ) {
               return val;
-            } else if (
-              val.graduationDate.includes(searchTerm) &&
-              searchType === "graduationDate"
-            ) {
-              return val;
-            }
+            } 
+            // else if (
+            //   val.graduationDate.includes(searchTerm) &&
+            //   searchType === "graduationDate"
+            // ) {
+            //   return val;
+            // }
           })
           .map((val, key) => {
             return (

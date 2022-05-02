@@ -10,7 +10,7 @@ import ScholarshipPage from "./ScholarshipPage";
 const UpdateScholarships = () => {
   const [scholarship, setScholarship] = useState<ScholarshipData[]>([]);
   const {setScholarshipDetail}:any = useContext(Authenticate);
-  const {scholarshipDetail}:any = useContext(Authenticate);
+ 
   
 
   useEffect(() => {
