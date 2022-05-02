@@ -363,8 +363,9 @@ export default function Membership() {
                 component={TextField}
                 label="High School"
               />
-            </Box>:<>{setSchoolValue("Naville High School")}</> }
-            {/* <div>{()=>setSchoolValue("Naville High School")}</div>} */}
+            </Box> : <div></div>}
+            {/* </Box> : <div>{()=>setSchoolValue("Naville High School")}</div>} */}
+
 
             <Box paddingBottom={4}>
               <Field
@@ -785,9 +786,9 @@ export function FormikStep({ children }: FormikStepProps) {
 export function FormikStepper({
   children,
   ...props
-}: FormikConfig<FormikValues>) {
-  // const childrenArray = React.Children.toArray(children) as React.ReactElement<FormikStepProps>[];
-  const childrenArray = React.Children.toArray(null ) as React.ReactElement<FormikStepProps>[];
+}: any) {
+  var childrenArray:any;
+   childrenArray = React.Children.toArray(children) as React.ReactElement<FormikStepProps>[];
   const [step, setStep] = useState(0);
   const currentChild = childrenArray[step];
   const [completed, setCompleted] = useState(false);
@@ -809,6 +810,7 @@ export function FormikStepper({
     console.log(amount);
   };
   return (
+    <>
     <Formik
       {...props}
       validationSchema={currentChild.props.validationSchema}
@@ -846,7 +848,7 @@ export function FormikStepper({
                   style={{ width: "100px" }}
                   variant="warning"
                   onClick={() => setStep((s) => s - 1)}
-                >
+>
                   Back
                 </Button>
               </Grid>
@@ -873,5 +875,6 @@ export function FormikStepper({
         </Form>
       )}
     </Formik>
+    </>
   );
 }

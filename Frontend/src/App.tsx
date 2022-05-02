@@ -40,7 +40,7 @@ import SearchMember from './components/searchMember/searchMember';
 import Scholarships from './components/Scholarships';
 import ScholarshipPage from './components/Scholarships/ScholarshipPage';
 import MembershipType from './components/Membership/membershipType';
-import EventPage from './components/Events/eventPage';
+import EventPage from './components/Events/EventPage';
 
 
 
