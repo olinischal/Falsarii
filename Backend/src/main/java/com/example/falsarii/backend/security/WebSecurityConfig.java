@@ -62,9 +62,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   
   
   @Override
+<<<<<<< HEAD
 
   protected void configure(HttpSecurity http) throws Exception {;
 
+=======
+  protected void configure(HttpSecurity http) throws Exception {;
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	  
 	  http.sessionManagement()
       .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)

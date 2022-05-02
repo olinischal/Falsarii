@@ -83,7 +83,7 @@ const Signup = () => {
           <>
             <Container
               className="mt-7"
-              style={{ width: "30rem", padding: "2rem", }}
+              style={{ width: "30rem", paddingTop: "5rem", }}
             >
               <div className='box-size'
               >

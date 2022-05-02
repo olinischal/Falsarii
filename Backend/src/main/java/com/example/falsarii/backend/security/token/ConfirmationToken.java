@@ -1,5 +1,8 @@
 package com.example.falsarii.backend.security.token;
+<<<<<<< HEAD
 
+=======
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 import com.example.falsarii.backend.model.Users;
 
 import javax.persistence.*;
@@ -25,16 +28,23 @@ import java.time.LocalDateTime;
 
         @ManyToOne
         @JoinColumn(nullable = false,
+<<<<<<< HEAD
 
+=======
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
                 name = "user_id")
         private Users member;
 
         public ConfirmationToken() {
         }
 
+<<<<<<< HEAD
 
         public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, Users member) {
 
+=======
+        public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, Users member) {
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
             this.token = token;
             this.createdAt = createdAt;
             this.expiresAt = expiresAt;
@@ -81,13 +91,19 @@ import java.time.LocalDateTime;
             this.confirmedAt = confirmedAt;
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
         public Users getMember() {
             return member;
         }
 
         public void setMember(Users member) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
             this.member = member;
         }
     }

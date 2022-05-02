@@ -26,15 +26,19 @@ public class Users {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	private String emailId;
 	private String fname;
 	private String middleName;
 	private String lname;
 	private String maidenName;
 	private String password;
-	private String graduationDate;
 	private String phoneNum;
+<<<<<<< HEAD
 	private String streetAddress;
 	private String city;
 	private String state;
@@ -44,18 +48,35 @@ public class Users {
 	private String university;
 
 	private boolean enabled;
+=======
+	
+	private Boolean enabled;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(  name = "user_roles", 
+          joinColumns = @JoinColumn(name = "user_id"), 
+          inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	
 	public Users() {
+		this.userId = null;
 		this.emailId = null;
 		this.fname = null;
 		this.lname = null;
 		this.password = null;
 		this.phoneNum = null;
 	}
+<<<<<<< HEAD
 
 	//Constructor
 	public Users(String emailId, String fname, String lname, String password, String phoneNum) {
 
+=======
+	
+	//Constructor	
+	public Users(String emailId, String fname, String lname, String password, String phoneNum) {
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 		this.emailId = emailId;
 		this.fname = fname;
 		this.lname = lname;
@@ -64,6 +85,7 @@ public class Users {
 		
 
 	}
+<<<<<<< HEAD
 
 	//Relation between user and roles
     @ManyToMany(fetch = FetchType.LAZY)
@@ -81,10 +103,16 @@ public class Users {
   		this.roles = roles;
   	}
 
+=======
+	
+	
+	
+	
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	//Relation between Users and Groups i.e Many to Many
 	@JsonIgnore
 	@ManyToMany(
-			cascade = CascadeType.ALL)
+			cascade = CascadeType.ALL) 
 	@JoinTable(
 			name = "Group_On",
 			joinColumns = @JoinColumn(
@@ -93,10 +121,17 @@ public class Users {
 			inverseJoinColumns = @JoinColumn(
 					name = "groupId",
 					referencedColumnName = "groupId")
+<<<<<<< HEAD
 	)
 	private Set<Groups> groups = new HashSet<>();
 
 
+=======
+			)
+	private Set<Groups> groups = new HashSet<>();
+	
+	
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	//Returns the set of groups
 	public Set<Groups> getGroups(){
 		return groups;
@@ -104,10 +139,17 @@ public class Users {
 	//Sets the set of groups
 	public void setGroups(Set<Groups> groups) {
 		this.groups = groups;
+<<<<<<< HEAD
 	}
 
 
 
+=======
+	}	
+	
+	
+	
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	//Relation between Users and donate_scholarship i.e One to many
 	@JsonIgnore
 	@OneToMany(mappedBy = "user",
@@ -123,23 +165,71 @@ public class Users {
 	public void setDonateToScholarships(Set<DonateToScholarships> donateToScholarships) {
 		this.donateToScholarships = donateToScholarships;
 	}
+	
+	
+
+<<<<<<< HEAD
 
 
-
+=======
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	//Relation between Users and DonateToEvents i.e. One to Many
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private Set<DonateToEvents> donateToEvents = new HashSet<>();
+<<<<<<< HEAD
 
 
+=======
+	
+	
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	//Sets the set of donateToEvents
 	public Set<DonateToEvents> getDonateToEvents() {
 		return donateToEvents;
 	}
+<<<<<<< HEAD
 
 	//Returns the set of donateToEvents
 	public void setDonateToEvents(Set<DonateToEvents> donateToEvents) {
 		this.donateToEvents = donateToEvents;
+=======
+		
+	//Returns the set of donateToEvents
+	public void setDonateToEvents(Set<DonateToEvents> donateToEvents) {
+		this.donateToEvents = donateToEvents;
+	}	
+	
+	
+	
+	//Relation between users and parents i.e. self referencing entity
+	@JsonIgnore
+	@ManyToMany(cascade = CascadeType.ALL)
+	private Set<Users> parents = new HashSet<>();
+	
+	//Sets the set of parents
+	public void setParents(Set<Users> parents) {
+		this.parents = parents;
+	}
+	//Returns the set of parents
+	public Set<Users> getParents(){
+		return parents;
+	}
+	
+	
+	//Relation between users and children i.e. self referencing entity
+	@JsonIgnore
+	@ManyToMany(cascade = CascadeType.ALL)
+	private Set<Users> children = new HashSet<>();
+	
+	//Sets the set of children
+	public void setChildren(Set<Users> children) {
+		this.children = children;
+	}	
+	//Returns set of children
+	public Set<Users> getChildren(){
+		return children;
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	}
 
 
@@ -227,6 +317,7 @@ public class Users {
 			fetch = FetchType.LAZY)
 	private UserImages image;
 	
+<<<<<<< HEAD
 	//Sets the spouse of the user
 	public void setImage(UserImages Image) {
 		this.image = image;
@@ -241,6 +332,51 @@ public class Users {
 	public Long getUserId() {
 		return userId;
 	}
+=======
+	
+	
+	//Relation between users and siblings i.e. self referencing entity
+	@JsonIgnore
+	@ManyToMany(cascade = CascadeType.ALL)
+	private Set<Users> siblings = new HashSet<>();
+	
+	//Sets the set of siblings
+	public void setSiblings(Set<Users> siblings) {
+		this.siblings = siblings;
+	}	
+	//Returns set of siblings
+	public Set<Users> getSiblings(){
+		return siblings;
+	}
+	
+	
+	
+	//Relation between user and spouse i.e. selft referencing entity
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL)
+	private Users spouse;
+	
+	//Sets the spouse of the user
+	public void setSpouse(Users spouse) {
+		this.spouse = spouse;
+	}	
+	//Returns the spouse of the user
+	public Users getSpouse() {
+		return spouse;
+	}
+	
+	
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	//Basic setters and getters
+	
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	public String getEmailId() {
 		return emailId;
 	}
@@ -265,18 +401,14 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getGraduationDate() {
-		return graduationDate;
-	}
-	public void setGraduationDate(String graduationDate) {
-		this.graduationDate = graduationDate;
-	}
+	
 	public String getPhoneNum() {
 		return phoneNum;
 	}
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
+<<<<<<< HEAD
 
 	public String getGender() {
 		return gender;
@@ -308,6 +440,30 @@ public class Users {
 	}
 	public void setUniversity(String university) {
 		this.university = university;
+=======
+	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	public String getMaidenName() {
+		return maidenName;
+	}
+	public void setMaidenName(String maidenName) {
+		this.maidenName = maidenName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	}
 
 	public Boolean getEnabled() {
@@ -319,6 +475,7 @@ public class Users {
         this.enabled = enabled;
     }
 
+<<<<<<< HEAD
 	public String getStreetAddress() {
 		return streetAddress;
 	}
@@ -350,4 +507,14 @@ public class Users {
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
+=======
+	
+
+
+	
+	
+
+
+	
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 }

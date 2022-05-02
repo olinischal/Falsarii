@@ -99,7 +99,7 @@ const UpdateMember = () => {
           />
         </div>
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <input
             type="date"
             className="form-control col-4"
@@ -108,7 +108,7 @@ const UpdateMember = () => {
             onChange={(e) => setUsers({ ...users, graduationDate: e.target.value })}
             placeholder={users.graduationDate}
           />
-        </div>
+        </div> */}
 
         <div className="form-group">
           <input

@@ -1,5 +1,9 @@
 import MemberData from "../../types/Member";
-import React, { useContext } from "react";
+
+import React, { useContext, useState } from "react";
+
+
+
 import "./Account.css";
 import "./temp.css";
 import { Image } from "react-bootstrap";
@@ -11,58 +15,33 @@ const Account = () => {
   const {userDetail}: any  = useContext(Authenticate);
  
   return (
-    <div className="container" >
-      <div className="row">
-      <div className="col-xl-3 col-lg-4 col-md-4 col-xs-12">
-     
-
-<div className="social-timeline-left">
-                                <div className="card">
-                                    <div className="social-profile">
-                                    <Image
-                  src={require("./profileImage.png")}
-                  alt="Admin"
-                  
-                  width="150"
-                />
-                                        <div className="profile-hvr m-t-15">
-                                            <i className="icofont icofont-ui-edit p-r-10"></i>
-                                            <i className="icofont icofont-ui-delete"></i>
-                                        </div>
-                                    </div>
-                                    <div className="card-block social-follower">
-                                        <h4>{userDetail.fname + " " + userDetail.lname}</h4>
-                                        <h5>Class of {userDetail.graduationDate}</h5>                            
-                                      
-                                    </div>
-                                </div>
-
-                                <div className="card">
-                                    <div className="card-header">
-                                        <h5 className="card-header-text">Membership</h5>
-                                    </div>
-                                    <div className="card-block user-box">
-                                        
-                                    </div>
-                                </div>
-
-                                <div className="card">
-                                   
-                                    <div className="card-block friend-box">
-                                       <h5 className="card-header-text"> Contact Information <br /> </h5>
-                                        {userDetail.phoneNum}   
-                                        <br />
-                                        {userDetail.emailId}
-                                    </div>
-                                </div>
-
-                            </div>
+    <>
+ {/* import profile from './profileImage.png'; 
 
 
-        </div>
-        <div className="col-md-8">
-          <div className="card mb-4">
-            <div className="card-header">Account Details</div>
+
+interface userDetails {
+  user: MemberData ;
+}
+
+
+
+
+const Account: React.FC<userDetails> = ({ user }) => {
+
+  // const [profilePic, setProfilePic] = useState(profile);
+  const imageHandler =(e) =>{
+    const reader = new FileReader();
+    reader.onload = () => {
+      if(reader.readyState ===2 ){
+        setProfilePic(String(reader.result));
+      }
+    }
+    reader.readAsDataURL(e.target.files[0]);( */}
+  
+        <div>
+          <div className="card mb-4" style={{ fontSize:'20px' }}>
+            <div className="card-header">Personal Details</div>
             <div className="card-body">
               <div className="row">
                 <div className="col-sm-3">
@@ -84,22 +63,88 @@ const Account = () => {
                 <div className="col-sm-3">
                   <h6 className="mb-0">Phone</h6>
                 </div>
-                <div className="col-sm-9 text-secondary">{userDetail.phoneNum}</div>
+                <div className="col-sm-9 text-secondary">
+                  {userDetail.phoneNum}
+                </div>
               </div>
               <hr />
-             
               <div className="row">
                 <div className="col-sm-3">
                   <h6 className="mb-0">Address</h6>
                 </div>
-                <div className="col-sm-9 text-secondary">{userDetail.streetAddress}</div>
+                {/* <div className="col-sm-9 text-secondary">
+                  {user.address}
+                </div> */}
+              </div>
+              <hr />
+
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Spouse</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">
+                  {"Spouse Name Goes here"}
+                </div>
+              </div>
+              <hr />
+            </div>
+          </div>
+
+
+          <div className="card mb-4" style={{ fontSize:'20px' }}>
+            <div className="card-header">Educational Details</div>
+            <div className="card-body">
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">High School</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">
+                  {"High School Name Goes Here"}
+                </div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Graduation Year</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">{"Graduation Year Goes Here"}</div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Interest</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">
+                  {"Interest List Goes Here"}
+                </div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">University</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">{"University name goes here"}</div>
+              </div>
+              <hr />
+            </div>
+          </div>
+
+          <div className="card mb-4" style={{ fontSize:'20px', height:"100%" }}>
+            <div className="card-header">Membership</div>
+            <div className="card-body">
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Membership type</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">
+                  {"Membership type goes here"}
+                </div>
               </div>
               <hr />
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </>
   );
 };
 

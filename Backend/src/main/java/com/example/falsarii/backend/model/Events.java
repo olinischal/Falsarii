@@ -5,12 +5,18 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+<<<<<<< HEAD
 import javax.persistence.FetchType;
+=======
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+<<<<<<< HEAD
 import javax.persistence.OneToOne;
+=======
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -63,6 +69,7 @@ public class Events {
 	}
 	
 	
+<<<<<<< HEAD
 	//Relation between user and image i.e. One to one
 	@OneToOne(mappedBy = "event",
 			cascade = CascadeType.ALL,
@@ -79,6 +86,8 @@ public class Events {
 	}	
 
 	
+=======
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	//Basic setters and getters
 	public String getEventName() {
 		return eventName;

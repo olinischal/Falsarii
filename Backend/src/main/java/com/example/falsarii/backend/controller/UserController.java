@@ -48,6 +48,7 @@ public class UserController {
 				System.out.println(e.toString());
 			}
 		}
+<<<<<<< HEAD
 		
 		//For user and admin
 		@PostMapping("/user/remove-group")
@@ -165,6 +166,25 @@ public class UserController {
 				return null;
 			}
 		}
+=======
+	}
+	
+//	@PostMapping("/donateToScholarship")
+//	public void donateToScholarship(@RequestParam String emailId, @RequestParam String scholarshipName, @RequestParam String date, @RequestParam double amount, @RequestParam boolean anonymity) {
+//		try {
+//			userService.donatetoScholarship(emailId, scholarshipName, date, amount, anonymity);
+//		}catch(Exception e) {
+//			System.out.println(e.toString());
+//		}
+//	}
+	
+	@GetMapping("/tester")
+	public List<String> test(@RequestParam String emailId){
+		return userService.test(emailId);
+	}
+	
+}
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 
 		
 		//For admin

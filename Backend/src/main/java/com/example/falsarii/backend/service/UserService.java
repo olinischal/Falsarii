@@ -15,11 +15,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+<<<<<<< HEAD
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.example.falsarii.backend.Email.EmailDetails.EmailDetails;
 import com.example.falsarii.backend.Email.EmailService.EmailService;
 import com.example.falsarii.backend.model.DonateToEvents;
+=======
+import com.amazonaws.services.opsworks.model.Recipes;
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 import com.example.falsarii.backend.model.DonateToScholarships;
 import com.example.falsarii.backend.model.Emails;
 import com.example.falsarii.backend.model.EventImages;
@@ -87,8 +91,13 @@ public class UserService {
 	//Users add themselves to a group
 	public void joinGroup(Long userId, Long groupId) {
 		try {
+<<<<<<< HEAD
 			Users user = userRepository.findByUserId(userId);
 			Groups group = groupRepository.findByGroupId(groupId);
+=======
+			Users user = userRepository.findByEmailId(emailId).get();
+			Groups group = groupRepository.findbyGroupName(groupName);
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 			user.getGroups().add(group);
 			group.getUsers().add(user);
 			userRepository.save(user);
@@ -114,6 +123,7 @@ public class UserService {
 	}
 	
 	//Donate to scholarship
+<<<<<<< HEAD
 	public void donatetoScholarship(Long userId, Long scholarshipId, String date, double amount, boolean anonymity) {
 		//Get user and scholarship objects
 		Users user = userRepository.findByUserId(userId);
@@ -138,6 +148,17 @@ public class UserService {
 		
 		//Save the objects to donateToEvents
 		DonateToEvents donateToEvents = new DonateToEvents(user, event, date, amount);
+=======
+	public void donatetoScholarship(String scholarshipName, String emailId, String name, String address , String receiptUrl, String stripeId,String date, double amount, boolean anonymity) {
+		//Get user and scholarship objects
+		Users user = userRepository.findByEmailId(emailId).get();
+		Scholarships scholarship = scholarshipRepository.findByScholarshipName(scholarshipName);
+		
+		//Save the objects in donate to scholarship
+		DonateToScholarships donate = new DonateToScholarships(user, scholarship, emailId, name, address, receiptUrl, stripeId, date, amount, anonymity);
+		user.getDonateToScholarships().add(donate);
+		scholarship.getDonateToScholarships().add(donate);
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 		
 		//Add to each other's sets
 		user.getDonateToEvents().add(donateToEvents);
@@ -148,6 +169,7 @@ public class UserService {
 		
 	}
 	
+<<<<<<< HEAD
 	//Add family information
 	//Check if there is already saved information *************************
 	public void addFamilyInfomation(Long userId, FamilyDetail familyDetail) {
@@ -195,6 +217,16 @@ public class UserService {
 			
 			String subject = "Nafa notice";
 			String text = "You were added as a family member by " + user.getEmailId() + ". Contact administrator if the information is incorrect";
+=======
+	//Test
+	public List<String> test(String emailId) {
+		Users user = userRepository.findByEmailId(emailId).get();
+		Set<DonateToScholarships> s = user.getDonateToScholarships();
+		System.out.println("Set size: " + s.size());
+		List<String> list = new ArrayList<>();
+		Iterator itr = s.iterator();
+		while(itr.hasNext()) {
+>>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 			
 			emailDetails.setSubject(subject);
 			emailDetails.setText(text);
