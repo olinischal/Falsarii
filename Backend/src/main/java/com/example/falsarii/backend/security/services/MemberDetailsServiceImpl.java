@@ -108,9 +108,6 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
                 member.getPhoneNum()));
 
 
-
-
-
         //Getting the confirmation token and then saving it
         saveConfirmationToken(member, token);
 

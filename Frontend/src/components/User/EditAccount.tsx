@@ -10,17 +10,21 @@ import EditNAFA from "./EditNAFA";
 
 const EditAccount = () => {
     const [users, setUsers] = useState<MemberData>({
-      userId: " ",
-      emailId: " ",
       fname: " ",
       middleName: " ",
+      maidenName: " ",
       lname: " ",
+      emailId: " ",
       graduationDate: " ",
-      password: " ",
+      phoneNum: " ",
       streetAddress: " ",
       city: " ",
       zipCode: " ",
-      phoneNum: " ",
+      state: " ",
+      password: " ",
+      university: " ",
+      highSchool: " ",
+      gender: " ",
       });
 
       const {userDetail}: any  = useContext(Authenticate);
@@ -34,13 +38,12 @@ const EditAccount = () => {
       // let postalCode= " ";
       const saveclients = (e) => {
         e.preventDefault();
-        // setUsers({ ...users, address: `${users.address}, ${fullAdress.city}, ${fullAdress.postalCode}` })
         Member.updateMember(parseInt(users.userId), users)
           .then(() => {
             setSubmit(true);
             navigate('/profile/user');
-            //uncomment this section once submit button is settled
-           // window.location.reload();
+           
+           window.location.reload();
           })
           .catch((error) => {
             console.log("Something went wrong here.", error);
@@ -49,6 +52,7 @@ const EditAccount = () => {
 
 
       };
+    
 
       useEffect(() => {
         try{
@@ -168,7 +172,8 @@ const EditAccount = () => {
                     className="form-control"
                     id="inputAddress"
                     type="text"
-                    value={users.streetAddress}
+                    placeholder="Enter your street address"
+                    value={users.streetAddress == null? " ": users.streetAddress}
                     onChange={(e) => setUsers({ ...users, streetAddress: e.target.value })}
                   />
                 </div>
@@ -183,8 +188,8 @@ const EditAccount = () => {
                       id="inputPhone"
                       type="tel"
                       placeholder="Input City"
-                      // value={fullAdress.city}
-                      // onChange={(e) => setFullAddress({ ...fullAdress, city: e.target.value })}
+                      value={users.city == null? " ": users.city}
+                      onChange={(e) => setUsers({ ...users, city: e.target.value })}
                     />
                   </div>
 
@@ -198,8 +203,8 @@ const EditAccount = () => {
                       type="text"
                       name="birthday"
                       placeholder="Input Postal code"
-                      // value={fullAdress.postalCode}
-                      // onChange={(e) => setFullAddress({ ...fullAdress, postalCode: e.target.value })}
+                      value={users.zipCode == null? " ": users.zipCode}
+                      onChange={(e) => setUsers({ ...users, zipCode: e.target.value })}
                     />
                   </div>
                 </div>
@@ -209,7 +214,7 @@ const EditAccount = () => {
                       Group
                     </label>
 
-                   <GroupList />
+                   {/* <GroupList /> */}
                   </div>
                   </div>
 

@@ -9,7 +9,7 @@ import './Scholarship.css';
 
 const initialValues = {
   name: " ",
-  active: false,
+  active: true,
   deadline: "",
   description: " ",
 };
@@ -24,7 +24,7 @@ const Scholarships = () => {
     scholarshipName: " ",
     description: " ",
     deadline: "",
-    status: false,
+    status: true,
   });
 
   const submitForm =  () => {

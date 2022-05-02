@@ -10,5 +10,11 @@ export default interface MemberData {
     streetAddress: string,
     city: string,
     zipCode: string,
+    state: string,
     password: string,
+    university: string,
+    highSchool: string,
+    gender: string,
+
+
 }

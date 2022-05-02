@@ -19,7 +19,7 @@ public class ScholarshipController {
 	private ScholarshipService scholarshipService;
 	
 	//View all scholarships for admin
-	@GetMapping("/viewScholarships")
+	@GetMapping("/scholarship/view")
 	public List<Scholarships> getScholarships() {
 		return scholarshipService.getScholarships();
 	}
@@ -35,17 +35,26 @@ public class ScholarshipController {
 	}
 	
 	//Activate scholarship
-	@PostMapping("/scholarship/changeStatus")
-	public void activateScholarship(@RequestParam String scholarshipName, @RequestParam boolean status) {
+	@PostMapping("/scholarship/change-status")
+	public void activateScholarship(@RequestParam Long scholarshipId, @RequestParam boolean status) {
 		try {
-			scholarshipService.changeStatusScholarship(scholarshipName, status);
+			scholarshipService.changeStatusScholarship(scholarshipId, status);
 		}catch(Exception e)
 		{
 			System.out.println(e.toString() + " scholarship controller activate error");
 		}
 	}
 	
-	
+	//Edit scholarship
+	@PostMapping("/scholarship/edit")
+	public void createScholarship(@RequestParam Long scholarshipId,@RequestBody Scholarships scholarship) {
+		try {
+			scholarshipService.editScholarship(scholarshipId, scholarship);
+		}catch (Exception e) {
+			System.out.println(e.toString() + "scholarship controller error");
+		}
+	}
+
 	
 	
 }

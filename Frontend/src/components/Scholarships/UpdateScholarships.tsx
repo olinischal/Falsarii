@@ -1,22 +1,31 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
+import Authenticate from "../../Context/Authenticate";
 import { ScholarshipRequests } from "../../services/api";
 import ScholarshipData from "../../types/Scholarship";
+import Success from "./Payment/Success";
 import ScholarshipList from "./ScholarshipList";
 import ScholarshipPage from "./ScholarshipPage";
 
 const UpdateScholarships = () => {
   const [scholarship, setScholarship] = useState<ScholarshipData[]>([]);
+  const {setScholarshipDetail}:any = useContext(Authenticate);
+  const {scholarshipDetail}:any = useContext(Authenticate);
+  
 
   useEffect(() => {
     ScholarshipRequests.getScholarships()
       .then((response) => {
-        setScholarship([...response]); 
+        setScholarship([...response]);
+        setScholarshipDetail([...response]);
+        
       })
       .catch((error) => {
         console.log("Something went wrong here.", error);
       });
   }, []);
+
+  
 
   return (
     <>
@@ -31,13 +40,25 @@ const UpdateScholarships = () => {
           </div>
 
           <div className="row gx-5">
-            {scholarship.map((val, key) => {
-              
+            {scholarship?.map((val, key) => {
+               
+              if(val.status === false){
+                return ;
+              }else{
+                let index: number = key;
               return (
-                <ScholarshipList scholarship = {val} key={key} />
+                <ScholarshipList scholarship = {val} key = {key} index={index}/>
                 
                
               );
+              }
+             
+              
+              // return (
+              //   <ScholarshipList scholarship = {val} index={index}/>
+                
+               
+              // );
             })}
           </div>
         </div>

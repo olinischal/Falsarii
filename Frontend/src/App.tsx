@@ -9,9 +9,9 @@ import About from "./components/About";
 import Contact from "./components/contact/contact";
 import MemberList from "./components/MemberList";
 
-import Payment from "./components/Payment/Payment";
-import Success from "./components/Payment/Success";
-import Error from "./components/Payment/Error";
+import Payment from "./components/Scholarships/Payment/Payment";
+import Success from "./components/Scholarships/Payment/Success";
+import Error from "./components/Scholarships/Payment/Error";
 
 import Profile from "./components/User/Profile";
 import BoardUser from "./components/Authenticate/BoardUser";
@@ -39,6 +39,7 @@ import RequireAuth from "./components/Authenticate/RequireAuth";
 import UpdateEvent from "./components/Events/UpdateEvent";
 import Calendar from "./components/Calendar/Calendar";
 import CalendarEvents from "./components/Calendar";
+import ImageUpload from "./components/User/Image/ImageUpload";
 
 
 function App() {
@@ -89,19 +90,25 @@ function App() {
           
           <Route path="/contact" element={<Contact />} />
 
-          <Route path="/s/page" element={<ScholarshipPage />} />
-          <Route path="/payment" element={<Payment />} />
+          {/* {["/scholarshipList/s/page/:id", "/scholarships/s/page/:id"].map((path, index) => 
+        <Route path={path} element={<ScholarshipPage />} key={index} />
+    )} */}
+
+          <Route path="/s/page/:id" element={<ScholarshipPage />} />
+          {/* <Route path="/payment" element={<Payment amount/>} /> */}
 
         
 
           
           {/* Routes for all User level */}
           <Route path="/calendar" element={<Calendar />} />
-          <Route path="/success" element={<Success />} />
-          <Route path="/error" element={<Error />} />
+          <Route path="/donation-success" element={<Success />} />
+          <Route path="/donation-unsucessfull" element={<Error />} />
           <Route path="/scholarshipList" element={<UpdateScholarships />} />
           <Route path="/unauthorized" element={<UnAuthorize />} />
           <Route path="/profile/*" element={<Profile />} />
+          <Route path="/s/payment" element={<Payment amount email donateStatus/>} />
+          <Route path="/imageUpload" element={<ImageUpload />} />
 
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
             {/* Routes for Admin only */}

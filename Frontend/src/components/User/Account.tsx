@@ -14,24 +14,7 @@ const Account = () => {
     <div className="container" >
       <div className="row">
       <div className="col-xl-3 col-lg-4 col-md-4 col-xs-12">
-          {/* <div className="card mb-4 mb-xl-0">
-            <div className="card-header">Profile Picture</div>
-            <div className="card-body">
-              <div className="d-flex flex-column align-items-center text-center">
-                <Image
-                  src={require("./profileImage.png")}
-                  alt="Admin"
-                  className="rounded-circle"
-                  width="150"
-                />
-                <div className="mt-3">
-                  <h4>{userDetail.fname + " " + userDetail.lname}</h4>
-                  <p className="text-secondary mb-1">{userDetail.emailId}</p>
-                  <p className="text-muted font-size-sm">{userDetail.address}</p>
-                </div>
-              </div>
-            </div> 
-          </div> */}
+     
 
 <div className="social-timeline-left">
                                 <div className="card">
@@ -109,7 +92,7 @@ const Account = () => {
                 <div className="col-sm-3">
                   <h6 className="mb-0">Address</h6>
                 </div>
-                <div className="col-sm-9 text-secondary">{userDetail.address}</div>
+                <div className="col-sm-9 text-secondary">{userDetail.streetAddress}</div>
               </div>
               <hr />
             </div>
