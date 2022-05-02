@@ -109,11 +109,11 @@ function App() {
           
           <Route path="/contact" element={<Contact />} />
 
-          {/* {["/scholarshipList/s/page/:id", "/scholarships/s/page/:id"].map((path, index) => 
-        <Route path={path} element={<ScholarshipPage />} key={index} />
-    )} */}
+        
 
           <Route path="/s/page/:id" element={<ScholarshipPage />} />
+          <Route path="/e/page/:id" element={<EventPage/>}/>
+          
           {/* <Route path="/payment" element={<Payment amount/>} /> */}
 
         
@@ -128,7 +128,7 @@ function App() {
           <Route path="/profile/*" element={<Profile />} />
           <Route path="/s/payment" element={<Payment amount email donateStatus/>} />
           <Route path="/imageUpload" element={<ImageUpload />} />
-          <Route path="/eventPage" element={<EventPage/>}/>
+          
           <Route path="/membershipType" element={<MembershipType />} />
           <Route path ="/searchMember"  element={<SearchMember />}/>
           <Route path="/tshirtSale" element={<TshirtSale />} />

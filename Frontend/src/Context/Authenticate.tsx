@@ -37,6 +37,9 @@ export const AuthUser = ({ children,  } : AuthUser) => {
     //Scholarship state of each scholarship
     const [scholarshipDetail, setScholarshipDetail] = useState(()=> getLocalStorage("scholarship", {}));
 
+    //Event state 
+    const[eventDetail, setEventDetail] = useState(() => getLocalStorage("event", {}));
+
     // Check Donation of Scholarship  
     const [donateStatus, setDonateStatus] = useState<boolean>(false);
 
@@ -56,7 +59,7 @@ export const AuthUser = ({ children,  } : AuthUser) => {
 
     return (
         <Authenticate.Provider value={{ auth, setAuth, userDetail, setUserDetail, submit, setSubmit, 
-        scholarshipDetail, setScholarshipDetail, donateStatus, setDonateStatus }}>
+        scholarshipDetail, setScholarshipDetail, eventDetail, setEventDetail, donateStatus, setDonateStatus }}>
         {children}
     </Authenticate.Provider>
     

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import ScholarshipData from "../../types/Scholarship";
 import "bootstrap/dist/css/bootstrap.css";
@@ -7,9 +7,30 @@ import { Button, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Payment from "../Payment/Payment";
 import EventData from "../../types/Event";
+import Authenticate from "../../Context/Authenticate";
 
 const EventPage = () => {
   const navigate = useNavigate();
+  let { id }: any = useParams();
+  const {eventDetail} : any = useContext(Authenticate);
+  const { userDetail }: any = useContext(Authenticate);
+  const { auth }: any = useContext(Authenticate);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [donateStatus, setDonateStatus] = useState<boolean>(false);
+  const date: any = new Date();
+  
+  let userRole;
+  
+  
+  if(JSON.stringify(auth) === '{}'){
+    userRole = null;
+  }else{
+    userRole = userRole = auth?.res.roles?.find((role) => userRole = role);
+  }
 
   /*once the information gets submitted for t[he scholarships delete the added placeholder info*/
   const [event, setEvent] = useState<EventData>({
@@ -22,39 +43,40 @@ const EventPage = () => {
     status: true
   });
 
-  const [show, setShow] = useState(false);
+  const submitForm = () => {
+    
+    setShow(false);
+  };
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [modalHeading, setModalHeading] = useState("");
-  const [modalDescription, setModalDescription] = useState("");
-  const [inputBox, setInputBox] = useState(true);
+ 
 
-  let { id } = useParams();
+ 
+  // const [modalHeading, setModalHeading] = useState("");
+  // const [modalDescription, setModalDescription] = useState("");
+  // const [inputBox, setInputBox] = useState(true);
 
-  function handlePopup(title: string, desc: string) {
-    if (!localStorage.getItem("user")) {
-      setModalDescription(desc);
-      setModalHeading(title);
-      setShow(true);
-    } else {
-      handleGift();
-    }
-  }
-  function handleGift() {
-    setShow(true);
-    setModalHeading("Event entry");
-    setModalDescription("The entry fee for the event is $" + event.entranceFee );
-    setInputBox(false);
-  }
+  
 
-  function handleFinal() {
-    if (localStorage.getItem('user')) {
-      console.log('test');
-    } else {
+  // function handlePopup(title: string, desc: string) {
+  //   if (!localStorage.getItem("user")) {
+  //     setModalDescription(desc);
+  //     setModalHeading(title);
+  //     setShow(true);
+  //   } else {
+  //     handleGift();
+  //   }
+  // }
+  // function handleGift() {
+  //   setShow(true);
+  //   setModalHeading("Event entry");
+  //   setModalDescription("The entry fee for the event is $" + event.entranceFee );
+  //   setInputBox(false);
+  // }
+
+  function handleFinal() {   
       navigate("/login");
     }
-  }
+  
 
   return (
     <div
@@ -63,10 +85,10 @@ const EventPage = () => {
     >
       <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>{modalHeading}</Modal.Title>
+          <Modal.Title>Payment Amount</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ paddingBottom: "0px" }}>
-          {modalDescription}
+          The entry fee for the event is ${eventDetail[id].entranceFee}
         </Modal.Body>
         <Modal.Footer style={{ paddingTop: "0px", marginTop: "0px" }}>
           <Button
@@ -76,10 +98,10 @@ const EventPage = () => {
           >
             Close
           </Button>
-          {localStorage.getItem("user") ? (
+          {userRole != null ? (
             <div>
               {" "}
-              <Payment amount={event.entranceFee} />{" "}
+              <Payment amount={eventDetail[id].entranceFee} />{" "}
             </div>
           ) : (
             <Button
@@ -115,7 +137,7 @@ const EventPage = () => {
                 fontSize: "45px",
               }}
             >
-              {event.eventName}
+              {eventDetail[id].eventName}
             </h2>
           </div>
 
@@ -124,19 +146,16 @@ const EventPage = () => {
               <div style={{ paddingLeft: "85%",  }}>
                 <a
                   className="btn btn-warning"
-                  href="#!"
-                  onClick={() =>
-                    handlePopup(
-                      "Please Log in",
-                      "You need to be a member to gift in a scholarship"
-                    )
-                  }
+                  onClick={() => {
+                    setShow(true);
+                  }}
+                 
                 >
                   Attend the event
                 </a>
               </div>
-              <div className="small text-muted"> {event.date} </div>
-              <p className="card-text">{event.description}</p>
+              <div className="small text-muted"> {eventDetail[id].date} </div>
+              <p className="card-text">{eventDetail[id].description}</p>
             </div>
           </div>
         </div>

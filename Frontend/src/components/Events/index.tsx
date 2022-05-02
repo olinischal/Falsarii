@@ -31,7 +31,7 @@ const Events = () => {
     date: "",
     description: "",
     entranceFee: 0.0,
-    status: false
+    status: true
   });
 
   const submitForm = () => {
@@ -146,6 +146,31 @@ const Events = () => {
                             setEvents({
                               ...events,
                               date: e.target.value,
+                            })
+                          }
+                          onBlur={handleBlur}
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Control
+                          className={
+                            formik.errors.date && formik.touched.date
+                              ? "errorOccured"
+                              : "noError"
+                          }
+                          style={{
+                            backgroundColor: "#353839",
+                            color: "#ffc40c",
+                          }}
+                          type="number"
+                          name="fee"
+                          id="fee"
+                          placeholder="Entrance Fee"
+                          value={events.entranceFee}
+                          onChange={(e) =>
+                            setEvents({
+                              ...events,
+                              entranceFee: Number(e.target.value),
                             })
                           }
                           onBlur={handleBlur}

@@ -1,12 +1,15 @@
 import { WindowScrollController } from "@fullcalendar/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
+import Authenticate from "../../Context/Authenticate";
 import ImageList from "./ImageList";
 
 const EditImage = () => {
 
     const [listView, setListView] = useState<boolean>(false);
     const [selectFile, setSelectFile] = useState<any>(null);
+
+    const {auth}:any = useContext(Authenticate);
 
 
     const submitChange = (e) => {
@@ -20,10 +23,22 @@ const EditImage = () => {
        // window.location.reload();
         console.log("Saved Pressed");
     }
+    let userRole;
+  
+  
+  if(JSON.stringify(auth) === '{}'){
+    userRole = null;
+  }else{
+    userRole = userRole = auth?.res.roles?.find((role) => userRole = role);
+  }
+ 
+   
 
 
     return (
         <> 
+        {userRole === "ROLE_ADMIN"? (
+          <>
         <div style={{ position: "relative", top: "10px", left: "10px", justifyContent: 'space-between' }}>
         {listView === false ? (
 
@@ -38,8 +53,15 @@ const EditImage = () => {
         </Button> )
 }
       </div>
-      
       <ImageList listView = {listView} />
+      </>
+      ) : (
+      <ImageList listView = {listView} />
+      
+        
+      )
+
+}
       </>
 
 

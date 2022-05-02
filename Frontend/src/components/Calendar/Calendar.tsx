@@ -26,6 +26,9 @@ const Calendar = () => {
   }, []);
 
   const newEvent = event.map((val, key) => {
+    if(val.status === false){
+      return {};
+    } 
     return {
       key: key,
       title: val.eventName,
