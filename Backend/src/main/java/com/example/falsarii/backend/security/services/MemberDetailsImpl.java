@@ -33,25 +33,7 @@ public class MemberDetailsImpl implements UserDetails {
 
 	private Collection<? extends GrantedAuthority> authorities;
 	
-<<<<<<< HEAD
 
-=======
-	
-
-//	public MemberDetailsImpl(Long id, String firstName, String maidenName, String lastName, String phoneNumber, String email,
-//							 String password, String graduationDate, Collection<? extends GrantedAuthority> authorities) {
-//		this.id = id;
-//		this.firstName = firstName;
-//		this.maidenName = maidenName;
-//		this.lastName = lastName;
-//		this.phoneNumber = phoneNumber;
-//		this.email = email;
-//		this.graduationDate = graduationDate;
-//		this.password = password;
-//
-//		this.authorities = authorities;
-//	}
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	
 	public MemberDetailsImpl(Long userId, String emailId, String fname, String lname, String password, String phoneNum,Collection<? extends GrantedAuthority> authorities) {
 		this.userId = userId;
@@ -63,26 +45,6 @@ public class MemberDetailsImpl implements UserDetails {
 		this.authorities=authorities;
 	}
 	
-<<<<<<< HEAD
-=======
-//	public static MemberDetailsImpl build(Member member) {
-//	    List<GrantedAuthority> authorities = member.getRoles().stream()
-//	        .map(role -> new SimpleGrantedAuthority(role.getName().name()))
-//	        .collect(Collectors.toList());
-//
-//	    return new MemberDetailsImpl(
-//	        member.getId(), 
-//	        member.getFirstName(),
-//				member.getMaidenName(),
-//				member.getLastName(),
-//	        member.getPhoneNumber(),
-//	        member.getEmail(),
-//				member.getPassword(),
-//				member.getGraduationDate(),
-//
-//	        authorities);
-//	  }
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	
 	
 	public static MemberDetailsImpl build(Users member) {
@@ -96,11 +58,7 @@ public class MemberDetailsImpl implements UserDetails {
 	    		member.getFname(),
 				member.getLname(),
 				member.getPassword(),
-<<<<<<< HEAD
 				member.getPhoneNum(),
-=======
-	        member.getPhoneNum(),
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 				
 				authorities);
 	  }
@@ -113,21 +71,12 @@ public class MemberDetailsImpl implements UserDetails {
 
 	public void setId(Long id) {
 		this.userId = id;
-<<<<<<< HEAD
 	}
 
 	public String getEmailId() {
 		return emailId;
 	}
 
-=======
-	}
-
-	public String getEmailId() {
-		return emailId;
-	}
-
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}

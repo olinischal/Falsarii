@@ -9,7 +9,7 @@ import { Nav, NavDropdown } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import EditAccount from "./EditAccount";
-import EditNAFA from "./EditNAFA";
+
 import Security from "./Security";
 import Authenticate from "../../Context/Authenticate";
 
@@ -87,7 +87,7 @@ const Profile = () => {
                 <div className="mt-3">
                   <h4>{user.fname + " " + user.lname}</h4>
                   <p className="text-secondary mb-1">{user.emailId}</p>
-                  <p className="text-muted font-size-sm">{user.address}</p> */}
+                  <p className="text-muted font-size-sm">{user.address}</p> 
                    <input
                     type="file"
                     name="image-upload"
@@ -154,7 +154,7 @@ const Profile = () => {
               path="edit_profile/"
               element={<EditAccount  />}
             />
-            <Route path="edit_NAFA_details/" element={<EditNAFA />} />
+           
             <Route path="security/" element={<Security />} />
           </Routes>
         </div>

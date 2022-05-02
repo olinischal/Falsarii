@@ -3,15 +3,10 @@ package com.example.falsarii.backend.security.services;
 
 import com.example.falsarii.backend.Email.EmailService.EmailRegisterService;
 import com.example.falsarii.backend.model.ERole;
-<<<<<<< HEAD
 
 import com.example.falsarii.backend.model.Users;
 import com.example.falsarii.backend.repository.UserRepository;
 
-=======
-import com.example.falsarii.backend.model.Users;
-import com.example.falsarii.backend.repository.UserRepository;
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -39,9 +34,6 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
     private final EmailRegisterService emailService;
 
     
-//    @Autowired
-//    MemberRepository memberRepository;
-    
     @Autowired
     UserRepository userRepository;
 
@@ -65,38 +57,26 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
       return MemberDetailsImpl.build(member);
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
     public String signUpUser(Users member) {
         boolean userExists = userRepository.findByEmailId(member.getEmailId()).isPresent();
 
         if (userExists) {
 
             Users memberPrevious =  userRepository.findByEmailId(member.getEmailId()).get();
-<<<<<<< HEAD
 
-=======
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
             Boolean isEnabled = memberPrevious.getEnabled();
 
             if (!isEnabled) {
                 //       String token = UUID.randomUUID().toString();
-<<<<<<< HEAD
 
-=======
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
                 String token = String.valueOf(new Users(
                 		member.getEmailId(),
                         member.getFname(),
                         member.getLname(),
                         member.getPassword(),
                         member.getPhoneNum()));
-<<<<<<< HEAD
 
-=======
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 
                 //A method to save user and token in this class
                 saveConfirmationToken(memberPrevious, token);
@@ -104,39 +84,21 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
                 return token;
 
             }
-<<<<<<< HEAD
 
             throw new IllegalStateException(String.format("User with email %s already exists!", member.getEmailId()));
 
-=======
-            throw new IllegalStateException(String.format("User with email %s already exists!", member.getEmailId()));
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
         }
 
 
 
         //Saving the user after encoding the password
-<<<<<<< HEAD
 
         userRepository.save(member);
 
-=======
-        userRepository.save(member);
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 
         //Creating a token from UUID
 //       String token = UUID.randomUUID().toString();
 
-<<<<<<< HEAD
-=======
-        String token = String.valueOf(new Users(
-        		member.getEmailId(),
-                member.getFname(),
-                member.getLname(),
-                member.getPassword(),
-                member.getPhoneNum()));
-
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 
         String token = String.valueOf(new Users(
         		member.getEmailId(),
@@ -148,15 +110,10 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
 
         //Getting the confirmation token and then saving it
         saveConfirmationToken(member, token);
-<<<<<<< HEAD
 
         
         System.out.println("THis is token :" + token);
 
-=======
-        
-        System.out.println("THis is token :" + token);
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 
         //Returning token
         return token;
@@ -165,10 +122,7 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
     private void saveConfirmationToken(Users member, String token) {
         ConfirmationToken confirmationToken = new ConfirmationToken(token, LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15),member);
-<<<<<<< HEAD
 
-=======
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 
         confirmationTokenService.saveConfirmationToken(confirmationToken);
 
@@ -178,13 +132,9 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
     @Modifying
     @Query("UPDATE Member a SET a.enabled=true WHERE a.email=?1")
     public boolean existsByEmail(String email) {
-<<<<<<< HEAD
 
         return userRepository.existsByEmailId(email);
 
-=======
-        return userRepository.existsByEmailId(email);
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 
     }
     

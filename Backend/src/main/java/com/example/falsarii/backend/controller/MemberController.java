@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -57,10 +58,7 @@ public class MemberController {
 
 	@Autowired
 	RegistrationService registrationService;
-<<<<<<< HEAD
 
-=======
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	
 	@Autowired
 	AuthenticationManager authenticationManager;
@@ -101,10 +99,7 @@ public class MemberController {
 		
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()) );
-<<<<<<< HEAD
 
-=======
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		String jwt = jwtUtils.generateJwtToken(authentication);
@@ -113,10 +108,7 @@ public class MemberController {
 		List<String> roles = userDetails.getAuthorities().stream()
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
-<<<<<<< HEAD
 
-=======
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 		System.out.println(userDetails.getId());
 		return ResponseEntity.ok(new JwtResponse(userDetails.getId(),jwt,
 				userDetails.getEmailId(),
@@ -134,10 +126,7 @@ public class MemberController {
 		if(!verifyReCAPTCHA(gRecaptchaResponse)) {
 			return ResponseEntity.ok("Error: Assure that you are human!");
 		}
-<<<<<<< HEAD
 
-=======
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 		
 		
 		if (userRepository.existsByEmailId(signUpRequest.getEmail())) {
@@ -149,14 +138,9 @@ public class MemberController {
 				signUpRequest.getLastName(),
 				encoder.encode(signUpRequest.getPassword()),
 				signUpRequest.getPhoneNumber()
-<<<<<<< HEAD
 				);
 		
 
-=======
-		);
-		
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 		try{
 			registrationService.register(signUpRequest);
 
@@ -172,6 +156,7 @@ public class MemberController {
 			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+
 			roles.add(userRole);
 
 		} else {
@@ -198,33 +183,21 @@ public class MemberController {
 				}
 			});
 		}
-<<<<<<< HEAD
 
-=======
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 		user.setRoles(roles);
 		
 		userRepository.save(user);
 		
-<<<<<<< HEAD
 
-=======
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
 
 
-<<<<<<< HEAD
 
 	@GetMapping("/getMember/{id}")
 	public Users getSingleMember(@PathVariable Long id) {
 		return userRepository.findByUserId(id);
 
-=======
-	@GetMapping("getMember/{id}")
-	public Users getSingleMember(@PathVariable Long id) {
-		return userRepository.findByUserId(id);
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 	}
 
 	@PutMapping("/update/{id}")
@@ -233,22 +206,12 @@ public class MemberController {
 		currentMember.setFname(member.getFname());
 
 		currentMember.setMaidenName(member.getMaidenName());
-<<<<<<< HEAD
 
-=======
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 		currentMember.setLname(member.getLname());
 		currentMember.setPhoneNum(member.getPhoneNum());
 		currentMember.setEmailId(member.getEmailId());
 		currentMember.setPassword(member.getPassword());
-<<<<<<< HEAD
-		currentMember.setStreetAddress(member.getStreetAddress());
-		currentMember.setZipCode(member.getZipCode());
-		currentMember.setCity(member.getCity());
 
-
-=======
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 
 		userRepository.save(currentMember);
 		return ResponseEntity.ok(currentMember);

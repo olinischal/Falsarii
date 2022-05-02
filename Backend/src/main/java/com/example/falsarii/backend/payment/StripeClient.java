@@ -10,8 +10,6 @@ import com.stripe.model.Customer;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.validation.constraints.Email;
-
 @Component
 public class StripeClient {
 	

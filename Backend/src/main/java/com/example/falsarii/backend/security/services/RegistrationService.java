@@ -2,15 +2,10 @@ package com.example.falsarii.backend.security.services;
 
 import com.example.falsarii.backend.Email.EmailService.EmailRegisterService;
 import com.example.falsarii.backend.model.ERole;
-<<<<<<< HEAD
 
 //import com.example.falsarii.backend.model.Member;
 import com.example.falsarii.backend.model.Users;
 
-=======
-//import com.example.falsarii.backend.model.Member;
-import com.example.falsarii.backend.model.Users;
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 import com.example.falsarii.backend.request.SignupRequest;
 import com.example.falsarii.backend.security.token.ConfirmationToken;
 import com.example.falsarii.backend.security.token.ConfirmationTokenService;
@@ -45,15 +40,6 @@ public class RegistrationService {
     public String register(SignupRequest request) {
 
 
-<<<<<<< HEAD
-=======
-            String tokenForNewUser = String.valueOf(new Users(request.getEmail(),
-                    request.getFirstName(),
-                    request.getLastName(),
-                    request.getPassword(),
-                    request.getPhoneNumber()
-                    ));
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 
             String tokenForNewUser = String.valueOf(new Users(
             		request.getEmail(),
@@ -91,13 +77,9 @@ public class RegistrationService {
         }
 
         confirmTokenService.setConfirmedAt(token);
-<<<<<<< HEAD
 
         memberService.existsByEmail(confirmToken.get().getMember().getEmailId());
 
-=======
-        memberService.existsByEmail(confirmToken.get().getMember().getEmailId());
->>>>>>> c206993c6c615cd48f56e1525aeea48265850d81
 
         //Returning confirmation message if the token matches
         return "Your email is confirmed. Thank you for using our service!";

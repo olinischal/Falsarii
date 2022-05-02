@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 import { Member } from "../../services/api";
 import GroupList from "../Group/GroupList";
 import Authenticate from "../../Context/Authenticate";
-import EditNAFA from "./EditNAFA";
+
 import { Button, Modal } from "react-bootstrap";
 
 

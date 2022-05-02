@@ -13,12 +13,13 @@ const EventPage = () => {
 
   /*once the information gets submitted for t[he scholarships delete the added placeholder info*/
   const [event, setEvent] = useState<EventData>({
-    title: "BasketBall Event",
-    address: "1000 Filhiol Avenue",
+    eventName: "BasketBall Event",
+    
     date: "08/08/2022",
     description: "The description of why Uncle Timmy was the best and how he gave so much to the school goes here Break the writing process up into manageable chunks; this helps you to excel at each stage and plan your time so that you hit your deadline. Follow these 7 stages to achieve optimal results from your writin",
-    deadline: "08/09/2022",
-    amount: 12
+    
+    entranceFee: 12,
+    status: true
   });
 
   const [show, setShow] = useState(false);
@@ -43,7 +44,7 @@ const EventPage = () => {
   function handleGift() {
     setShow(true);
     setModalHeading("Event entry");
-    setModalDescription("The entry fee for the event is $" + event.amount );
+    setModalDescription("The entry fee for the event is $" + event.entranceFee );
     setInputBox(false);
   }
 
@@ -78,7 +79,7 @@ const EventPage = () => {
           {localStorage.getItem("user") ? (
             <div>
               {" "}
-              <Payment amount={event.amount} />{" "}
+              <Payment amount={event.entranceFee} />{" "}
             </div>
           ) : (
             <Button
@@ -114,7 +115,7 @@ const EventPage = () => {
                 fontSize: "45px",
               }}
             >
-              {event.title}
+              {event.eventName}
             </h2>
           </div>
 

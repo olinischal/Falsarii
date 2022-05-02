@@ -363,7 +363,8 @@ export default function Membership() {
                 component={TextField}
                 label="High School"
               />
-            </Box>:<div>{()=>setSchoolValue("Naville High School")}</div>}
+            </Box>:<>{setSchoolValue("Naville High School")}</> }
+            {/* <div>{()=>setSchoolValue("Naville High School")}</div>} */}
 
             <Box paddingBottom={4}>
               <Field
@@ -785,9 +786,8 @@ export function FormikStepper({
   children,
   ...props
 }: FormikConfig<FormikValues>) {
-  const childrenArray = React.Children.toArray(
-    children
-  ) as React.ReactElement<FormikStepProps>[];
+ // const childrenArray = React.Children.toArray(children: React.ReactNode ) as React.ReactElement<FormikStepProps>[];
+ const childrenArray = React.Children.toArray(null ) as React.ReactElement<FormikStepProps>[];
   const [step, setStep] = useState(0);
   const currentChild = childrenArray[step];
   const [completed, setCompleted] = useState(false);

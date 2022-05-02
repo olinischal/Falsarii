@@ -33,11 +33,11 @@ export const Member = {
 };
 
 export const EventRequests = {
-	getMembers: (): Promise<EventData[]> => requests.get('getAll'),
-	getAMember: (id: number): Promise<EventData> => requests.get(`getMember/${id}`),
-	createMember: (post: EventData): Promise<EventData> =>
-		requests.post('add', post),
-	updateMember: (id:number, put: EventData): Promise<EventData> =>
+	getEvents: (): Promise<EventData[]> => requests.get('member/event/view'),
+	getAEvent: (id: number): Promise<EventData> => requests.get(`getMember/${id}`),
+	createEvent: (post: EventData): Promise<EventData> =>
+		requests.post('member/event/create', post),
+	updateEvent: (id:number, put: EventData): Promise<EventData> =>
 		requests.put(`update/${id}`, put),
 	deleteMember: (id: number): Promise<void> => requests.delete(`delete/${id}`),
 };
