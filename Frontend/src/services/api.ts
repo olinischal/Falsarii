@@ -43,7 +43,7 @@ export const EventRequests = {
 };
 
 export const ScholarshipRequests = {
-	getScholarships: (): Promise<ScholarshipData[]> => requests.get('member/viewScholarships'),
+	getScholarships: (): Promise<ScholarshipData[]> => requests.get('member/scholarship/view'),
 	createScholarships: (post: ScholarshipData): Promise<ScholarshipData> =>
 		requests.post('member/scholarship/create', post),
 	updateScholarships: (id:number, put: ScholarshipData): Promise<ScholarshipData> =>
@@ -122,7 +122,7 @@ export const JoinGroup = (email: string, grpName: string) => {
   
   }
 
-  export const editScholarships = (scholarshipId: any, scholarship) => {
+  export const editScholarships = (scholarshipId: number, scholarship) => {
 	const API_URL = "http://localhost:8080/member/";
 
 	return axios.post(
@@ -130,8 +130,8 @@ export const JoinGroup = (email: string, grpName: string) => {
 	  {
 		params: {
 		 
-		  scholarshipName: scholarshipId,
-		  scholarship: scholarship
+		  scholarshipId: scholarshipId
+		  
   
 	  
 		}

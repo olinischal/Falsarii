@@ -47,7 +47,7 @@ public class ScholarshipController {
 	
 	//Edit scholarship
 	@PostMapping("/scholarship/edit")
-	public void createScholarship(@RequestParam Long scholarshipId,@RequestBody Scholarships scholarship) {
+	public void editScholarship(@RequestParam Long scholarshipId,@RequestBody Scholarships scholarship) {
 		try {
 			scholarshipService.editScholarship(scholarshipId, scholarship);
 		}catch (Exception e) {
