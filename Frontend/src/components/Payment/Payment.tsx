@@ -19,6 +19,10 @@ function Payment(props) {
   var totalAmount = props.amount;
   if (totalAmount < 1) {
     totalAmount = 1;
+  }else if(totalAmount>=1){
+    totalAmount=totalAmount;
+  }else{
+    totalAmount=1;
   }
   const navigate = useNavigate();
   async function handleToken(token) {
@@ -41,7 +45,7 @@ function Payment(props) {
       });
   }
   return (
-    <div style={{ paddingTop: "50px" }}>
+    <div style={{ paddingTop: "20px" }}>
       {/* <div>Must be at least $0.5
         <label style={{position: "relative", left:"15px"}}>$</label>
         <input type="text" name="amount" placeholder="" style={{textIndent:"15px", marginTop:"20px"}}onChange={e => setTotalAmount(e.target.value)} />

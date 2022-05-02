@@ -1,17 +1,23 @@
+
 import MemberData from "../../types/Member";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Member } from "../../services/api";
-import EditNAFA from "./EditNAFA";
 
-import { FAB } from "react-native-elements";
-import { backdropClasses } from "@mui/material";
+import { Button, Modal } from "react-bootstrap";
 
 interface userDetails {
   user: MemberData;
 }
 
 const EditAccount: React.FC<userDetails> = ({ user }) => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [heading, setHeading] = useState("");
+  const[description, setDescription] = useState("");
+
   const [users, setUsers] = useState<MemberData>({
     emailId: "",
     fname: "",
@@ -25,8 +31,8 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
   const navigate = useNavigate();
 
   const saveclients = (e) => {
+    setShow(false);
     e.preventDefault();
-
     Member.updateMember(parseInt(users.userId), users)
       .then(() => {
         navigate("/profile/user");
@@ -48,8 +54,30 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
       });
   }, []);
 
+  function handlePopUp(title:string, desc:string){
+      
+    setDescription(desc);
+    setHeading(title);
+    setShow(true);
+    
+  }
+
   return (
     <>
+      <Modal show={show} onHide={()=>setShow(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{heading}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{description}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="warning" onClick={saveclients}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <div >
         <div className='card mb-4' style={{ height:"100%", border:'none', boxShadow:'none' ,backgroundColor:'#FFFFF4'}}>
         <div >
@@ -60,17 +88,18 @@ const EditAccount: React.FC<userDetails> = ({ user }) => {
           }}
           className="btn btn-warning"
           type="button"
-          onClick={(e) => saveclients(e)}
+          // onClick={(e) => saveclients(e)}
+          onClick={()=>handlePopUp("Save?", "Are you sure you want to proceed ahead and save? ")}
         >
           Save Changes
         </button>
         <button
           style={{
             textAlign: "center",
-            
           }}
           className="btn btn-secondary"
           type="button"
+          onClick={(e)=> navigate('/profile/user')}
         >
           Discard Changes
         </button>

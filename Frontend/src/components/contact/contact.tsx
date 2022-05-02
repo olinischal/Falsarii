@@ -1,6 +1,28 @@
 import "./contact.css";
+import { sendEmail } from "../../services/authenticate-service";
+import { useState } from "react";
+
 
 const Contact = () => {
+  const[need, setNeed]= useState("Others");
+  const email: string[] = ["rameshchapagain1043@gmail.com"];
+  const[description, setDescription] = useState("This is new description");
+
+
+  function handleClose() {
+    const desc = "Sender is: " +localStorage.getItem('userEmail')+"        \n "+ description; 
+    console.log(need);
+        console.log(desc);
+        console.log(email);
+    try {
+      sendEmail(need,desc, email).then(() => {
+        console.log("Email Sent");
+      });
+    } catch (error) {
+      console.log("ERROR");
+    }
+  };
+
   return (
     <>
       <section id="contact" className="contact section-padding">
@@ -74,6 +96,7 @@ const Contact = () => {
                       name="need"
                       className="form-control"
                       data-error="Please specify your need."
+                      onChange={(e)=>setNeed(e.target.value)}
                     >
                       <option value="" selected disabled>
                         --Select Your Issue--
@@ -100,6 +123,7 @@ const Contact = () => {
                       placeholder="Write your message here."
                       rows={4}
                       data-error="Please, leave us a message."
+                      onChange={(e)=> setDescription(e.target.value)}
                     ></textarea>{" "}
                   </div>
                 </div>
@@ -110,6 +134,7 @@ const Contact = () => {
                     className="btn btn-warning pt-2 btn-block "
                     value="Send Message"
                     style={{ marginTop: "12px" }}
+                    onClick={()=>handleClose()}
                   />{" "}
                 </div>
               </div>

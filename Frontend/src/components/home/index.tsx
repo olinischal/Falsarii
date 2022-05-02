@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Navbar,
@@ -25,7 +25,7 @@ import TshirtSale from "../TshirtSale/tshirtSale";
 
 const Home = () => {
   const navigate = useNavigate();
-
+  const [color, setColor] = useState('#ffc40c');
   let user = AuthService.getCurrentUser();
 
   const logOut = () => {
@@ -48,8 +48,28 @@ const Home = () => {
               of our community.
             </p>
             <p>
-              <a href="./signup" className="btn btn-warning mt-3">
+              <a href="./signup" className="btn btn-outline-warning" style={{color:color}} onMouseEnter={()=>setColor('black')}
+                  onMouseLeave={()=> setColor('#ffc40c')}>
                 Be a member
+              </a>
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://scontent.fatl1-1.fna.fbcdn.net/v/t1.6435-9/60804458_10161784416695524_4371967731675693056_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=e3f864&_nc_ohc=j1fB-bgtI6kAX8KnC1Z&tn=Mw-8gcpxlJY3M0PG&_nc_ht=scontent.fatl1-1.fna&oh=00_AT9iGnHaUaz21z2az4VPezXqXzVDwdpLOX1OFeN5rWC5Jw&oe=62955896"
+            alt="First slide"
+          />
+          <Carousel.Caption>
+            <h5>Already a Member?</h5>
+            <p>
+              Do not forget to renew your membership.
+            </p>
+            <p>
+              <a href="/membershipType" className="btn btn-outline-warning" style={{color:color}} onMouseEnter={()=>setColor('black')}
+                  onMouseLeave={()=> setColor('#ffc40c')}>
+                Renew now
               </a>
             </p>
           </Carousel.Caption>
@@ -65,8 +85,9 @@ const Home = () => {
             <h5>Donate For Scholarships</h5>
             <p>Help the students through various scholarships programs.</p>
             <p>
-              <a href="#" className="btn btn-warning mt-3">
-                Donate
+              <a href="/s/page/" className="btn btn-outline-warning" style={{color:color}} onMouseEnter={()=>setColor('black')}
+                  onMouseLeave={()=> setColor('#ffc40c')}>
+                View Scholarships
               </a>
             </p>
           </Carousel.Caption>
@@ -83,7 +104,8 @@ const Home = () => {
             <h5>Learn more about us</h5>
             <p>Know about our events, scholarships, and other information.</p>
             <p>
-              <a href="./#about" className="btn btn-warning mt-3">
+              <a href="./#about" className="btn btn-outline-warning" style={{color:color}} onMouseEnter={()=>setColor('black')}
+                  onMouseLeave={()=> setColor('#ffc40c')}>
                 Learn More
               </a>
             </p>

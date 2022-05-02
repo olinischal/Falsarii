@@ -35,8 +35,11 @@ import Calendar from './components/Calendar/calendar';
 import CalendarDisplay from './components/Calendar/calendar';
 import searchMember from './components/searchMember/searchMember';
 import SearchMember from './components/searchMember/searchMember';
-import SendEmail from './components/SendEmail/sendEmail';
-import { fontFamily } from '@mui/system';
+
+import Scholarships from './components/Scholarships';
+import ScholarshipPage from './components/Scholarships/ScholarshipPage';
+import MembershipType from './components/Membership/membershipType';
+import EventPage from './components/Events/eventPage';
 
 
 
@@ -101,7 +104,11 @@ function App() {
         <Route path="/newpassword/:id" element={<NewPassword/>}/>
         <Route path="/tshirtSale" element={<TshirtSale />} />
         <Route path ="/searchMember"  element={<SearchMember />}/>
-        <Route path="/sendEmail" element={<SendEmail/>}/>
+
+        <Route path="/scholarships" element={<Scholarships />} />
+          <Route path="/s/page/" element={<ScholarshipPage />} />
+          <Route path="/membershipType" element={<MembershipType />} />
+          <Route path="/eventPage" element={<EventPage/>}/>
 
         </Routes>
         

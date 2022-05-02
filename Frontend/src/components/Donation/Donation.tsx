@@ -9,7 +9,7 @@ function Donation() {
   
   const [totalAmount, setTotalAmount] = useState('');
   return (
-    <div style={{paddingTop:'50px'}}>
+    <div style={{paddingTop:'100px', paddingLeft:'100px', height:'500px'}}>
       <div>Must be at least $0.5
         <label style={{position: "relative", left:"15px"}}>$</label>
         <input type="text" name="amount" placeholder="" style={{textIndent:"15px", marginTop:"20px"}}onChange={e => setTotalAmount(e.target.value)} />

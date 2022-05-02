@@ -1,6 +1,6 @@
 .footer {
-  position: relative;
-  bottom: 0px;
+  /* position: relative; */
+  /* bottom: 0px;
     background-color: #414141;
     width: 100%;
     text-align: left;
@@ -9,7 +9,20 @@
     font-size: 16px;
     padding: 50px;
     margin-top: 50px;
+    align-self: flex-end; */
+
+    background-color: #414141;
+    width: 100%;
+    text-align: left;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 50px;
+    padding-bottom: 100px;
+    margin-top: 155px;
     align-self: flex-end;
+    position: relative;
+    bottom: 0;
   }
   
   .footer .footer-left,

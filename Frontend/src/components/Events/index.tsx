@@ -1,6 +1,12 @@
 import { Stack } from "react-bootstrap";
+import EventPage from "./eventPage";
+import { useNavigate } from "react-router-dom";
+
 
 const Events = () => {
+
+  const navigate = useNavigate();
+
   return (
     <>
       {/* <section className="py-5" id="events" style={{paddingTop:'0px', backgroundColor:'red'}}> */}
@@ -33,17 +39,17 @@ const Events = () => {
                 <div className="card-body text-center p-4">
                   <a
                     className="text-decoration-none link-dark stretched-link"
-                    href="#!"
+                    href="/eventPage"
                   >
                     {/* <h5 className="card-title mb-3">Class of 2011 Reunion</h5> */}
                   </a>
                   <p className="card-text mb-0">
-                    If you are class of 2014 please attend the Reunion this
+                    If you are class of 2011 please attend the Reunion this
                     saturday. You can bring your spouse with you.
                   </p>
                 </div>
                 <div className="text-center" style={{ marginBottom: "25px" }}>
-                  <button className="btn btn-warning btn-sm text-dark">
+                  <button className="btn btn-warning btn-sm text-dark"   >
                     Learn More
                   </button>
                 </div>

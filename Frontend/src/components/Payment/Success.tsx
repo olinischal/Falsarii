@@ -2,7 +2,7 @@ import React from 'react'
 
 function Success(props) {
   return (
-    <div style={{paddingTop:'69px'}}>
+    <div style={{paddingTop:'100px'}}>
        <div className="jumbotron text-center">
   <h1 className="display-3">Thank You For Your Payment!</h1>
   <p className="lead"><strong><b> The payment system is secured by Stripe.</b></strong> <br/>Note that we do not hold any card information. It is solely managed by Stripe Payment System.

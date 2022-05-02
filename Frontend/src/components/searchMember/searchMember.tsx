@@ -8,10 +8,6 @@ import { Link } from "react-router-dom";
 import { Button, Dropdown, Modal } from "react-bootstrap";
 import { sendEmail } from "../../services/authenticate-service";
 
-import { DataGrid, GridColDef, gridColumnDefinitionsSelector, GridColumnHeaderItem, GridSelectionModel, GridValueGetterParams } from "@mui/x-data-grid";
-import MemberList from "../MemberList";
-
-import EditIcon from "@material-ui/icons/Edit";
 
 
 const SearchMember = (props) => {

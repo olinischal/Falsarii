@@ -1,5 +1,9 @@
+
 import axios, {AxiosResponse} from 'axios';
 import MemberData from '../types/Member';
+import EventData from '../types/Event';
+import ScholarshipData from '../types/Scholarship';
+import GroupData from '../types/Group';
 
 
 const instance = axios.create({
@@ -26,5 +30,33 @@ export const Member = {
 		requests.put(`member/update/${id}`, put),
 	deleteMember: (id: number): Promise<void> => requests.delete(`member/delete/${id}`),
 	searchMember:(keyword:string): Promise<MemberData[]> => requests.get(`member/searchMember/${keyword}`),
+};
+
+export const EventRequests = {
+	getMembers: (): Promise<EventData[]> => requests.get('getAll'),
+	getAMember: (id: number): Promise<EventData> => requests.get(`getMember/${id}`),
+	createMember: (post: EventData): Promise<EventData> =>
+		requests.post('add', post),
+	updateMember: (id:number, put: EventData): Promise<EventData> =>
+		requests.put(`update/${id}`, put),
+	deleteMember: (id: number): Promise<void> => requests.delete(`delete/${id}`),
+};
+
+export const ScholarshipRequests = {
+	getScholarships: (): Promise<ScholarshipData[]> => requests.get('member/viewScholarships'),
+	createScholarships: (post: ScholarshipData): Promise<ScholarshipData> =>
+		requests.post('member/scholarship/create', post),
+	updateScholarships: (id:number, put: ScholarshipData): Promise<ScholarshipData> =>
+		requests.put(`update/${id}`, put),
+	deleteScholarships: (id: number): Promise<void> => requests.delete(`delete/${id}`),
+};
+
+export const GroupRequests = {
+	getGroups: (): Promise<GroupData[]> => requests.get('member/getAllGroups'),
+	createGroup: (post: GroupData): Promise<GroupData> =>
+		requests.post('member/createGroup', post),
+	// updateScholarships: (id:number, put: GroupData): Promise<GroupData> =>
+	// 	requests.put(`update/${id}`, put),
+	// deleteScholarships: (id: number): Promise<void> => requests.delete(`delete/${id}`),
 };
 

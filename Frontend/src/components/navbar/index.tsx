@@ -79,6 +79,10 @@ const NavigationBar = () => {
                 <Nav.Link href="/tshirtSale">
                   <span className="text-warning">Buy Tshirt</span>
                 </Nav.Link>
+
+                <Nav.Link href="/s/page/">
+                  <span className="text-warning">Scholarship</span>
+                </Nav.Link>
                 
               </Nav>
               <Nav>
@@ -141,6 +145,9 @@ const NavigationBar = () => {
                 </Nav.Link>
                 <Nav.Link href="/searchMember">
                   <span className="text-warning">Search Member</span>
+                </Nav.Link>
+                <Nav.Link href="/s/page/">
+                  <span className="text-warning">Scholarship</span>
                 </Nav.Link>
                 
               </Nav>
