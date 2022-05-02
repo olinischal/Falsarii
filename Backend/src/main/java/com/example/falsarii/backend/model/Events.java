@@ -5,10 +5,12 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -60,6 +62,22 @@ public class Events {
 		return donateToEvents;
 	}
 	
+	
+	//Relation between user and image i.e. One to one
+	@OneToOne(mappedBy = "event",
+			cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY)
+	private EventImages image;
+	
+	//Sets the spouse of the user
+	public void setImage(EventImages image) {
+			this.image = image;
+	}	
+	//Returns the spouse of the user
+	public EventImages getImage() {
+		return image;
+	}	
+
 	
 	//Basic setters and getters
 	public String getEventName() {

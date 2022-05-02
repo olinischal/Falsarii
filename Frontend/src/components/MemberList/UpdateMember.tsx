@@ -8,14 +8,19 @@ const UpdateMember = () => {
   const [users, setUsers] = useState<MemberData>({
     fname: " ",
     middleName: " ",
+    maidenName: " ",
     lname: " ",
     emailId: " ",
     graduationDate: " ",
     phoneNum: " ",
-    password: " ",
     streetAddress: " ",
     city: " ",
     zipCode: " ",
+    state: " ",
+    password: " ",
+    university: " ",
+    highSchool: " ",
+    gender: " ",
   });
 
 

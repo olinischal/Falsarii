@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import { useContext, useState } from "react";
 import { Button, Modal, Stack, Form, Container } from "react-bootstrap";
 import UpdateScholarships from "./UpdateScholarships";
-import { activateScholarship, ScholarshipRequests } from "../../services/api";
+import { editScholarships, ScholarshipRequests } from "../../services/api";
 import ScholarshipData from "../../types/Scholarship";
 import './Scholarship.css';
 import ScholarshipPage from "./ScholarshipPage";
@@ -37,7 +37,7 @@ const Scholarships = ({scholarship}) => {
 
      setShow(false);
   
-     activateScholarship(editScholarship.scholarshipName, editScholarship.status).then(response =>{
+     editScholarships(editScholarship.scholarshipId, editScholarship).then(response =>{
         console.log('scholarship has been successfully edited', response);
   }).catch((error) => {
     console.log("Could not edit scholarship.", error);

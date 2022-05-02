@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
-import java.util.UUID;
+
 
 @Service
 public class RegistrationService {
@@ -41,17 +41,15 @@ public class RegistrationService {
 
 
 
-            String tokenForNewUser = String.valueOf(new Users(request.getEmail(),
-                    request.getFirstName(),
-                    request.getLastName(),
-                    request.getPassword(),
-                    request.getPhoneNumber()
-                    ));
-
-
+            String tokenForNewUser = String.valueOf(new Users(
+            		request.getEmail(),
+            		request.getFirstName(),
+            		request.getLastName(),
+            		request.getPassword(),
+            		request.getPhoneNumber()            		
+            		));
 
             String link = "http://localhost:8080/member/registration/confirm?token=" + tokenForNewUser;
-
 
             emailService.sendEmail(request.getEmail(), link);
 

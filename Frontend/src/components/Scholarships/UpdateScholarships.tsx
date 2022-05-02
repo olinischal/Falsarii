@@ -8,7 +8,7 @@ import ScholarshipList from "./ScholarshipList";
 import ScholarshipPage from "./ScholarshipPage";
 
 const UpdateScholarships = () => {
-  //const [scholarship, setScholarship] = useState<ScholarshipData[]>([]);
+  const [scholarship, setScholarship] = useState<ScholarshipData[]>([]);
   const {setScholarshipDetail}:any = useContext(Authenticate);
   const {scholarshipDetail}:any = useContext(Authenticate);
   
@@ -16,7 +16,7 @@ const UpdateScholarships = () => {
   useEffect(() => {
     ScholarshipRequests.getScholarships()
       .then((response) => {
-        
+        setScholarship([...response]);
         setScholarshipDetail([...response]);
         
       })
@@ -40,7 +40,7 @@ const UpdateScholarships = () => {
           </div>
 
           <div className="row gx-5">
-            {scholarshipDetail.map((val, key) => {
+            {scholarship?.map((val, key) => {
                
               if(val.status === false){
                 return ;

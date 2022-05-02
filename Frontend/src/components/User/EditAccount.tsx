@@ -10,17 +10,21 @@ import EditNAFA from "./EditNAFA";
 
 const EditAccount = () => {
     const [users, setUsers] = useState<MemberData>({
-      userId: " ",
-      emailId: " ",
       fname: " ",
       middleName: " ",
+      maidenName: " ",
       lname: " ",
+      emailId: " ",
       graduationDate: " ",
-      password: " ",
+      phoneNum: " ",
       streetAddress: " ",
       city: " ",
       zipCode: " ",
-      phoneNum: " ",
+      state: " ",
+      password: " ",
+      university: " ",
+      highSchool: " ",
+      gender: " ",
       });
 
       const {userDetail}: any  = useContext(Authenticate);
@@ -48,7 +52,7 @@ const EditAccount = () => {
 
 
       };
-      console.log("The value of street Address is" , users.streetAddress);
+    
 
       useEffect(() => {
         try{
@@ -210,7 +214,7 @@ const EditAccount = () => {
                       Group
                     </label>
 
-                   <GroupList />
+                   {/* <GroupList /> */}
                   </div>
                   </div>
 

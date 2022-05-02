@@ -138,7 +138,7 @@ public class MemberController {
 				signUpRequest.getLastName(),
 				encoder.encode(signUpRequest.getPassword()),
 				signUpRequest.getPhoneNumber()
-		);
+				);
 		
 
 		try{
@@ -212,8 +212,9 @@ public class MemberController {
 		currentMember.setEmailId(member.getEmailId());
 		currentMember.setPassword(member.getPassword());
 		currentMember.setStreetAddress(member.getStreetAddress());
-		currentMember.setCity(member.getCity());
 		currentMember.setZipCode(member.getZipCode());
+		currentMember.setCity(member.getCity());
+
 
 
 		userRepository.save(currentMember);

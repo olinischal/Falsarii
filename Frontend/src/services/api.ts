@@ -43,7 +43,7 @@ export const EventRequests = {
 };
 
 export const ScholarshipRequests = {
-	getScholarships: (): Promise<ScholarshipData[]> => requests.get('member/viewScholarships'),
+	getScholarships: (): Promise<ScholarshipData[]> => requests.get('member/scholarship/view'),
 	createScholarships: (post: ScholarshipData): Promise<ScholarshipData> =>
 		requests.post('member/scholarship/create', post),
 	updateScholarships: (id:number, put: ScholarshipData): Promise<ScholarshipData> =>
@@ -123,16 +123,16 @@ export const JoinGroup = (email: string, grpName: string) => {
   
   }
 
-  export const activateScholarship = (scholarshipName: String, status: boolean) => {
+  export const editScholarships = (scholarshipId: any, scholarship) => {
 	const API_URL = "http://localhost:8080/member/";
 
 	return axios.post(
-		API_URL + "scholarship/changeStatus", null, 
+		API_URL + "scholarship/edit", scholarship, 
 	  {
 		params: {
 		 
-		  scholarshipName: scholarshipName,
-		  status: status
+		  scholarshipName: scholarshipId,
+		  scholarship: scholarship
   
 	  
 		}
@@ -140,3 +140,28 @@ export const JoinGroup = (email: string, grpName: string) => {
 
 
   }
+
+  export const uploadFile = (fileName, file) => {
+	const API_URL = "http://localhost:8080/member/";
+	
+  
+	return axios.post(
+		API_URL + "file/upload", {
+			body: {
+		 
+				fileName: fileName,
+				file: file
+		
+			
+			  }, headers: {
+				'Content-Type': 'multi-part/formdata'  
+			}
+	  
+	});
+  };
+  
+  export const getFiles = () => {
+	const API_URL = "http://localhost:8080/member/";
+	return axios.get(API_URL + "list/files");
+  };
+  

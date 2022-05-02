@@ -39,6 +39,7 @@ import RequireAuth from "./components/Authenticate/RequireAuth";
 import UpdateEvent from "./components/Events/UpdateEvent";
 import Calendar from "./components/Calendar/Calendar";
 import CalendarEvents from "./components/Calendar";
+import ImageUpload from "./components/User/Image/ImageUpload";
 
 
 function App() {
@@ -107,6 +108,7 @@ function App() {
           <Route path="/unauthorized" element={<UnAuthorize />} />
           <Route path="/profile/*" element={<Profile />} />
           <Route path="/s/payment" element={<Payment amount email donateStatus/>} />
+          <Route path="/imageUpload" element={<ImageUpload />} />
 
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
             {/* Routes for Admin only */}

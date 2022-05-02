@@ -14,18 +14,7 @@ import Authenticate from "../../Context/Authenticate";
 
 const Profile = () => {
 
-  // const [users, setUsers] = useState<MemberData>({
-  //   userId: " ",
-  //   emailId: " ",
-  //   fname: " ",
-  //   middleName: " ",
-  //   lname: " ",
-  //   graduationDate: " ",
-  //   password: " ",
-  //   address: " ",
-  //   phoneNum: " ",
-   
-  // });
+
   const {setUserDetail}: any  = useContext(Authenticate);
   const [isError, setIsError] = useState<boolean>(false);  
   const currentUser = getCurrentUser();  
@@ -34,7 +23,7 @@ const Profile = () => {
   useEffect(() => {
     Member.getAMember(id)
       .then((res) => {
-        //setUsers(res);
+        
         setUserDetail(res);
         
       })

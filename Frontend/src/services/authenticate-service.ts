@@ -69,6 +69,8 @@ export const signIn = (email: string, password: string) => {
 export const logout = () => {
   localStorage.removeItem("user");
   localStorage.removeItem("data");
+  localStorage.removeItem("scholarship");
+  localStorage.removeItem("userAuth");
 };
 export const getCurrentUser = () => {
   const userStr = localStorage.getItem("user");
