@@ -7,6 +7,9 @@ const Footer = () => {
         <footer className="footer">
           <div className="footer-left col-md-4 col-sm-6">
             <p className="about">
+              <h5>
+                <b>Mission Statement.</b>
+              </h5>
               It is the mission of NAFA to provide supplemental funding for
               programs or projects to enhance the quality of instructional
               delivery and student life, and to promote excellence in higher
@@ -43,7 +46,7 @@ const Footer = () => {
               >
                 <img
                   className="twitter-logo"
-                  src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c53e.png"
+                  src="https://cdn.cms-twdigitalassets.com/content/dam/help-twitter/twitter_logo_blue.png.twimg.768.png"
                 />
               </a>
               <a
