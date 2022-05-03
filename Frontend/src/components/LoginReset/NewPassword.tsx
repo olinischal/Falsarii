@@ -26,6 +26,7 @@ const NewPassword = () => {
       university: " ",
       highSchool: " ",
       gender: " ",
+      dateOfBirth: " "
       });
     const saveclients = (e) => {
         e.preventDefault();

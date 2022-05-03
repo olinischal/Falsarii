@@ -78,6 +78,7 @@ export const logout = () => {
   localStorage.removeItem("userAuth");
 
   localStorage.removeItem("userEmail");
+  localStorage.removeItem("event");
 }
 
 

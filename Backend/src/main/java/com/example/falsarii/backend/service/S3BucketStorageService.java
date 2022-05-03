@@ -4,6 +4,7 @@ package com.example.falsarii.backend.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.falsarii.backend.model.UploadFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -53,7 +54,22 @@ public class S3BucketStorageService {
     }
 
 
+    public void temp(UploadFile uploadFile){
+        try {
+            System.out.println(uploadFile.getFileName() + uploadFile.getFile());
+            ObjectMetadata metadata = new ObjectMetadata();
+            MultipartFile file = uploadFile.getFile();
 
+            metadata.setContentLength(file.getSize());
+
+            s3Client.putObject(bucketName, file.getName(), file.getInputStream(), metadata);
+
+            //Save picture key to database
+
+        } catch (Exception e) {
+            System.out.println(e.toString()+ "error in service");
+        }
+    }
 	
 	//Upload file
 	public String uploadFile(String keyName, MultipartFile file) {

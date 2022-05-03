@@ -178,22 +178,18 @@ export const JoinGroup = (email: string, grpName: string) => {
   }
 
 
-  export const uploadFile = (fileName, file) => {
+  export const uploadFile = ( file) => {
 	const API_URL = "http://localhost:8080/member/";
 	
   
 	return axios.post(
-		API_URL + "file/upload", {
+		API_URL + "file/upload1", {
 			body: {
-		 
-				fileName: fileName,
-				file: file
 		
-			
-			  }, headers: {
-				'Content-Type': 'multi-part/formdata'  
-			}
-	  
+				imageName: 'image12',
+			    fileCode: file
+					
+			  }
 	});
   };
   
@@ -202,4 +198,35 @@ export const JoinGroup = (email: string, grpName: string) => {
 	return axios.get(API_URL + "list/files");
   };
   
+  export const addUserDetail = (userId, userDetail) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.post(
+		API_URL + "user/details", userDetail, {
+			params: {
+		
+				userId: userId,
+			    
+					
+			  }
+	});
+
+  };
+
+  export const uploadImage = (file) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	fetch(API_URL + "file/upload1" , {
+            method: 'post',
+            body: file
+        }).then(res => {
+            if(res.ok) {
+                console.log(res);
+                alert("File uploaded successfully.")
+            }else{
+				console.log("File was not uploaded successfully");
+			}
+        });
+
+  }
 

@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import { getCurrentUser } from "../../services/authenticate-service";
-import MemberData from "../../types/Member";
+
 import { Member } from "../../services/api";
 import Account from "./Account";
 import { Nav, NavDropdown } from "react-bootstrap";

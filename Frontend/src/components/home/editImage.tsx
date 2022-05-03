@@ -45,7 +45,7 @@ const EditImage = () => {
 
         
         <Button className="btn btn-warning  " variant="secondary" size="lg" onClick={submitChange}>
-          + Edit Scholarships
+          + Edit Image
         </Button>
         ) : (
         <Button className="btn btn-success  mb-1" variant="secondary" size="lg" onClick={submitSave}>

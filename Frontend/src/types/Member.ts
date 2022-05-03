@@ -27,6 +27,7 @@ export default interface MemberData {
     university: string,
     highSchool: string,
     gender: string,
+    dateOfBirth: string,
 
 
 

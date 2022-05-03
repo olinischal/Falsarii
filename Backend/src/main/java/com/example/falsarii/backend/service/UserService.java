@@ -72,10 +72,17 @@ public class UserService {
 			user.setMiddleName(userDetail.getMiddleName());
 			user.setMaidenName(userDetail.getMaidenName());
 			user.setGraduationDate(userDetail.getGraduationDate());
-			user.setAddress(userDetail.getAddress());
+			user.setStreetAddress(userDetail.getStreetAddress());
 			user.setGraduationDate(userDetail.getGraduationDate());
 			user.setHighSchool(userDetail.getHighSchool());
 			user.setUniversity(userDetail.getUniversity());
+			user.setHighSchool(userDetail.getHighSchool());
+			user.setCity(userDetail.getCity());
+			user.setZipCode(userDetail.getZipCode());
+			user.setState(userDetail.getState());
+			user.setDateOfBirth(userDetail.getDateOfBirth());
+			user.setGender(userDetail.getGender());
+
 			
 			userRepository.save(user);
 			

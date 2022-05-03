@@ -4,7 +4,7 @@ import MemberData from "../../types/Member";
 import React, {useState, useEffect, useContext} from "react";
 
 import { useNavigate } from "react-router";
-import { Member } from "../../services/api";
+import { addUserDetail, Member } from "../../services/api";
 import GroupList from "../Group/GroupList";
 import Authenticate from "../../Context/Authenticate";
 
@@ -30,6 +30,7 @@ const EditAccount = () => {
       university: " ",
       highSchool: " ",
       gender: " ",
+      dateOfBirth: " "
 
     });
 
@@ -48,7 +49,7 @@ const EditAccount = () => {
   const saveclients = (e) => {
     setShow(false);
     e.preventDefault();
-    Member.updateMember(parseInt(users.userId), users)
+    addUserDetail((users.userId), users)
       .then(() => {
         navigate("/profile/user");
 
@@ -58,6 +59,8 @@ const EditAccount = () => {
         console.log("Something went wrong here.", error);
 
       });
+
+      
   };
 
 
@@ -66,7 +69,7 @@ const EditAccount = () => {
       const {setSubmit} : any = useContext(Authenticate);
 
     
-      
+      console.log(users);
      
     
 
@@ -190,7 +193,8 @@ const EditAccount = () => {
                   className="form-control"
                   id="middleName"
                   type="text"
-                  value={users.middleName === null ? " ": users.middleName}
+                  placeholder="Enter Middle Name"
+                  value={users.middleName === null ? "": users.middleName}
                   onChange={(e) =>
                     setUsers({ ...users, middleName: e.target.value })
                   }
@@ -199,14 +203,14 @@ const EditAccount = () => {
 
               <div className="col-md-6">
                 <label className="small mb-1" placeholder="inputLocation">
-                  Miaden Name
+                  Maiden Name
                 </label>
                 <input
                   className="form-control"
                   id="inputLocation"
                   type="text"
                   placeholder="Enter Maiden Name"
-                  value={users.maidenName === null ? " ": users.maidenName}
+                  value={users.maidenName === null ? "": users.maidenName}
                   onChange={(e) =>
                     setUsers({ ...users, maidenName: e.target.value })
                   }
@@ -221,6 +225,10 @@ const EditAccount = () => {
                 type="date"
                 id="birthday"
                 name="birthday"
+                value={users.dateOfBirth === null ? "": users.dateOfBirth}
+                  onChange={(e) =>
+                    setUsers({ ...users, dateOfBirth: e.target.value })
+                  }
               ></input>
             </div>
 
@@ -264,7 +272,8 @@ const EditAccount = () => {
                   className="form-control"
                   id="inputPhone"
                   type="text"
-                  value={users.streetAddress === null? " " : users.streetAddress}
+                  placeholder="Enter Street Address"
+                  value={users.streetAddress === null? "" : users.streetAddress}
                   onChange={(e) =>
                     setUsers({ ...users, streetAddress: e.target.value })
                   }
@@ -283,7 +292,8 @@ const EditAccount = () => {
                   className="form-control"
                   id="inputPhone"
                   type="tel"
-                  value={users.city === null? " " : users.city}
+                  placeholder="Enter City"
+                  value={users.city === null? "" : users.city}
                   onChange={(e) =>
                     setUsers({ ...users, city: e.target.value })
                   }
@@ -299,9 +309,26 @@ const EditAccount = () => {
                   id="inputBirthday"
                   type="text"
                   name="birthday"
-                  value={users.zipCode === null? " " : users.zipCode}
+                  placeholder="Enter Zip Code"
+                  value={users.zipCode === null? "" : users.zipCode}
                   onChange={(e) =>
                     setUsers({ ...users, zipCode: e.target.value })
+                  }
+                />
+              </div>
+              <div className="col-md-6">
+                <label className="small mb-1" placeholder="inputBirthday">
+                   State
+                </label>
+                <input
+                  className="form-control"
+                  id="state"
+                  type="text"
+                  name="state"
+                  placeholder="Enter State"
+                  value={users.state === null? "" : users.state}
+                  onChange={(e) =>
+                    setUsers({ ...users, state: e.target.value })
                   }
                 />
               </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 
 
@@ -42,7 +43,7 @@ const DisplayEvents = ({event, display}) => {
         {event?.date}
         </Modal.Body>
         <Modal.Footer>
-            Link 
+        
         </Modal.Footer>
         </Modal>
         </>

@@ -5,27 +5,46 @@ public class UserDetails {
 	private String middleName;
 	private String maidenName;
 	private String graduationDate;
-	private String address;
+	private String streetAddress;
+	private String city;
+	private String state;
+	private String zipCode;
 	private String gender;
 	private String highSchool;
 	private String university;
+	private String dateOfBirth;
 	
 
 	public UserDetails() {
 		this.middleName = null;
 		this.maidenName = null;
 		this.graduationDate = null;
-		this.address = null;
+		this.streetAddress = null;
 		this.gender = null;
+		this.highSchool = null;
+		this.city = null;
+		this.zipCode = null;
+		this.state = null;
+		this.university = null;
+		this.dateOfBirth = null;
+
 	}
 
 
-	public UserDetails(String middleName, String maidenName, String graduationDate, String address, String gender) {
+	public UserDetails(String middleName, String maidenName, String graduationDate, String streetAddress, String gender,
+					  String highSchool, String city, String zipCode, String state, String university,
+					   String dateOfBirth) {
 		this.middleName = middleName;
 		this.maidenName = maidenName;
 		this.graduationDate = graduationDate;
-		this.address = address;
+		this.streetAddress = streetAddress;
 		this.gender = gender;
+		this.highSchool = highSchool;
+		this.city = city;
+		this.zipCode = zipCode;
+		this.state = state;
+		this.university = university;
+		this.dateOfBirth = dateOfBirth;
 	}
 
 
@@ -59,13 +78,13 @@ public class UserDetails {
 	}
 
 
-	public String getAddress() {
-		return address;
+	public String getStreetAddress() {
+		return streetAddress;
 	}
 
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress = streetAddress;
 	}
 
 
@@ -97,6 +116,36 @@ public class UserDetails {
 		this.university = university;
 	}
 
-	
-	
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
 }

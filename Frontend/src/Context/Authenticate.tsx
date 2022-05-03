@@ -54,6 +54,10 @@ export const AuthUser = ({ children,  } : AuthUser) => {
       useEffect(() =>{
         setLocalStorage("scholarship", scholarshipDetail);
       }, [scholarshipDetail]);
+
+      useEffect(() =>{
+        setLocalStorage("event", eventDetail);
+      }, [eventDetail]);
     
     
 

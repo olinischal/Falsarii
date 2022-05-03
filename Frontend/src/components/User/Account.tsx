@@ -72,9 +72,9 @@ const Account: React.FC<userDetails> = ({ user }) => {
                 <div className="col-sm-3">
                   <h6 className="mb-0">Address</h6>
                 </div>
-                {/* <div className="col-sm-9 text-secondary">
-                  {user.address}
-                </div> */}
+                <div className="col-sm-9 text-secondary">
+                  {userDetail.streetAddress}
+                </div>
               </div>
               <hr />
 
