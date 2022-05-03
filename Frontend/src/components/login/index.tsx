@@ -37,7 +37,6 @@ const Login = () => {
         } else if (localStorage.getItem("otherError")) {
           setErrorString("Some Error Occured! Please try again!");
         } else {
-         // window.location.reload();
           navigate("/profile/user");
           
         }
@@ -67,7 +66,6 @@ const Login = () => {
             validationSchema={LoginSchema}
             onSubmit={submitForm}
           >
-            {/* {({ values, handleChange, handleBlur, handleSubmit }) => { */}
             {(formik) => {
         const { values, handleChange, handleBlur, handleSubmit } = formik;
               return (

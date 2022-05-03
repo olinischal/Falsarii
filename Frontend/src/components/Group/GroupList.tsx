@@ -58,17 +58,18 @@ const GroupList  = () => {
     
   }
 
-  // GetUserGroup(userDetail.emailId)
-  //   .then((response) => {
-  //     console.log(response);
+  /*
+  GetUserGroup(userDetail.emailId)
+    .then((response) => {
+      console.log(response);
       
       
-  //   })
-  //   .catch((error) => {
-  //     console.log("Could not retrieve User Group.", error);
-  //   });
+    })
+    .catch((error) => {
+      console.log("Could not retrieve User Group.", error);
+    });
 
-
+*/
 
   
 

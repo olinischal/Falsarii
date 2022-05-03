@@ -107,7 +107,6 @@ export default function Membership() {
       target: { value },
     } = event;
     setInvolvement(
-      // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
     console.log(involvement);
@@ -128,17 +127,7 @@ export default function Membership() {
   const [isAlumni, setIsAlumni] = useState(true);
   const [schoolValue, setSchoolValue] = useState("Naville High School");
 
-  //    const handleCheckbox=(e)=>{
-  //     const checkBox = e.target.checked;
-  //     {e.target.checked?setIsAlumni(true):setIsAlumni(false)}
-  //     console.log(isAlumni);
-  //     if(isAlumni){ setSchoolValue("Naville High School");}
-  // }
-
-  // function handleCheckbox(e){
-  //   {e.target.checked?setIsAlumni(true):setIsAlumni(false)}
-  //   if(isAlumni){ setSchoolValue("Naville High School");}
-  // }
+  
 
   const [submitted, setSubmitted] = useState(false);
   return (
@@ -364,7 +353,6 @@ export default function Membership() {
                 label="High School"
               />
             </Box> : <div></div>}
-            {/* </Box> : <div>{()=>setSchoolValue("Naville High School")}</div>} */}
 
 
             <Box paddingBottom={4}>
@@ -433,7 +421,6 @@ export default function Membership() {
                   Membership Type
                 </FormLabel>
                 <RadioGroup
-                  // defaultValue={40}
                   name="membershipFee"
                   onChange={(e) => setAmount(parseInt(e.target.value))}
                   value={amount}
@@ -818,8 +805,6 @@ export function FormikStepper({
         if (isLastStep()) {
           await props.onSubmit(values, helpers);
           setCompleted(true);
-          // helpers.resetForm();
-          // setStep(0);
         } else {
           setStep((s) => s + 1);
         }

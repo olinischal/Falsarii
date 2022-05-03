@@ -28,7 +28,6 @@ const ImageList = ({ listView }) => {
 
     
   };
-//   console.log(imagePreview);
 
   return (
     <div>

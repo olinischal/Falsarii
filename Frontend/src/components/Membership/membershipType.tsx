@@ -46,7 +46,6 @@ const MembershipType=()=>{
                   <h2 style={{textAlign:'center'}}>Membership Type</h2>
                 </FormLabel>
                 <RadioGroup
-                  // defaultValue={40}
                   name="membershipFee"
                   onChange={(e) => setAmount(parseInt(e.target.value))}
                   value={amount}

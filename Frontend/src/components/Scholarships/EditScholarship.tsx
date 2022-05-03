@@ -196,7 +196,6 @@ const Scholarships = ({ scholarship }) => {
           </Modal.Footer>
         </Modal>
       </>
-      <>{/* <ScholarshipPage /> */}</>
     </>
   );
 };

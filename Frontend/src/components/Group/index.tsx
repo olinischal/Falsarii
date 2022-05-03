@@ -38,7 +38,6 @@ const Groups = () => {
                   Submit
         </button>
 
-        {/* <GroupList /> */}
     
     
     

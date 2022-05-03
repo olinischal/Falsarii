@@ -51,21 +51,4 @@
     resize: vertical;
   }
   
-  /* [type="submit"] {
-    font-family: "Montserrat", Arial, Helvetica, sans-serif;
-    width: 100%;
-    background: #cc6666;
-    border-radius: 5px;
-    border: 0;
-    cursor: pointer;
-    color: black;
-    font-size: 24px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    transition: all 0.3s;
-    margin-top: -4px;
-    font-weight: 700;
-  }
-  [type="submit"]:hover {
-    background: #cc4949;
-  } */
+  

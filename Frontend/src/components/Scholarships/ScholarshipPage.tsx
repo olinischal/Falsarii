@@ -30,16 +30,18 @@ const ScholarshipPage = () => {
   const [donateStatus, setDonateStatus] = useState<boolean>(false);
   const date: any = new Date();
 
-  // useEffect(() => {
-  //   scholarshipDetail.array.forEach(element => {
-  //     if(element.id === id){
-  //       setSelectScholarship(element);
-  //     }else{
-  //       console.log("Could not match scholarship id");
-  //     }
+  /*
+  useEffect(() => {
+    scholarshipDetail.array.forEach(element => {
+      if(element.id === id){
+        setSelectScholarship(element);
+      }else{
+        console.log("Could not match scholarship id");
+      }
       
-  //   });
-  // },[id])
+    });
+  },[id])
+  */
 
 
   let userRole;
@@ -189,12 +191,7 @@ const ScholarshipPage = () => {
             </div>
           </div>
           <div className="col-lg-4">
-            {/* <div className="card mb-4">
-              <div className="card-header">Donators list side bar</div>
-              <div className="card-body">
-                List of donators and the amount they have given
-              </div>
-            </div> */}
+         
             <ListOfDonors user = {userDetail}/>
           </div>
         </div>
@@ -208,7 +205,8 @@ const ScholarshipPage = () => {
                 </p>
               </div>
 
-{/* import { useState } from "react";
+{/* 
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import ScholarshipData from "../../types/Scholarship";
 import "bootstrap/dist/css/bootstrap.css";

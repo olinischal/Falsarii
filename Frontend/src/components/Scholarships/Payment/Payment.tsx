@@ -24,7 +24,8 @@ const Payment = ({amount, email, donateStatus}) => {
       }
 
       ,
-    }).then(() => {
+    }).then((response) => {
+      window.open(response.data);
       donateStatus(true);
       navigate('/donation-success');
     }).catch((error) => {

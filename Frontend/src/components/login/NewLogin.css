@@ -1,10 +1,8 @@
 
   .img-fluid.logo{
-    /* overflow:auto; */
     width: 150px;
 }
 .col-md-4.my-auto.logo-edit{
-    /* background-color: blue; */
     justify-content: center;
     display: flex;
 }

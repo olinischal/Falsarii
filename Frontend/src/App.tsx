@@ -11,7 +11,7 @@ import MemberList from "./components/MemberList";
 
 
 import Payment from "./components/Scholarships/Payment/Payment";
-import Success from "./components/Scholarships/Payment/Success";
+import Success from "./components/Payment/Success";
 import Error from "./components/Scholarships/Payment/Error";
 
 
@@ -73,14 +73,12 @@ function App() {
   };
   useEffect(() => {
     const timer = new IdleTimer({
-      timeout: 1000, //expire after 10 seconds
+      timeout: 1000, 
       onTimeout: () => {
         setIsTimeout(true);
       },
       onExpired: () => {
-        // do something if expired on load
         setIsTimeout(true);
-        // AuthService.logout();
       },
     });
 
@@ -93,13 +91,11 @@ function App() {
     <>
        <div style={{
       backgroundColor:'#FFFFF4'
-    }}></div>
-      {/* {isTimeout && onTimeExpired()} */}
-      {/* <Router> */}
+    }}>
+      
       <NavigationBar />
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* Routes for public */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<NewLogin />} />
           <Route path="/signup" element={<NewSignUp />} />
@@ -114,12 +110,10 @@ function App() {
           <Route path="/s/page/:id" element={<ScholarshipPage />} />
           <Route path="/e/page/:id" element={<EventPage/>}/>
           
-          {/* <Route path="/payment" element={<Payment amount/>} /> */}
 
         
 
           
-          {/* Routes for all User level */}
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/donation-success" element={<Success />} />
           <Route path="/donation-unsucessfull" element={<Error />} />
@@ -134,7 +128,6 @@ function App() {
           <Route path="/tshirtSale" element={<TshirtSale />} />
 
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-            {/* Routes for Admin only */}
             <Route path="/members" element={<MemberList />} />
             <Route path="/update/:id" element={<UpdateMember />} />
             <Route path="/scholarships" element={<Scholarships />} />
@@ -152,15 +145,13 @@ function App() {
             <Route path="/newpassword/:id" element={<NewPassword />} />
           </Route>
 
-          {/* Needs updating */}
           <Route path="/user" element={<BoardUser />} />
-          {/* Modify later */}
           <Route path="/groups" element={<Groups />} />
         </Route>
       </Routes>
 
-      {/* </Router> */}
       <Footer />
+      </div>
     </>
 
   );

@@ -41,29 +41,31 @@ const EventPage = () => {
   };
 
  
-
+/*
  
-  // const [modalHeading, setModalHeading] = useState("");
-  // const [modalDescription, setModalDescription] = useState("");
-  // const [inputBox, setInputBox] = useState(true);
+  const [modalHeading, setModalHeading] = useState("");
+  const [modalDescription, setModalDescription] = useState("");
+  const [inputBox, setInputBox] = useState(true);
 
   
 
-  // function handlePopup(title: string, desc: string) {
-  //   if (!localStorage.getItem("user")) {
-  //     setModalDescription(desc);
-  //     setModalHeading(title);
-  //     setShow(true);
-  //   } else {
-  //     handleGift();
-  //   }
-  // }
-  // function handleGift() {
-  //   setShow(true);
-  //   setModalHeading("Event entry");
-  //   setModalDescription("The entry fee for the event is $" + event.entranceFee );
-  //   setInputBox(false);
-  // }
+  function handlePopup(title: string, desc: string) {
+    if (!localStorage.getItem("user")) {
+      setModalDescription(desc);
+      setModalHeading(title);
+      setShow(true);
+    } else {
+      handleGift();
+    }
+  }
+  function handleGift() {
+    setShow(true);
+    setModalHeading("Event entry");
+    setModalDescription("The entry fee for the event is $" + event.entranceFee );
+    setInputBox(false);
+  }
+
+  */
 
   function handleFinal() {   
       navigate("/login");

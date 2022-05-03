@@ -8,7 +8,6 @@ function Success(props) {
   <p className="lead"><strong><b> The payment system is secured by Stripe.</b></strong> <br/>Note that we do not hold any card information. It is solely managed by Stripe Payment System.
   <br/>  <a href="https://stripe.com/docs/security/stripe"> Learn More</a>
   <div>
-  {/* Find your receipt for payment here: <a onClick={()=>{window.open(props)}}>Receipt</a> */}
 </div>
 </p>
   <hr/>

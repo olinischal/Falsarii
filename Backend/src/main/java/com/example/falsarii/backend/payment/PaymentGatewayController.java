@@ -24,7 +24,16 @@ public class PaymentGatewayController {
 
     @PostMapping("/charge")
     public String chargeCard(@RequestHeader(value="token") String token, @RequestHeader(value="amount") Double amount) throws Exception {
-
-        return stripeClient.chargeNewCard(token, amount).toJson();
+    	
+    	Charge chargeDetail = stripeClient.chargeNewCard(token, amount);
+    	
+    	System.out.println("This is payment amount: " + chargeDetail.getAmount()/100);
+    	System.out.println("This is billing address given at the time of payment: " + chargeDetail.getBillingDetails().getAddress());
+    	
+    	System.out.println("These are important ones Prajwal");
+    	System.out.println("This is the Payment ID: "+ chargeDetail.getId());
+    	System.out.println("This is receipt URL: " + chargeDetail.getReceiptUrl() );
+    	
+        return chargeDetail.getReceiptUrl();
     }
 }

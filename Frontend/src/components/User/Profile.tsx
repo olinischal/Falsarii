@@ -15,7 +15,7 @@ import Authenticate from "../../Context/Authenticate";
 
 
 import { Image } from "react-bootstrap";
-import profile from "./profileImage.png";
+// import profile from "./profile.png";
 import { borderColor, fontSize } from "@mui/system";
 
 const Profile = () => {
@@ -45,7 +45,6 @@ const Profile = () => {
   
 
 
-  //const currentUser = getCurrentUser();
 
   console.log(getCurrentUser());
   const user = Object.assign({}, userDetail[currentUser.id - 1]);
@@ -56,7 +55,7 @@ const Profile = () => {
       <li key={index}>{role}</li>
     ));
 
-  const [profilePic, setProfilePic] = useState(profile);
+  const [profilePic, setProfilePic] = useState("./profile.png");
   const imageHandler = (e) => {
     const reader = new FileReader();
     reader.onload = () => {

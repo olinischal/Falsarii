@@ -30,14 +30,12 @@ function Payment(props) {
       .post("http://localhost:8080/payment/charge", "", {
         headers: {
           token: token.id,
-          // amount: totalAmount,
           amount: totalAmount,
         },
       })
       .then((response) => {
         console.log(response);
           window.open(response.data);
-          // <Success receiptUrl= {response.data}/>
         navigate("/success");
       })
       .catch((error) => {
@@ -46,10 +44,7 @@ function Payment(props) {
   }
   return (
     <div style={{ paddingTop: "20px" }}>
-      {/* <div>Must be at least $0.5
-        <label style={{position: "relative", left:"15px"}}>$</label>
-        <input type="text" name="amount" placeholder="" style={{textIndent:"15px", marginTop:"20px"}}onChange={e => setTotalAmount(e.target.value)} />
-      </div> */}
+      
       <div className="payment" style={{ marginTop: "20px" }}>
         <StripeCheckout
           name={"$ " + totalAmount + " Payment"}

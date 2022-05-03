@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Input } from "reactstrap";
 import {getFiles} from "../../../services/api";
 import S3FileUpload from 'react-s3';
-// import { uploadFile } from 'react-s3';
 import {Aws} from '../../../types/Aws';
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
@@ -54,9 +53,7 @@ const ImageUpload = () => {
     }, []);
 
     console.log(getFile);
-    // getFile?.map(val => {
-    //     console.log(val);
-    // })
+    
     
   
     return (

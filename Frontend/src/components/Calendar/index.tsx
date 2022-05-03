@@ -45,7 +45,6 @@ const CalendarEvents = () => {
 
   return (
     <>
-    {/* Uncomment this section once the event API is updated in backend */}
       <div style={{ position: "relative", top: "10px", left: "10px" }}>
         <Button variant="secondary" size="lg" onClick={handleShow}>
           + Create New Event

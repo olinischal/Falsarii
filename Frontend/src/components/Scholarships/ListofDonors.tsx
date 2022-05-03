@@ -4,15 +4,7 @@ import { getScholarshipDonateList } from "../../services/api";
 
 
 const ListOfDonors = ({user}) => {
-  
-    //this will update all the donor list in the scholarship page
-    // useEffect(()=> {
-    //     getScholarshipDonateList(user.userId).then((res) => {
-    //         console.log('The donor list has been successfull', res);
-    //     }) .catch((error) => {
-    //         console.log("Could not retrieve donor list.", error);
-    //       });
-    // },[])
+ 
 
     return (
 

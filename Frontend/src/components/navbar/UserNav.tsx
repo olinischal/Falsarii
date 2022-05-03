@@ -50,15 +50,12 @@ const UserNav = () => {
           </NavDropdown>
         </Nav>
 
-        {/* <Nav.Link as={Link} to="/payment">
-                  Donate
-                </Nav.Link> */}
+      
 
         <Nav.Link as={Link} to="/membership">
         <span className="text-warning"> Membership</span>
         </Nav.Link>
       </Nav>
-      {/* // {user ?  */}
       <Nav>
         <Nav.Link as={Link} to="/profile/user">
         <span className="text-warning">Profile</span>

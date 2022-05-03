@@ -93,19 +93,13 @@ const MemberList = () => {
             ) {
               return val;
             } 
-            // else if (
-            //   val.graduationDate.includes(searchTerm) &&
-            //   searchType === "graduationDate"
-            // ) {
-            //   return val;
-            // }
+           
           })
           .map((val, key) => {
             return (
               <div key={key}>
                 <hr />
                 <div>
-                  {/* <Link to="/update" className="btn btn-primary mb-2">Add Member </Link> */}
                   <table className="table table-bordered table-striped">
                     <thead className="thead-dark">
                       <tr>

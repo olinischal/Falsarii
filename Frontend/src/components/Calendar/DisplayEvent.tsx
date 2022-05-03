@@ -24,7 +24,6 @@ const DisplayEvents = ({event, display}) => {
     
   }, [display]);
   
- // console.log("The event props is ", event?.start);
 
 
     return (

@@ -29,7 +29,7 @@ interface userDetails {
 
 const Account: React.FC<userDetails> = ({ user }) => {
 
-  // const [profilePic, setProfilePic] = useState(profile);
+  const [profilePic, setProfilePic] = useState(profile);
   const imageHandler =(e) =>{
     const reader = new FileReader();
     reader.onload = () => {
