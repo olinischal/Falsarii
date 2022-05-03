@@ -62,6 +62,7 @@ public class S3BucketController {
     public String uploadFile(@RequestParam String fileName,
                                              @RequestParam MultipartFile file) {
 		try {
+			System.out.print(fileName + "********" + file.toString());
 			s3StorageService.uploadFile(fileName, file);
 			return "File uploaded successfully";
 		} catch (Exception e) {

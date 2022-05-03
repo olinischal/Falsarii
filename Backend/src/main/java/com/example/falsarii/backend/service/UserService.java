@@ -26,6 +26,7 @@ import com.example.falsarii.backend.model.EventImages;
 import com.example.falsarii.backend.model.Events;
 import com.example.falsarii.backend.model.FamilyDetail;
 import com.example.falsarii.backend.model.Groups;
+import com.example.falsarii.backend.model.Memberships;
 import com.example.falsarii.backend.model.UserImages;
 import com.example.falsarii.backend.model.Scholarships;
 import com.example.falsarii.backend.model.UserDetails;
@@ -34,6 +35,7 @@ import com.example.falsarii.backend.repository.DonateToEventsRepository;
 import com.example.falsarii.backend.repository.DonateToScholarshipsRepository;
 import com.example.falsarii.backend.repository.EventsRepository;
 import com.example.falsarii.backend.repository.GroupRepository;
+import com.example.falsarii.backend.repository.MembershipRepository;
 import com.example.falsarii.backend.repository.UserImageRepository;
 import com.example.falsarii.backend.repository.ScholarshipRepository;
 import com.example.falsarii.backend.repository.UserRepository;
@@ -58,6 +60,8 @@ public class UserService {
 	private EmailService emailService;
 	@Autowired
 	private UserImageRepository userImageRepository;
+	@Autowired
+	private MembershipRepository membershipRepository;
 	@Autowired
 	private AmazonS3 s3Client;
 	
@@ -89,8 +93,14 @@ public class UserService {
 		try {
 			Users user = userRepository.findByUserId(userId);
 			Groups group = groupRepository.findByGroupId(groupId);
-			user.getGroups().add(group);
-			group.getUsers().add(user);
+
+
+			boolean i = user.getGroups().add(group);
+			boolean j = group.getUsers().add(user);
+			
+			if(i && j) {
+				group.setNoOfMembers(group.getNoOfMembers()+1);
+			}
 			userRepository.save(user);
 		}catch(Exception e) {
 			System.out.println(e.toString());
@@ -103,9 +113,15 @@ public class UserService {
 	}
 
 	//Remove user from group
-	public String removeGroup(Long userId, List<Long> groupIdList) {
+	public String removeGroup(Long userId, Long groupId) {
 		try {
-			userRepository.removeGroup(userId, groupIdList);
+			int i = userRepository.removeGroup(userId, groupId);
+			
+			if(i == 1) {
+				Groups group = groupRepository.findByGroupId(groupId);
+				group.setNoOfMembers(group.getNoOfMembers()-1);
+				groupRepository.save(group);
+			}
 			return "removed successfully";
 		}catch(Exception e) {
 			System.out.println(e.toString());
@@ -375,5 +391,18 @@ public class UserService {
 		}
 	}
 	
+	
+	public void membership(Long userId, String membershipType) {
+		Users user = userRepository.findByUserId(userId);
+		Memberships membership = membershipRepository.findMembershipBy(membershipType);
+		
+		LocalDate localDate = LocalDate.now();
+		
+		membership.setDate(localDate);
+		user.setMembership(membership);
+		membership.setUser(user);
+		membershipRepository.save(membership);
+		
+	}
 	
 }

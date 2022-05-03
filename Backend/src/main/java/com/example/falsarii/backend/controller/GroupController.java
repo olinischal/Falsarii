@@ -1,14 +1,13 @@
 package com.example.falsarii.backend.controller;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.falsarii.backend.model.Groups;
+import com.example.falsarii.backend.model.Users;
 import com.example.falsarii.backend.service.GroupService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -53,7 +52,16 @@ public class GroupController {
 			}
 		}
 		
-		
+		//Display all members of a group
+		@GetMapping("/group/view-all-members")
+		public List<Users> getAllMembersOfGroup(Long groupId){
+			try {
+				return groupService.getAllMembersOfGroup(groupId);	
+			}catch(Exception e) {
+				System.out.println(e.toString());
+				return null;
+			}
+		}
 		
 		
 	}

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.falsarii.backend.model.Groups;
+import com.example.falsarii.backend.model.Users;
 
 
 @Repository
@@ -41,4 +42,11 @@ public interface GroupRepository extends JpaRepository<Groups, Long> {
 			value = "select * from groups g where g.group_id in :groupIdList",
 			nativeQuery = true)
 	List<Groups> findAllByGroupId(@Param("groupIdList") List<Long> groupIdList);
+	
+	
+	//Get all members from a group
+	@Query(value = "select * from group_on where group_id = :groupId",
+			nativeQuery = true)
+	List<Users> getAllMembersOfGroup(@Param("groupId") Long groupId);
+	
 }

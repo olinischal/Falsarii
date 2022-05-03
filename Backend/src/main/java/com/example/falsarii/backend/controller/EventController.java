@@ -38,7 +38,7 @@ public class EventController {
 
     //Edit event
     @PostMapping("/event/edit")
-    public void createScholarship(@RequestParam Long eventId,@RequestBody Events event) {
+    public void editEvent(@RequestParam Long eventId,@RequestBody Events event) {
         try {
             eventService.editEvent(eventId, event);
         }catch (Exception e) {

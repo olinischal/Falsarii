@@ -51,9 +51,9 @@ public class UserController {
 		
 		//For user and admin
 		@PostMapping("/user/remove-group")
-		public String removeGroup(@RequestParam Long userId, @RequestParam List<Long> groupIdList) {
+		public String removeGroup(@RequestParam Long userId, @RequestParam Long groupId) {
 			try {
-				return userService.removeGroup(userId, groupIdList);
+				return userService.removeGroup(userId, groupId);
 			}catch(Exception e) {
 				System.out.println(e.toString());
 				return "error";
@@ -169,9 +169,13 @@ public class UserController {
 		
 		//For admin
 		//Get all emails sent
-		@GetMapping("/emails/view")
-		public void getAllEmailsHistory() {
-			
+		@PostMapping("/user/membership")
+		public void membership(@RequestParam Long userId, @RequestParam String membershipType) {
+			try {
+				userService.membership(userId, membershipType);				
+			} catch (Exception e) {
+				System.out.println(e.toString()+"error in user membership controller");
+			}
 		}
 		
 	}

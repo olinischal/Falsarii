@@ -26,6 +26,8 @@ public class Groups {
 		private String groupName;
 		private String year;
 		private int noOfMembers;
+		private boolean status;
+		
 		
 		@JsonIgnore
 		@ManyToMany(mappedBy = "groups", cascade=CascadeType.ALL)
@@ -55,6 +57,13 @@ public class Groups {
 		}
 		public void setNoOfMembers(int noOfMembers) {
 			this.noOfMembers = noOfMembers;
+		}
+		
+		public boolean getStatus() {
+			return status;
+		}
+		public void setStatus(boolean status) {
+			this.status = status;
 		}
 
 }

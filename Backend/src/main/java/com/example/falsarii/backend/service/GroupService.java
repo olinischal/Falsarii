@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.falsarii.backend.model.Groups;
+import com.example.falsarii.backend.model.Users;
 import com.example.falsarii.backend.repository.GroupRepository;
 
 
@@ -46,5 +47,15 @@ public class GroupService {
 			System.out.println(e.toString());
 		}
 	}
-
+	
+	//Get all members of a group
+	public List<Users> getAllMembersOfGroup(Long groupId){
+		try {
+			List<Users> userList = groupRepository.getAllMembersOfGroup(groupId);
+			return userList;
+		} catch (Exception e) {
+			System.out.println(e.toString() + "error in get all members of group in group service");
+			return null;
+		}
+	}
 }
