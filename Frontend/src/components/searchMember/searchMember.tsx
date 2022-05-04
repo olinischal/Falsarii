@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import MemberData from "../../types/Member";
 import { Member } from "../../services/api";
 
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Button, Dropdown, Modal } from "react-bootstrap";
 import { sendEmail } from "../../services/authenticate-service";
+import Authenticate from "../../Context/Authenticate";
 
 
 
@@ -24,9 +25,11 @@ const SearchMember = ({userList}) => {
   const [emailText, setEmailText] = useState("");
   const [emailList, setEmailList] = useState<string[]>([]);
 
+  const {userDetail}: any = useContext(Authenticate);
+
   useEffect(() => {
     console.log(keyword);
-  
+    
        
     Member.searchMember(keyword)
       .then((data) => {
@@ -90,13 +93,7 @@ const SearchMember = ({userList}) => {
           placeholder="Search Members"
         />
         
-        <button
-          type="button"
-          className="btn btn-warning"
-          
-        >
-          Group
-        </button>
+       
         <br />
         <br />
         <button

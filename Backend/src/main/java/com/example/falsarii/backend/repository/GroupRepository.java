@@ -22,6 +22,10 @@ public interface GroupRepository extends JpaRepository<Groups, Long> {
 				value = "select * from groups where group_id = :groupId",
 				nativeQuery = true)
 		Groups findByGroupId(Long groupId);
+
+	@Query(value = "select group_id from groups where group_name = :groupName and year= :year",
+			nativeQuery = true)
+	Long getAllMembersOfGroupByYear(@Param("groupName") String groupName, @Param("year") String year);
 	
 	
 //	//Native query with named param
@@ -46,4 +50,6 @@ public interface GroupRepository extends JpaRepository<Groups, Long> {
 	@Query(value = "select user_id from group_on where group_id = :groupId",
 			nativeQuery = true)
 	List<Long> getAllMembersOfGroup(@Param("groupId") Long groupId);
+
+
 }

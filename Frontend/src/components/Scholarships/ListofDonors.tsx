@@ -6,7 +6,6 @@ import MemberData from "../../types/Member";
 const ListOfDonors = ({ scholarship }) => {
   const [donorList, setDonorList] = useState([]);
   const [members, setMembers] = useState<MemberData[]>([]);
-  // this will update all the donor list in the scholarship page
   useEffect(() => {
     getScholarshipDonateList(scholarship.scholarshipId)
       .then((res) => {
@@ -38,7 +37,7 @@ const ListOfDonors = ({ scholarship }) => {
 
   return (
     <div className="card mb-4">
-      <div className="card-header " style ={{backgroundColor : '#ffc40c', color: '#353839'}}>Donators list side bar</div>
+      <div className="card-header " style ={{backgroundColor : '#ffc40c', color: '#353839'}}>Donors list side bar</div>
       <div className="card-body">
         {user.map((val, key) => {
           return <div key={key}>{val}</div>;

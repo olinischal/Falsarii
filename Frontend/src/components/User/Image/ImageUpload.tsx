@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Input } from "reactstrap";
 import {getFiles, uploadFile, uploadImage} from "../../../services/api";
 import S3FileUpload from 'react-s3';
-// import { uploadFile } from 'react-s3';
+
 import {Aws} from '../../../types/Aws';
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
@@ -20,27 +20,7 @@ const ImageUpload = () => {
         let file = e.target.files[0];
         formData.append('i1', e.target.files[0]);
         
-        // uploadFile(formData);
-        // console.log("this is formdata", formData.keys.toString);
-        // setSelectFile(e.target.files[0]);
-        
-        // S3FileUpload.uploadFile(e.target.files[0], config).then(data => {
-        //     console.log(data);
-        // }).catch(error => {
-        //         console.log("Image cannot be uploaded.", error);
-        //       });
-
-        // reader.readAsArrayBuffer(e.target.files[0]);
-        // reader.onloadend = (evt) => {
-        //   if (evt.target?.readyState === FileReader.DONE) {
-        //     const arrayBuffer: any = evt.target.result,
-        //       array = new Uint8Array(arrayBuffer);
-        //       array.forEach(a => {
-        //           fileByteArray.push(a);
-        //       })
-            // foreach(const a of array) {
-            //   fileByteArray.push(a);
-            // }
+      
 
             console.log(e.target.files[0]);
 
@@ -74,7 +54,7 @@ const ImageUpload = () => {
         formData.append('imageFile', selectFile);
 
         uploadFile( formData);
-       // console.log(formData);     
+      
 
     }
 
@@ -89,10 +69,7 @@ const ImageUpload = () => {
     }, []);
 
     console.log(getFile);
-    // getFile?.map(val => {
-    //     console.log(val);
-    // })
-    
+  
   
     return (
         <div> 

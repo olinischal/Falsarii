@@ -42,7 +42,7 @@ const EditAccount = () => {
   const [heading, setHeading] = useState("");
   const[description, setDescription] = useState("");
 
-  //const[submit, setSubmit] = useState<boolean>(false);
+  
 
 
 
@@ -55,7 +55,7 @@ const EditAccount = () => {
       .then(() => {
         navigate("/profile/user");
 
-       // window.location.reload();
+       window.location.reload();
       })
       .catch((error) => {
         console.log("Something went wrong here.", error);
@@ -87,15 +87,6 @@ const EditAccount = () => {
       }, []);
       
 
-  // useEffect(() => {
-  //   Member.getAMember(parseInt(user.userId))
-  //     .then((response) => {
-  //       setUsers(response);
-  //     })
-  //     .catch((error) => {
-  //       console.log("Something went wrong here.", error);
-  //     });
-  // }, []);
 
   function handlePopUp(title:string, desc:string){
       
@@ -135,7 +126,6 @@ const EditAccount = () => {
         }}
         className="btn btn-warning"
         type="button"
-        // onClick={(e) => saveclients(e)}
         onClick={()=>handlePopUp("Save?", "Are you sure you want to proceed ahead and save? ")}
       >
         Save Changes

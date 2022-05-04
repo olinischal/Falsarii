@@ -16,29 +16,7 @@ let year = d.getFullYear();
     return (
         <>
 
-                {/* <section id="events">
-                <div className="column">
-                  <Link to={`/e/page/${index}`} >
-                <div className="event-block">
-                  <div className="calendar-block">
-                  <p className="day">{date}</p>
-                    
-                    <p className="year">
-                      <span className="calendar_month">{month} </span>
-                      <span>{year}</span>
-                    </p>
-                  </div>
-                  <div className="event-details">
-                    <p className="event_name">{event.eventName}</p>
-                    <div className="event-details">
-                      <p className="event_days">{event.description}</p>
-                    </div>
-                  </div>
-                </div>
-                </Link>
-              </div>
-
-                </section> */}
+                {}
 
 <section id="events">
                 <div className="column">

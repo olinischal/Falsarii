@@ -98,7 +98,7 @@ const SearchByType = () => {
                     </select>
 
                     <button onClick={handleClick}>Search Group</button>
-
+                        
                     <SearchMember userList = {selectUser} />
                     
 

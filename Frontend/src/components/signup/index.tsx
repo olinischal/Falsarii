@@ -18,7 +18,7 @@ interface signupProps {
  
   password: string;
   confirmPassword: string;
-  // response:string
+ 
 }
 
 const initialValues: signupProps = {
@@ -30,7 +30,7 @@ const initialValues: signupProps = {
   
   password: "",
   confirmPassword: "",
-  // response:""
+
 };
 let captcha;
 

@@ -284,13 +284,13 @@ public class UserService {
 		try {
 			List<String> list = donateToEventsRepository.getAllDonationForEventByPerson(userId);
 			List<List> donationForEventByPerson = new ArrayList<>();
-		
+
 			for(String data: list) {
-		
+
 				List<String> tempList = Arrays.asList(data.split(","));
 				donationForEventByPerson.add(tempList);
-			}	
-			
+			}
+
 			return donationForEventByPerson;
 		} catch (Exception e) {
 			return null;

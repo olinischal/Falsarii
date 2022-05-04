@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="">
         <footer className="footer">
           <div className="footer-left col-md-4 col-sm-6">
-            <p className="about">
+            <div className="about">
               <h5>
                 <b>Mission Statement.</b>
               </h5>
@@ -16,7 +16,7 @@ const Footer = () => {
               education at NHS. If you have any information or event that needs
               to be featured on this site, please contact Dana Jefferson, NAFA
               Executive Director.
-            </p>
+            </div>
 
             <div className="icons">
               <a

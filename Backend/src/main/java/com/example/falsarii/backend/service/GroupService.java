@@ -39,17 +39,37 @@ public class GroupService {
 	}
 
 	//Get selected groups
-	public List<List<Users>> getSelectedGroups(List<Long> groupIdList) {
+//	public List<List<Users>> getSelectedGroups(List<Long> groupIdList) {
+//
+//		List<List<Users>> listOfUsers = new ArrayList<>();
+//
+//		for(Long i: groupIdList){
+//			List<Long> tempUserList = groupRepository.getAllMembersOfGroup(i);
+//			listOfUsers.add(tempUserList);
+//		}
+//
+//		return listOfUsers;
+//
+//	}
 
-		List<List<Users>> listOfUsers = new ArrayList<>();
+	public List<Users> getAllMembersOfGroupByYear(String groupName, String year){
+		try {
+			Long groupId = groupRepository.getAllMembersOfGroupByYear(groupName, year);
 
-		for(Long i: groupIdList){
-			List<Users> tempUserList = getAllMembersOfGroup(i);
-			listOfUsers.add(tempUserList);
+			List<Long> temp = groupRepository.getAllMembersOfGroup(groupId);
+
+			List<Users> userList = new ArrayList<>();
+
+			for(Long i: temp){
+				userList.add(userRepository.findByUserId(i));
+
+			}
+			 System.out.println(userList.size()+ "this is the size" );
+			return userList;
+		} catch (Exception e) {
+			System.out.println(e.toString() + "error in get all members of group in group service");
+			return null;
 		}
-
-		return listOfUsers;
-
 	}
 
 	//Remove user from group
@@ -62,22 +82,14 @@ public class GroupService {
 	}
 
 	//Get users of a particular group
-	public List<Users> getAllMembersOfGroup(Long groupId){
-		try {
-			List<Long> userList = groupRepository.getAllMembersOfGroup(groupId);
-			System.out.println(userList.size());
-			List<Users> temp = new ArrayList<>();
-
-			for(Long i: userList){
-				temp.add(userRepository.findByUserId(i));
-
-			}
-
-			return temp;
-		} catch (Exception e) {
-			System.out.println(e.toString() + "error in get all members of group in group service");
-			return null;
-		}
-	}
+//	public List<Users> getAllMembersOfGroup(Long groupId){
+//		try {
+//			List<Long> userList = groupRepository.getAllMembersOfGroup(groupId);
+//			return userList;
+//		} catch (Exception e) {
+//			System.out.println(e.toString() + "error in get all members of group in group service");
+//			return null;
+//		}
+//	}
 
 }

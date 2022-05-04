@@ -55,9 +55,7 @@ export const GroupRequests = {
 	getGroups: (): Promise<GroupData[]> => requests.get('member/groups/show-all'),
 	createGroup: (post: GroupData): Promise<GroupData> =>
 		requests.post('member/groups/create', post),
-	// updateScholarships: (id:number, put: GroupData): Promise<GroupData> =>
-	// 	requests.put(`update/${id}`, put),
-	// deleteScholarships: (id: number): Promise<void> => requests.delete(`delete/${id}`),
+
 };
 
 export const JoinGroup = (userId, groupId) => {
@@ -117,6 +115,22 @@ export const JoinGroup = (userId, groupId) => {
 		anonymity: anonymity,
 
 	
+	  }
+	});
+  
+  }
+
+  export const donateEvent = (userId: String, eventId: String, date: any, entranceFee: any) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.post(
+	  API_URL + "event/donate", null, 
+	{
+	  params: {
+		userId: userId,
+		eventId: eventId,
+		date: date,
+		amount: entranceFee,	
 	  }
 	});
   
@@ -239,5 +253,38 @@ export const JoinGroup = (userId, groupId) => {
 
 	);
 
+
+  }
+
+  export const getAllEventDonationUser = (userId) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.get(
+		API_URL + "event/get-all-donations-by-person", {
+			params: {
+				userId: userId
+			}
+		}
+		
+
+	);
+
+  }
+
+  export const getAllMembersOfGroup = (groupName, gradYear) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.get(
+		API_URL + "group/view-all-members", {
+			params: {
+				groupName: 'football fan',
+				year: 1999
+			}
+		}
+		
+
+	).then(res => {
+		console.log(res);
+	});
 
   }

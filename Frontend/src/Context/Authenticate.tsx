@@ -28,19 +28,14 @@ const Authenticate = createContext({});
 export const AuthUser = ({ children,  } : AuthUser) => {
     const [auth, setAuth] = useState(()=> getLocalStorage("userAuth", {}));
 
-    // store all the user info in the local storage in data key
     const [userDetail, setUserDetail] = useState(()=> getLocalStorage("data", {data: "", }));
 
-    //while Updating user profile submit state stores the 'submit' event handler
     const [submit, setSubmit] = useState<boolean>(false);
 
-    //Scholarship state of each scholarship
     const [scholarshipDetail, setScholarshipDetail] = useState(()=> getLocalStorage("scholarship", {}));
 
-    //Event state 
     const[eventDetail, setEventDetail] = useState(() => getLocalStorage("event", {}));
 
-    // Check Donation of Scholarship  
     const [donateStatus, setDonateStatus] = useState<boolean>(false);
 
     const [allGroupList, setAllGroupList] = useState([]);

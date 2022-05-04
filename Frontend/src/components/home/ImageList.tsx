@@ -17,18 +17,19 @@ const ImageList = ({ listView }) => {
     e.preventDefault();
     const reader = new FileReader();
     const newImage = [...imagePreview];
-     
+    localStorage.setItem('homeImage1',e.target.files[0]);
 
     reader.onloadend = () => {
       setSelectFile(e.target.files[0]);
+      
       newImage[id] = reader.result;
       setImagePreview(newImage);
     };
-    reader.readAsDataURL(e.target.files[0]);
+    reader.readAsDataURL(localStorage.get('homeImage1'));
 
     
   };
-//   console.log(imagePreview);
+
 
   return (
     <div>

@@ -83,7 +83,7 @@ const LoginReset = () => {
                 onClick={() => {
                   submitForm(searchTerm);
                 }}
-                // to={"/newpassword/" + `${val.id}`}
+               
               >
                 Get New Password
               </button>

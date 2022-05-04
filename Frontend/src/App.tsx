@@ -60,43 +60,19 @@ function App() {
     User: "ROLE_USER",
     Admin: "ROLE_ADMIN",
   };
-  const onTimeExpired = () => {
-    const userStr = localStorage.getItem("user");
-    if (userStr) {
-      AuthService.logout();
-      window.location.href = "/login";
-      alert("You have been logged out due to inactivity");
-    }
-  };
-  useEffect(() => {
-    const timer = new IdleTimer({
-      timeout: 1000, 
-      onTimeout: () => {
-        setIsTimeout(true);
-      },
-      onExpired: () => {
-        
-        setIsTimeout(true);
-        
-      },
-    });
 
-    return () => {
-      timer.cleanUp();
-    };
-  }, []);
+  
+
   return (
 
-    <>
+
        <div style={{
       backgroundColor:'#FFFFF4'
-    }}></div>
-      {/* {isTimeout && onTimeExpired()} */}
-      {/* <Router> */}
+    }}>
+      
       <NavigationBar />
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* Routes for public */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<NewLogin />} />
           <Route path="/signup" element={<NewSignUp />} />
@@ -111,14 +87,12 @@ function App() {
           <Route path="/s/page/:id" element={<ScholarshipPage />} />
           <Route path="/e/page/:id" element={<EventPage/>}/>
           
-          {/* <Route path="/payment" element={<Payment amount/>} /> */}
 
         
 
           
-          {/* Routes for all User level */}
           <Route path="/calendar" element={<Calendar />} />
-          <Route path="/success" element={<Success />} />
+          <Route path="/donation-success" element={<Success />} />
           <Route path="/donation-unsucessfull" element={<Error />} />
           <Route path="/scholarshipList" element={<UpdateScholarships />} />
           <Route path="/unauthorized" element={<UnAuthorize />} />
@@ -131,7 +105,6 @@ function App() {
           <Route path="/searchByType" element={<SearchByType />} />
 
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-            {/* Routes for Admin only */}
             <Route path="/members" element={<MemberList />} />
             <Route path="/update/:id" element={<UpdateMember />} />
             <Route path="/scholarships" element={<Scholarships />} />
@@ -150,16 +123,14 @@ function App() {
             <Route path="/newpassword/:id" element={<NewPassword />} />
           </Route>
 
-          {/* Needs updating */}
           <Route path="/user" element={<BoardUser />} />
-          {/* Modify later */}
           <Route path="/groups" element={<Groups />} />
         </Route>
       </Routes>
 
-      {/* </Router> */}
       <Footer />
-    </>
+    
+    </div> 
 
   );
 }

@@ -59,8 +59,6 @@ const GroupList  = () => {
     
   }
 
-  
-// if submit button is pressed it will add user to the group..
   if (submit === true) {
     
     console.log("The name of selected group is ", selectGroup);

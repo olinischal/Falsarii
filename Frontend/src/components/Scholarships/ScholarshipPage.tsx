@@ -1,9 +1,8 @@
-
 import { useContext, useEffect, useState } from "react";
 
 import "bootstrap/dist/css/bootstrap.css";
 import Authenticate from "../../Context/Authenticate";
-import { useParams } from "react-router";
+import { Navigate, useNavigate, useParams } from "react-router";
 import { Button, Container, Modal, Form } from "react-bootstrap";
 import { Formik } from "formik";
 import Payment from "./Payment/Payment";
@@ -13,6 +12,7 @@ import ListOfDonors from "./ListofDonors";
 
 const ScholarshipPage = () => {
   const { id }: any = useParams();
+  const navigate = useNavigate();
 
   const { scholarshipDetail }: any = useContext(Authenticate);
   const { userDetail }: any = useContext(Authenticate);
@@ -30,34 +30,15 @@ const ScholarshipPage = () => {
   const [donateStatus, setDonateStatus] = useState<boolean>(false);
   const date: any = new Date();
 
-  // useEffect(() => {
-  //   scholarshipDetail.array.forEach(element => {
-  //     if(element.id === id){
-  //       setSelectScholarship(element);
-  //     }else{
-  //       console.log("Could not match scholarship id");
-  //     }
-      
-  //   });
-  // },[id])
-
-
   let userRole;
-  
-  
-  if(JSON.stringify(auth) === '{}'){
-    userRole = null;
-  }else{
-    userRole = userRole = auth?.res.roles?.find((role) => userRole = role);
-  }
- 
-   
 
-  
-  
+  if (JSON.stringify(auth) === "{}") {
+    userRole = null;
+  } else {
+    userRole = userRole = auth?.res.roles?.find((role) => (userRole = role));
+  }
 
   const submitForm = () => {
-    
     setShow(false);
   };
 
@@ -89,124 +70,112 @@ const ScholarshipPage = () => {
 
   return (
     <>
-      {userRole === "ROLE_ADMIN"? (
+      {userRole === "ROLE_ADMIN" ? (
         <EditScholarship scholarship={scholarshipDetail[id]} />
       ) : (
         <></>
       )}
 
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Payment Amount</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div style={{ width: "12rem" }}>
-            <Container
-              className="mt-2"
-              style={{ width: "30rem", padding: "1rem" }}
-            >
-              <Form id="submitForm">
-                <Form.Group className="mb-3">
-                  <label>How much would you like to doante?</label>
-                  <Form.Control
-                    style={{
-                      backgroundColor: "#353839",
-                      color: "#ffc40c",
-                    }}
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
-                  />
-                </Form.Group>
-              </Form>
-
-              <div className="radio-buttons">
-                <input
-                  id="anonymous"
-                  name="platform"
-                  type="checkbox"
-                  onClick={(e) =>
-                    setAnonymity(anonymity === true ? false : true)
-                  }
-                />{" "}
-                <label id="anonymous"> anonymity </label>
-                {anonymity === true ? (
-                  <p>This will display the Donor name as Anonymous</p>
-                ) : (
-                  <p></p>
-                )}
-              </div>
-            </Container>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <div onClick={submitForm}>
-            <Payment
-              amount={amount}
-              email={userDetail.emailId}
-              donateStatus={setDonateStatus}
-            />
-          </div>
-        </Modal.Footer>
-      </Modal>
-
-      {/* <div className="container">
-        <div className="row">
-          <div className="col-lg-8">
-            <div className="card mb-4">
-              <a href="#!">
-                <img
-                  className="card-img-top"
-                  src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg"
-                  alt="..."
-                />
-              </a>
-              <div className="card-body">
-                <div className="small text-muted">
-                  {" "}
-                  {scholarshipDetail[id].deadline}{" "}
-                </div>
-                <h2 className="card-title">
-                  {scholarshipDetail[id].scholarshipName}
-                </h2>
-
-                <a
-                  className="btn btn-primary"
-                  onClick={() => {
-                    setShow(true);
-                  }}
+      <div>
+        {userRole != null ? (
+          <Modal
+            show={show}
+            onHide={handleClose}
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Payment Amount</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div style={{ width: "12rem" }}>
+                <Container
+                  className="mt-2"
+                  style={{ width: "30rem", padding: "1rem" }}
                 >
-                  Donate
-                </a>
+                  <Form id="submitForm">
+                    <Form.Group className="mb-3">
+                      <label>How much would you like to doante?</label>
+                      <Form.Control
+                        style={{
+                          backgroundColor: "#353839",
+                          color: "#ffc40c",
+                        }}
+                        type="text"
+                        name="name"
+                        id="name"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Form>
+
+                  <div className="radio-buttons">
+                    <input
+                      id="anonymous"
+                      name="platform"
+                      type="checkbox"
+                      onClick={(e) =>
+                        setAnonymity(anonymity === true ? false : true)
+                      }
+                    />{" "}
+                    <label id="anonymous"> anonymity </label>
+                    {anonymity === true ? (
+                      <p>This will display the Donor name as Anonymous</p>
+                    ) : (
+                      <p></p>
+                    )}
+                  </div>
+                </Container>
               </div>
-            </div>
-          </div>
-          <div className="col-lg-4">
-           
-            <ListOfDonors scholarship = {scholarshipDetail[id]}/>
-          </div>
-        </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <div onClick={submitForm}>
+                <Payment
+                  amount={amount}
+                  email={userDetail.emailId}
+                  donateStatus={setDonateStatus}
+                />
+              </div>
+            </Modal.Footer>
+          </Modal>
+        ) : (
+          <Modal
+            show={show}
+            onHide={handleClose}
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Not Logged In</Modal.Title>
+            </Modal.Header>
+            <Modal.Body style={{ paddingBottom: "0px" }}>
+              Please Register or Login to Donate
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                variant="secondary"
+                onClick={handleClose}
+                style={{ marginTop: "45px" }}
+              >
+                Close
+              </Button>
 
-        <div className="row">
-          <div className="col-lg-8">
-            <div className="card mb-4">
-              <div className="card-body">
-                <p className="card-text">
-                  {scholarshipDetail[id].description}
-                </p>
-              </div> */}
-
+              <Button
+                variant="warning"
+                style={{ marginTop: "45px" }}
+                onClick={() => navigate("/login")}
+              >
+                Login
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        )}
+      </div>
 
       <div className="row">
         <div className="col-lg-8">
-          <div className="card"  >
+          <div className="card">
             <div>
               <img
                 className="card-img-top"
@@ -214,43 +183,53 @@ const ScholarshipPage = () => {
                 alt="..."
                 height="auto"
                 width="auto"
-                style={{opacity:25, filter: 'blur(2.5px)'}} />
+                style={{ opacity: 25, filter: "blur(2.5px)" }}
+              />
             </div>
-       <h2 className="card-title" style={{position:'absolute', top:'70%', left:'10%', color:'white', fontSize:'45px'}}>{scholarshipDetail[id].scholarshipName}</h2>
-
+            <h2
+              className="card-title"
+              style={{
+                position: "absolute",
+                top: "70%",
+                left: "10%",
+                color: "white",
+                fontSize: "45px",
+              }}
+            >
+              {scholarshipDetail[id].scholarshipName}
+            </h2>
           </div>
-          </div>
-          <div className="col-lg-4">
-           
-           <ListOfDonors scholarship = {scholarshipDetail[id]}/>
-         </div>
-          
-         
         </div>
-        
-        <div className="row">
-          <div className="col-lg-8">
-            <div className="card mb-4">
-              <div className="card-body">
-                <p className="card-text"> </p>
-                <div style={{paddingLeft:'85%'}}>
-              <a className="btn btn-warning" href="#!" >
-                Donate
-              </a>
+        <div className="col-lg-4">
+          <ListOfDonors scholarship={scholarshipDetail[id]} />
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-lg-8">
+          <div className="card mb-4">
+            <div className="card-body">
+              <p className="card-text"> </p>
+              <div style={{ paddingLeft: "85%" }}>
+                <a
+                  className="btn btn-warning"
+                  onClick={() => {
+                    setShow(true);
+                  }}
+                >
+                  Donate
+                </a>
               </div>
-              <div className="small text-muted"> {scholarshipDetail[0].deadline} </div>
+              <div className="small text-muted">
+                {" "}
+                {scholarshipDetail[0].deadline}{" "}
+              </div>
               <p className="card-text">{scholarshipDetail[0].description}</p>
-              
             </div>
-                
-              </div>
           </div>
         </div>
-      
-      
-
+      </div>
     </>
-
   );
 };
 

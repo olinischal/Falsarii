@@ -59,7 +59,7 @@ const AdminNav = () => {
         <span className="text-warning">Membership</span>
         </Nav.Link>
       </Nav>
-      {/* // {user ?  */}
+      {/*  {user ?  */}
       <Nav>
         <Nav.Link as={Link} to="/profile/user">
         <span className="text-warning">Profile</span>

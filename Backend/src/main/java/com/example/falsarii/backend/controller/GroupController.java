@@ -59,9 +59,9 @@ public class GroupController {
 		}
 
 	@GetMapping("/group/view-all-members")
-	public List<Users> getAllMembersOfGroup(Long groupId){
+	public List<Users> getAllMembersOfGroup(String groupName, String year){
 		try {
-			return groupService.getAllMembersOfGroup(groupId);
+			return groupService.getAllMembersOfGroupByYear(groupName, year);
 		}catch(Exception e) {
 			System.out.println(e.toString());
 			return null;

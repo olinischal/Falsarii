@@ -21,7 +21,7 @@ public interface DonateToScholarshipsRepository extends JpaRepository<DonateToSc
 
     //Get all donations to scholarships contributed by a particular person
     @Query(
-            value = "select event_id, amount, date from donate_to_scholarships where user_id = :userId",
+            value = "select scholarship_id, amount, date from donate_to_scholarships where user_id = :userId",
             nativeQuery = true)
     List<String> getAllDonationForScholarshipByPerson(@Param("userId") Long userId);
 

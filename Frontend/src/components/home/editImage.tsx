@@ -20,7 +20,7 @@ const EditImage = () => {
 
     const submitSave = () => {
         setListView(false);
-       // window.location.reload();
+        window.location.reload();
         console.log("Saved Pressed");
     }
     let userRole;
