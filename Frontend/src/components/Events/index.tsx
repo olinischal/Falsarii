@@ -186,7 +186,7 @@ const Events = () => {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button form="submitForm" variant="primary" type="submit">
+            <Button form="submitForm" variant="warning" type="submit">
               Save
             </Button>
           </Modal.Footer>

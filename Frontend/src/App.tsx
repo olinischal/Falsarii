@@ -54,6 +54,7 @@ import UpdateEvent from "./components/Events/UpdateEvent";
 
 import CalendarEvents from "./components/Calendar";
 import ImageUpload from "./components/User/Image/ImageUpload";
+import SearchByType from "./components/searchMember/searchByType";
 
 
 function App() {
@@ -131,6 +132,7 @@ function App() {
           
           <Route path="/membershipType" element={<MembershipType />} />
           <Route path="/tshirtSale" element={<TshirtSale />} />
+          <Route path="searchMembers" element={<SearchByType />} />
 
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
             {/* Routes for Admin only */}

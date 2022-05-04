@@ -10,6 +10,7 @@ import { sendEmail } from "../../services/authenticate-service";
 
 
 
+
 const SearchMember = (props) => {
   const navigate = useNavigate();
   const [members, setMembers] = useState<MemberData[]>([]);
@@ -85,10 +86,11 @@ const SearchMember = (props) => {
           }}
           placeholder="Search Members"
         />
+        
         <button
           type="button"
           className="btn btn-warning"
-          onClick={() => sendEmailToMembers()}
+          
         >
           Group
         </button>
