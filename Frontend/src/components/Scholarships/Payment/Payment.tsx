@@ -9,12 +9,16 @@ const Payment = ({ amount, email, donateStatus }) => {
 
   async function handleToken(token) {
     await axios
-      .post("http://localhost:8080/payment/charge", "", {
-        headers: {
-          token: token.id,
-          amount: amount,
-        },
-      })
+      .post(
+        "http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/payment/charge",
+        "",
+        {
+          headers: {
+            token: token.id,
+            amount: amount,
+          },
+        }
+      )
       .then(() => {
         donateStatus(true);
         navigate("/donation-success");

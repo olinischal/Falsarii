@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/member/";
+const API_URL = "http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/member/";
 
 export const register = (firstName:string, maidenName:string, lastName:string, phoneNumber:string, email: string,  password: string, captchaResponse:string) => {
   
@@ -83,7 +83,7 @@ export const logout = () => {
 
 
 export const sendEmail = (subject:String, text:string, emailList:string[]) =>{
-  return axios.post("http://localhost:8080/sendEmail", {    
+  return axios.post("http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/sendEmail", {    
     subject,
     text,
     emailList

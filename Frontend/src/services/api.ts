@@ -7,7 +7,7 @@ import GroupData from '../types/Group';
 
 
 const instance = axios.create({
-	baseURL: 'http://localhost:8080/',
+	baseURL: 'http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/',
 	timeout: 150000,
 });
 
@@ -58,7 +58,7 @@ export const GroupRequests = {
 };
 
 export const JoinGroup = (userId, groupId) => {
-	const API_URL = "http://localhost:8080/member/";
+	const API_URL = "http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/member/";
 
 	return axios.post(
 	  API_URL + "user/join-group", null ,
@@ -72,7 +72,7 @@ export const JoinGroup = (userId, groupId) => {
   }
 
   export const GetUserGroup = (userId) => {
-	const API_URL = "http://localhost:8080/member/";
+	const API_URL = "http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/member/";
 
 	return axios.get(
 	  API_URL + "user/get-groups",
@@ -86,7 +86,7 @@ export const JoinGroup = (userId, groupId) => {
   }
 
   export const sendEmail = (subject:String, text:string, emailList:string[]) =>{
-	return axios.post("http://localhost:8080/sendEmail", {    
+	return axios.post("http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/sendEmail", {    
 	  subject,
 	  text,
 	  emailList
@@ -101,7 +101,7 @@ export const JoinGroup = (userId, groupId) => {
   };
 
   export const donateScholarship = (userId: String, scholarshipId: String, date: any, amount: any, anonymity: boolean) => {
-	const API_URL = "http://localhost:8080/member/";
+	const API_URL = "http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/member/";
 
 	return axios.post(
 	  API_URL + "scholarship/donate", null, 
@@ -120,7 +120,7 @@ export const JoinGroup = (userId, groupId) => {
   }
 
   export const getScholarshipDonateList = (scholarshipId ) => {
-	const API_URL = "http://localhost:8080/member/";
+	const API_URL = "http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/member/";
 
 	return axios.get(
 	  API_URL + "scholarship/get-all-donations",
@@ -136,7 +136,7 @@ export const JoinGroup = (userId, groupId) => {
   
 
   export const editScholarships = (scholarshipId: number, scholarship) => {
-	const API_URL = "http://localhost:8080/member/";
+	const API_URL = "http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/member/";
 
 	return axios.post(
 		API_URL + "scholarship/edit", scholarship, 
@@ -154,7 +154,7 @@ export const JoinGroup = (userId, groupId) => {
   }
 
   export const eventEdit = (eventId: number, event) => {
-	const API_URL = "http://localhost:8080/member/";
+	const API_URL = "http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/member/";
 
 	return axios.post(
 		API_URL + "event/edit", event, 
@@ -173,7 +173,7 @@ export const JoinGroup = (userId, groupId) => {
 
 
   export const uploadFile = ( file) => {
-	const API_URL = "http://localhost:8080/member/";
+	const API_URL = "http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/member/";
 	
   
 	return axios.post(
@@ -187,12 +187,12 @@ export const JoinGroup = (userId, groupId) => {
   };
   
   export const getFiles = () => {
-	const API_URL = "http://localhost:8080/member/";
+	const API_URL = "http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/member/";
 	return axios.get(API_URL + "list/files");
   };
   
   export const addUserDetail = (userId , userDetail) => {
-	const API_URL = "http://localhost:8080/member/";
+	const API_URL = "http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/member/";
 
 	return axios.post(
 		API_URL + "user/details", userDetail, {
@@ -207,7 +207,7 @@ export const JoinGroup = (userId, groupId) => {
   };
 
   export const uploadImage = (file) => {
-	const API_URL = "http://localhost:8080/member/";
+	const API_URL = "http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/member/";
 
 	fetch(API_URL + "file/upload" , {
             method: 'post',

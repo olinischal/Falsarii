@@ -50,7 +50,7 @@ public class RegistrationService {
 
 
 
-            String link = "http://localhost:8080/member/registration/confirm?token=" + tokenForNewUser;
+            String link = "http://ec2-3-145-177-24.us-east-2.compute.amazonaws.com:8080/member/registration/confirm?token=" + tokenForNewUser;
 
 
             emailService.sendEmail(request.getEmail(), link);
