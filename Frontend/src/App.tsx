@@ -11,7 +11,7 @@ import MemberList from "./components/MemberList";
 
 
 import Payment from "./components/Scholarships/Payment/Payment";
-import Success from "./components/Scholarships/Payment/Success";
+import Success from "./components/Payment/Success";
 import Error from "./components/Scholarships/Payment/Error";
 
 
@@ -121,7 +121,7 @@ function App() {
           
           {/* Routes for all User level */}
           <Route path="/calendar" element={<Calendar />} />
-          <Route path="/donation-success" element={<Success />} />
+          <Route path="/success" element={<Success />} />
           <Route path="/donation-unsucessfull" element={<Error />} />
           <Route path="/scholarshipList" element={<UpdateScholarships />} />
           <Route path="/unauthorized" element={<UnAuthorize />} />
@@ -130,7 +130,6 @@ function App() {
           <Route path="/imageUpload" element={<ImageUpload />} />
           
           <Route path="/membershipType" element={<MembershipType />} />
-          <Route path ="/searchMember"  element={<SearchMember />}/>
           <Route path="/tshirtSale" element={<TshirtSale />} />
 
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
@@ -139,6 +138,7 @@ function App() {
             <Route path="/update/:id" element={<UpdateMember />} />
             <Route path="/scholarships" element={<Scholarships />} />
             <Route path="/events" element={<Events />} />
+            <Route path ="/searchMember"  element={<SearchMember />}/>
             <Route path="/calendarDisplay" element={<CalendarEvents />} />
           </Route>
 

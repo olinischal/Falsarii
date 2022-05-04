@@ -15,6 +15,8 @@ const NavigationBar = () => {
 
  
   let user = AuthService.getCurrentUser();
+
+  const [color, setColor] = useState('#ffc40c');
   
 
 
@@ -23,13 +25,15 @@ const NavigationBar = () => {
     <Navbar className="color-nav absolute-top"
     bg="dark"
     variant={"dark"}
-    expand="sm">
+    expand="sm"
+    style={{paddingTop:'0px', paddingBottom:'0px'}}
+    >
       <Container fluid>
         <Navbar.Brand as={Link} to="/">
           <Image 
             src= {require("./aboutNafa.png")}
             alt=""
-            height="60"
+            height="50"
             rounded            
           />
         </Navbar.Brand>
@@ -86,7 +90,7 @@ const NavigationBar = () => {
 
              <Nav>
             
-            <Nav.Link className ="btn btn-success" style={{
+            <Nav.Link className ="btn btn-warning" style={{
               padding: "5px",
               margin: "5px",
               color: "black"
@@ -94,11 +98,20 @@ const NavigationBar = () => {
               Sign in
             </Nav.Link>
 
-            <Nav.Link className ="btn btn-info" style={{
-              padding: "5px",
-              margin: "5px",
-              color: "black"
-            }}as={Link} to="/signup">
+            <Nav.Link
+                  
+                  className="btn btn-outline-warning"
+                  style={{
+                    padding: "5px",
+                    margin: "5px",
+                    
+                    color: color,
+                  }}
+                  onMouseEnter={()=>setColor('black')}
+                  onMouseLeave={()=> setColor('#ffc40c')}
+                  as={Link}
+                  to="/signup"
+                >
               Register
             </Nav.Link>
             </Nav>

@@ -52,36 +52,36 @@ export const ScholarshipRequests = {
 };
 
 export const GroupRequests = {
-	getGroups: (): Promise<GroupData[]> => requests.get('member/getAllGroups'),
+	getGroups: (): Promise<GroupData[]> => requests.get('member/groups/show-all'),
 	createGroup: (post: GroupData): Promise<GroupData> =>
-		requests.post('member/createGroup', post),
+		requests.post('member/groups/create', post),
 	// updateScholarships: (id:number, put: GroupData): Promise<GroupData> =>
 	// 	requests.put(`update/${id}`, put),
 	// deleteScholarships: (id: number): Promise<void> => requests.delete(`delete/${id}`),
 };
 
-export const JoinGroup = (email: string, grpName: string) => {
+export const JoinGroup = (userId, groupId) => {
 	const API_URL = "http://localhost:8080/member/";
 
 	return axios.post(
-	  API_URL + "user/joinGroup", null ,
+	  API_URL + "user/join-group", null ,
 	{
 	  params: {
-		emailId: email,
-		groupName: grpName
+		userId: Number(userId),
+		groupId: Number(groupId)
 	  }
 	});
   
   }
 
-  export const GetUserGroup = (email: string) => {
+  export const GetUserGroup = (userId) => {
 	const API_URL = "http://localhost:8080/member/";
 
 	return axios.get(
-	  API_URL + "user/getGroups",
+	  API_URL + "user/get-groups",
 	{
 	  params: {
-		emailId: email,
+		userId: Number(userId),
 	
 	  }
 	});
@@ -122,18 +122,15 @@ export const JoinGroup = (email: string, grpName: string) => {
   
   }
 
-  export const getScholarshipDonateList = ( userId) => {
+  export const getScholarshipDonateList = (scholarshipId ) => {
 	const API_URL = "http://localhost:8080/member/";
 
 	return axios.get(
-	  API_URL + "scholarship/get-all-donations-by-person",
+	  API_URL + "scholarship/get-all-donations",
 	{
 	  params: {
 		
-		userId: userId,
-	
-
-	
+		scholarshipId: scholarshipId,	
 	  }
 	});
   
@@ -183,11 +180,10 @@ export const JoinGroup = (email: string, grpName: string) => {
 	
   
 	return axios.post(
-		API_URL + "file/upload1", {
-			body: {
+		API_URL + "file/upload", file, {
+			headers: {
 		
-				imageName: 'image12',
-			    fileCode: file
+				"Content-Type": "multipart/form-data",
 					
 			  }
 	});
@@ -198,7 +194,7 @@ export const JoinGroup = (email: string, grpName: string) => {
 	return axios.get(API_URL + "list/files");
   };
   
-  export const addUserDetail = (userId, userDetail) => {
+  export const addUserDetail = (userId , userDetail) => {
 	const API_URL = "http://localhost:8080/member/";
 
 	return axios.post(
@@ -216,9 +212,9 @@ export const JoinGroup = (email: string, grpName: string) => {
   export const uploadImage = (file) => {
 	const API_URL = "http://localhost:8080/member/";
 
-	fetch(API_URL + "file/upload1" , {
+	fetch(API_URL + "file/upload" , {
             method: 'post',
-            body: file
+            body: file,
         }).then(res => {
             if(res.ok) {
                 console.log(res);

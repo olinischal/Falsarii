@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.falsarii.backend.service.EventService;
 import com.example.falsarii.backend.service.S3BucketStorageService;
 import com.example.falsarii.backend.service.UserService;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -74,10 +75,21 @@ public class S3BucketController {
 	}
 
 	@PostMapping("/file/upload")
-    public String uploadFile(@RequestBody Upload file) {
+    public String uploadFile(@RequestParam String a, MultipartFile request) {
 		try {
 
-			System.out.println(file.getFileCode());
+			MultipartFile file = request;
+			String fileName = file.getOriginalFilename();
+
+			System.out.println(file.getContentType());
+			System.out.println(file.getSize());
+			System.out.println(file.getInputStream());
+
+			if(file.isEmpty()){
+				System.out.println("File is not here");
+			}
+			System.out.println(file.getOriginalFilename());
+
 			return "File uploaded successfully";
 		} catch (Exception e) {
 			System.out.println(e.toString());

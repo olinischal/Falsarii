@@ -8,6 +8,8 @@ import "./Account.css";
 import "./temp.css";
 import { Image } from "react-bootstrap";
 import Authenticate from "../../Context/Authenticate";
+import GetGroups from "../Group/UserGroupList";
+import UserGroupsList from "../Group/UserGroupList";
 
 
 
@@ -126,6 +128,12 @@ const Account: React.FC<userDetails> = ({ user }) => {
                 <div className="col-sm-9 text-secondary">{"University name goes here"}</div>
               </div>
               <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Groups</h6>
+                </div>
+                <div className="col-sm-9 text-secondary"><UserGroupsList /></div>
+              </div>
             </div>
           </div>
 

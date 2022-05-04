@@ -1,3 +1,5 @@
+
+
 import { Form, Formik, Field, FormikConfig, FormikValues } from "formik";
 
 import MembershipSchema from "./membership-validation";
@@ -19,7 +21,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 
 import { TextField } from "formik-material-ui";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import FirstStep from "./firstStepValidation";
 import SecondStep from "./secondStepValidation";
 import { Button, Image } from "react-bootstrap";
@@ -33,6 +35,8 @@ import ListItemText from "@mui/material/ListItemText";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { Navigate } from "react-router";
+import Authenticate from "../../Context/Authenticate";
+import MemberData from "../../types/Member";
 
 const sleep = (time) => {
   new Promise((acc) => setTimeout(acc, time));
@@ -87,6 +91,8 @@ export default function Membership() {
     membershipFee: 0,
   };
 
+  
+
   const sectors = [
     "Soccer",
     "Tennis",
@@ -101,13 +107,34 @@ export default function Membership() {
     "BodyBuilding",
   ];
 
+  const [users, setUsers] = useState<MemberData>({
+    fname: " ",
+    middleName: " ",
+    maidenName: " ",
+    lname: " ",
+    emailId: " ",
+    graduationDate: " ",
+    phoneNum: " ",
+    streetAddress: " ",
+    city: " ",
+    zipCode: " ",
+    state: " ",
+    password: " ",
+    university: " ",
+    highSchool: " ",
+    gender: " ",
+    dateOfBirth: " "
+  });
+  const {userDetail}: any = useContext(Authenticate);
+
+  
+
   const [involvement, setInvolvement] = React.useState<string[]>([]);
   const handleInvolvement = (event: SelectChangeEvent<typeof involvement>) => {
     const {
       target: { value },
     } = event;
     setInvolvement(
-      // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
     console.log(involvement);
@@ -128,18 +155,11 @@ export default function Membership() {
   const [isAlumni, setIsAlumni] = useState(true);
   const [schoolValue, setSchoolValue] = useState("Naville High School");
 
-  //    const handleCheckbox=(e)=>{
-  //     const checkBox = e.target.checked;
-  //     {e.target.checked?setIsAlumni(true):setIsAlumni(false)}
-  //     console.log(isAlumni);
-  //     if(isAlumni){ setSchoolValue("Naville High School");}
-  // }
+  useEffect(() => {
+    setUsers(userDetail);
+  }, [])
 
-  // function handleCheckbox(e){
-  //   {e.target.checked?setIsAlumni(true):setIsAlumni(false)}
-  //   if(isAlumni){ setSchoolValue("Naville High School");}
-  // }
-
+  
   const [submitted, setSubmitted] = useState(false);
   return (
     <Card
@@ -153,6 +173,7 @@ export default function Membership() {
       <CardContent>
         <FormikStepper
           initialValues={initialValues}
+         
           onSubmit={async (values) => {
             console.log("This is amount: " +amount);
             console.log("This is the list of involvement: "+ involvement);
@@ -163,24 +184,31 @@ export default function Membership() {
 
             setSubmitted(true);
           }}
+
+        
+
         >
-          <FormikStep label="Personal Information" validationSchema={FirstStep}>
+         
+          <FormikStep label="Personal Information" validationSchema={FirstStep} >
             <Box paddingBottom={4}>
               <Field
                 autoComplete="off"
                 variant="standard"
                 color="warning"
-                fullwidth
+                width ="fullwidth"
                 style={{ paddingRight: "50px", width: "300px" }}
                 name="fname"
+                
+                
                 component={TextField}
                 label="First Name"
               />
               <Field
                 variant="standard"
                 color="warning"
-                fullwidth
+                width ="fullwidth"
                 name="middleName"
+               
                 component={TextField}
                 label="Middle Name"
                 style={{ paddingRight: "50px", width: "300px" }}
@@ -189,8 +217,9 @@ export default function Membership() {
               <Field
                 variant="standard"
                 color="warning"
-                fullwidth
+                width ="fullwidth"
                 name="lname"
+                
                 component={TextField}
                 label="Last Name"
                 style={{ paddingRight: "50px", width: "300px" }}
@@ -199,8 +228,9 @@ export default function Membership() {
               <Field
                 variant="standard"
                 color="warning"
-                fullwidth
+                width ="fullwidth"
                 name="maidenName"
+               
                 component={TextField}
                 label="Maiden Name"
                 style={{ width: "300px" }}
@@ -213,6 +243,7 @@ export default function Membership() {
                 InputLabelProps={{ shrink: true }}
                 color="warning"
                 name="birthDate"
+                
                 type="date"
                 component={TextField}
                 label="Date of Birth"
@@ -223,7 +254,7 @@ export default function Membership() {
               <Field
                 variant="standard"
                 color="warning"
-                fullwidth
+                width ="fullwidth"
                 name="spouseFname"
                 component={TextField}
                 label="Spouse First Name"
@@ -232,7 +263,7 @@ export default function Membership() {
               <Field
                 variant="standard"
                 color="warning"
-                fullwidth
+                width ="fullwidth"
                 name="spouseMiddleName"
                 component={TextField}
                 label="Spouse Middle Name"
@@ -242,7 +273,7 @@ export default function Membership() {
               <Field
                 variant="standard"
                 color="warning"
-                fullwidth
+                width ="fullwidth"
                 name="spouseLname"
                 component={TextField}
                 label="Spouse Last Name"
@@ -251,7 +282,7 @@ export default function Membership() {
               <Field
                 variant="standard"
                 color="warning"
-                fullwidth
+                width ="fullwidth"
                 name="spouseMaidenName"
                 component={TextField}
                 label="Spouse Maiden Name"
@@ -263,8 +294,9 @@ export default function Membership() {
               <Field
                 variant="standard"
                 color="warning"
-                fullwidth
+                width ="fullwidth"
                 name="emailId"
+                
                 component={TextField}
                 label="Email"
                 style={{ paddingRight: "50px", width: "300px" }}
@@ -273,8 +305,9 @@ export default function Membership() {
               <Field
                 variant="standard"
                 color="warning"
-                fullwidth
+                width ="fullwidth"
                 name="phoneNum"
+                
                 component={TextField}
                 label="Phone Number"
                 style={{ paddingRight: "50px", width: "300px" }}
@@ -282,7 +315,7 @@ export default function Membership() {
               <Field
                 variant="standard"
                 color="warning"
-                fullwidth
+                width ="fullwidth"
                 name="spousePhoneNum"
                 component={TextField}
                 label="Spouse Phone Number"
@@ -294,8 +327,9 @@ export default function Membership() {
               <Field
                 variant="standard"
                 color="warning"
-                fullwidth
+                width ="fullwidth"
                 name="address"
+                
                 component={TextField}
                 label="Address"
                 style={{ paddingRight: "50px", width: "300px" }}
@@ -304,8 +338,9 @@ export default function Membership() {
               <Field
                 variant="standard"
                 color="warning"
-                fullwidth
+                width ="fullwidth"
                 name="city"
+               
                 component={TextField}
                 label="City"
                 style={{ paddingRight: "50px", width: "300px" }}
@@ -314,8 +349,9 @@ export default function Membership() {
               <Field
                 variant="standard"
                 color="warning"
-                fullwidth
+                width ="fullwidth"
                 name="zipCode"
+                
                 component={TextField}
                 label="ZipCode"
                 style={{ paddingRight: "50px", width: "300px" }}
@@ -324,8 +360,9 @@ export default function Membership() {
               <Field
                 variant="standard"
                 color="warning"
-                fullwidth
+                width ="fullwidth"
                 name="state"
+                
                 type="state"
                 component={TextField}
                 label="State"
@@ -363,15 +400,16 @@ export default function Membership() {
                 component={TextField}
                 label="High School"
               />
-            </Box>:<>{setSchoolValue("Naville High School")}</> }
-            {/* <div>{()=>setSchoolValue("Naville High School")}</div>} */}
+            </Box> : <div></div>}
+
 
             <Box paddingBottom={4}>
               <Field
                 InputLabelProps={{ shrink: true }}
                 color="warning"
                 name="graduationDate"
-                type="date"
+                type="text"
+                placeholder="Enter Graduation date in year"
                 component={TextField}
                 label="Graduation Date"
               />
@@ -394,7 +432,7 @@ export default function Membership() {
                 style={{ width: "100%" }}
                 variant="standard"
                 color="warning"
-                fullwidth
+                fullwidth="true"
                 name="interest"
                 component={TextField}
                 label="Interest"
@@ -432,7 +470,6 @@ export default function Membership() {
                   Membership Type
                 </FormLabel>
                 <RadioGroup
-                  // defaultValue={40}
                   name="membershipFee"
                   onChange={(e) => setAmount(parseInt(e.target.value))}
                   value={amount}
@@ -785,9 +822,9 @@ export function FormikStep({ children }: FormikStepProps) {
 export function FormikStepper({
   children,
   ...props
-}: FormikConfig<FormikValues>) {
-  // const childrenArray = React.Children.toArray(children) as React.ReactElement<FormikStepProps>[];
-  const childrenArray = React.Children.toArray(null ) as React.ReactElement<FormikStepProps>[];
+}: any) {
+  var childrenArray:any;
+   childrenArray = React.Children.toArray(children) as React.ReactElement<FormikStepProps>[];
   const [step, setStep] = useState(0);
   const currentChild = childrenArray[step];
   const [completed, setCompleted] = useState(false);
@@ -809,15 +846,15 @@ export function FormikStepper({
     console.log(amount);
   };
   return (
+    <>
     <Formik
-      {...props}
+       {...props}
       validationSchema={currentChild.props.validationSchema}
+      
       onSubmit={async (values, helpers) => {
         if (isLastStep()) {
           await props.onSubmit(values, helpers);
           setCompleted(true);
-          // helpers.resetForm();
-          // setStep(0);
         } else {
           setStep((s) => s + 1);
         }
@@ -846,7 +883,7 @@ export function FormikStepper({
                   style={{ width: "100px" }}
                   variant="warning"
                   onClick={() => setStep((s) => s - 1)}
-                >
+>
                   Back
                 </Button>
               </Grid>
@@ -873,5 +910,6 @@ export function FormikStepper({
         </Form>
       )}
     </Formik>
+    </>
   );
 }

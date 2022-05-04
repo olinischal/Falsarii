@@ -5,6 +5,7 @@ import GroupList from "./GroupList";
 
 const Groups = () => {
     const [group, setGroup] = useState<GroupData>({
+     
         groupName: " ",
         year: " ",
         noOfMembers: 0,
@@ -38,7 +39,7 @@ const Groups = () => {
                   Submit
         </button>
 
-        {/* <GroupList /> */}
+        <GroupList />
     
     
     

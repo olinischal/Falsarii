@@ -20,7 +20,7 @@ const AdminNav = () => {
   return (
     <>
       <Nav className="me-auto">
-        <Nav.Link as={Link} to="/members">
+        <Nav.Link as={Link} to="/searchMember">
         <span className="text-warning">Members</span>
          
         </Nav.Link>

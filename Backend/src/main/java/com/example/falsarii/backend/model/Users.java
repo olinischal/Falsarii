@@ -235,7 +235,18 @@ public class Users {
 	//Returns the spouse of the user
 	public UserImages getImage() {
 		return image;
-	}	
+	}
+
+	//Relation between user and membership
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	private Memberships membership;
+
+	public void setMembership(Memberships membership) {
+		this.membership = membership;
+	}
+	public Memberships getMemberships() {
+		return membership;
+	}
 
 
 	//Basic setters and getters

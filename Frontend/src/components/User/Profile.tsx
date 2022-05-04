@@ -47,7 +47,7 @@ const Profile = () => {
 
   //const currentUser = getCurrentUser();
 
-  console.log(getCurrentUser());
+
   const user = Object.assign({}, userDetail[currentUser.id - 1]);
 
   const userLevel =

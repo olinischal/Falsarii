@@ -48,7 +48,7 @@ const ImageList = ({ listView }) => {
                 </div>
                 <input  type="file" onChange={(e) => photoUpload(e , 0)} />
                 <p>
-                  <a href="./signup" className="btn btn-outline-warning">
+                  <a href="./signup" className="btn btn-warning">
                     Be a member
                   </a>
                 </p>
@@ -66,7 +66,7 @@ const ImageList = ({ listView }) => {
                 </div>
                 <input type="file" onChange={(e) => photoUpload(e , 1)} />
                 <p>
-                  <a href="./signup" className="btn btn-outline-warning">
+                  <a href="./signup" className="btn btn-warning">
                   Donate
                   </a>
                 </p>
@@ -84,7 +84,7 @@ const ImageList = ({ listView }) => {
                 </div>
                 <input  type="file" onChange={(e) => photoUpload(e , 2)} />
                 <p>
-                  <a href="./signup" className="btn btn-outline-warning">
+                  <a href="./signup" className="btn btn-warning">
                   Learn More
                   </a>
                 </p>
@@ -102,7 +102,7 @@ const ImageList = ({ listView }) => {
           
            
             <p>
-              <a href="/membershipType" className="btn btn-outline-warning">
+              <a href="/membershipType" className="btn btn-warning">
                 Renew now
               </a>
             </p>

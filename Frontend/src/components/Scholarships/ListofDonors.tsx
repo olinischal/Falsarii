@@ -1,29 +1,51 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Authenticate from "../../Context/Authenticate";
-import { getScholarshipDonateList } from "../../services/api";
+import { getScholarshipDonateList, Member } from "../../services/api";
+import MemberData from "../../types/Member";
 
+const ListOfDonors = ({ scholarship }) => {
+  const [donorList, setDonorList] = useState([]);
+  const [members, setMembers] = useState<MemberData[]>([]);
+  // this will update all the donor list in the scholarship page
+  useEffect(() => {
+    getScholarshipDonateList(scholarship.scholarshipId)
+      .then((res) => {
+        setDonorList(res.data);
+      })
+      .catch((error) => {
+        console.log("Could not retrieve donor list.", error);
+      });
+  }, []);
 
-const ListOfDonors = ({user}) => {
-  
-   // this will update all the donor list in the scholarship page
-    useEffect(()=> {
-        getScholarshipDonateList(user.userId).then((res) => {
-            console.log('The donor list has been successfull', res);
-        }) .catch((error) => {
-            console.log("Could not retrieve donor list.", error);
-          });
-    },[])
+  useEffect(() => {
+    Member.getMembers()
+      .then((data) => {
+        setMembers([...data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-    return (
+  let user: String[] = [];
+  donorList.forEach((val) => {
+    members.forEach((id) => {
+      if (id.userId === Number(val[0])) {
+        user.push(id.fname + " " + id.lname);
+      }
+    });
+  });
 
-        <div className="card mb-4">
-              <div className="card-header">Donators list side bar</div>
-              <div className="card-body">
-                List of donators and the amount they have given
-              </div>
-            </div>
-    );
-
-}
+  return (
+    <div className="card mb-4">
+      <div className="card-header " style ={{backgroundColor : '#ffc40c', color: '#353839'}}>Donators list side bar</div>
+      <div className="card-body">
+        {user.map((val, key) => {
+          return <div key={key}>{val}</div>;
+        })}
+      </div>
+    </div>
+  );
+};
 
 export default ListOfDonors;

@@ -11,7 +11,7 @@
 // }
 export default interface MemberData {
 
-    userId? : any|null,
+    userId? : number|null,
     fname: string,
     middleName: string,
     maidenName: string,

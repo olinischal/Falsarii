@@ -99,7 +99,7 @@ const ImageUpload = () => {
             <Input type="file" onChange={fileSelectHandler} />
             <form action="..." method="post" encType="multipart/form-data">
             <input type="file" name="file" />
-</form>
+            </form>
             <button onClick={fileUploadHandler}>Upload Picture</button>
             <img src={getFile} />
         </div>

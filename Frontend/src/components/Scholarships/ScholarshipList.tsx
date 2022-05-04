@@ -16,7 +16,7 @@ const ScholarshipList = ({ scholarship, index}) => {
           >
             <img
               className="card-img-top"
-              src="https://dummyimage.com/600x350/ced4da/6c757d"
+              src="https://media.istockphoto.com/photos/business-girl-holding-graduation-cap-scholarship-picture-id1198172414?s=612x612"
               alt="..."
             />
             <div className="card-body p-4">

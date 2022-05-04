@@ -3,15 +3,13 @@ package com.example.falsarii.backend.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
+import com.example.falsarii.backend.model.Groups;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.falsarii.backend.model.FamilyDetail;
 import com.example.falsarii.backend.model.UserDetails;
-import com.example.falsarii.backend.model.Users;
 import com.example.falsarii.backend.service.UserService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -27,6 +25,7 @@ public class UserController {
 		@PostMapping("/user/details")
 		public void addUserDetails(@RequestParam Long userId, @RequestBody UserDetails userDetail) {
 			try {
+
 				userService.addUserDetails(userId, userDetail);
 			}catch(Exception e) {
 				System.out.println(e.toString() + "Error in add user detail controller");
@@ -35,13 +34,13 @@ public class UserController {
 		
 		//Get user's groups
 		@GetMapping("/user/get-groups")
-		public List<Long> getUserGroups(@RequestParam Long userId) {
+		public List<Groups> getUserGroups(@RequestParam Long userId) {
 				return userService.getUserGroups(userId);
 		}
 			
 		//User joins a group
 		@PostMapping("/user/join-group")
-		public void joinGroup(@RequestParam Long userId, @RequestParam Long groupId) {
+		public void joinGroup( @RequestParam Long userId, @RequestParam Long groupId) {
 			try {
 				userService.joinGroup(userId, groupId);
 			}catch(Exception e) {
@@ -51,9 +50,9 @@ public class UserController {
 		
 		//For user and admin
 		@PostMapping("/user/remove-group")
-		public String removeGroup(@RequestParam Long userId, @RequestParam List<Long> groupIdList) {
+		public String removeGroup(@RequestParam Long userId, @RequestParam Long groupId) {
 			try {
-				return userService.removeGroup(userId, groupIdList);
+				return userService.removeGroup(userId, groupId);
 			}catch(Exception e) {
 				System.out.println(e.toString());
 				return "error";
@@ -124,7 +123,7 @@ public class UserController {
 		//For admin
 		//Get list of all donations for a particular event
 		@GetMapping("/event/get-all-donations")
-		public List<List> getAllDonationForEvent(@RequestParam Long eventId){
+		public List<List<String>> getAllDonationForEvent(@RequestParam Long eventId){
 			try {
 				return userService.getAllDonationForEvent(eventId);
 			} catch (Exception e) {
@@ -157,7 +156,7 @@ public class UserController {
 		//For admin and user
 		//Get list of all donation to all scholarships by a person
 		@GetMapping("/scholarship/get-all-donations-by-person")
-		public List<List> getAllDonationForScholarshipByPerson(@RequestParam Long userId){
+		public List<List<String>> getAllDonationForScholarshipByPerson(@RequestParam Long userId){
 			try {
 				return userService.getAllDonationForScholarshipByPerson(userId);
 				
@@ -173,5 +172,13 @@ public class UserController {
 		public void getAllEmailsHistory() {
 			
 		}
+	@PostMapping("/user/membership")
+	public void membership(@RequestParam Long userId, @RequestParam String membershipType) {
+		try {
+			userService.membership(userId, membershipType);
+		} catch (Exception e) {
+			System.out.println(e.toString()+"error in user membership controller");
+		}
+	}
 		
 	}
