@@ -65,6 +65,7 @@ public class UserService {
 	@Autowired
 	private AmazonS3 s3Client;
 	
+	
 	private String bucketName = "devtestnafa";
 	
 	
@@ -393,7 +394,7 @@ public class UserService {
 	
 	
 	public void membership(Long userId, String membershipType) {
-		Users user = userRepository.findByUserId(userId);
+		Users user = userRepository.findByUserId(userId);	
 		Memberships membership = membershipRepository.findMembershipBy(membershipType);
 		
 		LocalDate localDate = LocalDate.now();
@@ -402,6 +403,27 @@ public class UserService {
 		user.setMembership(membership);
 		membership.setUser(user);
 		membershipRepository.save(membership);
+		
+	}
+	
+	//Get membershipType of a user
+	public String getMembershipType(Long userId) {
+		
+		return membershipRepository.findMembershipType(userId);
+	}
+
+	//Get all users of particular membershipType
+	public List<Users> getAllUsersByMembershipType(String membershipType) {
+		
+		List<Long> userIdList = membershipRepository.getAllUsersByMembershipType(membershipType);
+		List<Users> tempList = new ArrayList<>();
+		
+		for(Long i: userIdList) {
+			tempList.add(userRepository.findByUserId(i));
+		}
+		
+		return tempList;
+		
 		
 	}
 	

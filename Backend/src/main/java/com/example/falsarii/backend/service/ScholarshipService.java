@@ -72,6 +72,10 @@ public class ScholarshipService {
 		}
 	}
 
-
+	
+	//Get logs for donations made to scholarships
+	public void logOfDonationsForScholarship() {
+		
+	}
 
 }

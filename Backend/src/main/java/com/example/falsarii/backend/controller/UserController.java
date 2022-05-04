@@ -144,6 +144,7 @@ public class UserController {
 		}
 		
 		//For admin
+		//Logs
 		//Get list of all donations for a particular scholarship
 		@GetMapping("/scholarship/get-all-donations")
 		public List<List> getAllDonationForScholarship(@RequestParam Long scholarshipId){
@@ -155,6 +156,7 @@ public class UserController {
 		}
 		
 		//For admin and user
+		//Logs
 		//Get list of all donation to all scholarships by a person
 		@GetMapping("/scholarship/get-all-donations-by-person")
 		public List<List> getAllDonationForScholarshipByPerson(@RequestParam Long userId){
@@ -177,5 +179,29 @@ public class UserController {
 				System.out.println(e.toString()+"error in user membership controller");
 			}
 		}
+		
+		
+		//Return membership type of user
+		@GetMapping("/user/membershipType")
+		public String getMembershipType(@RequestParam Long userId) {
+			try {
+				return userService.getMembershipType(userId);
+			} catch (Exception e) {
+				return e.toString();
+			}
+		}
+		
+		
+		//Return list of users of specific membership type
+		@GetMapping("/get-all-by-membershipType")
+		public List<Users> getAllUsersByMembershipType(@RequestParam String membershipType){
+			try {
+				return userService.getAllUsersByMembershipType(membershipType);
+			} catch (Exception e) {
+				return null;
+			}
+		}
+		
+		
 		
 	}

@@ -108,7 +108,7 @@
                 </configuration>
             </plugin>
         </plugins>
-		<finalName>Falsari-Demo-Build</finalName>
+		<finalName>Falsari-Build-v5</finalName>
 	</build>
 
 </project>

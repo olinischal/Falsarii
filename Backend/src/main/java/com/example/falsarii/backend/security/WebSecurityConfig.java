@@ -14,6 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.falsarii.backend.security.jwt.AuthEntryPointJwt;
@@ -23,6 +24,7 @@ import com.example.falsarii.backend.security.services.MemberDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
+@CrossOrigin(origins="*")
 @EnableGlobalMethodSecurity(
      securedEnabled = true,
      jsr250Enabled = true,
@@ -31,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Autowired
   MemberDetailsServiceImpl memberDetailsService;
 
+  
   @Autowired
   private AuthEntryPointJwt unauthorizedHandler;
 
@@ -62,7 +65,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   
   
   @Override
-
   protected void configure(HttpSecurity http) throws Exception {;
 
 	  
@@ -70,8 +72,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
       .invalidSessionUrl("/member/login");
 
-    http.cors().and().csrf().disable()
-      .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+	  http.csrf().disable()
+		.cors().and()
+		.headers().frameOptions()
+		.disable();
+	  
+	  
+    http.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
       .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
       .authorizeRequests().antMatchers("/member/**").permitAll()
       .antMatchers("/sendEmail").permitAll()

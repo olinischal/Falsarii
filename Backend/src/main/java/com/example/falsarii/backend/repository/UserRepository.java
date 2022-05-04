@@ -118,5 +118,7 @@ public interface UserRepository extends JpaRepository<Users, Long>{
 				nativeQuery = true)
 		int removeSpouse(@Param("userId") Long userId, @Param("spouseId") Long spouseId);
 		
+
+		
 		
 	}
