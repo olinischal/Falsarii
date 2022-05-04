@@ -225,4 +225,19 @@ export const JoinGroup = (userId, groupId) => {
         });
 
   }
+/** Provides the user list of group type */
+  export const getUserListByGroups = (groupId) => {
+	const API_URL = "http://localhost:8080/member/";
 
+	return axios.get(
+		API_URL + "group/view-all-members", {
+			params: {
+				groupId: groupId
+			}
+		}
+		
+
+	);
+
+
+  }

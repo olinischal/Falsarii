@@ -7,6 +7,7 @@ import { GetUserGroup, GroupRequests } from "../../services/api";
 import GroupData from "../../types/Group";
 import {JoinGroup} from "../../services/api";
 import GetGroups from "./UserGroupList";
+import UserListOfGroups from "./UserListOfGroups";
 
 
 
@@ -17,6 +18,8 @@ const GroupList  = () => {
       
   const {submit} : any = useContext(Authenticate);
   const [groups, setGroups] = useState<GroupData[]>([]);
+
+  const {setAllGroupList}: any = useContext(Authenticate); 
   
 
   const [selectGroup, setSelectGroup] = useState<GroupData>({
@@ -31,6 +34,7 @@ const GroupList  = () => {
     GroupRequests.getGroups()
       .then((response) => {
         setGroups([...response]);
+        setAllGroupList([...response]);
         
         
       })
@@ -40,7 +44,7 @@ const GroupList  = () => {
   }, []);
 
 
-
+   
   const handleChange = (e) => {
     
     let grpName = e.target.value;
@@ -92,6 +96,7 @@ const GroupList  = () => {
 
 
             </select>
+            <UserListOfGroups groupName = {selectGroup.groupName}/>
             
     
   

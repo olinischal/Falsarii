@@ -1,9 +1,11 @@
 package com.example.falsarii.backend.controller;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.falsarii.backend.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +30,11 @@ public class GroupController {
 		
 		//Get selected groups for admin
 		@GetMapping("/groups/show-selected")
-		public List<Groups> getSelectedGroups(@RequestParam List<Long> groupIdList) {
-			return groupService.getSelectedGroups(groupIdList);
+		public List<List<Users>> getSelectedGroups(@RequestParam List<Long> groupIdList) {
+			System.out.println(groupIdList);
+
+			//return groupService.getSelectedGroups(groupIdList);
+			return null;
 		}
 		
 		//Create group for admin
@@ -52,6 +57,16 @@ public class GroupController {
 				System.out.println(e.toString());
 			}
 		}
+
+	@GetMapping("/group/view-all-members")
+	public List<Users> getAllMembersOfGroup(Long groupId){
+		try {
+			return groupService.getAllMembersOfGroup(groupId);
+		}catch(Exception e) {
+			System.out.println(e.toString());
+			return null;
+		}
+	}
 		
 		
 		

@@ -3,6 +3,7 @@ package com.example.falsarii.backend.repository;
 
 import java.util.List;
 
+import com.example.falsarii.backend.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -41,4 +42,8 @@ public interface GroupRepository extends JpaRepository<Groups, Long> {
 			value = "select * from groups g where g.group_id in :groupIdList",
 			nativeQuery = true)
 	List<Groups> findAllByGroupId(@Param("groupIdList") List<Long> groupIdList);
+
+	@Query(value = "select user_id from group_on where group_id = :groupId",
+			nativeQuery = true)
+	List<Long> getAllMembersOfGroup(@Param("groupId") Long groupId);
 }

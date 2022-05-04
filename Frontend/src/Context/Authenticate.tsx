@@ -43,6 +43,8 @@ export const AuthUser = ({ children,  } : AuthUser) => {
     // Check Donation of Scholarship  
     const [donateStatus, setDonateStatus] = useState<boolean>(false);
 
+    const [allGroupList, setAllGroupList] = useState([]);
+
     useEffect(() => {
         setLocalStorage("userAuth", auth);
       }, [auth]);
@@ -63,7 +65,8 @@ export const AuthUser = ({ children,  } : AuthUser) => {
 
     return (
         <Authenticate.Provider value={{ auth, setAuth, userDetail, setUserDetail, submit, setSubmit, 
-        scholarshipDetail, setScholarshipDetail, eventDetail, setEventDetail, donateStatus, setDonateStatus }}>
+        scholarshipDetail, setScholarshipDetail, eventDetail, setEventDetail, donateStatus, setDonateStatus, allGroupList
+        , setAllGroupList }}>
         {children}
     </Authenticate.Provider>
     
