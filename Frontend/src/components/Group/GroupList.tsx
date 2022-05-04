@@ -55,7 +55,7 @@ const GroupList  = () => {
     })
       
 
-   // console.log(userDetail.emailId, "Is the email and The new value is ", selectGroup);
+   
     
   }
 
@@ -96,7 +96,7 @@ const GroupList  = () => {
 
 
             </select>
-            <UserListOfGroups groupName = {selectGroup.groupName}/>
+            
             
     
   

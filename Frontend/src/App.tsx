@@ -1,9 +1,7 @@
-import Login from "./components/login";
 import "./App.css";
-import Signup from "./components/signup";
 import Home from "./components/home";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import NavigationBar from "./components/navbar";
 import About from "./components/About";
 import Contact from "./components/contact/contact";
@@ -29,9 +27,7 @@ import * as AuthService from "./services/authenticate-service";
 import NewLogin from "./components/login/NewLogin";
 import NewSignUp from "./components/signup/NewSignUp";
 import Footer from "./components/footer/Footer";
-import Team from './components/Team/team';
-import TshirtSale from './components/TshirtSale/tshirtSale';
-import Donation from './components/Donation/Donation';
+
 import Calendar from './components/Calendar/Calendar';
 
 import SearchMember from './components/searchMember/searchMember';
@@ -39,8 +35,8 @@ import SearchMember from './components/searchMember/searchMember';
 
 import Scholarships from './components/Scholarships';
 import ScholarshipPage from './components/Scholarships/ScholarshipPage';
-import MembershipType from './components/Membership/membershipType';
-import EventPage from './components/Events/eventPage';
+import MembershipType from './components/Membership/index';
+import EventPage from './components/Events/EventPage';
 
 
 
@@ -74,14 +70,14 @@ function App() {
   };
   useEffect(() => {
     const timer = new IdleTimer({
-      timeout: 1000, //expire after 10 seconds
+      timeout: 1000, 
       onTimeout: () => {
         setIsTimeout(true);
       },
       onExpired: () => {
-        // do something if expired on load
+        
         setIsTimeout(true);
-        // AuthService.logout();
+        
       },
     });
 
@@ -131,8 +127,8 @@ function App() {
           <Route path="/imageUpload" element={<ImageUpload />} />
           
           <Route path="/membershipType" element={<MembershipType />} />
-          <Route path="/tshirtSale" element={<TshirtSale />} />
-          <Route path="searchMembers" element={<SearchByType />} />
+         
+          <Route path="/searchByType" element={<SearchByType />} />
 
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
             {/* Routes for Admin only */}
@@ -140,7 +136,7 @@ function App() {
             <Route path="/update/:id" element={<UpdateMember />} />
             <Route path="/scholarships" element={<Scholarships />} />
             <Route path="/events" element={<Events />} />
-            <Route path ="/searchMember"  element={<SearchMember />}/>
+            <Route path ="/searchMember"  element={<SearchMember userList/>}/>
             <Route path="/calendarDisplay" element={<CalendarEvents />} />
           </Route>
 

@@ -11,7 +11,7 @@ import { sendEmail } from "../../services/authenticate-service";
 
 
 
-const SearchMember = (props) => {
+const SearchMember = ({userList}) => {
   const navigate = useNavigate();
   const [members, setMembers] = useState<MemberData[]>([]);
   const [isError, setIsError] = useState<boolean>(false);
@@ -26,6 +26,8 @@ const SearchMember = (props) => {
 
   useEffect(() => {
     console.log(keyword);
+  
+       
     Member.searchMember(keyword)
       .then((data) => {
         setSearchMembers([...data]);
@@ -36,6 +38,7 @@ const SearchMember = (props) => {
 
     
   }, [keyword]);
+
 
   const handleClose = () => {
     try {

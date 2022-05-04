@@ -10,7 +10,7 @@ const UserListOfGroups = ({ groupName }) => {
   const { allGroupList }: any = useContext(Authenticate);
 
   /** get all the group list created by admin */
-
+ 
   let grpIdList;
   allGroupList.forEach((val) => {
     if (val.groupName === groupName) {
