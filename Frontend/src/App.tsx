@@ -9,9 +9,9 @@ import About from "./components/About";
 import Contact from "./components/contact/contact";
 import MemberList from "./components/MemberList";
 
-import Payment from "./components/Payment/Payment";
+import Payment from "./components/Scholarships/Payment/Payment";
 import Success from "./components/Payment/Success";
-import Error from "./components/Payment/Error";
+import Error from "./components/Scholarships/Payment/Error";
 
 import Profile from "./components/User/Profile";
 import BoardUser from "./components/Authenticate/BoardUser";
@@ -27,9 +27,18 @@ import * as AuthService from "./services/authenticate-service";
 import NewLogin from "./components/login/NewLogin";
 import NewSignUp from "./components/signup/NewSignUp";
 import Footer from "./components/footer/Footer";
+import Team from "./components/Team/team";
+import TshirtSale from "./components/TshirtSale/tshirtSale";
+import Donation from "./components/Donation/Donation";
+import Calendar from "./components/Calendar/Calendar";
+
+import SearchMember from "./components/searchMember/searchMember";
 
 import Scholarships from "./components/Scholarships";
 import ScholarshipPage from "./components/Scholarships/ScholarshipPage";
+import MembershipType from "./components/Membership/membershipType";
+import EventPage from "./components/Events/EventPage";
+
 import Groups from "./components/Group";
 import UnAuthorize from "./components/Authenticate/UnAuthorize";
 
@@ -37,10 +46,12 @@ import UpdateScholarships from "./components/Scholarships/UpdateScholarships";
 import Layout from "./components/Routing/Layout";
 import RequireAuth from "./components/Authenticate/RequireAuth";
 import UpdateEvent from "./components/Events/UpdateEvent";
-import Calendar from "./components/Calendar/Calendar";
+
 import CalendarEvents from "./components/Calendar";
+import ImageUpload from "./components/User/Image/ImageUpload";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const [isTimeout, setIsTimeout] = useState(false);
   const ROLES = {
     User: "ROLE_USER",
@@ -56,14 +67,12 @@ function App() {
   };
   useEffect(() => {
     const timer = new IdleTimer({
-      timeout: 1000, //expire after 10 seconds
+      timeout: 1000,
       onTimeout: () => {
         setIsTimeout(true);
       },
       onExpired: () => {
-        // do something if expired on load
         setIsTimeout(true);
-        // AuthService.logout();
       },
     });
 
@@ -73,6 +82,11 @@ function App() {
   }, []);
   return (
     <>
+      <div
+        style={{
+          backgroundColor: "#FFFFF4",
+        }}
+      ></div>
       {/* {isTimeout && onTimeExpired()} */}
       {/* <Router> */}
       <NavigationBar />
@@ -88,20 +102,26 @@ function App() {
 
           <Route path="/contact" element={<Contact />} />
 
-          {/* {["/scholarshipList/s/page/:id", "/scholarships/s/page/:id"].map((path, index) => 
-        <Route path={path} element={<ScholarshipPage />} key={index} />
-    )} */}
-
           <Route path="/s/page/:id" element={<ScholarshipPage />} />
-          <Route path="/payment" element={<Payment />} />
+          <Route path="/e/page/:id" element={<EventPage />} />
+
+          {/* <Route path="/payment" element={<Payment amount/>} /> */}
 
           {/* Routes for all User level */}
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/success" element={<Success />} />
-          <Route path="/error" element={<Error />} />
+          <Route path="/donation-unsucessfull" element={<Error />} />
           <Route path="/scholarshipList" element={<UpdateScholarships />} />
           <Route path="/unauthorized" element={<UnAuthorize />} />
           <Route path="/profile/*" element={<Profile />} />
+          <Route
+            path="/s/payment"
+            element={<Payment amount email donateStatus />}
+          />
+          <Route path="/imageUpload" element={<ImageUpload />} />
+
+          <Route path="/membershipType" element={<MembershipType />} />
+          <Route path="/tshirtSale" element={<TshirtSale />} />
 
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
             {/* Routes for Admin only */}
@@ -109,6 +129,7 @@ function App() {
             <Route path="/update/:id" element={<UpdateMember />} />
             <Route path="/scholarships" element={<Scholarships />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/searchMember" element={<SearchMember />} />
             <Route path="/calendarDisplay" element={<CalendarEvents />} />
           </Route>
 

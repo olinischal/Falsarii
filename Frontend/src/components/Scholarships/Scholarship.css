@@ -9,10 +9,10 @@
     border: 2px solid #cc6666;
     transition: all 0.3s;
     padding: 13px;
+    margin-bottom: 15px;
     width: 100%;
     box-sizing: border-box;
     outline: 0;
-    margin: auto;
   }
   
   .scholarship-feedback-title {

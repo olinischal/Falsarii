@@ -5,13 +5,12 @@ import { EventRequests } from "../../services/api";
 import EventData from "../../types/Event";
 import UpdateEvent from "./UpdateEvent";
 
-
 const initialValues = {
   eventName: "",
   date: "",
   description: "",
   entranceFee: 0.0,
-  status: false
+  status: false,
 };
 
 const Events = () => {
@@ -20,30 +19,25 @@ const Events = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
- 
   const [events, setEvents] = useState<EventData>({
     eventName: "",
     date: "",
     description: "",
     entranceFee: 0.0,
-    status: false
+    status: true,
   });
 
   const submitForm = () => {
-    
     setShow(false);
-    EventRequests.createEvent(events) .catch((error) => {
+    EventRequests.createEvent(events).catch((error) => {
       console.log("Request cannot be completed.", error);
     });
-    
-    window.location.reload();
 
-    
+    window.location.reload();
   };
 
   return (
     <>
-    
       <div style={{ position: "relative", top: "10px", left: "10px" }}>
         <Button variant="secondary" size="lg" onClick={handleShow}>
           + Create New Event
@@ -63,8 +57,7 @@ const Events = () => {
           <Modal.Body>
             <Formik initialValues={initialValues} onSubmit={submitForm}>
               {(formik) => {
-                const { handleBlur, handleSubmit } =
-                  formik;
+                const { handleBlur, handleSubmit } = formik;
                 return (
                   <Container
                     className="mt-5"
@@ -99,7 +92,8 @@ const Events = () => {
                       <Form.Group className="mb-3">
                         <Form.Control
                           className={
-                            formik.errors.description && formik.touched.description
+                            formik.errors.description &&
+                            formik.touched.description
                               ? "errorOccured"
                               : "noError"
                           }
@@ -146,6 +140,31 @@ const Events = () => {
                           onBlur={handleBlur}
                         />
                       </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Control
+                          className={
+                            formik.errors.date && formik.touched.date
+                              ? "errorOccured"
+                              : "noError"
+                          }
+                          style={{
+                            backgroundColor: "#353839",
+                            color: "#ffc40c",
+                          }}
+                          type="number"
+                          name="fee"
+                          id="fee"
+                          placeholder="Entrance Fee"
+                          value={events.entranceFee}
+                          onChange={(e) =>
+                            setEvents({
+                              ...events,
+                              entranceFee: Number(e.target.value),
+                            })
+                          }
+                          onBlur={handleBlur}
+                        />
+                      </Form.Group>
                     </Form>
                   </Container>
                 );
@@ -163,8 +182,6 @@ const Events = () => {
         </Modal>
       </>
       <UpdateEvent />
-
-    
     </>
   );
 };

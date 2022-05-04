@@ -35,7 +35,7 @@ const MemberList = () => {
     }
   };
   return (
-    <div className="container" style={{paddingTop: "100px"}}>
+    <div className="container" style={{ paddingTop: "100px" }}>
       <h3>List of Members</h3>
       <div>
         <input
@@ -90,11 +90,6 @@ const MemberList = () => {
                 .toLocaleLowerCase()
                 .includes(searchTerm.toLowerCase()) &&
               searchType === "email"
-            ) {
-              return val;
-            } else if (
-              val.graduationDate.includes(searchTerm) &&
-              searchType === "graduationDate"
             ) {
               return val;
             }

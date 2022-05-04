@@ -9,9 +9,9 @@ import Authenticate from "../../Context/Authenticate";
 
 const UserNav = () => {
   const navigate = useNavigate();
-  const {setAuth}: any  = useContext(Authenticate);
+  const { setAuth }: any = useContext(Authenticate);
 
-  const logOut= () => {
+  const logOut = () => {
     AuthService.logout();
     setAuth({});
     navigate("/login");
@@ -26,16 +26,20 @@ const UserNav = () => {
             title={<span className="text-warning">Events</span>}
             menuVariant="dark"
           >
-            <NavDropdown.Item href="/eventList"><span className="text-warning">All Events</span></NavDropdown.Item>
-            <NavDropdown.Item href="/calendar"><span className="text-warning">Calendar</span></NavDropdown.Item>
+            <NavDropdown.Item href="/eventList">
+              <span className="text-warning">All Events</span>
+            </NavDropdown.Item>
+            <NavDropdown.Item href="/calendar">
+              <span className="text-warning">Calendar</span>
+            </NavDropdown.Item>
           </NavDropdown>
         </Nav>
 
         <Nav.Link as={Link} to="/about">
-        <span className="text-warning">About</span>
+          <span className="text-warning">About</span>
         </Nav.Link>
         <Nav.Link as={Link} to="/contact">
-        <span className="text-warning">Contact Us</span>
+          <span className="text-warning">Contact Us</span>
         </Nav.Link>
         <Nav>
           <NavDropdown
@@ -43,9 +47,8 @@ const UserNav = () => {
             title={<span className="text-warning">Donate</span>}
             menuVariant="dark"
           >
-            
             <NavDropdown.Item href="/scholarshipList">
-            <span className="text-warning">Scholarships</span>
+              <span className="text-warning">Scholarships</span>
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>
@@ -55,13 +58,13 @@ const UserNav = () => {
                 </Nav.Link> */}
 
         <Nav.Link as={Link} to="/membership">
-        <span className="text-warning"> Membership</span>
+          <span className="text-warning"> Membership</span>
         </Nav.Link>
       </Nav>
-      {/* // {user ?  */}
+      {/*  {user ?  */}
       <Nav>
         <Nav.Link as={Link} to="/profile/user">
-        <span className="text-warning">Profile</span>
+          <span className="text-warning">Profile</span>
         </Nav.Link>
 
         <Nav.Link

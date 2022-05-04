@@ -24,6 +24,8 @@ export const register = (firstName:string, maidenName:string, lastName:string, p
   ;
 };
 
+
+
 export const signIn = (email: string, password: string) => {
 
  
@@ -40,7 +42,9 @@ export const signIn = (email: string, password: string) => {
         localStorage.removeItem("otherError");
         localStorage.removeItem("serverError");
         localStorage.setItem("user", JSON.stringify(response.data ));
-       
+
+        localStorage.setItem("userEmail",(response.data.email));
+
       }
       else {
         throw new Error("Server can't be reached.");
@@ -68,13 +72,37 @@ export const signIn = (email: string, password: string) => {
 
 export const logout = () => {
   localStorage.removeItem("user");
+
   localStorage.removeItem("data");
+  localStorage.removeItem("scholarship");
+  localStorage.removeItem("userAuth");
+
+  localStorage.removeItem("userEmail");
+  localStorage.removeItem("event");
+}
+
+
+export const sendEmail = (subject:String, text:string, emailList:string[]) =>{
+  return axios.post("http://localhost:8080/sendEmail", {    
+    subject,
+    text,
+    emailList
+  }).then((response)=> {
+    if(!(String(response.data.message)=== 'email successfully sent')){
+      localStorage.setItem("emailError",(response.data));
+    }
+    return response;
+  })
+  
+  ;
 };
+
 export const getCurrentUser = () => {
   const userStr = localStorage.getItem("user");
   if (userStr) {return JSON.parse(userStr)};
   return null;
 };
+
 
 export const getMember = (id) =>{
   return axios

@@ -3,28 +3,24 @@ import { Link, Route, Routes } from "react-router-dom";
 import Authenticate from "../../Context/Authenticate";
 import { ScholarshipRequests } from "../../services/api";
 import ScholarshipData from "../../types/Scholarship";
+import Success from "./Payment/Success";
 import ScholarshipList from "./ScholarshipList";
 import ScholarshipPage from "./ScholarshipPage";
 
 const UpdateScholarships = () => {
   const [scholarship, setScholarship] = useState<ScholarshipData[]>([]);
-  const {setScholarshipDetail}:any = useContext(Authenticate);
-  const {scholarshipDetail}:any = useContext(Authenticate);
-  
+  const { setScholarshipDetail }: any = useContext(Authenticate);
 
   useEffect(() => {
     ScholarshipRequests.getScholarships()
       .then((response) => {
         setScholarship([...response]);
         setScholarshipDetail([...response]);
-        
       })
       .catch((error) => {
         console.log("Something went wrong here.", error);
       });
   }, []);
-
-  
 
   return (
     <>
@@ -39,13 +35,15 @@ const UpdateScholarships = () => {
           </div>
 
           <div className="row gx-5">
-            {scholarship.map((val, key) => {
-              
-              return (
-                <ScholarshipList scholarship = {val} key={key} />
-                
-               
-              );
+            {scholarship?.map((val, key) => {
+              if (val.status === false) {
+                return;
+              } else {
+                let index: number = key;
+                return (
+                  <ScholarshipList scholarship={val} key={key} index={index} />
+                );
+              }
             })}
           </div>
         </div>

@@ -23,26 +23,17 @@ const Calendar = () => {
       });
   }, []);
 
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-  ></link>;
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Yantramanav"
-    rel="stylesheet"
-  ></link>;
   const newEvent = event.map((val, key) => {
+    if (val.status === false) {
+      return {};
+    }
     return {
       key: key,
       title: val.eventName,
       start: val.date,
     };
   });
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
-  ></link>;
+
   const eventClick = (eventClick) => {
     setDisplay(!display);
 
@@ -64,16 +55,17 @@ const Calendar = () => {
       <div className="demo-app">
         <div className="demo-app-main">
           <FullCalendar
-            firstDay={1}
             headerToolbar={{
               right: "prev,next",
               center: "today",
               left: "title",
             }}
+            firstDay={1}
             initialView="dayGridMonth"
             plugins={[dayGridPlugin, bootstrap5Plugin]}
             themeSystem="bootstrap5"
             events={newEvent}
+            eventColor="#378006"
             eventClick={eventClick}
           />
         </div>

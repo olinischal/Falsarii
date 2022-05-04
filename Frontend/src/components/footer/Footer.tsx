@@ -66,10 +66,11 @@ const Footer = () => {
             <div>
               <i className="fa fa-map-marker"></i>
               <p>
-                <span> 600 Forsythe Ave</span> Monroe, Louisiana
+                600 Forsythe Ave<br></br>
+                Monroe, Louisiana
               </p>
             </div>
-            <div>
+            <div style={{ padding: "0px" }}>
               <i className="fa fa-phone"></i>
               <p>(318) 387 5700</p>
             </div>

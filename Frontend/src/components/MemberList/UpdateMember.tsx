@@ -8,16 +8,21 @@ const UpdateMember = () => {
   const [users, setUsers] = useState<MemberData>({
     fname: " ",
     middleName: " ",
+    maidenName: " ",
     lname: " ",
     emailId: " ",
     graduationDate: " ",
     phoneNum: " ",
-    password: " ",
     streetAddress: " ",
     city: " ",
     zipCode: " ",
+    state: " ",
+    password: " ",
+    university: " ",
+    highSchool: " ",
+    gender: " ",
+    dateOfBirth: " ",
   });
-
 
   const navigate = useNavigate();
 
@@ -87,14 +92,12 @@ const UpdateMember = () => {
             className="form-control col-4"
             id="location"
             value={users.phoneNum}
-            onChange={(e) =>
-              setUsers({ ...users, phoneNum: e.target.value })
-            }
+            onChange={(e) => setUsers({ ...users, phoneNum: e.target.value })}
             placeholder={users.phoneNum}
           />
         </div>
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <input
             type="date"
             className="form-control col-4"
@@ -103,7 +106,7 @@ const UpdateMember = () => {
             onChange={(e) => setUsers({ ...users, graduationDate: e.target.value })}
             placeholder={users.graduationDate}
           />
-        </div>
+        </div> */}
 
         <div className="form-group">
           <input
@@ -111,9 +114,7 @@ const UpdateMember = () => {
             className="form-control col-4"
             id="location"
             value={users.emailId}
-            onChange={(e) =>
-              setUsers({ ...users, emailId: e.target.value })
-            }
+            onChange={(e) => setUsers({ ...users, emailId: e.target.value })}
             placeholder={users.emailId}
           />
         </div>

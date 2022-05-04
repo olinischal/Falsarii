@@ -1,3 +1,4 @@
+
 import axios, {AxiosResponse} from 'axios';
 import MemberData from '../types/Member';
 import EventData from '../types/Event';
@@ -31,7 +32,6 @@ export const Member = {
 	searchMember:(keyword:string): Promise<MemberData[]> => requests.get(`member/searchMember/${keyword}`),
 };
 
-// update the event api link
 export const EventRequests = {
 	getEvents: (): Promise<EventData[]> => requests.get('member/event/view'),
 	getAEvent: (id: number): Promise<EventData> => requests.get(`getMember/${id}`),
@@ -43,7 +43,7 @@ export const EventRequests = {
 };
 
 export const ScholarshipRequests = {
-	getScholarships: (): Promise<ScholarshipData[]> => requests.get('member/viewScholarships'),
+	getScholarships: (): Promise<ScholarshipData[]> => requests.get('member/scholarship/view'),
 	createScholarships: (post: ScholarshipData): Promise<ScholarshipData> =>
 		requests.post('member/scholarship/create', post),
 	updateScholarships: (id:number, put: ScholarshipData): Promise<ScholarshipData> =>
@@ -52,37 +52,33 @@ export const ScholarshipRequests = {
 };
 
 export const GroupRequests = {
-	getGroups: (): Promise<GroupData[]> => requests.get('member/getAllGroups'),
+	getGroups: (): Promise<GroupData[]> => requests.get('member/groups/show-all'),
 	createGroup: (post: GroupData): Promise<GroupData> =>
-		requests.post('member/createGroup', post),
-	
-	// updateScholarships: (id:number, put: GroupData): Promise<GroupData> =>
-	// 	requests.put(`update/${id}`, put),
-	// deleteScholarships: (id: number): Promise<void> => requests.delete(`delete/${id}`),
+		requests.post('member/groups/create', post),
 };
 
-export const JoinGroup = (email: string, grpName: string) => {
+export const JoinGroup = (userId, groupId) => {
 	const API_URL = "http://localhost:8080/member/";
 
 	return axios.post(
-	  API_URL + "user/joinGroup", null ,
+	  API_URL + "user/join-group", null ,
 	{
 	  params: {
-		emailId: email,
-		groupName: grpName
+		userId: Number(userId),
+		groupId: Number(groupId)
 	  }
 	});
   
   }
 
-  export const GetUserGroup = (email: string) => {
+  export const GetUserGroup = (userId) => {
 	const API_URL = "http://localhost:8080/member/";
 
 	return axios.get(
-	  API_URL + "user/getGroups",
+	  API_URL + "user/get-groups",
 	{
 	  params: {
-		emailId: email,
+		userId: Number(userId),
 	
 	  }
 	});
@@ -103,3 +99,127 @@ export const JoinGroup = (email: string, grpName: string) => {
 	
 	;
   };
+
+  export const donateScholarship = (userId: String, scholarshipId: String, date: any, amount: any, anonymity: boolean) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.post(
+	  API_URL + "scholarship/donate", null, 
+	{
+	  params: {
+		userId: userId,
+		scholarshipId: scholarshipId,
+		date: date,
+		amount: amount,
+		anonymity: anonymity,
+
+	
+	  }
+	});
+  
+  }
+
+  export const getScholarshipDonateList = (scholarshipId ) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.get(
+	  API_URL + "scholarship/get-all-donations",
+	{
+	  params: {
+		
+		scholarshipId: scholarshipId,	
+	  }
+	});
+  
+  }
+
+  
+
+  export const editScholarships = (scholarshipId: number, scholarship) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.post(
+		API_URL + "scholarship/edit", scholarship, 
+	  {
+		params: {
+		 
+		  scholarshipId: scholarshipId
+		  
+  
+	  
+		}
+	  });
+
+
+  }
+
+  export const eventEdit = (eventId: number, event) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.post(
+		API_URL + "event/edit", event, 
+	  {
+		params: {
+		 
+		  eventId: eventId
+		  
+  
+	  
+		}
+	  });
+
+
+  }
+
+
+  export const uploadFile = ( file) => {
+	const API_URL = "http://localhost:8080/member/";
+	
+  
+	return axios.post(
+		API_URL + "file/upload", file, {
+			headers: {
+		
+				"Content-Type": "multipart/form-data",
+					
+			  }
+	});
+  };
+  
+  export const getFiles = () => {
+	const API_URL = "http://localhost:8080/member/";
+	return axios.get(API_URL + "list/files");
+  };
+  
+  export const addUserDetail = (userId , userDetail) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.post(
+		API_URL + "user/details", userDetail, {
+			params: {
+		
+				userId: userId,
+			    
+					
+			  }
+	});
+
+  };
+
+  export const uploadImage = (file) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	fetch(API_URL + "file/upload" , {
+            method: 'post',
+            body: file,
+        }).then(res => {
+            if(res.ok) {
+                console.log(res);
+                alert("File uploaded successfully.")
+            }else{
+				console.log("File was not uploaded successfully");
+			}
+        });
+
+  }
+

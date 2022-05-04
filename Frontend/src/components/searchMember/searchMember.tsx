@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import { Button, Dropdown, Modal } from "react-bootstrap";
-import { sendEmail } from "../../services/api";
+import { sendEmail } from "../../services/authenticate-service";
 
 const SearchMember = (props) => {
   const navigate = useNavigate();
@@ -56,7 +56,9 @@ const SearchMember = (props) => {
     handleShow();
   };
 
-  const closeForm=() =>{setShow(false)};
+  const closeForm = () => {
+    setShow(false);
+  };
   const handleDelete = (id) => {
     try {
       Member.deleteMember(id).then(() => {

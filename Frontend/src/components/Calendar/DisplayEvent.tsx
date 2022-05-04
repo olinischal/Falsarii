@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const DisplayEvents = ({ event, display }) => {
   const [show, setShow] = useState(false);
@@ -16,8 +17,6 @@ const DisplayEvents = ({ event, display }) => {
     }
   }, [display]);
 
-  // console.log("The event props is ", event?.start);
-
   return (
     <>
       <Modal
@@ -30,7 +29,7 @@ const DisplayEvents = ({ event, display }) => {
           <Modal.Title>{event?.eventName}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{event?.date}</Modal.Body>
-        <Modal.Footer>Link</Modal.Footer>
+        <Modal.Footer></Modal.Footer>
       </Modal>
     </>
   );

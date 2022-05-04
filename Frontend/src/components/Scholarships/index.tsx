@@ -4,12 +4,11 @@ import { Button, Modal, Stack, Form, Container } from "react-bootstrap";
 import UpdateScholarships from "./UpdateScholarships";
 import { ScholarshipRequests } from "../../services/api";
 import ScholarshipData from "../../types/Scholarship";
-import './Scholarship.css';
-
+import "./Scholarship.css";
 
 const initialValues = {
   name: " ",
-  active: false,
+  active: true,
   deadline: "",
   description: " ",
 };
@@ -24,14 +23,13 @@ const Scholarships = () => {
     scholarshipName: " ",
     description: " ",
     deadline: "",
-    status: false,
+    status: true,
   });
 
-  const submitForm =  () => {
+  const submitForm = () => {
     console.log(scholarship);
 
-    ScholarshipRequests.createScholarships(scholarship)
-    .catch((error) => {
+    ScholarshipRequests.createScholarships(scholarship).catch((error) => {
       console.log("Request cannot be completed.", error);
     });
     setShow(false);
@@ -66,7 +64,10 @@ const Scholarships = () => {
                   >
                     <Form id="submitForm" onSubmit={handleSubmit}>
                       <Form.Group className="mb-3">
-                      <label className="feedback-subtitle"> Scholarship Name</label>
+                        <label className="feedback-subtitle">
+                          {" "}
+                          Scholarship Name
+                        </label>
                         <Form.Control
                           className={
                             formik.errors.name && formik.touched.name
@@ -77,7 +78,6 @@ const Scholarships = () => {
                             backgroundColor: "#353839",
                             color: "#ffc40c",
                           }}
-                         
                           type="text"
                           name="name"
                           id="name"
@@ -93,7 +93,10 @@ const Scholarships = () => {
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
-                      <label className="feedback-subtitle"> Scholarship Description</label>
+                        <label className="feedback-subtitle">
+                          {" "}
+                          Scholarship Description
+                        </label>
                         <Form.Control
                           className={
                             formik.errors.description &&
@@ -120,7 +123,10 @@ const Scholarships = () => {
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
-                      <label className="feedback-subtitle"> Scholarship Deadline</label>
+                        <label className="feedback-subtitle">
+                          {" "}
+                          Scholarship Deadline
+                        </label>
                         <Form.Control
                           className={
                             formik.errors.deadline && formik.touched.deadline
@@ -131,7 +137,6 @@ const Scholarships = () => {
                             backgroundColor: "#353839",
                             color: "#ffc40c",
                           }}
-                          
                           type="date"
                           name="deadline"
                           id="deadline"
@@ -163,7 +168,6 @@ const Scholarships = () => {
         </Modal>
       </>
       <>
-        
         <UpdateScholarships />
       </>
     </>

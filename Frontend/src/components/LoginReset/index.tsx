@@ -24,15 +24,14 @@ const LoginReset = () => {
 
   const submitForm = (searchTerm) => {
     try {
-        members.filter(val => {
-            if(val.emailId.includes(searchTerm) ){
-                navigate("/newpassword/" + `${val.userId}`);
-            }
-        })
-      } catch (error) {
-        console.log("Email doesnot exist");
-      }
-
+      members.filter((val) => {
+        if (val.emailId.includes(searchTerm)) {
+          navigate("/newpassword/" + `${val.userId}`);
+        }
+      });
+    } catch (error) {
+      console.log("Email doesnot exist");
+    }
   };
 
   return (
@@ -83,7 +82,6 @@ const LoginReset = () => {
                 onClick={() => {
                   submitForm(searchTerm);
                 }}
-                // to={"/newpassword/" + `${val.id}`}
               >
                 Get New Password
               </button>

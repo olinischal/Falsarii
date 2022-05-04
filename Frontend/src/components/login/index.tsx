@@ -22,45 +22,30 @@ const initialValues = {
 const Login = () => {
   const navigate = useNavigate();
   const [errorString, setErrorString] = useState("");
-  const {setAuth}: any  = useContext(Authenticate);
-   
+  const { setAuth }: any = useContext(Authenticate);
 
   const submitForm = (values: loginProps) => {
     try {
-      
       signIn(values.email, values.password).then((res) => {
-        
-       
         if (localStorage.getItem("badCredential")) {
           setErrorString("Bad Credentials! Please try again!");
           console.log(errorString);
         } else if (localStorage.getItem("otherError")) {
           setErrorString("Some Error Occured! Please try again!");
         } else {
-         // window.location.reload();
           navigate("/profile/user");
-          
         }
         console.log(res);
-        setAuth({res});
-        
+        setAuth({ res });
       });
-      
-
     } catch (error) {
-      
       console.log(error);
     }
-    
-
-    
   };
-
- 
 
   return (
     <>
-      <div className="parent-login" style={{height:"600px"}}>
+      <div className="parent-login" style={{ height: "600px" }}>
         <div>
           <Formik
             initialValues={initialValues}
@@ -69,20 +54,35 @@ const Login = () => {
           >
             {/* {({ values, handleChange, handleBlur, handleSubmit }) => { */}
             {(formik) => {
-        const { values, handleChange, handleBlur, handleSubmit } = formik;
+              const { values, handleChange, handleBlur, handleSubmit } = formik;
               return (
                 <Container
                   className="mt-5"
                   style={{ width: "30rem", padding: "2rem" }}
                 >
-                  
                   <div className="login-box">
-                  <div style={{fontSize:"25px", marginBottom:"25px", fontWeight:"bold", color:"#ffc40c"}}>Log in to your account</div>
+                    <div
+                      style={{
+                        fontSize: "25px",
+                        marginBottom: "25px",
+                        fontWeight: "bold",
+                        color: "#ffc40c",
+                      }}
+                    >
+                      Log in to your account
+                    </div>
                     <Form onSubmit={handleSubmit}>
                       <Form.Group className="mb-3">
                         <Form.Control
-                          className={(formik.errors.email && formik.touched.email)? "errorOccured" : 'noError'}
-                          style={{backgroundColor:"#353839", color:"#ffc40c"}}
+                          className={
+                            formik.errors.email && formik.touched.email
+                              ? "errorOccured"
+                              : "noError"
+                          }
+                          style={{
+                            backgroundColor: "#353839",
+                            color: "#ffc40c",
+                          }}
                           type="email"
                           name="email"
                           id="email"
@@ -98,8 +98,15 @@ const Login = () => {
 
                       <Form.Group className="mb-3">
                         <Form.Control
-                        className={(formik.errors.password && formik.touched.password)? "errorOccured" : 'noError'}
-                        style={{backgroundColor:"#353839", color:"#ffc40c"}}
+                          className={
+                            formik.errors.password && formik.touched.password
+                              ? "errorOccured"
+                              : "noError"
+                          }
+                          style={{
+                            backgroundColor: "#353839",
+                            color: "#ffc40c",
+                          }}
                           type="password"
                           name="password"
                           id="password"
@@ -117,9 +124,13 @@ const Login = () => {
                         Login
                       </Button>
                       <p>
-                         <Link to="/" style={{color:"#ffc40c"}}>Forgot password?</Link>
+                        <Link to="/" style={{ color: "#ffc40c" }}>
+                          Forgot password?
+                        </Link>
                         <span className="float-end">
-                          <Link to="/signup" style={{color:"#ffc40c"}}>Sign Up</Link>
+                          <Link to="/signup" style={{ color: "#ffc40c" }}>
+                            Sign Up
+                          </Link>
                         </span>
                       </p>
                     </Form>
