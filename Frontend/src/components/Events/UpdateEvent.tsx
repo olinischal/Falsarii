@@ -52,11 +52,7 @@ const UpdateEvent = () => {
             }
            
             
-            // return (
-            //   <ScholarshipList scholarship = {val} index={index}/>
-              
-             
-            // );
+          
           })}
         </div>
       </div>

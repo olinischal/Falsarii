@@ -54,11 +54,7 @@ const UpdateScholarships = () => {
               }
              
               
-              // return (
-              //   <ScholarshipList scholarship = {val} index={index}/>
-                
-               
-              // );
+            
             })}
           </div>
         </div>

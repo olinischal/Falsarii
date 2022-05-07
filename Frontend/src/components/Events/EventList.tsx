@@ -16,29 +16,35 @@ let year = d.getFullYear();
     return (
         <>
 
-                <section id="events">
+                {}
+
+<section id="events">
                 <div className="column">
-                  <Link to={`/e/page/${index}`} >
-                <div className="event-block">
-                  <div className="calendar-block">
-                  <p className="day">{date}</p>
-                    
-                    <p className="year">
+
+        <div className="card h-100 shadow border-0">
+          <Link
+            to={`/e/page/${index}`}
+            className="text-decoration-none link-dark stretched-link"
+          >
+            <div className="card-header p-4 " style={{backgroundColor: '#353839', color: '#ffc40c'}}>
+            <span className="card-title mb-3 text-warning" style={{fontSize: '30px'}}>{event.eventName}</span>
+            
+            </div>
+            <div className="card-body p-4">
+              
+
+              <p className="card-text mb-0"></p>
+              <p>{date}</p>
+              <p className="year">
                       <span className="calendar_month">{month} </span>
                       <span>{year}</span>
                     </p>
-                  </div>
-                  <div className="event-details">
-                    <p className="event_name">{event.eventName}</p>
-                    <div className="event-details">
-                      <p className="event_days">{event.description}</p>
-                    </div>
-                  </div>
-                </div>
-                </Link>
-              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
 
-                </section>
+      </section>
                
 
 

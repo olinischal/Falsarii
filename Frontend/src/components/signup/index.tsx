@@ -18,7 +18,7 @@ interface signupProps {
  
   password: string;
   confirmPassword: string;
-  // response:string
+ 
 }
 
 const initialValues: signupProps = {
@@ -30,7 +30,7 @@ const initialValues: signupProps = {
   
   password: "",
   confirmPassword: "",
-  // response:""
+
 };
 let captcha;
 
@@ -118,19 +118,7 @@ const Signup = () => {
                           {(msg) => <div className="error">{msg}</div>}
                         </ErrorMessage>
                       </div>
-                      <div className="col-2">
-                        <Form.Control
-                          type="text"
-                          name="maidenName"
-                          id="maidenName"
-                          placeholder="MI"
-                          value={values.maidenName}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          className={(formik.errors.maidenName && formik.touched.maidenName)? "errorOccured" : 'noError'}
-                          style={{backgroundColor:"#353839", color:"#ffc40c"}}
-                        />
-                      </div>
+                      
                       <div className="col-5">
                         <Form.Control
                           type="text"

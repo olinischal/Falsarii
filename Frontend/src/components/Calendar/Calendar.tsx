@@ -1,3 +1,5 @@
+
+
 import FullCalendar from "@fullcalendar/react";
 import bootstrap5Plugin from "@fullcalendar/bootstrap5";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -58,13 +60,17 @@ const Calendar = () => {
         <div className="demo-app-main">
           <FullCalendar
             headerToolbar={{
-              right: "today prev,next",
-              center: "title",
-              left: "",
+              right: "prev,next",
+              center: "today",
+              left: "title",
             }}
+            firstDay={1}
             initialView="dayGridMonth"
             plugins={[dayGridPlugin, bootstrap5Plugin]}
+            themeSystem="bootstrap5"
             events={newEvent}
+            eventColor= '#378006'
+            
             eventClick={eventClick}
           />
         </div>

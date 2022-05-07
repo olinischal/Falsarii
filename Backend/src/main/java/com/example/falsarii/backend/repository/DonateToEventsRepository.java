@@ -16,14 +16,14 @@ public interface DonateToEventsRepository extends JpaRepository<DonateToEvents, 
 	
 	//Get list of donations for a particular event
     @Query(
-            value = "select user_id, amount, date from donate_to_events where event_id = :eventId",
+            value = "select user_id, amount, date from donate_to_events where eventid = :eventId",
             nativeQuery = true)
     List<String> getAllDonationForEvent(@Param("eventId") Long eventId);
 
 
     //Get all donations to events contributed by a particular person
     @Query(
-            value = "select event_id, amount, date from donate_to_events where user_id = :userId",
+            value = "select eventid, amount, date from donate_to_events where user_id = :userId",
             nativeQuery = true)
     List<String> getAllDonationForEventByPerson(@Param("userId") Long userId);
 

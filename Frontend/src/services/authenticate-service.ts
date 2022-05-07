@@ -54,8 +54,8 @@ export const signIn = (email: string, password: string) => {
     return (response.data);
     })
     .catch(function (error) {
-      console.log(error.response.status) // 401
-      console.log(error.response.data.error) //Please Authenticate or whatever returned from server
+      console.log(error.response.status) 
+      console.log(error.response.data.error) 
       localStorage.setItem("otherError", "Some Error Occured, Please try again!"); 
       if(error.response.status==401){ 
         localStorage.setItem("badCredential","Bad Credentials Please try again!");
@@ -78,6 +78,7 @@ export const logout = () => {
   localStorage.removeItem("userAuth");
 
   localStorage.removeItem("userEmail");
+  localStorage.removeItem("event");
 }
 
 

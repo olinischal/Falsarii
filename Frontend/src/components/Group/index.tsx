@@ -2,9 +2,11 @@ import GroupData from "../../types/Group";
 import { GroupRequests } from "../../services/api";
 import React, {useState, useEffect} from "react";
 import GroupList from "./GroupList";
+import UserListOfGroups from "./UserListOfGroups";
 
 const Groups = () => {
     const [group, setGroup] = useState<GroupData>({
+     
         groupName: " ",
         year: " ",
         noOfMembers: 0,
@@ -38,7 +40,9 @@ const Groups = () => {
                   Submit
         </button>
 
-        {/* <GroupList /> */}
+        <GroupList />
+
+        
     
     
     

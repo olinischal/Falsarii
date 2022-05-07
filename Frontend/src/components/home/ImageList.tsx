@@ -17,18 +17,19 @@ const ImageList = ({ listView }) => {
     e.preventDefault();
     const reader = new FileReader();
     const newImage = [...imagePreview];
-     
+    localStorage.setItem('homeImage1',e.target.files[0]);
 
     reader.onloadend = () => {
       setSelectFile(e.target.files[0]);
+      
       newImage[id] = reader.result;
       setImagePreview(newImage);
     };
-    reader.readAsDataURL(e.target.files[0]);
+    reader.readAsDataURL(localStorage.get('homeImage1'));
 
     
   };
-//   console.log(imagePreview);
+
 
   return (
     <div>
@@ -48,7 +49,7 @@ const ImageList = ({ listView }) => {
                 </div>
                 <input  type="file" onChange={(e) => photoUpload(e , 0)} />
                 <p>
-                  <a href="./signup" className="btn btn-outline-warning">
+                  <a href="./signup" className="btn btn-warning">
                     Be a member
                   </a>
                 </p>
@@ -66,7 +67,7 @@ const ImageList = ({ listView }) => {
                 </div>
                 <input type="file" onChange={(e) => photoUpload(e , 1)} />
                 <p>
-                  <a href="./signup" className="btn btn-outline-warning">
+                  <a href="./signup" className="btn btn-warning">
                   Donate
                   </a>
                 </p>
@@ -84,7 +85,7 @@ const ImageList = ({ listView }) => {
                 </div>
                 <input  type="file" onChange={(e) => photoUpload(e , 2)} />
                 <p>
-                  <a href="./signup" className="btn btn-outline-warning">
+                  <a href="./signup" className="btn btn-warning">
                   Learn More
                   </a>
                 </p>
@@ -102,7 +103,7 @@ const ImageList = ({ listView }) => {
           
            
             <p>
-              <a href="/membershipType" className="btn btn-outline-warning">
+              <a href="/membershipType" className="btn btn-warning">
                 Renew now
               </a>
             </p>

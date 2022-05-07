@@ -57,4 +57,11 @@ public class Groups {
 			this.noOfMembers = noOfMembers;
 		}
 
+	public Long getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(Long groupId) {
+		this.groupId = groupId;
+	}
 }

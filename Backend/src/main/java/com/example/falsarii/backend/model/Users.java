@@ -35,10 +35,14 @@ public class Users {
 	private String password;
 	private String graduationDate;
 	private String phoneNum;
-	private String address;
+	private String streetAddress;
+	private String city;
+	private String zipCode;
 	private String gender;
 	private String highSchool;
 	private String university;
+	private String dateOfBirth;
+	private String state;
 
 	private boolean enabled;
 	
@@ -231,7 +235,18 @@ public class Users {
 	//Returns the spouse of the user
 	public UserImages getImage() {
 		return image;
-	}	
+	}
+
+	//Relation between user and membership
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	private Memberships membership;
+
+	public void setMembership(Memberships membership) {
+		this.membership = membership;
+	}
+	public Memberships getMemberships() {
+		return membership;
+	}
 
 
 	//Basic setters and getters
@@ -274,12 +289,8 @@ public class Users {
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
+
+
 	public String getGender() {
 		return gender;
 	}
@@ -311,6 +322,29 @@ public class Users {
 	public void setUniversity(String university) {
 		this.university = university;
 	}
+	public String getStreetAddress() {
+		return streetAddress;
+	}
+
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress = streetAddress;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
 
 	public Boolean getEnabled() {
 		// TODO Auto-generated method stub
@@ -321,4 +355,19 @@ public class Users {
         this.enabled = enabled;
     }
 
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
 }

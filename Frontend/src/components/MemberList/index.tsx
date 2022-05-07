@@ -93,12 +93,7 @@ const MemberList = () => {
             ) {
               return val;
             } 
-            // else if (
-            //   val.graduationDate.includes(searchTerm) &&
-            //   searchType === "graduationDate"
-            // ) {
-            //   return val;
-            // }
+          
           })
           .map((val, key) => {
             return (

@@ -1,5 +1,5 @@
 export default interface GroupData {
-    id? : any |null,
+    groupId ?: number| null,
     groupName: string,
     year: string,
     noOfMembers: number,

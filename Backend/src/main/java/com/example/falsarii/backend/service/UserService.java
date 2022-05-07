@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import com.example.falsarii.backend.model.*;
+import com.example.falsarii.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,24 +21,8 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.example.falsarii.backend.Email.EmailDetails.EmailDetails;
 import com.example.falsarii.backend.Email.EmailService.EmailService;
-import com.example.falsarii.backend.model.DonateToEvents;
-import com.example.falsarii.backend.model.DonateToScholarships;
-import com.example.falsarii.backend.model.Emails;
-import com.example.falsarii.backend.model.EventImages;
-import com.example.falsarii.backend.model.Events;
-import com.example.falsarii.backend.model.FamilyDetail;
-import com.example.falsarii.backend.model.Groups;
-import com.example.falsarii.backend.model.UserImages;
-import com.example.falsarii.backend.model.Scholarships;
-import com.example.falsarii.backend.model.UserDetails;
-import com.example.falsarii.backend.model.Users;
-import com.example.falsarii.backend.repository.DonateToEventsRepository;
-import com.example.falsarii.backend.repository.DonateToScholarshipsRepository;
-import com.example.falsarii.backend.repository.EventsRepository;
-import com.example.falsarii.backend.repository.GroupRepository;
-import com.example.falsarii.backend.repository.UserImageRepository;
-import com.example.falsarii.backend.repository.ScholarshipRepository;
-import com.example.falsarii.backend.repository.UserRepository;
+
+import javax.swing.*;
 
 @Service
 public class UserService {
@@ -60,6 +46,8 @@ public class UserService {
 	private UserImageRepository userImageRepository;
 	@Autowired
 	private AmazonS3 s3Client;
+	@Autowired
+	private MembershipRepository membershipRepository;
 	
 	private String bucketName = "devtestnafa";
 	
@@ -72,10 +60,17 @@ public class UserService {
 			user.setMiddleName(userDetail.getMiddleName());
 			user.setMaidenName(userDetail.getMaidenName());
 			user.setGraduationDate(userDetail.getGraduationDate());
-			user.setAddress(userDetail.getAddress());
+			user.setStreetAddress(userDetail.getStreetAddress());
 			user.setGraduationDate(userDetail.getGraduationDate());
 			user.setHighSchool(userDetail.getHighSchool());
 			user.setUniversity(userDetail.getUniversity());
+			user.setHighSchool(userDetail.getHighSchool());
+			user.setCity(userDetail.getCity());
+			user.setZipCode(userDetail.getZipCode());
+			user.setState(userDetail.getState());
+			user.setDateOfBirth(userDetail.getDateOfBirth());
+			user.setGender(userDetail.getGender());
+
 			
 			userRepository.save(user);
 			
@@ -89,23 +84,42 @@ public class UserService {
 		try {
 			Users user = userRepository.findByUserId(userId);
 			Groups group = groupRepository.findByGroupId(groupId);
-			user.getGroups().add(group);
-			group.getUsers().add(user);
+
+
+			boolean i = user.getGroups().add(group);
+			boolean j = group.getUsers().add(user);
+
+			if(i && j) {
+				group.setNoOfMembers(group.getNoOfMembers()+1);
+			}
 			userRepository.save(user);
 		}catch(Exception e) {
 			System.out.println(e.toString());
-		}	
+		}
 	}
 	
 	//Return groups that users are in
-	public List<Long> getUserGroups(Long userId){
-		return userRepository.getUserGroups(userId);		
+	public List<Groups> getUserGroups(Long userId){
+
+		List<Long> tempList= userRepository.getUserGroups(userId);
+		List<Groups> tempGroupList = new ArrayList<>();
+
+		for(Long i: tempList){
+			tempGroupList.add(groupRepository.findByGroupId(i));
+		}
+		return tempGroupList;
 	}
 
 	//Remove user from group
-	public String removeGroup(Long userId, List<Long> groupIdList) {
+	public String removeGroup(Long userId, Long groupId){
 		try {
-			userRepository.removeGroup(userId, groupIdList);
+			int i = userRepository.removeGroup(userId, groupId);
+
+			if(i == 1) {
+				Groups group = groupRepository.findByGroupId(groupId);
+				group.setNoOfMembers(group.getNoOfMembers()-1);
+				groupRepository.save(group);
+			}
 			return "removed successfully";
 		}catch(Exception e) {
 			System.out.println(e.toString());
@@ -270,13 +284,13 @@ public class UserService {
 		try {
 			List<String> list = donateToEventsRepository.getAllDonationForEventByPerson(userId);
 			List<List> donationForEventByPerson = new ArrayList<>();
-		
+
 			for(String data: list) {
-		
+
 				List<String> tempList = Arrays.asList(data.split(","));
 				donationForEventByPerson.add(tempList);
-			}	
-			
+			}
+
 			return donationForEventByPerson;
 		} catch (Exception e) {
 			return null;
@@ -285,10 +299,10 @@ public class UserService {
 	
 	//For admin
 	//List of all donations made to a particular event
-	public List<List> getAllDonationForEvent(Long eventId) {
+	public List<List<String>> getAllDonationForEvent(Long eventId) {
 		try {	
 			List<String> list = donateToEventsRepository.getAllDonationForEvent(eventId);
-			List<List> donationForEventData = new ArrayList<>();
+			List<List<String>> donationForEventData = new ArrayList<>();
 			
 			for(String data: list) {
 				List<String> tempList = Arrays.asList(data.split(","));
@@ -303,10 +317,10 @@ public class UserService {
 	
 	//For user and admin
 	//List of donations made to a all event by a particular person
-	public List<List> getAllDonationForScholarshipByPerson(Long userId){
+	public List<List<String>> getAllDonationForScholarshipByPerson(Long userId){
 		try {
 			List<String> list = donateToScholarshipsRepository.getAllDonationForScholarshipByPerson(userId);
-			List<List> donationForScholarshipByPerson = new ArrayList<>();
+			List<List<String>> donationForScholarshipByPerson = new ArrayList<>();
 		
 			for(String data: list) {
 				List<String> tempList = Arrays.asList(data.split(","));
@@ -373,6 +387,19 @@ public class UserService {
 		} catch (Exception e) {
 			System.out.println(e.toString() + "Error in uploadProfilePicture service");
 		}
+	}
+
+	public void membership(Long userId, String membershipType) {
+		Users user = userRepository.findByUserId(userId);
+		Memberships membership = membershipRepository.findMembershipBy(membershipType);
+
+		LocalDate localDate = LocalDate.now();
+
+		membership.setDate(localDate);
+		user.setMembership(membership);
+		membership.setUser(user);
+		membershipRepository.save(membership);
+
 	}
 	
 	

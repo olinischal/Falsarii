@@ -6,7 +6,7 @@ function NewLogin() {
     <div className="container mt-3">
       <div className="row">
         <div className="col-md-4 my-auto logo-edit">
-          {/* <img className="img-fluid logo" src="https://www.nevillealumni.org/sites/default/files/styles/front_page_slider/public/reunion.jpeg?itok=AxEvaynM" alt=""/> */}
+      
           <p style={{color:'black', fontSize:'18px'}}>
             <ul style={{listStyleType:'none'}}>
               <li style={{fontSize:'25px'}}><b>Log In To Your NAFA Account</b></li>

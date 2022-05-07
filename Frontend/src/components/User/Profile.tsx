@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import { getCurrentUser } from "../../services/authenticate-service";
-import MemberData from "../../types/Member";
+
 import { Member } from "../../services/api";
 import Account from "./Account";
 import { Nav, NavDropdown } from "react-bootstrap";
@@ -10,13 +10,13 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import EditAccount from "./EditAccount";
 
-import Security from "./Security";
+
 import Authenticate from "../../Context/Authenticate";
 
 
 import { Image } from "react-bootstrap";
-import profile from "./profileImage.png";
 import { borderColor, fontSize } from "@mui/system";
+import Activity from "./Activity";
 
 const Profile = () => {
 
@@ -45,9 +45,9 @@ const Profile = () => {
   
 
 
-  //const currentUser = getCurrentUser();
+ 
 
-  console.log(getCurrentUser());
+
   const user = Object.assign({}, userDetail[currentUser.id - 1]);
 
   const userLevel =
@@ -56,7 +56,7 @@ const Profile = () => {
       <li key={index}>{role}</li>
     ));
 
-  const [profilePic, setProfilePic] = useState(profile);
+  const [profilePic, setProfilePic] = useState('');
   const imageHandler = (e) => {
     const reader = new FileReader();
     reader.onload = () => {
@@ -78,16 +78,16 @@ const Profile = () => {
             <div>
               <div className="d-flex flex-column align-items-center text-center">
                 <Image
-                  src={profilePic}
+                  src={require('./profileImage.png')}
                   alt="Admin"
                   className="rounded-circle"
                   width="70%"
                   height="auto"
                 />
                 <div className="mt-3">
-                  <h4>{user.fname + " " + user.lname}</h4>
-                  <p className="text-secondary mb-1">{user.emailId}</p>
-                  <p className="text-muted font-size-sm">{user.address}</p> 
+                  <h4>{userDetail.fname + " " + userDetail.lname}</h4>
+                  <p className="text-secondary mb-1">{userDetail.emailId}</p>
+                  <p className="text-muted font-size-sm">{userDetail.address}</p> 
                    <input
                     type="file"
                     name="image-upload"
@@ -110,15 +110,15 @@ const Profile = () => {
           <div style={{ paddingTop: "30px", fontSize:'20px'}}>
               <div >
                 <i className="fa fa-map-marker" style={{fontSize:'20px', paddingRight:'15px', paddingBottom:'25px'}}></i>
-                  1000 Adress of Member
+                  {userDetail.city}, {userDetail.state}
               </div>
               <div >
                 <i className="fa fa-phone" style={{fontSize:'20px', paddingRight:'15px', paddingBottom:'25px'}}></i>
-                  3184568383
+                  {userDetail.phoneNum}
               </div>
               <div >
                 <i className="fa fa-envelope" style={{fontSize:'20px', paddingRight:'15px', paddingBottom:'25px'}}></i>
-                 <a href="#"> member@company.com</a>
+                 <a href="#"> {userDetail.emailId}</a>
               </div>
               
           </div>
@@ -139,12 +139,8 @@ const Profile = () => {
               Edit
             </Nav.Link>
 
-            <Nav.Link className="nav-link" as={Link} to="/profile/security">
-              Security
-            </Nav.Link>
-            <a className="nav-link" href="" target="__blank">
-              Billing
-            </a>
+           
+           
           </Nav>
           <hr className="mt-0 mb-3" />
           <Routes>
@@ -155,7 +151,8 @@ const Profile = () => {
               element={<EditAccount  />}
             />
            
-            <Route path="security/" element={<Security />} />
+            
+            
           </Routes>
         </div>
       </div>

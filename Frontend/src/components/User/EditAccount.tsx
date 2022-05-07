@@ -4,7 +4,7 @@ import MemberData from "../../types/Member";
 import React, {useState, useEffect, useContext} from "react";
 
 import { useNavigate } from "react-router";
-import { Member } from "../../services/api";
+import { addUserDetail, Member } from "../../services/api";
 import GroupList from "../Group/GroupList";
 import Authenticate from "../../Context/Authenticate";
 
@@ -16,20 +16,21 @@ import { Button, Modal } from "react-bootstrap";
 const EditAccount = () => {
     const [users, setUsers] = useState<MemberData>({
       fname: " ",
-      middleName: " ",
-      maidenName: " ",
+      middleName: "",
+      maidenName: "",
       lname: " ",
       emailId: " ",
-      graduationDate: " ",
-      phoneNum: " ",
-      streetAddress: " ",
-      city: " ",
-      zipCode: " ",
-      state: " ",
+      graduationDate: "",
+      phoneNum: "",
+      streetAddress: "",
+      city: "",
+      zipCode: "",
+      state: "",
       password: " ",
-      university: " ",
-      highSchool: " ",
-      gender: " ",
+      university:"",
+      highSchool: "",
+      gender: "",
+      dateOfBirth: ""
 
     });
 
@@ -41,6 +42,8 @@ const EditAccount = () => {
   const [heading, setHeading] = useState("");
   const[description, setDescription] = useState("");
 
+  
+
 
 
   const navigate = useNavigate();
@@ -48,16 +51,18 @@ const EditAccount = () => {
   const saveclients = (e) => {
     setShow(false);
     e.preventDefault();
-    Member.updateMember(parseInt(users.userId), users)
+    addUserDetail(Number(users.userId), users)
       .then(() => {
         navigate("/profile/user");
 
-        window.location.reload();
+       window.location.reload();
       })
       .catch((error) => {
         console.log("Something went wrong here.", error);
 
       });
+
+      
   };
 
 
@@ -66,7 +71,7 @@ const EditAccount = () => {
       const {setSubmit} : any = useContext(Authenticate);
 
     
-      
+     
      
     
 
@@ -82,15 +87,6 @@ const EditAccount = () => {
       }, []);
       
 
-  // useEffect(() => {
-  //   Member.getAMember(parseInt(user.userId))
-  //     .then((response) => {
-  //       setUsers(response);
-  //     })
-  //     .catch((error) => {
-  //       console.log("Something went wrong here.", error);
-  //     });
-  // }, []);
 
   function handlePopUp(title:string, desc:string){
       
@@ -112,7 +108,10 @@ const EditAccount = () => {
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
-        <Button variant="warning" onClick={saveclients}>
+        <Button variant="warning" onClick={(e) =>{
+          saveclients(e);
+          setSubmit(true);
+        }}>
           Save Changes
         </Button>
       </Modal.Footer>
@@ -127,7 +126,6 @@ const EditAccount = () => {
         }}
         className="btn btn-warning"
         type="button"
-        // onClick={(e) => saveclients(e)}
         onClick={()=>handlePopUp("Save?", "Are you sure you want to proceed ahead and save? ")}
       >
         Save Changes
@@ -190,7 +188,8 @@ const EditAccount = () => {
                   className="form-control"
                   id="middleName"
                   type="text"
-                  value={users.middleName === null ? " ": users.middleName}
+                  placeholder="Enter Middle Name"
+                  value={users.middleName === null ? "": users.middleName}
                   onChange={(e) =>
                     setUsers({ ...users, middleName: e.target.value })
                   }
@@ -199,14 +198,14 @@ const EditAccount = () => {
 
               <div className="col-md-6">
                 <label className="small mb-1" placeholder="inputLocation">
-                  Miaden Name
+                  Maiden Name
                 </label>
                 <input
                   className="form-control"
                   id="inputLocation"
                   type="text"
                   placeholder="Enter Maiden Name"
-                  value={users.maidenName === null ? " ": users.maidenName}
+                  value={users.maidenName === null ? "": users.maidenName}
                   onChange={(e) =>
                     setUsers({ ...users, maidenName: e.target.value })
                   }
@@ -221,6 +220,10 @@ const EditAccount = () => {
                 type="date"
                 id="birthday"
                 name="birthday"
+                value={users.dateOfBirth === null ? "": users.dateOfBirth}
+                  onChange={(e) =>
+                    setUsers({ ...users, dateOfBirth: e.target.value })
+                  }
               ></input>
             </div>
 
@@ -264,7 +267,8 @@ const EditAccount = () => {
                   className="form-control"
                   id="inputPhone"
                   type="text"
-                  value={users.streetAddress === null? " " : users.streetAddress}
+                  placeholder="Enter Street Address"
+                  value={users.streetAddress === null? "" : users.streetAddress}
                   onChange={(e) =>
                     setUsers({ ...users, streetAddress: e.target.value })
                   }
@@ -283,7 +287,8 @@ const EditAccount = () => {
                   className="form-control"
                   id="inputPhone"
                   type="tel"
-                  value={users.city === null? " " : users.city}
+                  placeholder="Enter City"
+                  value={users.city === null? "" : users.city}
                   onChange={(e) =>
                     setUsers({ ...users, city: e.target.value })
                   }
@@ -299,9 +304,26 @@ const EditAccount = () => {
                   id="inputBirthday"
                   type="text"
                   name="birthday"
-                  value={users.zipCode === null? " " : users.zipCode}
+                  placeholder="Enter Zip Code"
+                  value={users.zipCode === null? "" : users.zipCode}
                   onChange={(e) =>
                     setUsers({ ...users, zipCode: e.target.value })
+                  }
+                />
+              </div>
+              <div className="col-md-6">
+                <label className="small mb-1" placeholder="inputBirthday">
+                   State
+                </label>
+                <input
+                  className="form-control"
+                  id="state"
+                  type="text"
+                  name="state"
+                  placeholder="Enter State"
+                  value={users.state === null? "" : users.state}
+                  onChange={(e) =>
+                    setUsers({ ...users, state: e.target.value })
                   }
                 />
               </div>
@@ -401,6 +423,7 @@ const EditAccount = () => {
             <div className="row gx-3 mb-3">
               <div className="col-md-6">
                 <label className="small mb-1" placeholder="inputFirstName">
+
                   High School
                 </label>
 
@@ -409,6 +432,10 @@ const EditAccount = () => {
                   id="inputFirstName"
                   type="text"
                   placeholder="Enter High school name"
+                  value={users.highSchool === null? "" : users.highSchool}
+                  onChange={(e) =>
+                    setUsers({ ...users, highSchool: e.target.value })
+                  }
                 />
               </div>
 
@@ -421,21 +448,15 @@ const EditAccount = () => {
                   id="inputLastName"
                   type="text"
                   placeholder="Enter University name"
+                  value={users.university === null? "" : users.university}
+                  onChange={(e) =>
+                    setUsers({ ...users, university: e.target.value })
+                  }
                 />
               </div>
             </div>
 
-            <div className="mb-3">
-              <label className="small mb-1" placeholder="inputEmailAddress">
-                Interests
-              </label>
-              <input
-                className="form-control"
-                id="inputEmailAddress"
-                type="email"
-                placeholder="Enter Interest"
-              />
-            </div>
+           
 
             <div className="row gx-3 mb-3">
               <div className="col-md-6">
@@ -447,22 +468,24 @@ const EditAccount = () => {
                   className="form-control"
                   id="year"
                   type="text"
-                  placeholder="Enter Graduation year"
+                  placeholder="Enter Graduation year only"
+                  value={users.graduationDate === null? "" : users.graduationDate}
+                  onChange={(e) =>
+                    setUsers({ ...users, graduationDate: e.target.value })
+                  }
                 />
               </div>
 
+             
               <div className="col-md-6">
                 <label className="small mb-1" placeholder="inputBirthday">
-                  Friend of the Year
+                  Groups
                 </label>
 
-                <input
-                  className="form-control"
-                  id="inputBirthday"
-                  type="text"
-                  name="birthday"
-                  placeholder="Enter Friend Name"
-                />
+                <GroupList />
+                
+
+              
               </div>
             </div>
           </form>
