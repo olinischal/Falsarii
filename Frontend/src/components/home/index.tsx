@@ -34,11 +34,7 @@ const Home = () => {
         </a>
       </div>
       {/* <Team /> */}
-      <div style={{ textAlign: "center" }}>
-        <a href="/team" className="btn btn-warning">
-          Click to view all team members.
-        </a>
-      </div>
+      
 
       <Contact />
     </>

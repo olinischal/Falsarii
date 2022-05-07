@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import EditAccount from "./EditAccount";
 
-import Security from "./Security";
+
 import Authenticate from "../../Context/Authenticate";
 
 
@@ -139,9 +139,7 @@ const Profile = () => {
               Edit
             </Nav.Link>
 
-            <Nav.Link className="nav-link" as={Link} to="/profile/security">
-              Security
-            </Nav.Link>
+           
            
           </Nav>
           <hr className="mt-0 mb-3" />
@@ -153,7 +151,6 @@ const Profile = () => {
               element={<EditAccount  />}
             />
            
-            <Route path="security/" element={<Security />} />
             
             
           </Routes>

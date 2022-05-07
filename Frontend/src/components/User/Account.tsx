@@ -131,20 +131,6 @@ const Account: React.FC<userDetails> = ({ user }) => {
             </div>
           </div>
 
-          <div className="card mb-4" style={{ fontSize:'20px', height:"100%" }}>
-            <div className="card-header">Membership</div>
-            <div className="card-body">
-              <div className="row">
-                <div className="col-sm-3">
-                  <h6 className="mb-0">Membership type</h6>
-                </div>
-                <div className="col-sm-9 text-secondary">
-                  {"Membership type goes here"}
-                </div>
-              </div>
-              <hr />
-            </div>
-          </div>
         </div>
       </>
   );

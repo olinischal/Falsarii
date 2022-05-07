@@ -104,18 +104,16 @@ function App() {
          
           <Route path="/searchByType" element={<SearchByType />} />
 
-          <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+          
             <Route path="/members" element={<MemberList />} />
             <Route path="/update/:id" element={<UpdateMember />} />
             <Route path="/scholarships" element={<Scholarships />} />
             <Route path="/events" element={<Events />} />
             <Route path ="/searchMember"  element={<SearchMember userList/>}/>
             <Route path="/calendarDisplay" element={<CalendarEvents />} />
-          </Route>
+        
 
-          <Route
-            element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}
-          >
+          
             <Route path="/membership" element={<Membership />} />
             
            
@@ -125,7 +123,7 @@ function App() {
 
           <Route path="/user" element={<BoardUser />} />
           <Route path="/groups" element={<Groups />} />
-        </Route>
+       
       </Routes>
 
       <Footer />
