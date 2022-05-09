@@ -37,8 +37,9 @@ const Login = () => {
         } else if (localStorage.getItem("otherError")) {
           setErrorString("Some Error Occured! Please try again!");
         } else {
-          window.location.reload();
+          
           navigate("/profile/user");
+          window.location.reload();
           
         }
         console.log(res);

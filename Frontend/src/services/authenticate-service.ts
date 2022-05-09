@@ -79,6 +79,7 @@ export const logout = () => {
 
   localStorage.removeItem("userEmail");
   localStorage.removeItem("event");
+  localStorage.removeItem("homeImage1");
 }
 
 
