@@ -23,23 +23,45 @@ const Groups = () => {
     };
     return (
     <>
-        <input type="text" onChange={(e) =>
+     
+
+        <form>
+  <div className="form-row align-items-center">
+    <div className="col-sm-3 my-1">
+     
+      <input type="text" className="form-control" id="inlineFormInputName" onChange={(e) =>
                             setGroup({
                               ...group,
                               groupName: e.target.value,
                             })
-                          }placeholder="Enter Group name" />
-        <input type="date" onChange={(e) =>
+                          } placeholder="Enter Group Name" />
+    </div>
+    <div className="col-sm-3 my-1">
+      
+      <div className="input-group">
+       
+        <input type="text" className="form-control" id="inlineFormInputGroupUsername" onChange={(e) =>
                             setGroup({
                               ...group,
                               year: e.target.value,
                             })
-                          }placeholder="Enter Group Year" />
-
-        <button className="btn btn-primary" type="button" onClick={(e) => saveGroup(e)}>
-                  Submit
-        </button>
-
+                          } placeholder="Enter Group Year"/>
+      </div>
+    </div>
+    <div className="col-auto my-1">
+      
+    </div>
+    <div className="col-auto my-1">
+      <button type="submit" className="btn btn-primary" onClick={(e) => saveGroup(e)}>Submit</button>
+    </div>
+  </div>
+</form>
+<hr />
+<br />
+<h3> 
+  List of All Groups
+</h3>
+<br />
         <GroupList />
 
         
@@ -47,7 +69,8 @@ const Groups = () => {
     
     
     
-    </>);
+    </>
+    );
 }
 
 

@@ -38,6 +38,9 @@ const AdminNav = () => {
         <Nav.Link as={Link} to="/about">
         <span className="text-warning">About</span>
         </Nav.Link>
+        <Nav.Link as={Link} to="/groups">
+        <span className="text-warning">Create Groups</span>
+        </Nav.Link>
         <Nav.Link as={Link} to="/contact">
         <span className="text-warning">Contact Us </span>
         </Nav.Link>

@@ -84,21 +84,13 @@ const GroupList  = () => {
   return (
     <div>
   
-      <label>
-            <select defaultValue={'DEFAULT'} onChange={handleChange}>
-            {groups.map((option, key) => (
+
+<select className="form-select" aria-label="Default select example" style={{ width : '50%'}} onChange={handleChange}>
+  <option selected> </option>
+  {groups.map((option, key) => (
             <option key ={key} value={option.groupName} >{option.groupName}</option>
           ))}
-
-          
-
-
-            </select>
-            
-            
-    
-  
-</label>
+</select>
 
     </div>
   );
