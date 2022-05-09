@@ -26,8 +26,8 @@ const UserNav = () => {
             title={<span className="text-warning">Events</span>}
             menuVariant="dark"
           >
-            <NavDropdown.Item href="/eventList"><span className="text-warning">All Events</span></NavDropdown.Item>
-            <NavDropdown.Item href="/calendar"><span className="text-warning">Calendar</span></NavDropdown.Item>
+            <Nav.Link as={Link} to="/eventList"><span className="text-warning">All Events</span> </Nav.Link>
+            <Nav.Link as={Link} to="/calendar"><span className="text-warning">Calendar</span> </Nav.Link>
           </NavDropdown>
         </Nav>
 
@@ -44,9 +44,9 @@ const UserNav = () => {
             menuVariant="dark"
           >
             
-            <NavDropdown.Item href="/scholarshipList">
+            <Nav.Link as={Link} to="/scholarshipList">
             <span className="text-warning">Scholarships</span>
-            </NavDropdown.Item>
+            </Nav.Link>
           </NavDropdown>
         </Nav>
 

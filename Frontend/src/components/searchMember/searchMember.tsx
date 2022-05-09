@@ -70,7 +70,7 @@ const SearchMember = ({userList}) => {
     try {
       Member.deleteMember(id).then(() => {
         navigate("/members");
-        window.location.reload();
+       
       });
     } catch (error) {
       console.log("Error...");

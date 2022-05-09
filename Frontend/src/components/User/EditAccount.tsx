@@ -55,7 +55,7 @@ const EditAccount = () => {
       .then(() => {
         navigate("/profile/user");
 
-       window.location.reload();
+      
       })
       .catch((error) => {
         console.log("Something went wrong here.", error);

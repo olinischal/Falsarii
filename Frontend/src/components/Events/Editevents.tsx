@@ -35,7 +35,7 @@ const EditEvents = ({event}) =>{
           console.log("Could not edit event.", error);
         });
       navigate("/events");
-      window.location.reload();
+     
     };
     console.log("The event is active ", editEvent.status);
     return (

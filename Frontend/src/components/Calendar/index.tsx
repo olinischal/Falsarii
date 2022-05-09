@@ -38,7 +38,7 @@ const CalendarEvents = () => {
       console.log("Request cannot be completed.", error);
     });
     setShow(false);
-    window.location.reload();
+    
 
     
   };

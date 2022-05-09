@@ -18,7 +18,7 @@ const Groups = () => {
             console.log("Request cannot be completed.", error);
           });
           console.log(group);
-          window.location.reload();
+    
 
     };
     return (

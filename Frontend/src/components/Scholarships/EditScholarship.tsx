@@ -37,7 +37,7 @@ const Scholarships = ({ scholarship }) => {
         console.log("Could not edit scholarship.", error);
       });
     navigate("/scholarships");
-    window.location.reload();
+   
   };
   console.log("The scholarship is active ", editScholarship.status);
   return (

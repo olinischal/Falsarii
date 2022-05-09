@@ -28,7 +28,7 @@ const MemberList = () => {
     try {
       Member.deleteMember(id).then(() => {
         navigate("/members");
-        window.location.reload();
+      
       });
     } catch (error) {
       console.log("Error...");

@@ -30,8 +30,8 @@ const AdminNav = () => {
             title={<span className="text-warning">Events</span>}
             menuVariant="dark"
           >
-            <NavDropdown.Item href="/events"><span className="text-warning">Create Events</span></NavDropdown.Item>
-            <NavDropdown.Item href="/calendarDisplay"><span className="text-warning">Calender</span></NavDropdown.Item>
+            <Nav.Link as={Link} to="/events"><span className="text-warning">Create Events</span></Nav.Link>
+            <Nav.Link as={Link} to="/calendarDisplay"><span className="text-warning">Calender</span></Nav.Link>
           </NavDropdown>
         </Nav>
 
@@ -52,9 +52,9 @@ const AdminNav = () => {
             menuVariant="dark"
           >
             
-            <NavDropdown.Item href="/scholarships">
+            <Nav.Link as={Link} to="/scholarships">
             <span className="text-warning">Create Scholarship</span>
-            </NavDropdown.Item>
+            </Nav.Link>
           </NavDropdown>
         </Nav>
 

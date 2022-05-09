@@ -57,7 +57,7 @@ const Signup = () => {
         } else {
           alert("User registered Successfully!");
           navigate("/login");
-          window.location.reload();
+         
         }
       });
     } catch (error) {

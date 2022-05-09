@@ -35,7 +35,7 @@ const UpdateMember = () => {
     Member.updateMember(parseInt(String(id)), users)
       .then(() => {
         navigate("/members");
-        window.location.reload();
+       
       })
       .catch((error) => {
         console.log("Something went wrong here.", error);

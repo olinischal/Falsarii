@@ -39,7 +39,7 @@ const Login = () => {
         } else {
           
           navigate("/profile/user");
-          window.location.reload();
+         
           
         }
         console.log(res);
