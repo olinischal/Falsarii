@@ -41,7 +41,7 @@ const Events = () => {
       console.log("Request cannot be completed.", error);
     });
     
-    window.location.reload();
+   
 
     
   };

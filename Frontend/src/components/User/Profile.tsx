@@ -138,6 +138,13 @@ const Profile = () => {
             >
               Edit
             </Nav.Link>
+            <Nav.Link
+              className="nav-link ms-0"
+              as={Link}
+              to="/profile/activity"
+            >
+              Activity
+            </Nav.Link>
 
            
            
@@ -149,6 +156,11 @@ const Profile = () => {
             <Route
               path="edit_profile/"
               element={<EditAccount  />}
+            />
+
+<Route
+              path="activity/"
+              element={<Activity  />}
             />
            
             

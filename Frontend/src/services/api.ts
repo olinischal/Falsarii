@@ -288,3 +288,21 @@ export const JoinGroup = (userId, groupId) => {
 	});
 
   }
+
+  export const addMembership = (userId, membershipType) => {
+	const API_URL = "http://localhost:8080/member/";
+
+	return axios.get(
+		API_URL + "/user/membership", {
+			params: {
+				userId: userId,
+				membershipType: membershipType
+			}
+		}
+		
+
+	).then(res => {
+		console.log(res);
+	});
+
+  }

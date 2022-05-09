@@ -8,31 +8,39 @@ const Activity = () => {
     const [eventDonation, setEventDonations] = useState<any>([]);
     const {eventDetail}: any = useContext(Authenticate);
 
-    const[eventName, setEventName]= useState<any>();
+    const[eventName, setEventName]= useState<any>([]);
 
-    console.log(eventDetail);
+    
     useEffect(() => {
         getAllEventDonationUser(userDetail.userId).then(res => {
            
             setEventDonations(res.data);
+            
         }).catch(e => {
             console.log("Cannot obtaint the list of users", e);
         })
 
     }, []);
 
-    
-
-    eventDonation.forEach(val => {
-    
-        if (val[0] === eventDetail.eventId){
-            console.log(eventDetail.eventId);
-            setEventName(eventDetail.eventName);
+    let eventsName: string[] = [];
+    for ( var i = 0; i< eventDonation.length; i++){
+      for(var j = 0; j < eventDetail.length; j++){
+       
+        if(Number(eventDonation[i][0]) === eventDetail[j].eventId){
+         // console.log(eventDetail[j].eventName);
+          eventsName.push(eventDetail[j].eventName);
         }
-    })
+      }
+    }
 
     
 
+    
+
+    useEffect(() => {
+      setEventName(eventsName);
+    }, [eventDonation]);
+    
     console.log(eventName);
 
    
@@ -46,16 +54,16 @@ const Activity = () => {
             <div className="card-body">
               <div className="row">
                 <div className="col-sm-3">
-                  <h6 className="mb-0">Full Name</h6>
+                  <h6 className="mb-0">Event Attending</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  {eventDonation.map((val, key) => {
+                  {eventName.map((val, key) => {
                       
                       
                     return (
                         <>
                         
-                        <p key={key}>{eventName}</p>
+                        <p key={key}>{val}</p>
                         </>
                     );
                   })
@@ -64,30 +72,7 @@ const Activity = () => {
                 </div>
               </div>
              
-              <div className="row">
-                <div className="col-sm-3">
-                  <h6 className="mb-0">Email</h6>
-                </div>
-                <div className="col-sm-9 text-secondary">{userDetail.emailId}</div>
-              </div>
-             
-              <div className="row">
-                <div className="col-sm-3">
-                  <h6 className="mb-0">Phone</h6>
-                </div>
-                <div className="col-sm-9 text-secondary">
-                  {userDetail.phoneNum}
-                </div>
-              </div>
             
-              <div className="row">
-                <div className="col-sm-3">
-                  <h6 className="mb-0">Address</h6>
-                </div>
-                <div className="col-sm-9 text-secondary">
-                  {userDetail.streetAddress}
-                </div>
-              </div>
               
 
            
